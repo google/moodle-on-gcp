@@ -3,7 +3,7 @@
 **Welcome to a modern version of Moodle for GCP!**
 
 <p align="center">
-    <img src="../moodle-on-gcp/img/moodle-gcp.png">
+    <img src="img/moodle-gcp.png">
 </p>
 
 This repo groups a set of resources designed by Google Cloud's Engineers specialized in Education that allow organizations to deploy [Moodle](https://moodle.com/) on top of GCP's high-scalable services, unlocking the prime benefits of a modern cloud native architecture (based on containers and [Kubernetes](https://kubernetes.io/) for one of the most utilized eLearning platforms around the World.
