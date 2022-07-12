@@ -1,0 +1,30 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: moodle-ingress
+  namespace: moodle
+  annotations:
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/client-body-buffer-size: 128k
+    nginx.ingress.kubernetes.io/proxy-body-size: 10m
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      more_set_headers "X-Forwarded-For $http_x_forwarded_for";
+      more_set_headers "X-Forwarded-Proto https";
+    cert-manager.io/cluster-issuer: letsencrypt
+spec:
+  ingressClassName: "nginx"
+  tls:
+  - hosts:
+    - moodle.<YOUR-LB-EXTERNAL-IP>.nip.io
+    secretName: tls-secret
+  rules:
+  - host: moodle.<YOUR-LB-EXTERNAL-IP>.nip.io
+    http:
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+          backend:
+            service:
+              name: moodle
+              port:
+                number: 80

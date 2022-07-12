@@ -1,0 +1,28 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: moodle-ingress
+  namespace: moodle
+  annotations:
+    # If the class annotation is not specified it defaults to "gce".
+    kubernetes.io/ingress.class: "gce"
+    kubernetes.io/ingress.global-static-ip-name: "moodle-ingress-ip"
+    networking.gke.io/managed-certificates: "moodle-google-managed-certificate"
+    networking.gke.io/v1beta1.FrontendConfig: "moodle-ingress-frontendconfig-https"
+spec:
+  # ingressClassName: "gce"
+  rules:
+  - http:
+      paths:
+      - path: /*
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: moodle
+            port:
+              number: 80
+  # defaultBackend:
+  #   service:
+  #     name: moodle
+  #     port:
+  #       number: 80

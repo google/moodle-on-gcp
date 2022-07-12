@@ -1,0 +1,14 @@
+apiVersion: networking.gke.io/v1beta1
+kind: FrontendConfig
+metadata:
+  name: moodle-ingress-frontendconfig-https
+  namespace: moodle
+spec:
+  redirectToHttps:
+    enabled: true
+    # MOVED_PERMANENTLY_DEFAULT to return a 301 redirect response code (default if responseCodeName is unspecified).
+    # FOUND to return a 302 redirect response code.
+    # SEE_OTHER to return a 303 redirect response code.
+    # TEMPORARY_REDIRECT to return a 307 redirect response code.
+    # PERMANENT_REDIRECT to return a 308 redirect response code.
+    responseCodeName: MOVED_PERMANENTLY_DEFAULT

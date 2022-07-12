@@ -1,0 +1,17 @@
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: pvc-filestore
+  namespace: moodle
+spec:
+  # Specify "" as the storageClassName so it matches the PersistentVolume's StorageClass.
+  # A nil storageClassName value uses the default StorageClass. For details, see
+  # https://kubernetes.io/docs/concepts/storage/persistent-volumes/#class-1
+  accessModes:
+  - ReadWriteMany
+  storageClassName: ""
+  volumeName: pv-filestore
+  resources:
+    requests:
+      storage: 2.5Ti

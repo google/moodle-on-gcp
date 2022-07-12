@@ -1,0 +1,397 @@
+## Bitnami Moodle(TM) image version
+## ref: https://hub.docker.com/r/bitnami/moodle/tags/
+##
+image:
+  registry: <YOUR-ARTIFACT-REGISTRY>
+  repository: <YOUR-REPOSITORY>
+  tag: <YOUR-IMAGE-TAG>
+  ## Specify a imagePullPolicy
+  ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
+  ## ref: http://kubernetes.io/docs/user-guide/images/#pre-pulling-images
+  ##
+  pullPolicy: IfNotPresent
+  ## Optionally specify an array of imagePullSecrets.
+  ## Secrets must be manually created in the namespace.
+  ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
+  ##
+  pullSecrets:
+  #   - myRegistryKeySecretName
+
+  environment:
+    - MOODLE_DATABASE_TYPE=mysqli
+
+  ## Set to true if you would like to see extra information on logs
+  ##
+  debug: true
+
+## Number of replicas (requires ReadWriteMany PVC support)
+##
+replicaCount: 1
+
+## Skip Moodle(TM) installation wizard. Useful for migrations and restoring from SQL dump
+## ref: https://github.com/bitnami/bitnami-docker-moodle#configuration
+##
+moodleSkipInstall: false
+
+## Site name
+## ref: https://github.com/bitnami/bitnami-docker-moodle#configuration
+##
+moodleSiteName: "Moodle 4.0.1 on GKE"
+
+## User of the application
+## ref: https://github.com/bitnami/bitnami-docker-moodle#configuration
+##
+moodleUsername: admin
+
+## Application password
+## Defaults to a random 10-character alphanumeric string if not set
+## ref: https://github.com/bitnami/bitnami-docker-moodle#configuration
+##
+moodlePassword: "moodleOnGCP@GKE"
+
+## Admin email
+## ref: https://github.com/bitnami/bitnami-docker-moodle#configuration
+##
+moodleEmail: user@example.com
+
+## Set to `yes` to allow the container to be started with blank passwords
+## ref: https://github.com/bitnami/bitnami-docker-moodle#environment-variables
+##
+allowEmptyPassword: false
+
+## Update strategy - only really applicable for deployments with RWO PVs attached
+## If replicas = 1, an update can get "stuck", as the previous pod remains attached to the
+## PV, and the "incoming" pod can never start. Changing the strategy to "Recreate" will
+## terminate the single previous pod, so that the new, incoming pod can attach to the PV
+##
+updateStrategy:
+  type: RollingUpdate
+
+## An array to add extra env vars
+## For example:
+##
+## extraEnvVars: []
+#  - name: BEARER_AUTH
+#    value: true
+extraEnvVars:
+  - name: PHP_ENABLE_OPCACHE
+    value: "true"
+  - name: MOODLE_DATABASE_TYPE
+    value: "mysqli"
+
+## ConfigMap with extra environment variables
+##
+extraEnvVarsCM:
+
+## Secret with extra environment variables
+##
+extraEnvVarsSecret:
+
+## Extra volumes to add to the deployment
+##
+extraVolumes: []
+
+## Extra volume mounts to add to the container
+##
+extraVolumeMounts: []
+
+## Extra init containers to add to the deployment
+##
+initContainers: []
+
+## Extra sidecar containers to add to the deployment
+##
+sidecars: []
+
+## Tolerations for pod assignment. Evaluated as a template.
+## Ref: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
+##
+tolerations: []
+
+## Use existing secret for the application password
+##
+existingSecret:
+
+## SMTP mail delivery configuration
+## ref: https://github.com/bitnami/bitnami-docker-moodle/#smtp-configuration
+##
+smtpHost:
+smtpPort:
+smtpUser:
+smtpPassword:
+smtpProtocol:
+
+## Container ports
+##
+containerPorts:
+  http: 8080
+  https: 8443
+
+## Kubernetes configuration
+## For minikube, set this to NodePort, for ingress ClusterIP, elsewhere use LoadBalancer
+##
+service:
+  type: ClusterIP
+  annotations:
+    cloud.google.com/backend-config: '{"ports": {"http": "ingress-backendconfig"}}'
+    cloud.google.com/neg: '{"ingress": true}'
+  # HTTP Port
+  port: 80
+  # HTTPS Port
+  httpsPort: 443
+  ## clusterIP: ""
+  ## Control hosts connecting to "LoadBalancer" only
+  ## loadBalancerSourceRanges:
+  ##   - 0.0.0.0/0
+  ## loadBalancerIP for the Moodle(TM) Service (optional, cloud specific)
+  ## ref: http://kubernetes.io/docs/user-guide/services/#type-loadbalancer
+  ## loadBalancerIP:
+  ##
+  ## nodePorts:
+  ##   http: <to set explicitly, choose port between 30000-32767>
+  ##   https: <to set explicitly, choose port between 30000-32767>
+  ##
+  nodePorts:
+    http: ""
+    https: ""
+  ## Enable client source IP preservation
+  ## ref http://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/#preserving-the-client-source-ip
+  ##
+  externalTrafficPolicy: Cluster
+
+## MariaDB chart configuration
+## https://github.com/bitnami/charts/blob/master/bitnami/mariadb/values.yaml
+##
+mariadb:
+  ## @param mariadb.enabled Whether to deploy a mariadb server to satisfy the applications database requirements
+  ## To use an external database set this to false and configure the externalDatabase parameters
+  ##
+  enabled: false
+
+## Control where client requests go, to the same pod or round-robin
+## Values: ClientIP or None
+## ref: https://kubernetes.io/docs/user-guide/services/
+##
+sessionAffinity: "None"
+
+## Enable persistence using Persistent Volume Claims
+## ref: http://kubernetes.io/docs/user-guide/persistent-volumes/
+##
+persistence:
+  enabled: true
+  ## Moodle(TM) Data Persistent Volume Storage Class
+  ## If defined, storageClassName: <storageClass>
+  ## If set to "-", storageClassName: "", which disables dynamic provisioning
+  ## If undefined (the default) or set to null, no storageClassName spec is
+  ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+  ##   GKE, AWS & OpenStack)
+  ##
+  # storageClass: "-"
+  storageClass: ""
+
+  ## A manually managed Persistent Volume and Claim
+  ## Requires persistence.enabled: true
+  ## If defined, PVC must be created manually before volume will be bound
+  ##
+  accessMode: ReadWriteMany
+  size: 2.5Ti
+
+  ## A manually managed Persistent Volume Claim
+  ## Requires persistence.enabled: true
+  ## If defined, PVC must be created manually before volume will be bound
+  ##
+  existingClaim: pvc-filestore
+
+  ## If defined, the moodle-data volume will mount to the specified hostPath.
+  ## Requires persistence.enabled: true
+  ## Requires persistence.existingClaim: nil|false
+  ## Default: nil.
+  ##
+  hostPath:
+
+## Pod affinity preset
+## ref: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#inter-pod-affinity-and-anti-affinity
+## Allowed values: soft, hard
+##
+podAffinityPreset: ""
+
+## Pod anti-affinity preset
+## Ref: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#inter-pod-affinity-and-anti-affinity
+## Allowed values: soft, hard
+##
+podAntiAffinityPreset: soft
+
+## Node affinity preset
+## Ref: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#node-affinity
+## Allowed values: soft, hard
+##
+nodeAffinityPreset:
+  ## Node affinity type
+  ## Allowed values: soft, hard
+  ##
+  type: ""
+  ## Node label key to match
+  ## E.g.
+  ## key: "kubernetes.io/e2e-az-name"
+  ##
+  key: ""
+  ## Node label values to match
+  ## E.g.
+  ## values:
+  ##   - e2e-az1
+  ##   - e2e-az2
+  ##
+  values: []
+
+## Affinity for pod assignment
+## Ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity
+## Note: podAffinityPreset, podAntiAffinityPreset, and  nodeAffinityPreset will be ignored when it's set
+##
+affinity: {}
+
+## Node labels for pod assignment. Evaluated as a template.
+## ref: https://kubernetes.io/docs/user-guide/node-selection/
+##
+nodeSelector:
+  kubernetes.io/os: linux
+
+## Configure resource requests and limits
+## ref: http://kubernetes.io/docs/user-guide/compute-resources/
+##
+resources:
+  requests:
+    memory: 512Mi
+    cpu: 300m
+  limits:
+    memory: 1Gi
+    cpu: 1000m
+
+##
+## External database configuration
+##
+externalDatabase:
+  ## @param externalDatabase.type Type of the existing database
+  ##
+  type: "mysqli"
+  ## @param externalDatabase.host Host of the existing database
+  ##
+  host: "<YOUR-INTERNAL-MYSQL-HOST-API>"
+  ## @param externalDatabase.port Port of the existing database
+  ##
+  port: 3306
+  ## @param externalDatabase.user Existing username in the external db
+  ##
+  user: root
+  ## @param externalDatabase.password Password for the above username
+  ##
+  password: "<YOUR-DATABASE-PASSWORD>"
+  ## @param externalDatabase.database Name of the existing database
+  ##
+  database: <YOUR-MOODLE-DB-NAME>
+  ## @param externalDatabase.existingSecret Name of an existing secret resource containing the DB password
+  ##
+  existingSecret: ""
+
+## @section Volume Permissions parameters
+
+## Init containers parameters:
+## volumePermissions: Change the owner and group of the persistent volume mountpoint to runAsUser:fsGroup values from the securityContext section.
+##
+volumePermissions:
+  enabled: true
+  image:
+    registry: docker.io
+    repository: bitnami/bitnami-shell
+    tag: 11-debian-11-r9
+    pullPolicy: IfNotPresent
+    ## Optionally specify an array of imagePullSecrets.
+    ## Secrets must be manually created in the namespace.
+    ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
+    ##
+    pullSecrets: []
+    ##   - myRegistryKeySecretName
+  ## Init containers' resource requests and limits
+  ## ref: http://kubernetes.io/docs/user-guide/compute-resources/
+  ##
+  resources:
+    ## We usually recommend not to specify default resources and to leave this as a conscious
+    ## choice for the user. This also increases chances charts run on environments with little
+    ## resources, such as Minikube. If you do want to specify resources, uncomment the following
+    ## lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+    ##
+    limits: {}
+    ##   cpu: 100m
+    ##   memory: 128Mi
+    ##
+    requests: {}
+    ##   cpu: 100m
+    ##   memory: 128Mi
+    ##
+
+## Configure Pods Security Context
+## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod
+##
+podSecurityContext:
+  enabled: true
+  fsGroup: 1001
+
+## Configure Container Security Context (only main container)
+## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-container
+##
+containerSecurityContext:
+  enabled: true
+  runAsUser: 1001
+  runAsNonRoot: true
+## Configure extra options for liveness and readiness probes
+## Moodle(TM) core exposes /user/login to unauthenticated requests, making it a good
+## default liveness and readiness path. However, that may not always be the
+## case. For example, if the image value is overridden to an image containing a
+## module that alters that route, or an image that does not auto-install Moodle(TM).
+## ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/#configure-probes
+##
+startupProbe:
+  enabled: false
+  path: /login/index.php
+  initialDelaySeconds: 30
+  periodSeconds: 10
+  timeoutSeconds: 5
+  failureThreshold: 60
+  successThreshold: 1
+## @param livenessProbe.enabled Enable livenessProbe
+## @param livenessProbe.path Request path for livenessProbe
+## @param livenessProbe.initialDelaySeconds Initial delay seconds for livenessProbe
+## @param livenessProbe.periodSeconds Period seconds for livenessProbe
+## @param livenessProbe.timeoutSeconds Timeout seconds for livenessProbe
+## @param livenessProbe.failureThreshold Failure threshold for livenessProbe
+## @param livenessProbe.successThreshold Success threshold for livenessProbe
+##
+livenessProbe:
+  enabled: true
+  # OPTIONAL install heartbeat plugin for a better liveness
+  # path: /admin/tool/heartbeat/?fullcheck
+  path: /login/index.php
+  initialDelaySeconds: 600
+  periodSeconds: 10
+  timeoutSeconds: 5
+  failureThreshold: 60
+  successThreshold: 1
+## Configure extra options for readiness probe
+## ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/#configure-probes
+## @param readinessProbe.enabled Enable readinessProbe
+## @param readinessProbe.path Request path for readinessProbe
+## @param readinessProbe.initialDelaySeconds Initial delay seconds for readinessProbe
+## @param readinessProbe.periodSeconds Period seconds for readinessProbe
+## @param readinessProbe.timeoutSeconds Timeout seconds for readinessProbe
+## @param readinessProbe.failureThreshold Failure threshold for readinessProbe
+## @param readinessProbe.successThreshold Success threshold for readinessProbe
+##
+readinessProbe:
+  enabled: true
+  # OPTIONAL install heartbeat plugin for a better liveness
+  # path: /admin/tool/heartbeat/
+  path: /login/index.php
+  initialDelaySeconds: 30
+  periodSeconds: 5
+  timeoutSeconds: 3
+  failureThreshold: 6
+  successThreshold: 1
