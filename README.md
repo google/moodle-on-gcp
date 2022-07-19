@@ -1,6 +1,6 @@
 # Modern Moodle on Google Cloud Platform (GCP)
 
-**Welcome to a modern version of Moodle for GCP!**
+**Welcome to a modern version of Moodle on GCP!**
 
 <p align="center">
     <img src="img/moodle-gcp.png">
@@ -12,7 +12,7 @@ Below you can find the documentation that outlines all the different aspects rel
 
 ## Documentation (coming soon)
 
-1. Project overview
+1. [Project overview](docs/project-overview.md)
 2. Architecture
 3. Repository organization
 4. Deployment
@@ -30,4 +30,4 @@ Below you can find the documentation that outlines all the different aspects rel
        1.  Google Cloud Load Balancer
        2.  NGINX
 5.  Configuring Redis Cache with Moodle
-6.  Running benchmark to check results
+6.  Running benchmark to check performance
