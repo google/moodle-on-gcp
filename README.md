@@ -13,7 +13,7 @@ Below you can find the documentation that outlines all the different aspects rel
 ## Documentation (coming soon)
 
 1. [Project overview](docs/project-overview.md)
-2. Architecture
+2. [Architecture](docs/architecture.md)
 3. Repository organization
 4. Deployment
    1. Pre-requisites
