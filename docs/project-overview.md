@@ -32,7 +32,7 @@ Please, visit [Deployment](docs/deployment.md) section in README to see details 
 
 ## Cost view
 
-If the architecture gets deployed the way it originally sits in the repo, it will going to cost something around **US$ 2,300.00/month**, as you can see through [this simulation](https://cloud.google.com/products/calculator/#id=35a411a3-30b8-4409-b3d8-f88a28b6e97e) in Google Cloud calculator.
+If the architecture gets deployed the way it originally sits on the repo, it will going to cost something around **US$ 2,300.00/month**, as you can see through [this simulation](https://cloud.google.com/products/calculator/#id=35a411a3-30b8-4409-b3d8-f88a28b6e97e) in Google Cloud calculator.
 
 However, it is important to acknowledge that customizations on that  deployment of services (in file [infra-creation.sh](~/../../0-infra/infra-creation.sh)) can impact directly that amount. So please, be aware of it when customizing the script.
 

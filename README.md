@@ -6,7 +6,7 @@
     <img src="img/moodle-gcp.png">
 </p>
 
-This repo groups a set of resources designed by Google Cloud's Engineers specialized in Education that allow organizations to deploy [Moodle](https://moodle.com/) on top of GCP's high-scalable services, unlocking the prime benefits of a modern cloud native architecture (based on containers and [Kubernetes](https://kubernetes.io/) for one of the most utilized eLearning platforms around the World.
+This repo groups a set of resources designed by Google Cloud's Engineers specialized in Education that allow organizations to deploy [Moodle](https://moodle.com/) on top of GCP's high-scalable services, unlocking the prime benefits of a modern cloud native architecture (based on containers and [Kubernetes](https://kubernetes.io/)) for one of the most utilized eLearning platforms around the World.
 
 Below you can find the documentation that outlines all the different aspects related to the solution, like installation, details about tests and performance, initial vision about costs, and so on.
 
@@ -14,7 +14,7 @@ Below you can find the documentation that outlines all the different aspects rel
 
 1. [Project overview](docs/project-overview.md)
 2. [Architecture](docs/architecture.md)
-3. Repository organization
+3. [Repository organization](docs/repository-organization.md)
 4. Deployment
    1. Pre-requisites
    2. File "env.sh"
