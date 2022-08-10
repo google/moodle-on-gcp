@@ -16,7 +16,7 @@ Below you can find the documentation that outlines all the different aspects rel
 2. [Architecture](docs/architecture.md)
 3. [Repository organization](docs/repository-organization.md)
 4. [Deployment](docs/deployment.md)
-   1. Pre-requisites
+   1. [Pre-requisites](docs/pre-requisites.md)
    2. File "env.sh"
    3. Deploying infrastructure
    4. Deploying persistent volume

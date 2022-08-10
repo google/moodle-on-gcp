@@ -2,10 +2,10 @@
 
 This session is designed to support customers and partners on getting Modern Moodle on Google Cloud up and running on their own accounts.
 
-Please, carefully follow the steps below and be sure to comply with all the pre-requisits described in the document [pre-requisits](pre-requisits.md) before getting started.
+Please, carefully follow the steps below and be sure to comply with all the pre-requisits described in the document [pre-requisites](pre-requisites.md) before getting started.
 
-* [Pre-requisits](pre-requisits.md)
-* [File "env.sh"]
+* [Pre-requisites](pre-requisites.md)
+* File "env.sh"
 * Deploying infrastructure
 * Deploying persistent volume
 * Deploying Moodle's namespace
