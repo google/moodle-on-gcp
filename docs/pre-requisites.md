@@ -87,3 +87,17 @@ If you have not done so already, you should enable the APIs for the following se
 <p align="center">
     <img src="img/../../img/enabling-api-console.png">
 </p>
+
+## Save compute account (principal) data for later usage
+
+In order for Moodle's infrastructure script to properly deploy in Google Cloud Platform, there is a special type of administrative account (Compute Engine default service account) that will need to be properly settled with Project's IAM.
+
+Those permitions will be automatically attributed to each service as the infrastructure script gets executed. For this to happen though, you will need to provide principal's name to a specific variable in "envs.sh" later in the process. That's why we're going to need to save that pricipal name.
+
+To get to that information, from main menu (left side) in Google Cloud Console, navigate to "**IAM & Admin**" option. Once in there, in the list of principals, look for the record which name stands for "Compute Engine default service account". Once you found it, copy the "principal" piece of data and keep it to yourself.
+
+The figure below highlights how that record might look like.
+
+<p align="center">
+    <img src="img/../../img/principal-compute-account.png">
+</p>
