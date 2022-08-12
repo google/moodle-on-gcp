@@ -12,7 +12,7 @@ If you company already has a account with Google Cloud, please talk to your admi
 
 If you're new to Google Cloud and would like to spin up Modern Moodle as your first workload in the cloud or learning how to operate Google Cloud, please refer to [this link](https://cloud.google.com/free) to get a free account.
 
-## Get a project set up and administrative rights in it
+## Get a project set up and administrative rights for it
 
 One of the tools available in Google Cloud to structure and organize projects in the cloud is "Projects". 
 
