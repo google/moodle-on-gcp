@@ -191,6 +191,7 @@ gcloud redis instances create $REDIS_NAME \
   --maintenance-window-day=sunday \
   --maintenance-window-hour=08 \
   --redis-version=redis_6_x \
+  --redis-config maxmemory-policy=allkeys-lru \
   --region=$REGION
 
 # list redis instances created
