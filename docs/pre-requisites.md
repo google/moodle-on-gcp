@@ -12,6 +12,40 @@ If you company already has a account with Google Cloud, please talk to your admi
 
 If you're new to Google Cloud and would like to spin up Modern Moodle as your first workload in the cloud or learning how to operate Google Cloud, please refer to [this link](https://cloud.google.com/free) to get a free account.
 
+## Enable Moodle's underlying infrastructure services APIs in Google Cloud
+
+You might inquire in the case of an administrative API of a given cloud service used by Modern Moodle's infrastructure is not enabled for usage by default. 
+
+To avoid seeing that behavior to happen, we recommend looking over it before hand, enabling APIs before the actual deployment happens.
+
+To enable those APIs, you must execute the following the steps:
+
+1. Access Google Cloud Web console (https://console.cloud.google.com) and get logged in.
+
+2. Once you're in the initial page, in the search box on the top type "APIs" and then, select "APIs and Services" as depicted below.
+
+<p align="center">
+    <img src="img/../../img/apis-services-enablement.png">
+</p>
+
+3. Once in the APIs catalog, just search for the services you want to enable, select it and then click on "Enable". The figure below provides an example of how the API enablement screen look like. 
+If you have not done so already, you should enable the APIs for the following services:
+
+   * Google Kubernetes Service
+   * Artifact Registry
+   * Cloud Firestore
+   * Cloud SQL
+   * Virtual Private Connect (VPC)
+   * Cloud CDN
+   * Cloud Armor
+   * Cloud Load Balancer
+   * reCAPTCHA Enterprise
+   * Compute Engine
+
+<p align="center">
+    <img src="img/../../img/enabling-api-console.png">
+</p>
+
 ## Get a project set up and administrative rights for it
 
 One of the tools available in Google Cloud to structure and organize projects in the cloud is "Projects". 
@@ -53,40 +87,6 @@ To get `gcloud` installed and properly configured in your system, please follow 
 Modern Moodle's files live on GitHub, which is based on Git engine. In order to clone or fork the content there you will need to have Git client installed in working machine. 
 
 You can see a tutorial on how to get it installed and configured in your environment in [this tutorial](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
-
-## Enable Moodle's underlying infrastructure services APIs in Google Cloud
-
-You might inquire in the case of an administrative API of a given cloud service used by Modern Moodle's infrastructure is not enabled for usage by default. 
-
-To avoid seeing that behavior to happen, we recommend looking over it before hand, enabling APIs before the actual deployment happens.
-
-To enable those APIs, you must execute the following the steps:
-
-1. Access Google Cloud Web console (https://console.cloud.google.com) and get logged in.
-
-2. Once you're in the initial page, in the search box on the top type "APIs" and then, select "APIs and Services" as depicted below.
-
-<p align="center">
-    <img src="img/../../img/apis-services-enablement.png">
-</p>
-
-3. Once in the APIs catalog, just search for the services you want to enable, select it and then click on "Enable". The figure below provides an example of how the API enablement screen look like. 
-If you have not done so already, you should enable the APIs for the following services:
-
-   * Google Kubernetes Service
-   * Artifact Registry
-   * Cloud Firestore
-   * Cloud SQL
-   * Virtual Private Connect (VPC)
-   * Cloud CDN
-   * Cloud Armor
-   * Cloud Load Balancer
-   * reCAPTCHA Enterprise
-   * Compute Engine
-
-<p align="center">
-    <img src="img/../../img/enabling-api-console.png">
-</p>
 
 ## Save compute account (principal) data for later usage
 

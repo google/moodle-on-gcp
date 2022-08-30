@@ -5,7 +5,7 @@ This session is designed to support customers and partners on getting Modern Moo
 Please, carefully follow the steps below and be sure to comply with all the pre-requisits described in the document [pre-requisites](pre-requisites.md) before getting started.
 
 * [Pre-requisites](pre-requisites.md)
-* File "env.sh"
+* [File "env.sh"](file-env-sh.md)
 * Deploying infrastructure
 * Deploying persistent volume
 * Deploying Moodle's namespace
