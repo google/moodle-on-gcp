@@ -13,6 +13,6 @@
 
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', '<YOUR-ARTIFACT-REGISTRY-AND-REPOSITORY-NAME>:$BUILD_ID', '.']
+  args: ['build', '-t', '<YOUR-ARTIFACT-REGISTRY-AND-REPOSITORY-NAME>/moodle:$BUILD_ID', '.']
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', '<YOUR-ARTIFACT-REGISTRY-AND-REPOSITORY-NAME>:$BUILD_ID']
+  args: ['push', '<YOUR-ARTIFACT-REGISTRY-AND-REPOSITORY-NAME>/moodle:$BUILD_ID']

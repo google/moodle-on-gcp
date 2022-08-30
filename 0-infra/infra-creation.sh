@@ -2,7 +2,7 @@
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
-# 
+#
 #     https://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
@@ -20,14 +20,14 @@ set -ex
 source ./envs.sh
 
 # sets up the default project where this infra will be deployed into
-gcloud config set project $PROJECT
+gcloud config set project $PROJECT_ID
 
 # creates global ip address for moodle ingress controller (google cloud load balancer)
 gcloud compute addresses create moodle-ingress-ip --global
 
 # enables networking services creation (if not enabled already)
 gcloud services enable servicenetworking.googleapis.com \
-  --project=$PROJECT
+  --project=$PROJECT_ID
 
 # creates a new VPC (if not exists yet)
 gcloud compute networks create $VPC_NAME \
@@ -37,7 +37,7 @@ gcloud compute networks create $VPC_NAME \
 
 # creates a new subnet to support deployment of underlying services
 gcloud compute networks subnets create $SUBNET_NAME \
-  --project=$PROJECT \
+  --project=$PROJECT_ID \
   --range=$SUBNET_RANGE \
   --stack-type=IPV4_ONLY \
   --network=$VPC_NAME \
@@ -80,31 +80,31 @@ gcloud container clusters create $GKE_NAME \
   --services-secondary-range-name=svc-range-gke-1
 
 # grant minimal roles to the cluster service account
-gcloud projects add-iam-policy-binding $PROJECT \
+gcloud projects add-iam-policy-binding $PROJECT_ID \
   --member serviceAccount:$NODE_SA_EMAIL \
   --role roles/monitoring.metricWriter
 
-gcloud projects add-iam-policy-binding $PROJECT \
+gcloud projects add-iam-policy-binding $PROJECT_ID \
   --member serviceAccount:$NODE_SA_EMAIL \
   --role roles/monitoring.viewer
 
-gcloud projects add-iam-policy-binding $PROJECT \
+gcloud projects add-iam-policy-binding $PROJECT_ID \
   --member serviceAccount:$NODE_SA_EMAIL \
   --role roles/logging.logWriter
 
-gcloud projects add-iam-policy-binding $PROJECT \
+gcloud projects add-iam-policy-binding $PROJECT_ID \
   --member serviceAccount:$NODE_SA_EMAIL \
   --role roles/storage.objectViewer
 
-gcloud projects add-iam-policy-binding $PROJECT \
+gcloud projects add-iam-policy-binding $PROJECT_ID \
   --member serviceAccount:$NODE_SA_EMAIL \
   --role roles/storage.objectAdmin
 
-gcloud projects add-iam-policy-binding $PROJECT \
+gcloud projects add-iam-policy-binding $PROJECT_ID \
   --member serviceAccount:$NODE_SA_EMAIL \
   --role roles/artifactregistry.reader
 
-gcloud projects add-iam-policy-binding $PROJECT \
+gcloud projects add-iam-policy-binding $PROJECT_ID \
   --member serviceAccount:$NODE_SA_EMAIL \
   --role roles/container.admin
 
@@ -116,7 +116,7 @@ gcloud container clusters update $GKE_NAME \
 
 # creates a router and NAT config for enabling cluster's outbound communication
 gcloud compute routers create $NAT_ROUTER \
-    --project=$PROJECT \
+    --project=$PROJECT_ID \
     --network=$VPC_NAME \
     --asn=64512 \
     --region=$REGION
@@ -177,8 +177,8 @@ gcloud sql instances list
 # creates cloud sql database with proper charset for moodle
 gcloud sql databases create $MYSQL_DB \
   --instance $MYSQL_INSTANCE_NAME \
-  --charset utf8mb4 \
-  --collation $COLLATION
+  --charset $MYSQL_MOODLE_DB_CHARSET \
+  --collation $MYSQL_MOODLE_DB_COLLATION
 
 # list cloud sql databases created
 gcloud sql databases list --instance $MYSQL_INSTANCE_NAME
@@ -191,6 +191,7 @@ gcloud redis instances create $REDIS_NAME \
   --maintenance-window-day=sunday \
   --maintenance-window-hour=08 \
   --redis-version=redis_6_x \
+  --redis-config maxmemory-policy=allkeys-lru \
   --region=$REGION
 
 # list redis instances created
@@ -233,6 +234,11 @@ gcloud artifacts repositories create moodle-filestore \
 # lists artifact registries available
 gcloud artifacts repositories list
 
+# grant access to cloud build to push images to artifact registry
+gcloud projects add-iam-policy-binding $PROJECT_ID \
+  --member serviceAccount:$CLOUD_BUILD_SA_EMAIL \
+  --role roles/artifactregistry.writer
+
 # builds Moodle's image with image builder in GCP
-cd ../4-moodle-image-builder && \ 
+cd ../4-moodle-image-builder && \
   gcloud builds submit --region $REGION
