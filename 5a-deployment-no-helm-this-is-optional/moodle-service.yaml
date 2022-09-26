@@ -11,18 +11,19 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 ---
-apiVersion: networking.gke.io/v1
-kind: ManagedCertificate
+apiVersion: v1
+kind: Service
 metadata:
-  name: moodle-google-managed-certificate
+  annotations:
+    cloud.google.com/backend-config: '{"ports": {"8080": "ingress-backendconfig"}}' # must match backendconfig label in step 6
+    cloud.google.com/neg: '{"ingress": true}'
+  name: moodle
   namespace: moodle
 spec:
-  domains:
-    # any domain name you have availabe to use:
-    #- somedomain.somesite.com
-    # ie.
-    # www.mymoodlesite.com
-    # or
-    #- anything-you-want.<your-lb-external-ip-address>.nip.io
-    # ie.
-    - moodle.<YOUR-LB-EXTERNAL-IP>.nip.io
+  ports:
+  - port: 80
+    targetPort: 8080
+  selector:
+    app.kubernetes.io/instance: moodle
+    app.kubernetes.io/name: moodle
+  type: ClusterIP
