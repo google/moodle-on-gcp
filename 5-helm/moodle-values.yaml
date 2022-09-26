@@ -2,7 +2,7 @@
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
-# 
+#
 #     https://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
@@ -35,32 +35,32 @@ image:
 
   ## Set to true if you would like to see extra information on logs
   ##
-  debug: true
+  debug: true # optional for better logging
 
 ## Number of replicas (requires ReadWriteMany PVC support)
 ##
-replicaCount: 1
+replicaCount: 1 # once HPA is deployed the hpa settings will control
 
 ## Skip Moodle(TM) installation wizard. Useful for migrations and restoring from SQL dump
 ## ref: https://github.com/bitnami/bitnami-docker-moodle#configuration
 ##
-moodleSkipInstall: false
+moodleSkipInstall: false # should be set to true after 1st setup, remove HPA for upgrades and set this back to true then
 
 ## Site name
 ## ref: https://github.com/bitnami/bitnami-docker-moodle#configuration
 ##
-moodleSiteName: "Moodle 4.0.1 on GKE"
+moodleSiteName: "Moodle 4.0.1 on GKE" # some site name if you wish to do so.
 
 ## User of the application
 ## ref: https://github.com/bitnami/bitnami-docker-moodle#configuration
 ##
-moodleUsername: admin
+moodleUsername: "<YOUR-MOODLE-ADMIN-USERNAME>"
 
 ## Application password
 ## Defaults to a random 10-character alphanumeric string if not set
 ## ref: https://github.com/bitnami/bitnami-docker-moodle#configuration
 ##
-moodlePassword: "moodleOnGCP@GKE"
+moodlePassword: "<YOUR-MOODLE-ADMIN-PASSWORD>"
 
 ## Admin email
 ## ref: https://github.com/bitnami/bitnami-docker-moodle#configuration
@@ -91,6 +91,12 @@ extraEnvVars:
     value: "true"
   - name: MOODLE_DATABASE_TYPE
     value: "mysqli"
+  - name: PHP_MEMORY_LIMIT
+    value: "768M"
+  - name: PHP_MAX_EXECUTION_TIME
+    value: "1200"
+  - name: PHP_MAX_INPUT_VARS
+    value: "6000"
 
 ## ConfigMap with extra environment variables
 ##
@@ -288,7 +294,7 @@ externalDatabase:
   type: "mysqli"
   ## @param externalDatabase.host Host of the existing database
   ##
-  host: "<YOUR-INTERNAL-MYSQL-HOST-API>"
+  host: "<YOUR-INTERNAL-MYSQL-HOST-IP-ADDRESS>"
   ## @param externalDatabase.port Port of the existing database
   ##
   port: 3306

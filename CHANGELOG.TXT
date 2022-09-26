@@ -1,0 +1,15 @@
+
+September 26, 2022
+
+- Added this changelog.
+- Renamed ingress-nginx as optional file.
+- Separated yaml content from Licensing comment.
+- Improved comments in some files.
+
+- Adjusted several performance features:
+  Created a HPA recommendation.
+  Adjusted aditional PHP_ settings for performance improvement.
+  Ensured requests/limits are acceptable.
+  Adjusted comments to understand 1st instalation and things do be done after 1st instalation.
+  Increased default load balancer timeouts and logging.
+  Added optional independent deployment (yaml files) for non helm based instalations.
