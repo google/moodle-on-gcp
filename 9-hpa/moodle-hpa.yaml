@@ -11,18 +11,28 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 ---
-apiVersion: networking.gke.io/v1
-kind: ManagedCertificate
+apiVersion: autoscaling/v2beta2
+kind: HorizontalPodAutoscaler
 metadata:
-  name: moodle-google-managed-certificate
+  name: moodle-hpa
   namespace: moodle
 spec:
-  domains:
-    # any domain name you have availabe to use:
-    #- somedomain.somesite.com
-    # ie.
-    # www.mymoodlesite.com
-    # or
-    #- anything-you-want.<your-lb-external-ip-address>.nip.io
-    # ie.
-    - moodle.<YOUR-LB-EXTERNAL-IP>.nip.io
+  maxReplicas: 9
+  minReplicas: 3
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: moodle
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 75
+  - type: Resource
+    resource:
+      name: memory
+      target:
+        type: Utilization
+        averageUtilization: 80
