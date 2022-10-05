@@ -46,6 +46,20 @@ If you have not done so already, you should enable the APIs for the following se
     <img src="img/../../img/enabling-api-console.png">
 </p>
 
+Or if you prefer to use the command line, these can be enabled with `gcloud`:
+
+```sh
+MY_PROJECT="my-moodle-project"
+gcloud config set $MY_PROJECT
+
+gcloud services enable \
+    cloudbuild.googleapis.com \
+    compute.googleapis.com \
+    artifactregistry.googleapis.com \
+    sql-component.googleapis.com \
+    sqladmin.googleapis.com
+```
+
 ## Get a project set up and administrative rights for it
 
 One of the tools available in Google Cloud to structure and organize projects in the cloud is "Projects". 
