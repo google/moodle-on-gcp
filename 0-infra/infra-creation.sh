@@ -52,6 +52,10 @@ gcloud compute networks subnets update $SUBNET_NAME \
   --region $REGION \
   --add-secondary-ranges svc-range-gke-1=$GKE_SVC_RANGE;
 
+# enable container api
+gcloud services enable container.googleapis.com \
+  --project=$PROJECT_ID
+
 # creates gke with necessary addons
 gcloud container clusters create $GKE_NAME \
   --release-channel=stable \
