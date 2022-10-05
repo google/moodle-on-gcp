@@ -58,7 +58,8 @@ gcloud services enable \
     artifactregistry.googleapis.com \
     sql-component.googleapis.com \
     sqladmin.googleapis.com \
-    file.googleapis.com
+    file.googleapis.com \
+    recaptchaenterprise.googleapis.com
 ```
 
 ## Get a project set up and administrative rights for it
