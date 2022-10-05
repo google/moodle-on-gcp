@@ -12,6 +12,34 @@ If you company already has a account with Google Cloud, please talk to your admi
 
 If you're new to Google Cloud and would like to spin up Modern Moodle as your first workload in the cloud or learning how to operate Google Cloud, please refer to [this link](https://cloud.google.com/free) to get a free account.
 
+## Get a project set up and administrative rights for it
+
+One of the tools available in Google Cloud to structure and organize projects in the cloud is "Projects". 
+
+Projects allow not only to logically group workloads (clusters, databases, virtual machines, and so on) together, but also to define specific permissions to a user, application or group of users.
+
+So, before getting hands down with the deployment:
+
+1. Get your user account in Google Cloud with "Project Creator" rights through Identity Access Manager (IAM) mechanism, as depicted below. If you're deploying it in an enterprise account with cloud administrators in place, you might need to request access to them to get it done.
+
+<p align="center">
+    <img src="img/../../img/iam-user-account.png">
+</p>
+
+2. Permission granted, create a new project in Google Cloud by following the steps described in [this tutorial](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
+
+<p align="center">
+    <img src="img/../../img/new-project-google-console.png">
+</p>
+
+3. Get the administrative previously settled account (step 1) and define it as owner with the project (step 2), as depicted below.
+
+<p align="center">
+    <img src="img/../../img/iam-account-owner-project.png">
+</p>
+
+> Important to mention that we suggest overcoming these initial steps through web console just for the sake of simplicity but it could be easily had happen by leveraging other approaches like `gcloud` command line, and others.
+
 ## Enable Moodle's underlying infrastructure services APIs in Google Cloud
 
 You might inquire in the case of an administrative API of a given cloud service used by Modern Moodle's infrastructure is not enabled for usage by default. 
@@ -61,34 +89,6 @@ gcloud services enable \
     file.googleapis.com \
     recaptchaenterprise.googleapis.com
 ```
-
-## Get a project set up and administrative rights for it
-
-One of the tools available in Google Cloud to structure and organize projects in the cloud is "Projects". 
-
-Projects allow not only to logically group workloads (clusters, databases, virtual machines, and so on) together, but also to define specific permissions to a user, application or group of users.
-
-So, before getting hands down with the deployment:
-
-1. Get your user account in Google Cloud with "Project Creator" rights through Identity Access Manager (IAM) mechanism, as depicted below. If you're deploying it in an enterprise account with cloud administrators in place, you might need to request access to them to get it done.
-
-<p align="center">
-    <img src="img/../../img/iam-user-account.png">
-</p>
-   
-2. Permission granted, create a new project in Google Cloud by following the steps described in [this tutorial](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
-
-<p align="center">
-    <img src="img/../../img/new-project-google-console.png">
-</p>
-
-3. Get the administrative previously settled account (step 1) and define it as owner with the project (step 2), as depicted below.
-
-<p align="center">
-    <img src="img/../../img/iam-account-owner-project.png">
-</p>
-
-> Important to mention that we suggest overcoming these initial steps through web console just for the sake of simplicity but it could be easily had happen by leveraging other approaches like `gcloud` command line, and others.
 
 ## Install `gcloud` command line extension
 
