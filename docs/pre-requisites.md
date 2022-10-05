@@ -33,7 +33,7 @@ If you have not done so already, you should enable the APIs for the following se
 
    * Google Kubernetes Service
    * Artifact Registry
-   * Cloud Firestore
+   * Cloud Filestore
    * Cloud SQL
    * Virtual Private Connect (VPC)
    * Cloud CDN
@@ -57,7 +57,8 @@ gcloud services enable \
     compute.googleapis.com \
     artifactregistry.googleapis.com \
     sql-component.googleapis.com \
-    sqladmin.googleapis.com
+    sqladmin.googleapis.com \
+    file.googleapis.com
 ```
 
 ## Get a project set up and administrative rights for it
