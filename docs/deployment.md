@@ -6,7 +6,7 @@ Please, carefully follow the steps below and be sure to comply with all the prer
 
 * [Pre-requisites](pre-requisites.md)
 * [File "env.sh"](file-env-sh.md)
-* [Deploying infrastructure](docs/deploying-infrastructure.md)
+* [Deploying infrastructure](deploying-infrastructure.md)
 * Deploying persistent volume
 * Deploying Moodle's namespace
 * Deploying a persistent volume claim
