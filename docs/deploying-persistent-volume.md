@@ -30,6 +30,6 @@ kubectl apply -f pv-filestore.yaml
 kubectl get pv
 ```
 
-<p align="center">
+<p align="left">
     <img src="../img/pv-created.png">
 </p>
