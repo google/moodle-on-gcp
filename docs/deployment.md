@@ -1,12 +1,12 @@
 # Deployment
 
-This session is designed to support customers and partners on getting Modern Moodle on Google Cloud up and running on their own accounts.
+This session is designed to support customers and partners in getting Modern Moodle on Google Cloud up and running on their accounts.
 
-Please, carefully follow the steps below and be sure to comply with all the pre-requisits described in the document [pre-requisites](pre-requisites.md) before getting started.
+Please, carefully follow the steps below and be sure to comply with all the prerequisites described in the document [pre-requisites](pre-requisites.md) before getting started.
 
 * [Pre-requisites](pre-requisites.md)
 * [File "env.sh"](file-env-sh.md)
-* Deploying infrastructure
+* [Deploying infrastructure](docs/deploying-infrastructure.md)
 * Deploying persistent volume
 * Deploying Moodle's namespace
 * Deploying a persistent volume claim
@@ -18,4 +18,4 @@ Please, carefully follow the steps below and be sure to comply with all the pre-
   * Google Cloud Load Balancer
   * NGINX
 * Configuring Redis Cache with Moodle
-* Running benchmark to check performance
+* Running benchmark to check the performance
