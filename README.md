@@ -10,7 +10,7 @@ This repo groups a set of resources designed by Google Cloud's Engineers special
 
 Below you can find the documentation that outlines all the different aspects related to the solution, like installation, details about tests and performance, initial vision about costs, and so on.
 
-## Documentation (coming soon)
+## Documentation
 
 1. [Project Overview](docs/project-overview.md)
 2. [Architecture](docs/architecture.md)
@@ -19,7 +19,7 @@ Below you can find the documentation that outlines all the different aspects rel
    1. [Pre-requisites](docs/pre-requisites.md)
    2. [File "env.sh"](docs/file-env-sh.md)
    3. [Deploying infrastructure](docs/deploying-infrastructure.md)
-   4. Deploying persistent volume
+   4. [Deploying persistent volume](docs/deploying-persistent-volume.md)
    5. Deploying Moodle's namespace
    6. Deploying a persistent volume claim
    7. Building Moodle's container image
