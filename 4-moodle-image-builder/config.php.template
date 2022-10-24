@@ -1,0 +1,10 @@
+$CFG->localcachedir = '/tmp/moodle';
+
+$CFG->session_handler_class = '\core\session\redis';
+$CFG->session_redis_host = '%REDIS_IP%';
+$CFG->session_redis_port = 6379;  // Optional.
+$CFG->session_redis_database = 0;  // Optional, default is db 0.
+$CFG->session_redis_auth = '%REDIS_AUTH_STRING%'; // Optional, default is don't set one.
+$CFG->session_redis_prefix = 'moodle_%MOODLEPREFIX%_'; // Optional, default is don't set one.
+$CFG->session_redis_acquire_lock_timeout = 120;
+$CFG->session_redis_acquire_lock_r

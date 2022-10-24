@@ -1,0 +1,2 @@
+* * * * * /opt/bitnami/php/bin/php  /bitnami/moodle/admin/cli/cron.php
+* * * * * /opt/bitnami/php/bin/php  /bitnami/moodle/admin/cli/adhoc_task.php --execute --keep-alive=59
