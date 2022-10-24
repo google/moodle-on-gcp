@@ -2,7 +2,7 @@
 ## Licensed under the Apache License, Version 2.0 (the "License");
 ## you may not use this file except in compliance with the License.
 ## You may obtain a copy of the License at
-## 
+##
 ##     https://www.apache.org/licenses/LICENSE-2.0
 ##
 ## Unless required by applicable law or agreed to in writing, software
@@ -18,7 +18,7 @@ FROM bitnami/moodle:4.0.1-debian-11-r11
 USER 0
 
 ## install 'pt-br locale' or any other you may want to
-RUN echo "pt_BR.UTF-8 UTF-8" >> /etc/locale.gen && locale-gen 
+RUN echo "pt_BR.UTF-8 UTF-8" >> /etc/locale.gen && locale-gen
 
 ## install 'vim'
 RUN install_packages vim
@@ -37,3 +37,12 @@ RUN set -ex \
 
 ## Revert to the original non-root user
 USER 1001
+
+## Adding crontab to the appropriate location
+ADD crontab /etc/cron.d/moodle-cron-file
+
+# Giving permission to crontab file
+RUN chmod 0644 /etc/cron.d/moodle-cron-file
+
+# Running crontab
+RUN crontab /etc/cron.d/moodle-cron-file
