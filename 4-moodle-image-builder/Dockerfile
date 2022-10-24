@@ -14,9 +14,6 @@
 ## suggested image version from Bitnami. Use the one that better fits to your needs
 FROM bitnami/moodle:4.0.1-debian-11-r11
 
-## change user to perform privileged actions
-USER 0
-
 ## install 'pt-br locale' or any other you may want to
 RUN echo "pt_BR.UTF-8 UTF-8" >> /etc/locale.gen && locale-gen
 
@@ -34,15 +31,3 @@ RUN set -ex \
   && echo "extension=redis.so" >> /opt/bitnami/php/lib/php.ini \
   && echo "extension=igbinary.so" >> /opt/bitnami/php/lib/php.ini \
   && rm -rvf /tmp/pear
-
-## Revert to the original non-root user
-USER 1001
-
-## Adding crontab to the appropriate location
-ADD crontab /etc/cron.d/moodle-cron-file
-
-# Giving permission to crontab file
-RUN chmod 0644 /etc/cron.d/moodle-cron-file
-
-# Running crontab
-RUN crontab /etc/cron.d/moodle-cron-file

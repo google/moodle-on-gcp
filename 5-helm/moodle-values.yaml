@@ -351,16 +351,16 @@ volumePermissions:
 ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod
 ##
 podSecurityContext:
-  enabled: true
-  fsGroup: 1001
+  enabled: false
+  fsGroup: root
 
 ## Configure Container Security Context (only main container)
 ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-container
 ##
 containerSecurityContext:
-  enabled: true
-  runAsUser: 1001
-  runAsNonRoot: true
+  enabled: false
+  runAsUser: root
+  runAsNonRoot: false
 ## Configure extra options for liveness and readiness probes
 ## Moodle(TM) core exposes /user/login to unauthenticated requests, making it a good
 ## default liveness and readiness path. However, that may not always be the
