@@ -14,6 +14,9 @@
 ## suggested image version from Bitnami. Use the one that better fits to your needs
 FROM bitnami/moodle:4.0.1-debian-11-r11
 
+## change user to perform privileged actions
+USER 0
+
 ## install 'pt-br locale' or any other you may want to
 RUN echo "pt_BR.UTF-8 UTF-8" >> /etc/locale.gen && locale-gen
 

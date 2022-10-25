@@ -352,14 +352,14 @@ volumePermissions:
 ##
 podSecurityContext:
   enabled: false
-  fsGroup: root
+  fsGroup: 1001
 
 ## Configure Container Security Context (only main container)
 ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-container
 ##
 containerSecurityContext:
   enabled: false
-  runAsUser: root
+  runAsUser: 1001
   runAsNonRoot: false
 ## Configure extra options for liveness and readiness probes
 ## Moodle(TM) core exposes /user/login to unauthenticated requests, making it a good
