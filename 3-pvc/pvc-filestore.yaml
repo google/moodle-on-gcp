@@ -27,6 +27,6 @@ spec:
   volumeName: pv-filestore
   resources:
     requests:
-        storage: 300Gi
+      storage: 300Gi
     limits:
-        storage: 500Gi
+      storage: 500Gi
