@@ -8,7 +8,7 @@ Please, carefully follow the steps below and be sure to comply with all the prer
 * [File "env.sh"](file-env-sh.md)
 * [Deploying infrastructure](deploying-infrastructure.md)
 * [Deploying persistent volume](deploying-persistent-volume.md)
-* Deploying Moodle's namespace
+* [Deploying Moodle's namespace](deploying-namespace.md)
 * Deploying a persistent volume claim
 * Building Moodle's container image
 * Installing Modern Moodle with Helm
