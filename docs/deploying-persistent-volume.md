@@ -18,10 +18,10 @@ nfs:
     server: <YOUR-FILESTORE-INTERNAL-IP> # filestore's internal IP
 ```
 
-3. Create the Persistent Volume (PV) by applying the configuration to the cluster.
+3. Create the Persistent Volume (PV) by applying the configuration to the cluster. The command below assumes you're running it from a directory level above.
 
 ```
-kubectl apply -f pv-filestore.yaml
+kubectl apply -f 1-pv/pv-filestore.yaml
 ```
 
 4. Make sure the Persistent Volume was successfully created.

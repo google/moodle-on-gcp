@@ -20,7 +20,7 @@ Below you can find the documentation that outlines all the different aspects rel
    2. [File "env.sh"](docs/file-env-sh.md)
    3. [Deploying infrastructure](docs/deploying-infrastructure.md)
    4. [Deploying persistent volume](docs/deploying-persistent-volume.md)
-   5. Deploying Moodle's namespace
+   5. [Deploying Moodle's namespace](docs/deploying-namespace.md)
    6. Deploying a persistent volume claim
    7. Building Moodle's container image
    8. Installing Moodle with Helm
