@@ -12,7 +12,7 @@ Please, carefully follow the steps below and be sure to comply with all the prer
 * [Deploying a persistent volume claim](deploying-persistent-volume-claim.md)
 * [Building Moodle's container image](building-moodle-image.md)
 * [Installing Modern Moodle with Helm](install-moodle-helm.md)
-* Deploying backend config
+* [Deploying backend config](deploying-backend-config.md)
 * Configuring SSL and forcing HTTPS redirection
 * Deploying ingress
   * Google Cloud Load Balancer

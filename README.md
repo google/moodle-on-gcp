@@ -24,7 +24,7 @@ Below you can find the documentation that outlines all the different aspects rel
    6. [Deploying a persistent volume claim](docs/deploying-persistent-volume-claim.md)
    7. [Building Moodle's container image](docs/building-moodle-image.md)
    8. [Installing Moodle with Helm](docs/install-moodle-helm.md)
-   9. Deploying backend config
+   9. [Deploying backend config](docs/deploying-backend-config.md)
    10. Configuring SSL and forcing HTTPS redirect
    11. Deploying ingress
        1.  Google Cloud Load Balancer

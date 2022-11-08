@@ -111,7 +111,7 @@ externalDatabase:
 To install Moodle in GKE with Helm, from a command line with access to the GKE control plane run the following command.
 
 ```
-helm install -f moodle-values.yaml moodle
+./moodle-helm-install.sh
 ```
 
 > Please notice: it can take a while for Moodle to stand up as it needs to install all the files and set up the database properly. 
