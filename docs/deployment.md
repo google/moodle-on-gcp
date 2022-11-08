@@ -10,7 +10,7 @@ Please, carefully follow the steps below and be sure to comply with all the prer
 * [Deploying persistent volume](deploying-persistent-volume.md)
 * [Deploying Moodle's namespace](deploying-namespace.md)
 * [Deploying a persistent volume claim](deploying-persistent-volume-claim.md)
-* Building Moodle's container image
+* [Building Moodle's container image](building-moodle-image.md)
 * Installing Modern Moodle with Helm
 * Deploying backend config
 * Configuring SSL and forcing HTTPS redirection
