@@ -10,7 +10,7 @@ gcloud container clusters get-credentials <GKE-NAME> \
     --project <PROJECT ID>
 ```
 
-2. Create the Namespace by applying the configuration to the cluster. The command below assumes you're running it from a directory level above.
+2. Create the Namespace by applying the configuration to the cluster. The command below assumes you're running it from a directory a level above.
 
 ```
 kubectl apply -f 2-namespace/namespace-moodle.yaml

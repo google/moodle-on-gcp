@@ -18,7 +18,7 @@ nfs:
     server: <YOUR-FILESTORE-INTERNAL-IP> # filestore's internal IP
 ```
 
-3. Create the Persistent Volume (PV) by applying the configuration to the cluster. The command below assumes you're running it from a directory level above.
+3. Create the Persistent Volume (PV) by applying the configuration to the cluster. The command below assumes you're running it from a directory a level above.
 
 ```
 kubectl apply -f 1-pv/pv-filestore.yaml
