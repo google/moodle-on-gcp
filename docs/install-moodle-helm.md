@@ -103,3 +103,21 @@ externalDatabase:
   password: "123@P@ssw0rd"
   database: moodle-db
 ```
+
+## Install Moodle in GKE
+
+> From now on we assume you know what Helm is and that you have it already installed in your working machine. If you're not sure about what Helm is and how to get it installed, please, refer to the [pre-requisits](pre-requisites.md) document in this repo.
+
+To install Moodle in GKE with Helm, from a command line with access to the GKE control plane run the following command.
+
+```
+helm install -f moodle-values.yaml moodle
+```
+
+> Please notice: it can take a while for Moodle to stand up as it needs to install all the files and set up the database properly. 
+
+In the end, you should be able to see your pods properly running, as depicted below, by running `kubectl get pod -n moodle`. Notice that during the process, pods can get in the `Init` state for while, until they get to the `Running` state.
+
+<p align="left">
+    <img src="../img/moodle-pods-being-created.png">
+</p>
