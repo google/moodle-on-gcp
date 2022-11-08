@@ -43,4 +43,16 @@ steps:
   args: ['push', 'us-east1-docker.pkg.dev/myproject/moodle-filestore/moodle:$BUILD_ID']
 ```
 
-That's it. Save the file and keep it updated. It will be referred to by another part of the process later.
+> From now on, this document assumes that the working machine from where you pushing commands from has access to Google Kubernetes Engine (GKE) control plane.
+
+4. Finally, kick off the `build` and `push` process by coming back to the file `infra-creation.sh` within the directory `0-infra` and executing the following command line, placed at the end of the file.
+
+```
+cd ../4-moodle-image-builder && gcloud builds submit --region $REGION
+```
+
+Wait until you get confirmation from the command line the process finished successfully. Additionally, you can head to your image repository and double-check that the image is properly sitting there.
+
+<p align="center">
+    <img src="../img/moodle-image-in-container-registry.png">
+</p>
