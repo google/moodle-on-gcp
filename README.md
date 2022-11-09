@@ -25,7 +25,7 @@ Below you can find the documentation that outlines all the different aspects rel
    7. [Building Moodle's container image](docs/building-moodle-image.md)
    8. [Installing Moodle with Helm](docs/install-moodle-helm.md)
    9. [Deploying backend config](docs/deploying-backend-config.md)
-   10. Configuring SSL and forcing HTTPS redirect
+   10. [Configuring SSL and forcing HTTPS redirect](docs/provisioning-certificate-forcing-https.md)
    11. Deploying ingress
        1.  Google Cloud Load Balancer
        2.  NGINX
