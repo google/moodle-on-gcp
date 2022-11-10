@@ -28,6 +28,6 @@ Below you can find the documentation that outlines all the different aspects rel
    10. [Configuring SSL and forcing HTTPS redirect](docs/provisioning-certificate-forcing-https.md)
    11. [Deploying ingress](docs/deploying-ingress.md)
        1.  [Google Cloud Load Balancer](docs/deploying-ingress-cloud-load-balancer.md)
-       2.  NGINX
+       2.  [NGINX](docs/deploying-ingress-nginx.md)
 5.  Configuring Redis Cache with Moodle
-6. Running benchmarks to check the performance
+6. Running a benchmark to check the performance
