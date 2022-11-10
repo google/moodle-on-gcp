@@ -17,5 +17,6 @@ Please, carefully follow the steps below and be sure to comply with all the prer
 * [Deploying ingress](deploying-ingress.md)
   * [Google Cloud Load Balancer](deploying-ingress-cloud-load-balancer.md)
   * [NGINX](deploying-ingress-nginx.md)
+* [Enabling horizontal scalability for Pods (HPA)](enabling-hpa.md)
 * Configuring Redis Cache with Moodle
 * Running a benchmark to check the performance
