@@ -16,6 +16,6 @@ Please, carefully follow the steps below and be sure to comply with all the prer
 * [Configuring SSL and forcing HTTPS redirection](provisioning-certificate-forcing-https.md)
 * [Deploying ingress](deploying-ingress.md)
   * [Google Cloud Load Balancer](deploying-ingress-cloud-load-balancer.md)
-  * NGINX
+  * [NGINX](deploying-ingress-nginx.md)
 * Configuring Redis Cache with Moodle
-* Running benchmark to check the performance
+* Running a benchmark to check the performance
