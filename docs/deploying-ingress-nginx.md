@@ -26,13 +26,13 @@ gcloud container clusters get-credentials <GKE-NAME> \
     --project <PROJECT ID>
 ```
 
-1. Provision the ingress through NGINX by executing the command line below. 
+3. Provision the ingress through NGINX by executing the command line below. 
 
 ```
 kubectl apply -f 8-ingress/nginx-ingress-external-this-is-optional.yaml
 ```
 
-3. Make sure the ingress configuration was successfully applied.
+4. Make sure the ingress configuration was successfully applied.
 
 ```
 kubectl get ingress -n moodle
