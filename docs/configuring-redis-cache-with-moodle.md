@@ -44,7 +44,7 @@ kubectl get pods -n moodle -w
 
 2. Navigate to "Site admin" > "Plugins" > "Caching" > "Configuration".
 
-3. When installed, you should see a tick next to "Redis" under "Installed cache stores" and a link to add an instance, as depicted by the image below.
+3. When installed, you should see a tick next to "Redis" under "Installed cache stores" and a link to add an instance, as depicted in the image below.
 
 <p align="center">
     <img src="../img/Redis_cache_ready.png">
@@ -52,11 +52,11 @@ kubectl get pods -n moodle -w
 
 4. Click "Add instance".
 
-   1. Give your Redis instance a name, like "Redis-Memorystore" and set the IP:port for the Redis server (you can gather that information in GCP's web console at Memorystore's service blade).
+   1. Give your Redis instance a name, like "Redis1" and set the IP:port for the Redis server (you can gather that information in GCP's web console at Memorystore's service blade).
 
    2. The new instance should appear under "Configured store instances" with a "Ready" tick.
 
-5. Under "Stores used when no mapping is present" click Edit mappings". Set "Redis-Memorystore" (or the name used earlier) for the "Application" and "Session" caches.
+5. Under "Stores used when no mapping is present" click Edit mappings". Set "Redis1" (or the name used earlier) for the "Application" and "Session" caches.
 
 <p align="center">
     <img src="../img/Set_Redis_as_default_Application_and_Session_cache.png">
