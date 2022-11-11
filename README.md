@@ -31,4 +31,4 @@ Below you can find the documentation that outlines all the different aspects rel
        2.  [NGINX](docs/deploying-ingress-nginx.md)
    12. [Enabling horizontal scalability for Pods (HPA)](docs/enabling-hpa.md)
 5. [Configuring Redis Cache with Moodle](docs/configuring-redis-cache-with-moodle.md)
-6. Running a benchmark to check the performance
+6. [Running a benchmark to check the performance](docs/moodle-report-benchmark.md)
