@@ -38,7 +38,7 @@ Make sure your pods are all back up and in a "running" state after a while by ru
 kubectl get pods -n moodle -w
 ```
 
-## Create a mapping for Redis from Moodle UI
+## 2. Create a mapping for Redis from Moodle UI
 
 1. Get back to Moodle's UI on your browser and log in with administrative credentials.
 
