@@ -21,7 +21,7 @@ $CFG->session_redis_database = 0;
 $CFG->session_redis_auth = '<AUTH-STRING-REDIS-SERVICE>';
 $CFG->session_redis_prefix = 'moodle_';
 $CFG->session_redis_acquire_lock_timeout = 120;
-$CFG->session_redis_acquire_lock_r
+$CFG->session_redis_acquire_lock_r;
 ```
 
 Save the file and close it.
