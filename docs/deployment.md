@@ -4,6 +4,8 @@ This session is designed to support customers and partners in getting Modern Moo
 
 Please, carefully follow the steps below and be sure to comply with all the prerequisites described in the document [pre-requisites](pre-requisites.md) before getting started.
 
+## Basic installation
+
 * [Pre-requisites](pre-requisites.md)
 * [File "env.sh"](file-env-sh.md)
 * [Deploying infrastructure](deploying-infrastructure.md)
@@ -20,3 +22,8 @@ Please, carefully follow the steps below and be sure to comply with all the prer
 * [Enabling horizontal scalability for Pods (HPA)](enabling-hpa.md)
 * [Configuring Redis Cache with Moodle](configuring-redis-cache-with-moodle.md)
 * [Running a benchmark to check the performance](moodle-report-benchmark.md)
+
+## Post-installation
+
+* [Update environment variables values and upgrade the pods](docs/post-installation-values-update.md)
+* [Migration recommendations](docs/migration-recommendations.md)

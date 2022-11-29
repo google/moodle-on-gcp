@@ -12,6 +12,8 @@ Below you can find the documentation that outlines all the different aspects rel
 
 ## Documentation
 
+### Basic installation 
+
 1. [Project Overview](docs/project-overview.md)
 2. [Architecture](docs/architecture.md)
 3. [Repository organization](docs/repository-organization.md)
@@ -32,3 +34,8 @@ Below you can find the documentation that outlines all the different aspects rel
    12. [Enabling horizontal scalability for Pods (HPA)](docs/enabling-hpa.md)
 5. [Configuring Redis Cache with Moodle](docs/configuring-redis-cache-with-moodle.md)
 6. [Running a benchmark to check the performance](docs/moodle-report-benchmark.md)
+
+### Post-installation
+
+* [Update environment variables values and upgrade the pods](docs/post-installation-values-update.md)
+* [Migration recommendations](docs/migration-recommendations.md)
