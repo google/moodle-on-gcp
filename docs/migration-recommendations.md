@@ -20,11 +20,10 @@ kubectl get pods -n moodle
 kubectl -n moodle  exec --stdin --tty <POD_NAME> -- /bin/bash
 ```
 
-3. Once inside the pod, run the following command line to clean up everything inside the pod.
+3. Once inside the pod, run the following command line to clean up everything inside the pod. You can automate this process in two different ways: 1) running it from a jumpbox virtual machine; 2) running it from pods (root mode) within the cluster. Instructions on how to do so are coming soon.
 
 > This operation can take several minutes depending on the size of the information coming out of moodledata.
 
 ```
-/opt/bitnami/php/bin/php 
-/opt/bitnami/moodle/admin/cli/cron.php
+/opt/bitnami/php/bin/php /opt/bitnami/moodle/admin/cli/cron.php
 ```
