@@ -39,3 +39,4 @@ Below you can find the documentation that outlines all the different aspects rel
 
 * [Update environment variables values and upgrade the pods](docs/post-installation-values-update.md)
 * [Migration recommendations](docs/migration-recommendations.md)
+* [Security recommendations](docs/security-recommendations.md)
