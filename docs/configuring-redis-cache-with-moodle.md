@@ -14,14 +14,21 @@ Once mounted, browse the the location where the file sits through the shared vol
 
 ```
 $CFG->localcachedir = '/tmp/moodle';
+
+$CFG->localcachedir = '/tmp/moodle';
+
+// Redis session handler (requires redis server and redis extension):
 $CFG->session_handler_class = '\core\session\redis';
 $CFG->session_redis_host = '<IP-REDIS-SERVICE>';
-$CFG->session_redis_port = 6379;
-$CFG->session_redis_database = 0;
-$CFG->session_redis_auth = '<AUTH-STRING-REDIS-SERVICE>';
-$CFG->session_redis_prefix = 'moodle_';
-$CFG->session_redis_acquire_lock_timeout = 120;
-$CFG->session_redis_acquire_lock_r;
+$CFG->session_redis_port = 6379;                                      // Optional.
+$CFG->session_redis_database = 0;                                     // Optional, default is db 0.
+$CFG->session_redis_auth = '<AUTH-STRING-REDIS-SERVICE>';    // Optional, default is don't set one.
+$CFG->session_redis_prefix = 'moodle_1_';                             // Optional, default is don't set one.
+$CFG->session_redis_acquire_lock_timeout = 120;                       // Default is 2 minutes.
+$CFG->session_redis_acquire_lock_warn = 0;                            // If set logs early warning if a lock has not been acquried.
+$CFG->session_redis_lock_expire = 7200;                               // Optional, defaults to session timeout.
+$CFG->session_redis_lock_retry = 100;                                 // Optional wait between lock attempts in ms, default is 100.
+                                                                      // After 5 seconds it will throttle down to once per second.
 ```
 
 Save the file and close it.
