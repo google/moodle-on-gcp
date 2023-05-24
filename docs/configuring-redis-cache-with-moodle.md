@@ -13,8 +13,7 @@ The easiest way is to mount Filestore drive in the working virtual machine (that
 Once mounted, browse the the location where the file sits through the shared volume (for instance, `cd /mnt/mymoodleshare/moodle/`). Once in there, edit the file `config.php` and add (updating placeholders with the values of your environment) the following entries.
 
 ```
-$CFG->localcachedir = '/tmp/moodle';
-
+// Set local cache dir for pod's tmp folder
 $CFG->localcachedir = '/tmp/moodle';
 
 // Redis session handler (requires redis server and redis extension):
@@ -22,11 +21,11 @@ $CFG->session_handler_class = '\core\session\redis';
 $CFG->session_redis_host = '<IP-REDIS-SERVICE>';
 $CFG->session_redis_port = 6379;                                      // Optional.
 $CFG->session_redis_database = 0;                                     // Optional, default is db 0.
-$CFG->session_redis_auth = '<AUTH-STRING-REDIS-SERVICE>';    // Optional, default is don't set one.
-$CFG->session_redis_prefix = 'moodle_1_';                             // Optional, default is don't set one.
+$CFG->session_redis_auth = '<AUTH-STRING-REDIS-SERVICE>';             // Optional, default is don't set one.
+$CFG->session_redis_prefix = 'moodle_sess_1_';                        // Optional, default is don't set one.
 $CFG->session_redis_acquire_lock_timeout = 120;                       // Default is 2 minutes.
 $CFG->session_redis_acquire_lock_warn = 0;                            // If set logs early warning if a lock has not been acquried.
-$CFG->session_redis_lock_expire = 7200;                               // Optional, defaults to session timeout.
+$CFG->session_redis_lock_expire = 1200;                               // Optional, defaults to session timeout.
 $CFG->session_redis_lock_retry = 100;                                 // Optional wait between lock attempts in ms, default is 100.
                                                                       // After 5 seconds it will throttle down to once per second.
 ```
