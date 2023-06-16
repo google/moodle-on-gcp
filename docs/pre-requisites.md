@@ -78,7 +78,7 @@ Or if you prefer to use the command line, these can be enabled with `gcloud`:
 
 ```sh
 MY_PROJECT="my-moodle-project"
-gcloud config set $MY_PROJECT
+gcloud config set project $MY_PROJECT
 
 gcloud services enable \
     cloudbuild.googleapis.com \
