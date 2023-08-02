@@ -11,17 +11,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
----
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: pv-filestore
-spec:
-  capacity:
-    storage: 2.5Ti
-  persistentVolumeReclaimPolicy: Retain
-  accessModes:
-  - ReadWriteMany
-  nfs:
-    path: /moodleshare
-    server: <YOUR-FILESTORE-INTERNAL-IP> # filestore's internal IP
+#!/bin/bash
+
+source ../0-infra/envs.sh
+
+gcloud builds submit --config cloudbuild-bitnami.yaml --region $REGION
+

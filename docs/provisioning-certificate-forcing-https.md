@@ -9,48 +9,44 @@ This document highlights the steps needed to both create a new Google Cloud-mana
 The very first step is to replace values of a key variable in the `google-managed-ssl-certificate.yaml`, as follows.
 
 1. Browse into directory `7-ssl-certificate-and-redirect`.
-   
-2. Edit the file `google-managed-ssl-certificate.yaml` with your preferred text editor.
 
-3. Update the value of your domain name. Suggestively, we start with nip.io, a free option for public domain hosts. However, you can use whatever domain you eventually have here.
+2. Replace the contents of the `google-managed-ssl-certificate.yaml` to either your given Load Balancer's IP Address to use .nip.io domain or your very own hostname.
 
-If you want to preserve the suggestive example, just replace the portion `<YOUR-LB-EXTERNAL-IP>` with the actual Load Balancer's public IP. That information can be gathered within the service blade in the Google Cloud console, as you can see below.
+If decided to go with nip.io domain, use the following command:
 
-<p align="center">
-    <img src="../img/collecting-public-ip-lb.png">
-</p>
+    Just replace the portion `<YOUR-LB-EXTERNAL-IP>` with the actual Load Balancer's public IP. That information can be gathered within the service blade in the Google Cloud console, as you can see below.
 
-```
-spec:
-  domains:
-    # any domain name you have availabe to use:
-    #- somedomain.somesite.com
-    # ie.
-    # www.mymoodlesite.com
-    # or
-    #- anything-you-want.<your-lb-external-ip-address>.nip.io
-    # ie.
-    - moodle.<YOUR-LB-EXTERNAL-IP>.nip.io
-```
- 
-A real example of this replacement could be:
+    <p align="center">
+      <img src="../img/collecting-public-ip-lb.png">
+    </p>
 
-```
-spec:
-  domains:
-    # any domain name you have availabe to use:
-    #- somedomain.somesite.com
-    # ie.
-    # www.mymoodlesite.com
-    # or
-    #- anything-you-want.<your-lb-external-ip-address>.nip.io
-    # ie.
-    - moodle.12.12.121.12.nip.io
-```
+    Or you can just combine the usage of `gcloud` and `sed` tools in a shell environment of your choice:
 
-Save and close the document.
+    ```
+    MY_MOODLE_PUBLIC_IP_ADDRESS=$(gcloud compute addresses describe moodle-ingress-ip --global --format='get(address)')
 
-4. From the command line, execute the following command line to apply the changes in the cluster.
+    sed -i "s/<YOUR-LB-EXTERNAL-IP>/$MY_MOODLE_PUBLIC_IP_ADDRESS/g" 7-ssl-certificate-and-redirect/google-managed-ssl-certificate.yaml
+    ```
+
+If you have your own domain, use the following command:
+
+    Just replace the portion `moodle.<YOUR-LB-EXTERNAL-IP>.nip.io` with the given hostname of your choice.
+
+    Then create a DNS A record in your hostname's DNS pointing to the Google Cloud's Load Balancer's public IP address. That information can be gathered within the service blade in the Google Cloud console, as you can see below.
+
+    <p align="center">
+      <img src="../img/collecting-public-ip-lb.png">
+    </p>
+
+    Or you can just combine the usage of `gcloud` and `sed` tools in a shell environment of your choice:
+
+    ```
+    MY_HOSTNAME="www.somesite.com"
+
+    sed -i "s/moodle.<YOUR-LB-EXTERNAL-IP>.nip.io/$MY_HOSTNAME/g" 7-ssl-certificate-and-redirect/google-managed-ssl-certificate.yaml
+    ```
+
+3. From the command line, execute the following command line to apply the changes in the cluster.
 
 ```
 kubectl apply -f google-managed-ssl-certificate.yaml
