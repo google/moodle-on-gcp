@@ -18,14 +18,17 @@ metadata:
   namespace: moodle
 spec:
   timeoutSec: 300
+  connectionDraining:
+    drainingTimeoutSec: 10
   healthCheck:
-    checkIntervalSec: 15
+    checkIntervalSec: 30
+    timeoutSec: 30
     port: 8080
     type: HTTP
-    requestPath: /
+    requestPath: /login/index.php
   logging:
-    enable: true
-    sampleRate: 1 # 0.1 means only 10% will be logged, 1 all will be logged
+    enable: false
+    sampleRate: 0.1 # 0.1 means only 10% will be logged, 1 all will be logged
   # to uncoment when a cloud armor security policy exists and you want to apply it to the LB
   # securityPolicy:
   #   name: "moodle-armor-policy"

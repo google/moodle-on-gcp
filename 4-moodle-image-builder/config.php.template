@@ -1,14 +1,20 @@
-<?php
 
-$CFG->localcachedir = '/tmp/moodle';
+$CFG->enable_read_only_sessions = true;
+
+$CFG->localcachedir = '/tmp/moodle/localcache';
+
+// $CFG->lock_factory = '\\local_redislock\\lock\\redis_lock_factory';
+// $CFG->local_redislock_redis_server = '$REDIS_LOCK_HOST_AND_PORT';
+// $CFG->local_redislock_redis_auth = '$REDIS_LOCK_AUTH_STRING';
+// $CFG->local_redislock_logging = true;
 
 // Redis session handler (requires redis server and redis extension):
 $CFG->session_handler_class = '\core\session\redis';
-$CFG->session_redis_host = '%REDIS_IP%';
-$CFG->session_redis_port = 6379;                                      // Optional.
+$CFG->session_redis_host = '$REDIS_SESSION_ID_HOST';
+$CFG->session_redis_port = $REDIS_SESSION_ID_PORT;                    // Optional.
 $CFG->session_redis_database = 0;                                     // Optional, default is db 0.
-$CFG->session_redis_auth = '%REDIS_AUTH_STRING%';                     // Optional, default is don't set one.
-$CFG->session_redis_prefix = '%REDIS_PREFIX%';                        // Optional, default is don't set one.
+$CFG->session_redis_auth = '$REDIS_SESSION_ID_AUTH_STRING';           // Optional, default is don't set one.
+$CFG->session_redis_prefix = 'mdl_sessid_1_';                         // Optional, default is don't set one.
 $CFG->session_redis_acquire_lock_timeout = 120;                       // Default is 2 minutes.
 $CFG->session_redis_acquire_lock_warn = 0;                            // If set logs early warning if a lock has not been acquried.
 $CFG->session_redis_lock_expire = 7200;                               // Optional, defaults to session timeout.
@@ -22,4 +28,8 @@ $CFG->session_redis_compressor = 'gzip';             // Optional, possible value
                                                      // 'gzip' - PHP GZip compression
                                                      // 'zstd' - PHP Zstandard compression
 
-?>
+$CFG->xsendfile = "X-Accel-Redirect";
+$CFG->xsendfilealiases = array(
+    "/dataroot/" => $CFG->dataroot,
+    "/localcachedir/" => $CFG->localcachedir
+);

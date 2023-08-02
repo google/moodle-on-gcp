@@ -10,20 +10,9 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
----
-apiVersion: v1
-kind: Service
-metadata:
-  annotations:
-    cloud.google.com/backend-config: '{"ports": {"8080": "ingress-backendconfig"}}' # must match backendconfig label in step 6
-    cloud.google.com/neg: '{"ingress": true}'
-  name: moodle
-  namespace: moodle
-spec:
-  ports:
-  - port: 80
-    targetPort: 8080
-  selector:
-    app.kubernetes.io/instance: moodle
-    app.kubernetes.io/name: moodle
-  type: ClusterIP
+
+#!/bin/bash
+
+source ../0-infra/envs.sh
+
+gcloud builds submit --config cloudbuild-nginx.yaml --region $REGION

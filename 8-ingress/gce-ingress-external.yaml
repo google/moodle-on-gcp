@@ -23,9 +23,9 @@ metadata:
     networking.gke.io/managed-certificates: "moodle-google-managed-certificate"
     networking.gke.io/v1beta1.FrontendConfig: "moodle-ingress-frontendconfig-https"
 spec:
-  # ingressClassName: "gce"
   rules:
-  - http:
+  - host: moodle.<YOUR-LB-EXTERNAL-IP>.nip.io
+    http:
       paths:
       - path: /*
         pathType: ImplementationSpecific
@@ -34,8 +34,3 @@ spec:
             name: moodle
             port:
               number: 80
-  # defaultBackend:
-  #   service:
-  #     name: moodle
-  #     port:
-  #       number: 80
