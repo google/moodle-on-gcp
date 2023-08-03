@@ -228,8 +228,8 @@ else
 fi
 
 echo "Adding cron entries for Moodle's cron and AdHoc Tasks ..."
-echo "* * * * * /usr/bin/sudo -u www /usr/bin/php81 /moodleroot/moodle/admin/cli/cron.php >> $MOODLE_DATAROOT_PATH/log/moodle_cron.log 2>&1" > /var/spool/cron/crontabs/root
-echo "* * * * * /usr/bin/sudo -u www /usr/bin/php81 /moodleroot/moodle/admin/cli/adhoc_task.php --execute >> $MOODLE_DATAROOT_PATH/log/moodle_task.log 2>&1" >> /var/spool/cron/crontabs/root
+echo "*/1 * * * * /usr/bin/sudo -u www /usr/bin/php81 /moodleroot/moodle/admin/cli/cron.php >> $MOODLE_DATAROOT_PATH/log/moodle_cron.log 2>&1" > /var/spool/cron/crontabs/root
+echo "*/1 * * * * /usr/bin/sudo -u www /usr/bin/php81 /moodleroot/moodle/admin/cli/adhoc_task.php --execute >> $MOODLE_DATAROOT_PATH/log/moodle_task.log 2>&1" >> /var/spool/cron/crontabs/root
 echo "0 0 * * * /usr/bin/freshclam >> $MOODLE_DATAROOT_PATH/log/freshclam.log 2>&1" >> /var/spool/cron/crontabs/root
 
 ## Testing for Moosh setup
