@@ -36,8 +36,10 @@ Once the file store (PV) exists we can go ahead and claim access to it. This is 
 <h2>4-moodle-image-builder</h2>
 
 Responsible for group steps needed to generate a customer Moodle image.
-* *[cloudbuild-nginx.yaml](../4-moodle-image-builder/cloudbuild-nginx.yaml)*: Google Cloud service that allows building Moodle images through continuous integration (CI).
-* *[Dockerfile](../4-moodle-image-builder/Dockerfile.nginx)*: Dockerfile customizes Moodle images with necessary components.
+* *[cloudbuild-nginx.yaml](../4-moodle-image-builder/cloudbuild-nginx.yaml)*: Google Cloud service that allows building Moodle images through continuous integration (CI) using Nginx based setup.
+* *[Dockerfile.nginx](../4-moodle-image-builder/Dockerfile.nginx)*: Dockerfile customizes Moodle images with necessary components for the Nginx based image.
+* *[cloudbuild-bitnami.yaml](../4-moodle-image-builder/cloudbuild-bitnami.yaml)*: Google Cloud service that allows building Moodle images through continuous integration (CI) using Bitnami based setup.
+* *[Dockerfile.bitnami](../4-moodle-image-builder/Dockerfile.bitnami)*: Dockerfile customizes Moodle images with necessary components for the Bitnami based image.
 ---
 <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/folder.svg" width="50" height="50">
 <h2>5-helm (For Bitnami only)</h2>
