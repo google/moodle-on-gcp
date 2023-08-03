@@ -2,9 +2,20 @@
 
 This step will set up a cloud build in Google Cloud to generate a new container image for Moodle. For that, we need to edit the information available in the file `cloudbuild-nginx.yaml` or `cloudbuild-bitnami.yaml`, you can use the given shell script files such as `build-nginx-based-image.sh` *(recommended)* or `build-bitnami-based-image.sh` which seats on directory `4-moodle-image-builder`.
 
-The reason we do recommend the Nginx based image in favor of the Bitnami one is the version of Moodle applied as well as the performance tuning and memory usage adjustments made by the team that maintains this repo, and we've been able to sustain more than 200k online students at some point during our recent load tests. Please do consider that this requires not only the workloads explained here but leveraging also Redis Enterprise instead of Cloud MemoryStore's Redis as we do require a lot of sharding and Redis is really stressed during Moodle's heavy usage.
-
-With the Nginx based image, Moodle Self Instalation, upgrades, redis and cron changes are applied during first run and you should not care about anything else later on, so, if possible, please, stick with it. We are also considering **deprecating** the Bitnami image later on.
+The reason we do recommend the Nginx based image is listed below:
+ - Adjusted performance tuning on Nginx, php8.1-fpm, Opcache, PHP enabled JIT, etc.
+ - Latest Version of Moodle: 4.2.1
+ - Nginx itself, lighter httpd server
+ - No need for SSL since the termination is done in Ingress.
+ - Improved self instalation in first run:
+  - Adds cron
+  - Moosh utility
+  - Uses moosh to install recommended plugins (tool_opcache, report_benchmark)
+  - Sets default recommended settings in config.php (Uses Redis as Session Store)
+  - Tested with 200K online users along with Redis Enterprise (Require sharding adjustments for better IOPS)
+  - Works with Google Cloud MemoryStore (Redis)
+  - Can be spreaded into different instances of Google Cloud MemoryStore (Redis) as well, one for each store, session handling, file locks, etc.
+  - We are also considering **deprecating** the Bitnami image later on.
 
 1. Let's build the image first. For that, under the `steps` below, update the second line `args` described below with information on your container registry, we recommend using `moodle-nginx` or `moodle-bitnami` as the image name depending on the Moodle flavor you choose to run.
 
