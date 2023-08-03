@@ -192,7 +192,7 @@ if [ ! -f "$MOODLE_DATAROOT_PATH/.moodle-installed" ] ; then
 
   # Avoid writing the config file
   echo "Protecting config.php file ..."
-  chmod 0664 $MOODLE_PATH/config.php
+  chmod 0444 $MOODLE_PATH/config.php
 
   echo "Obtaining latest and initial clamav virus databases ..."
   /usr/bin/freshclam
@@ -201,7 +201,7 @@ if [ ! -f "$MOODLE_DATAROOT_PATH/.moodle-installed" ] ; then
   # Fix publicpaths check to point to the internal container on port 8080
   if [ ! -f "$MOODLE_PATH/lib/classes/check/environment/publicpaths.modified" ] ; then
     echo "Modifying publicpaths.php for port :8080 ..."
-    sudo -u www sed -i 's/wwwroot/wwwroot\ \. \"\:8080\"/g' "$MOODLE_PATH/lib/classes/check/environment/publicpaths.php"
+    # sudo -u www sed -i 's/wwwroot/wwwroot\ \. \"\:8080\"/g' "$MOODLE_PATH/lib/classes/check/environment/publicpaths.php"
     sudo -u www touch $MOODLE_PATH/lib/classes/check/environment/publicpaths.modified
   fi
 
