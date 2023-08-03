@@ -11,17 +11,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
----
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: pv-filestore
-spec:
-  capacity:
-    storage: 2.5Ti
-  persistentVolumeReclaimPolicy: Retain
-  accessModes:
-  - ReadWriteMany
-  nfs:
-    path: /moodleshare
-    server: <YOUR-FILESTORE-INTERNAL-IP> # filestore's internal IP
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: [
+    'build',
+    '-t',
+    '$LOCATION-docker.pkg.dev/$PROJECT_ID/moodle-filestore/moodle-nginx:$BUILD_ID',
+    '.',
+    '-f',
+    'Dockerfile.nginx'
+  ]
+- name: 'gcr.io/cloud-builders/docker'
+  args: [
+    'push',
+    '$LOCATION-docker.pkg.dev/$PROJECT_ID/moodle-filestore/moodle-nginx:$BUILD_ID'
+  ]

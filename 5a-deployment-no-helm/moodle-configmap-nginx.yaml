@@ -1,0 +1,59 @@
+# Copyright 2022 Google LLC
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: moodle-configmap
+  namespace: moodle
+data:
+  MOODLE_URL: 'https://github.com/moodle/moodle/archive/MOODLE_402_STABLE.tar.gz'
+  MOOSH_URL: 'https://github.com/tmuras/moosh/archive/refs/tags/1.11.tar.gz'
+  LANG: 'pt_BR.UTF-8'
+  LANGUAGE: 'pt_BR'
+  MOODLE_LANGUAGE: 'pt_BR'
+  SITE_URL: ''
+  MOODLE_DATAROOT_PATH: '/moodleroot/moodledata'
+  MOODLE_PATH: '/moodleroot/moodle'
+  DB_TYPE: 'mysqli'
+  DB_HOST: ''
+  DB_HOST_PORT: '3306'
+  DB_NAME: 'moodle-db'
+  DB_USER: 'root'
+  DB_PREFIX: 'mdl_'
+  MOODLE_SITENAME: 'Moodle 4.2 On GKE'
+  MOODLE_SITESUMMARY: 'Brought to you by OSS@Google Cloud with :love'
+  MOODLE_USERNAME: 'admin'
+  MOODLE_EMAIL: 'user@example.com'
+  DB_READ_REPLICA_HOST: ''
+  DB_READ_REPLICA_PORT: ''
+  DB_READ_REPLICA_USER: ''
+  DB_READ_REPLICA_PASSWORD: ''
+  REDIS_SESSION_ID_HOST: ''
+  REDIS_SESSION_ID_PORT: ''
+  REDIS_SESSION_ID_AUTH_STRING: ''
+  REDIS_APP_IP_AND_PORT: ''
+  REDIS_APP_AUTH_STRING: ''
+  REDIS_SESSION_IP_AND_PORT: ''
+  REDIS_SESSION_AUTH_STRING: ''
+  REDIS_LOCK_HOST_AND_PORT: ''
+  REDIS_LOCK_AUTH_STRING: ''
+  SSLPROXY: 'true'
+  NOEMAIL_EVER: 'true'
+  SMTP_HOST: ''
+  SMTP_PORT: ''
+  SMTP_USER: ''
+  SMTP_PASSWORD: ''
+  SMTP_PROTOCOL: 'tls'
+  MOODLE_MAIL_NOREPLY_ADDRESS: ''
+  MOODLE_MAIL_PREFIX: ']moodle]'
