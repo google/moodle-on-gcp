@@ -1,5 +1,9 @@
 # Configuring Redis Cache with Moodle
 
+**TLDR** if you are using Nginx, you don't have to go through this process, it is already done for you in Moodle's first run with the newly built image in its startup script.
+
+**Only continue if you are using the Bitnami's based image...**
+
 This document will guide you through the process of getting Moodle to rely on Memorystore for Redis Cache for data persistence in memory. Having this configuration in place is highly recommended as it can increase performance consistently.
 
 > This process must be performed after Moodle's instalation process gets finalized and the application is already up and running.

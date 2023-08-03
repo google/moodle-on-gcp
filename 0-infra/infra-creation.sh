@@ -16,7 +16,7 @@
 # set to halt on execution errors and output the commands
 set -ex
 
-# load  env vars
+# load env vars file
 source ./envs.sh
 
 # sets up the default project where this infra will be deployed into
