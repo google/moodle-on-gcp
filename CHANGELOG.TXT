@@ -1,4 +1,21 @@
 
+August 17, 2023
+
+- Added NGINX based deployment in 5a-deployment-no-helm folder
+- Added and improved docs for NGINX based deployment.
+- Added a sample configmap for NGINX based deployment.
+
+- NGINX based deployment added several performance features:
+  Based on Moodle 4.0.2 Stable tar.gz from Moodle's github repo.
+  PHP 8.1 with cli and PHP8.1-FPM.
+  Auto installation and generation of final config.php file pointing to Redis as the default Application and Session store.
+  Added moosh (Moodle Shell) within the NGINX based image to facilitate Moodle operations from command line.
+  Refactored MOODLE root path within NFS to facilitate differentiation of different Moodle installs within the same Filestore instance.
+  Added JIT support for Opcache, as this makes PHP much faster.
+  Provided a baseline requests and limits that supports 200k+ students.
+  (This also relies on setting up Redis Enterprise with high IOPS settings and a beefed up MySQL with read replica(s) to achieve these numbers.)
+  (It may also require deploying Proxy SQL to control open database connections)
+
 September 26, 2022
 
 - Added this changelog.

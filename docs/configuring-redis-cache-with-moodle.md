@@ -1,6 +1,6 @@
 # Configuring Redis Cache with Moodle
 
-**TLDR** if you are using Nginx, you don't have to go through this process, it is already done for you in Moodle's first run with the newly built image in its startup script.
+**TLDR** if you are using NGINX, you don't have to go through this process, it is already done for you in Moodle's first run with the newly built image in its startup script.
 
 **Only continue if you are using the Bitnami's based image...**
 
