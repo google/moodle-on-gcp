@@ -12,7 +12,7 @@ gcloud container clusters get-credentials <GKE-NAME> \
 
 2. Create the backend configuration in GKE by executing the command line below. It assumes you're running it from a directory level above.
 
-If following the recommended Nginx version:
+If following the recommended NGINX version:
 ```
 kubectl apply -f 6-backendconfig/ingress-backendconfig-nginx.yaml
 ```

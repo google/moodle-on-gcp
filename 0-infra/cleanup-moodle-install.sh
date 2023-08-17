@@ -13,20 +13,19 @@
 
 #!/bin/bash
 
-FILESTORE_MOUNT=/mnt/filestore1
+# load envs vars file
+source ./envs.sh
 
 cat <<- warning
   WARNING: This script is meant to be ran fromthe underlying Support VM
   that relies in the same network as your GKE cluster and has a mounted
-  filestore volume X.X.X.X/moodleshare as /mnt/filestore1
+  filestore volume X.X.X.X/moodleshare as $FILESTORE_MOUNT
 warning
 
 read -p "Are you sure you want to continue? Please type Y or y to proceed..." -n 1 -r
 echo    # (optional) move to a new line
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
-  # load envs vars file
-  source ./envs.sh
 
   echo "Deleting $MYSQL_DB database, please wait ..."
   gcloud sql databases delete $MYSQL_DB \
@@ -40,7 +39,7 @@ then
     --collation $MYSQL_MOODLE_DB_COLLATION
   echo "Done re-creating MYSQL_DB database ..."
 
-  DIR="$FILESTORE_MOUNT/moodleroot"
+  DIR="$MOODLE_ROOT_IN_FILESTORE"
 
   if [ -d "$DIR" ]; then
     echo "Removing moodleroot path from filestore mount at $DIR ..."

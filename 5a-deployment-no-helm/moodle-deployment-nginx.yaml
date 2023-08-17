@@ -46,7 +46,7 @@ spec:
             weight: 1
       containers:
       - name: moodle
-        image: southamerica-east1-docker.pkg.dev/<your-project-id>/<your-artifact-registry-name>/<image-name>:<tag> # make sure to differ moodle-nginx from moodle-bitnami
+        image: <your-gcp-region>-docker.pkg.dev/<your-project-id>/<your-artifact-registry-name>/<image-name>:<tag> # make sure to differ moodle-nginx from moodle-bitnami
         imagePullPolicy: IfNotPresent
         ports:
         - name: moodle-port

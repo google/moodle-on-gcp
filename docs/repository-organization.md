@@ -36,8 +36,8 @@ Once the file store (PV) exists we can go ahead and claim access to it. This is 
 <h2>4-moodle-image-builder</h2>
 
 Responsible for group steps needed to generate a customer Moodle image.
-* *[cloudbuild-nginx.yaml](../4-moodle-image-builder/cloudbuild-nginx.yaml)*: Google Cloud service that allows building Moodle images through continuous integration (CI) using Nginx based setup.
-* *[Dockerfile.nginx](../4-moodle-image-builder/Dockerfile.nginx)*: Dockerfile customizes Moodle images with necessary components for the Nginx based image.
+* *[cloudbuild-nginx.yaml](../4-moodle-image-builder/cloudbuild-nginx.yaml)*: Google Cloud service that allows building Moodle images through continuous integration (CI) using NGINX based setup.
+* *[Dockerfile.nginx](../4-moodle-image-builder/Dockerfile.nginx)*: Dockerfile customizes Moodle images with necessary components for the NGINX based image.
 * *[cloudbuild-bitnami.yaml](../4-moodle-image-builder/cloudbuild-bitnami.yaml)*: Google Cloud service that allows building Moodle images through continuous integration (CI) using Bitnami based setup.
 * *[Dockerfile.bitnami](../4-moodle-image-builder/Dockerfile.bitnami)*: Dockerfile customizes Moodle images with necessary components for the Bitnami based image.
 ---
@@ -50,62 +50,64 @@ Once both Moodle's image and the infrastructure to host it are created, we can m
 * *[moodle-values.yaml](../5-helm/moodle-values.yaml)*: Parameters used by Helm chart to deploy Moodle objects in GKE.
 ---
 <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/folder.svg" width="50" height="50">
-<h2>5a-deployment-no-helm (Mostly for Nginx and recommended)</h2>
+<h2>5a-deployment-no-helm (Mostly for NGINX and recommended)</h2>
 
-Once both Nginx based Moodle's image and the infrastructure to host it are created, we can move forward and deploy it in GKE with vanilla deployment yaml files. This directory groups the tasks to do just it.
+Once both NGINX based Moodle's image and the infrastructure to host it are created, we can move forward and deploy it in GKE with vanilla deployment yaml files. This directory groups the tasks to do just it.
 
-* *[moodle-configmap-nginx.yaml](../5a-deployment-no-helm/moodle-configmap-nginx.yaml)*: For Nginx based deployment, it should contain all variables necessary for Moodle to Work, such as Redis and DB's hostname/ip, user, etc. - make sure to populate this file appropriately.
+* *[moodle-configmap-nginx.yaml](../5a-deployment-no-helm/moodle-configmap-nginx.yaml)*: For NGINX based deployment, it should contain all variables necessary for Moodle to Work, such as Redis and DB's hostname/ip, user, etc. - make sure to populate this file appropriately.
 
 Here are the values explained:
 
-  `MOODLE_URL:` The moodle's latest url, as initial, you can leave it as default which will deploy the 4.2.1 version.
-  `MOOSH_URL:` The moosh's latest url, as initial, you can leave it as default which will deploy the 1.11 version.
-  `LANG:` The LANG in Unix format, since this was created in Brasil, we've defaulted it to: pt_BR.UTF-8
-  `LANGUAGE:` The OS LANGUAGE, since this was created in Brasil, we've defaulted it to: pt_BR
-  `MOODLE_LANGUAGE:` The Moodle default's, since this was created in Brasil, we've defaulted it to: pt_BR
-  `SITE_URL:` Your Moodle's hostname.
-  `MOODLE_DATAROOT_PATH:` Defaults to '/moodleroot/moodledata', the famous moodledata path, this is set to the NFS volume too.
-  `MOODLE_PATH:` Defaults to '/moodleroot/moodle', the famous moodle path, this is set to the NFS volume too.
-  `DB_TYPE:` Defaults to 'mysqli', MySQL in CloudSQL, works neatly and performs awesome, plus managed service, yay!
-  `DB_HOST:` Database's hostname.
-  `DB_HOST_PORT:` Database's port, defaults to '3306' for MySQL.
-  `DB_NAME:` Database's schema name, defaults to 'moodle-db'.
-  `DB_USER:` Database's user, can be set to any user owner of $DB_NAME schema, defaults to 'root'.
-  `DB_PREFIX:` Moodle's database's table prefix, in case one has many different setups inside of the same schema, not recommended but possible, defaults to 'mdl_'.
-  `MOODLE_SITENAME:` The Moodle's default site name, defaults to 'Moodle 4.2 On GKE'.
-  `MOODLE_SITESUMMARY:` The Moodle's site summary, optional.
-  `MOODLE_USERNAME:` The Moodle's initial and admin username, defaults to 'admin'.
-  `MOODLE_EMAIL:` The Moodle's email address when sending e-mails, defaults to 'user@example.com'.
-  `DB_READ_REPLICA_HOST:` Host or IP address of a read replica DB if any, optional.
-  `DB_READ_REPLICA_PORT:` TCP Port of a read replica DB if any, optional.
-  `DB_READ_REPLICA_USER:` The user of a read replica DB if any, optional
-  `DB_READ_REPLICA_PASSWORD:` The password of a read replica DB if any, optional - can become a secret to increase security
-  `REDIS_SESSION_ID_HOST:` The Redis Host used to Store data for Session ID's, aka session cookies.
-  `REDIS_SESSION_ID_PORT:` The Redis Port used to Store data for Session ID's, aka session cookies.
-  `REDIS_SESSION_ID_AUTH_STRING:` The Redis AUTH String used to Store data for Session ID's, aka session cookies.
-  `REDIS_APP_IP_AND_PORT:` The Redis Host and Port used to Store data in Moodle's Application Store.
-  `REDIS_APP_AUTH_STRING:` The Redis AUTH String used to Store data in Moodle's Application Store.
-  `REDIS_SESSION_IP_AND_PORT:` The Redis Host and Port used to Store data in Moodle's Session Store.
-  `REDIS_SESSION_AUTH_STRING:` The Redis AUTH String used to Store data in Moodle's Session Store.
-  `REDIS_LOCK_HOST_AND_PORT:` The Redis Host and Port used to Store data for file locks.
-  `REDIS_LOCK_AUTH_STRING:` The Redis AUTH String used to Store data for file locks.
-  `SSLPROXY:` Defaults to 'true', tells if Moodle is running behind a proxied Webserver or Load Balancer.
-  `NOEMAIL_EVER:` Defaults to 'true', tells if Moodle should send e-mails or not, should be changed to false in Production.
-  `SMTP_HOST:` The SMTP hostname that Moodle uses to send e-mails.
-  `SMTP_PORT:` The SMTP port that Moodle uses to send e-mails.
-  `SMTP_USER:` The SMTP username that Moodle uses to send e-mails.
-  `SMTP_PASSWORD:` The SMTP password that Moodle uses to send e-mails.
-  `SMTP_PROTOCOL:` Defaults to 'tls'. The SMTP PROTOCOL that Moodle uses to send e-mails.
-  `MOODLE_MAIL_NOREPLY_ADDRESS:` The noreply address setting for Moodle's sent e-mails.
-  `MOODLE_MAIL_PREFIX:` Defaults to ']moodle]'
+  - `MOODLE_URL:` The moodle's latest url, as initial, you can leave it as default **which will deploy the 4.2.1 version**.
+  - `MOOSH_URL:` The moosh's latest url, as initial, you can leave it as default **which will deploy the 1.11 version**.
+  - `LANG:` The LANG in Unix format, **defaults it to: en_US.UTF-8**.
+  - `LANGUAGE:` The OS LANGUAGE, **defaults it to: en_US**.
+  - `MOODLE_LANGUAGE:` The Moodle default languagem, **defaults it to: en_US**.
+  - `SITE_URL:` Your Moodle's main URL, i.e: **https://www.mymoodlesite.com**
+  - `MOODLE_DATAROOT_PATH:` The famous moodledata path, this is set to the NFS volume too, **defaults to '/moodleroot/moodledata'**.
+  - `MOODLE_PATH:` The famous moodle path, this is set to the NFS volume too, **defaults to '/moodleroot/moodle'**.
+  - `DB_TYPE:` Supports MySQL, PostgreSQL, MS SQL,  **defaults to 'mysqli'**, MySQL in CloudSQL, works neatly and performs awesome, plus managed service, yay! Can also support PostgreSQL and MicrosoSQL server in CloudSQL flavors.
+  - `DB_HOST:` Database's private IP address.
+  - `DB_HOST_PORT:` Database's port, **defaults to '3306' for MySQL**.
+  - `DB_NAME:` Database's schema name, **defaults to 'moodle-db'**.
+  - `DB_USER:` Database's user, can be set to any user owner of $DB_NAME schema, **defaults to 'root'**.
+  - `DB_PREFIX:` Moodle's database's table prefix, in case one has many different setups inside of the same schema, not recommended but possible, **defaults to 'mdl_'**.
+  - `MOODLE_SITENAME:` The Moodle's default site name, **defaults to 'Moodle 4.2 On GKE'**.
+  - `MOODLE_SITESUMMARY:` The Moodle's site summary, optional, leave '' if you want it blank.
+  - `MOODLE_USERNAME:` The Moodle's initial and admin username, **defaults to 'admin'**.
+  - `MOODLE_EMAIL:` The Moodle's email address when sending e-mails, **defaults to 'user@example.com'**.
+  - `DB_READ_REPLICA_HOST:` Host or IP address of a read replica DB if any, optional. **(Don't use the same primary server here(**.
+  - `DB_READ_REPLICA_PORT:` TCP Port of a read replica DB if any, optional.
+  - `DB_READ_REPLICA_USER:` The user of a read replica DB if any, optional
+  - `DB_READ_REPLICA_PASSWORD:` The password of a read replica DB if any, optional - can become a secret to increase security
+  - `REDIS_SESSION_ID_HOST:` The Redis Host used to Store data for Session ID's, aka session cookies.
+  - `REDIS_SESSION_ID_PORT:` The Redis Port used to Store data for Session ID's, aka session cookies.
+  - **Note #1: You can use the same values for the remaining Redis related entries, but most likely a bigger instance will be required**.
+  - **Note #2: With Redis Enterprise we were able to sustain 200K+ users at the same time on the site with big IOPS settings**.
+  - `REDIS_SESSION_ID_AUTH_STRING:` The Redis AUTH String used to Store data for Session ID's, aka session cookies.
+  - `REDIS_APP_IP_AND_PORT:` The Redis Host and Port used to Store data in Moodle's Application Store.
+  - `REDIS_APP_AUTH_STRING:` The Redis AUTH String used to Store data in Moodle's Application Store.
+  - `REDIS_SESSION_IP_AND_PORT:` The Redis Host and Port used to Store data in Moodle's Session Store.
+  - `REDIS_SESSION_AUTH_STRING:` The Redis AUTH String used to Store data in Moodle's Session Store.
+  - `REDIS_LOCK_HOST_AND_PORT:` The Redis Host and Port used to Store data for file locks.
+  - `REDIS_LOCK_AUTH_STRING:` The Redis AUTH String used to Store data for file locks.
+  - `SSLPROXY:` Tells if Moodle is running behind a proxied Webserver or Load Balancer, **defaults to 'true'**.
+  - `NOEMAIL_EVER:` Tells if Moodle should send e-mails or not, should be changed to false in Production, **defaults to 'true'**.
+  - `SMTP_HOST:` The SMTP hostname that Moodle uses to send e-mails.
+  - `SMTP_PORT:` The SMTP port that Moodle uses to send e-mails.
+  - `SMTP_USER:` The SMTP username that Moodle uses to send e-mails.
+  - `SMTP_PASSWORD:` The SMTP password that Moodle uses to send e-mails.
+  - `SMTP_PROTOCOL:` Defaults to 'tls'. The SMTP PROTOCOL that Moodle uses to send e-mails.
+  - `MOODLE_MAIL_NOREPLY_ADDRESS:` The noreply address setting for Moodle's sent e-mails.
+  - `MOODLE_MAIL_PREFIX:` Moodle mail prefix in subject line, **defaults to ']moodle]'**.
 
   Most of these values are set in Moodle's config.php file, which can be changed later to your own wish, these values are suggested as env vars and built into config.php during the initial setup process.
 
   For a more detailed understanding of Moodle's config.php file, check its distribution example file, which is located at: [https://github.com/moodle/moodle/blob/master/config-dist.php](https://github.com/moodle/moodle/blob/master/config-dist.php)
 * *[moodle-externaldb-secret.yaml](../5a-deployment-no-helm/moodle-externaldb-secret.yaml)*: Kubernetes Secret, Base64 encoded value for Database (MySQL) password.
 * *[moodle-password-secret.yaml](../5a-deployment-no-helm/moodle-password-secret.yaml)*: Kubernetes Secret, Base64 encoded value for Moodle's admin and initial user.
-* *[moodle-deployment-nginx.yaml](../5a-deployment-no-helm/moodle-deployment-nginx.yaml)*: The Deployment object for the Nginx based image, make sure to change the image tags and repository name once you finsh building it and pushing it in folter/step 4.
-* *[moodle-deployment-bitnami.yaml](../5a-deployment-no-helm/moodle-deployment-bitnami.yaml)*: The Deployment object for the Bitnami's based image, make sure to change the image tags and repository name once you finsh building it and pushing it in step 4. Note this won't use the given configmap up above, that's only meant for Nginx based deployment.
+* *[moodle-deployment-nginx.yaml](../5a-deployment-no-helm/moodle-deployment-nginx.yaml)*: The Deployment object for the NGINX based image, make sure to change the image tags and repository name once you finsh building it and pushing it in folter/step 4.
+* *[moodle-deployment-bitnami.yaml](../5a-deployment-no-helm/moodle-deployment-bitnami.yaml)*: The Deployment object for the Bitnami's based image, make sure to change the image tags and repository name once you finsh building it and pushing it in step 4. Note this won't use the given configmap up above, that's only meant for NGINX based deployment.
 * *[moodle-service-.yaml](../5a-deployment-no-helm/moodle-service.yaml)*: The Service object for any based image, you don't and shouldn't change anything in this file if you don't know about GKE's BackendConfig object, leave it default and it should suffice.
 
 
@@ -115,7 +117,7 @@ Here are the values explained:
 
 This step is responsible for creating a backend config object that links the service with the Google Cloud's Load Balancer in form of an Ingress Controller, it also defines CDN and Cloud Armor rules as well as its own HTTP Healthcheck settings.
 
-* *[ingress-backendconfig-nginx](../6-backendconfig/ingress-backendconfig-nginx.yaml)*: The given configuration for Nginx based deployment.
+* *[ingress-backendconfig-nginx](../6-backendconfig/ingress-backendconfig-nginx.yaml)*: The given configuration for NGINX based deployment.
 * *[ingress-backendconfig-bitnami](../6-backendconfig/ingress-backendconfig-bitnami.yaml)*: The given configuration for Bitnami based deployment.
 ---
 <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/folder.svg" width="50" height="50">
@@ -128,10 +130,12 @@ Holds tasks of provisioning managed certificates and HTTP -> HTTPS redirection.
 <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/folder.svg" width="50" height="50">
 <h2>8-ingress</h2>
 
-This final step does configure Cloud Load Balancer to properly serve Moodle's cluster as Ingress.
-* *[gce-ingress-external.yaml](../8-ingress/gce-ingress-external.yaml)*: Configues Google Cloud Load Balancer as ingress for the cluster.
-* *[nginx-ingress-external.yaml](../8-ingress/nginx-ingress-external.yaml)*: Configures an instance of NGINX as an external ingress controller for the cluster.
+This final step does configure Cloud Load Balancer to properly serve Moodle's cluster as Ingress, choose only **one option** below.
+* *[gce-ingress-external.yaml](../8-ingress/gce-ingress-external.yaml)*: (Recommended) Configues Google Cloud Load Balancer as ingress for the cluster.
+* *[nginx-ingress-external.yaml](../8-ingress/nginx-ingress-external.yaml)*: (Optional) Configures an instance of NGINX as an external ingress controller for the cluster.
 ---
+
+The reason we recommend GCE Ingress (Google Compute Engine / Load Balancer) is that it has its on SLA being a managed service, it supports CDN, Cloud Armor (Anti DDoS and WAF) and also has a global scale, in counterpart, if using OSS NGINX Ingress Controller, you will have community based support, or, have to pay for other alternatives to be able to get premium support.
 
 <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/folder.svg" width="50" height="50">
 <h2>9-hpa</h2>
