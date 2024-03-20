@@ -13,6 +13,14 @@
 
 #!/bin/bash
 
+# habilita o modo verboso
+set -ex
+
+# carrega as env vars
 source ../0-infra/envs.sh
 
-gcloud builds submit --config cloudbuild-nginx.yaml --region $REGION
+# constrói a imagem para o nginx
+gcloud builds submit \
+  --config cloudbuild-nginx.yaml \
+  --substitutions=_MOODLE_ROOT_PATH=$MOODLE_ROOT_PATH,_MOODLE_DATAROOT_PATH=$MOODLE_ROOT_PATH/moodledata,_MOODLE_PATH=$MOODLE_ROOT_PATH/moodle \
+  --region $REGION

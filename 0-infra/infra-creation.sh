@@ -132,13 +132,13 @@ gcloud compute routers nats create $NAT_CONFIG \
     --enable-logging \
     --region=$REGION
 
-# defines an ip address range for vpc peering for filestore
-gcloud compute addresses create moodle-managed-range \
+# defines an ip address range for vpc peering for mysql
+gcloud compute addresses create moodle-managed-range-mysql \
   --global \
   --purpose=VPC_PEERING \
   --addresses=$MOODLE_MYSQL_MANAGED_PEERING_RANGE \
   --prefix-length=24 \
-  --description="Moodle Managed Services" \
+  --description="Moodle Range for MYSQL" \
   --network=$VPC_NAME
 
 # list addresses range created for vpc peering
@@ -147,7 +147,7 @@ gcloud compute addresses list --global --filter="purpose=VPC_PEERING"
 # attach the range to the service networking API
 gcloud services vpc-peerings connect \
   --service=servicenetworking.googleapis.com \
-  --ranges=moodle-managed-range \
+  --ranges=moodle-managed-range-mysql \
   --network=$VPC_NAME
 
 # list vpc peering connections
@@ -207,13 +207,13 @@ gcloud compute addresses create moodle-managed-range-filestore \
   --purpose=VPC_PEERING \
   --addresses=$MOODLE_FILESTORE_MANAGED_PEERING_RANGE \
   --prefix-length=24 \
-  --description="Moodle Managed Services" \
+  --description="Moodle Range for Filestore" \
   --network=$VPC_NAME
 
 # updates the peering connection adding both sql and filestore ranges
 gcloud services vpc-peerings update \
   --service=servicenetworking.googleapis.com \
-  --ranges=moodle-managed-range,moodle-managed-range-filestore \
+  --ranges=moodle-managed-range-mysql,moodle-managed-range-filestore \
   --network=$VPC_NAME
 
 # creates a filestore service for NFS support
@@ -243,6 +243,20 @@ gcloud projects add-iam-policy-binding $PROJECT_ID \
   --member serviceAccount:$CLOUD_BUILD_SA_EMAIL \
   --role roles/artifactregistry.writer
 
-# builds Moodle's image with image builder in GCP
-cd ../4-moodle-image-builder && \
-  gcloud builds submit --region $REGION
+# create the jumpbox vm instance to manipulate the private GKE cluster on the same VPC
+gcloud compute instances create vm-jumpbox-moodle \
+  --project=$PROJECT_ID \
+  --zone=$ZONE \
+  --machine-type=e2-micro \
+  --network-interface=stack-type=IPV4_ONLY,subnet=$SUBNET_NAME,no-address \
+  --metadata=enable-oslogin=true \
+  --maintenance-policy=MIGRATE \
+  --provisioning-model=STANDARD \
+  --instance-termination-action=STOP \
+  --service-account=$PROJECT_NUMBER-compute@developer.gserviceaccount.com \
+  --scopes=https://www.googleapis.com/auth/cloud-platform \
+  --create-disk=auto-delete=yes,boot=yes,device-name=vm-jumpbox-moodle,image=projects/debian-cloud/global/images/debian-12-bookworm-v20240312,mode=rw,size=10,type=projects/$PROJECT_ID/zones/$ZONE/diskTypes/pd-balanced \
+  --no-shielded-secure-boot \
+  --shielded-vtpm \
+  --shielded-integrity-monitoring \
+  --reservation-affinity=any
