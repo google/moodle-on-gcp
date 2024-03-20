@@ -15,8 +15,14 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   args: [
     'build',
+    '--build-arg',
+    'MOODLE_ROOT_PATH=${_MOODLE_ROOT_PATH}',
+    '--build-arg',
+    'MOODLE_DATAROOT_PATH=${_MOODLE_DATAROOT_PATH}',
+    '--build-arg',
+    'MOODLE_PATH=${_MOODLE_PATH}',
     '-t',
-    '$LOCATION-docker.pkg.dev/$PROJECT_ID/moodle-filestore/moodle-nginx:$BUILD_ID',
+    '$LOCATION-docker.pkg.dev/$PROJECT_ID/moodle-filestore/moodle-nginx${_MOODLE_ROOT_PATH}:$BUILD_ID',
     '.',
     '-f',
     'Dockerfile.nginx'
@@ -24,5 +30,9 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   args: [
     'push',
-    '$LOCATION-docker.pkg.dev/$PROJECT_ID/moodle-filestore/moodle-nginx:$BUILD_ID'
+    '$LOCATION-docker.pkg.dev/$PROJECT_ID/moodle-filestore/moodle-nginx${_MOODLE_ROOT_PATH}:$BUILD_ID'
   ]
+substitutions:
+  _MOODLE_ROOT_PATH: /moodleroot-instance1
+  _MOODLE_DATAROOT_PATH: /moodleroot-instance1/moodledata
+  _MOODLE_PATH: /moodleroot-instance1/moodle

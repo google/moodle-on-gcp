@@ -44,7 +44,7 @@ setupPath /tmp/nginx/scgi_temp www root
 setupPath /etc/nginx root root
 setupPath /etc/php81 root root
 
-setupPath /moodleroot www www
+setupPath $MOODLE_ROOT_PATH www www
 setupPath $MOODLE_PATH www www
 setupPath $MOODLE_DATAROOT_PATH www www
 setupPath $MOODLE_DATAROOT_PATH/log www www
@@ -69,6 +69,13 @@ echo  "Done checking if PHP8.1 config files exists in nfs ..."
 echo  "Cleaning root's temp files ..."
 rm -rvf /root/etc
 
+# run envsubst
+envsubst \$MOODLE_ROOT_PATH < /etc/nginx/nginx.conf-template > /etc/nginx/nginx.conf
+rm -rvf /etc/nginx/nginx.conf-template
+
+envsubst \$MOODLE_ROOT_PATH < /etc/php81/php.ini-template > /etc/php81/php.ini
+rm -rvf /etc/php81/php.ini-template
+
 echo  "Checking if Moodle is already setup ..."
 if [ ! -f "$MOODLE_DATAROOT_PATH/.moodle-installed" ] ; then
 
@@ -84,10 +91,12 @@ if [ ! -f "$MOODLE_DATAROOT_PATH/.moodle-installed" ] ; then
     echo "Setting proper ownership on moodle root and data directories ..."
     chown -R www:www $MOODLE_PATH && chown -R www:www $MOODLE_DATAROOT_PATH
 
-    echo "Setting permissions on moodle root and data directories ..."
-    find /moodleroot -type d -exec chmod 0775 {} \;
-    echo "Setting permissions on files in moodle root and data directories ..."
-    find /moodleroot -type f -exec chmod 0664 {} \;
+    echo "Setting permissions on moodle and moodledata directories ..."
+    find $MOODLE_PATH -type d -exec chmod 0775 {} \;
+    find $MOODLE_DATAROOT_PATH -type d -exec chmod 0775 {} \;
+    echo "Setting permissions on files in moodle and moodledata directories ..."
+    find $MOODLE_PATH -type f -exec chmod 0664 {} \;
+    find $MOODLE_DATAROOT_PATH -type f -exec chmod 0664 {} \;
 
     echo "Generating config.php file ..."
     sudo -u www php81 -d max_input_vars=10000 \
@@ -228,8 +237,8 @@ else
 fi
 
 echo "Adding cron entries for Moodle's cron and AdHoc Tasks ..."
-echo "*/1 * * * * /usr/bin/sudo -u www /usr/bin/php81 /moodleroot/moodle/admin/cli/cron.php >> $MOODLE_DATAROOT_PATH/log/moodle_cron.log 2>&1" > /var/spool/cron/crontabs/root
-echo "*/1 * * * * /usr/bin/sudo -u www /usr/bin/php81 /moodleroot/moodle/admin/cli/adhoc_task.php --execute >> $MOODLE_DATAROOT_PATH/log/moodle_task.log 2>&1" >> /var/spool/cron/crontabs/root
+echo "*/1 * * * * /usr/bin/sudo -u www /usr/bin/php81 $MOODLE_PATH/admin/cli/cron.php >> $MOODLE_DATAROOT_PATH/log/moodle_cron.log 2>&1" > /var/spool/cron/crontabs/root
+echo "*/1 * * * * /usr/bin/sudo -u www /usr/bin/php81 $MOODLE_PATH/admin/cli/adhoc_task.php --execute >> $MOODLE_DATAROOT_PATH/log/moodle_task.log 2>&1" >> /var/spool/cron/crontabs/root
 echo "0 0 * * * /usr/bin/freshclam >> $MOODLE_DATAROOT_PATH/log/freshclam.log 2>&1" >> /var/spool/cron/crontabs/root
 
 ## Testing for Moosh setup

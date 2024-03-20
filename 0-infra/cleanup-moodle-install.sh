@@ -13,11 +13,21 @@
 
 #!/bin/bash
 
+# set verbose mode
+set -ex
+
 # load envs vars file
 source ./envs.sh
 
+# ensure system is updated
+sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y
+
+# ensure jq is installed
+sudo apt install -y jq
+
+# throw confirmation dialog
 cat <<- warning
-  WARNING: This script is meant to be ran fromthe underlying Support VM
+  WARNING: This script is meant to be ran from the underlying Support VM
   that relies in the same network as your GKE cluster and has a mounted
   filestore volume X.X.X.X/moodleshare as $FILESTORE_MOUNT
 warning

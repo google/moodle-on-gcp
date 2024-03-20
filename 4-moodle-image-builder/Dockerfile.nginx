@@ -11,7 +11,7 @@
 ## See the License for the specific language governing permissions and
 ## limitations under the License.
 
-FROM alpine:3.18.2
+FROM alpine:3.19.1
 
 USER root
 
@@ -19,12 +19,24 @@ RUN apk update && apk add --no-cache tar curl gzip nginx php81 php81-fpm php81-o
   php81-mysqli php81-iconv php81-mbstring php81-curl php81-openssl php81-tokenizer php81-intl \
   php81-soap php81-xmlreader php81-fileinfo php81-sodium php81-exif php81-ctype php81-zip \
   php81-xmlwriter php81-gd php81-simplexml php81-dom php81-xml php81-redis php81-pecl-igbinary \
-  php81-phar php81-posix php81-pecl-zstd composer envsubst tzdata sudo vim icu-data-full
+  php81-phar php81-posix php81-pecl-zstd envsubst tzdata sudo vim icu-data-full \
+  && ln -s /usr/bin/php81 /usr/bin/php
+
+# install correct composer for php81
+RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
+  php -r "if (hash_file('sha384', 'composer-setup.php') === 'dac665fdc30fdd8ec78b38b9800061b4150413ff2e3b6f88543c636f7cd84f6db9189d43a81e5503cda447da73c7e5b6') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;" && \
+  php composer-setup.php && \
+  php -r "unlink('composer-setup.php');" && \
+  mv composer.phar /usr/local/bin/composer;
 
 # Optional packages
 RUN apk add --no-cache aspell graphviz ghostscript python3 poppler-utils clamav
 
 RUN adduser -D -g 'www' www
+
+ARG MOODLE_ROOT_PATH='/moodleroot-instance1' \
+    MOODLE_DATAROOT_PATH='/moodleroot-instance1/moodledata' \
+    MOODLE_PATH='/moodleroot-instance1/moodle'
 
 ENV MOODLE_URL='' \
     MOOSH_URL='' \
@@ -32,8 +44,9 @@ ENV MOODLE_URL='' \
     LANGUAGE='' \
     MOODLE_LANGUAGE='' \
     SITE_URL='' \
-    MOODLE_DATAROOT_PATH='/moodleroot/moodledata' \
-    MOODLE_PATH='/moodleroot/moodle' \
+    MOODLE_ROOT_PATH=$MOODLE_ROOT_PATH \
+    MOODLE_DATAROOT_PATH=$MOODLE_DATAROOT_PATH \
+    MOODLE_PATH=$MOODLE_PATH \
     DB_TYPE='' \
     DB_HOST='' \
     DB_HOST_PORT='' \
