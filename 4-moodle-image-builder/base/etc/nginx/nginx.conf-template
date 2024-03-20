@@ -60,7 +60,7 @@ http {
     # client_max_body_size ${client_max_body_size};
     client_body_buffer_size 512k;
 
-    root /moodleroot-instance1/moodle;
+    root $MOODLE_ROOT_PATH/moodle;
     index index.php index.html;
 
     location /healthz {
@@ -87,7 +87,7 @@ http {
 
     location /dataroot/ {
       internal;
-      alias /moodleroot-instance1/moodledata/;
+      alias $MOODLE_ROOT_PATH/moodledata/;
     }
 
     # Pass the PHP scripts to PHP-FPM listening on 127.0.0.1:9000

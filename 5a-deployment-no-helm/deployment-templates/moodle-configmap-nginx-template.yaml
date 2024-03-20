@@ -23,9 +23,9 @@ data:
   LANGUAGE: 'en_US'
   MOODLE_LANGUAGE: 'en_US'
   SITE_URL: 'https://www.mymoodlesite.com'
-  MOODLE_ROOT_PATH: '/moodleroot-instance1'
-  MOODLE_DATAROOT_PATH: "/moodleroot-instance1/moodledata"
-  MOODLE_PATH: "/moodleroot-instance1/moodle"
+  MOODLE_ROOT_PATH: '/$MOODLE_ROOT_PATH_NO_SLASH'
+  MOODLE_DATAROOT_PATH: "/$MOODLE_ROOT_PATH_NO_SLASH/moodledata"
+  MOODLE_PATH: "/$MOODLE_ROOT_PATH_NO_SLASH/moodle"
   DB_TYPE: 'mysqli'
   DB_HOST: '127.0.0.1' # don't use a local IP address, this is here as an IP address reference only.
   DB_HOST_PORT: '3306'

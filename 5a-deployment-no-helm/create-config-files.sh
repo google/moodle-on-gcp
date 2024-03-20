@@ -19,8 +19,14 @@ set -ex
 # carrega as env vars
 source ../0-infra/envs.sh
 
-# constrói a imagem para o nginx
-gcloud builds submit \
-  --config cloudbuild-nginx.yaml \
-  --substitutions=_MOODLE_ROOT_PATH=$MOODLE_ROOT_PATH,_MOODLE_DATAROOT_PATH=$MOODLE_ROOT_PATH/moodledata,_MOODLE_PATH=$MOODLE_ROOT_PATH/moodle \
-  --region $REGION
+# garante que o sistema esteja atualizado
+sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y
+
+# garante que o envsubst esteja instalado
+sudo apt install -y gettext-base
+
+# gera o arquivo de configmap específico
+envsubst \$MOODLE_ROOT_PATH_NO_SLASH < ./deployment-templates/moodle-configmap-nginx-template.yaml > ./moodle-configmap-nginx.yaml
+
+# gera o arquivo de deployment específico
+envsubst \$MOODLE_ROOT_PATH_NO_SLASH < ./deployment-templates/moodle-deployment-nginx-template.yaml > ./moodle-deployment-nginx.yaml

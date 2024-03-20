@@ -23,8 +23,9 @@ data:
   LANGUAGE: 'pt_BR'
   MOODLE_LANGUAGE: 'pt_BR'
   SITE_URL: ''
-  MOODLE_DATAROOT_PATH: '/moodleroot/moodledata'
-  MOODLE_PATH: '/moodleroot/moodle'
+  MOODLE_ROOT_PATH: '/moodleroot-instance1'
+  MOODLE_DATAROOT_PATH: "/moodleroot-instance1/moodledata"
+  MOODLE_PATH: "/moodleroot-instance1/moodle"
   DB_TYPE: 'mysqli'
   DB_HOST: ''
   DB_HOST_PORT: '3306'

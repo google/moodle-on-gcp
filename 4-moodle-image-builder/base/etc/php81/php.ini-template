@@ -1854,7 +1854,7 @@ opcache.save_comments=0
 ; (i.e., /var/www/x  blacklists all the files and directories in /var/www
 ; that start with 'x'). Line starting with a ; are ignored (comments).
 ;opcache.blacklist_filename=
-;opcache.blacklist_filename=/moodleroot-instance1/moodle/opcache/ignore.txt
+;opcache.blacklist_filename=$MOODLE_ROOT_PATH/moodle/opcache/ignore.txt
 
 ; Allows exclusion of large files from being cached. By default all files
 ; are cached.
