@@ -57,3 +57,12 @@ MYSQL_MOODLE_DB_COLLATION=utf8mb4_unicode_ci #recommended collation for Moodle. 
 # other managed services variables
 REDIS_NAME=<YOUR-REDIS-CACHE-NAME>
 FILESTORE_NAME=<YOUR-FILESTORE-NAME>
+FILESTORE_MOUNT=/mnt/filestore1
+
+# variables for config files and companion shell scripts
+
+# you can change this to any instance name for your current instance, later you can change this
+# if you plan to install a different instance, rename it to some different squad name, etc.
+export MOODLE_ROOT_PATH=/moodleroot-instance1 
+export MOODLE_ROOT_PATH_NO_SLASH=${MOODLE_ROOT_PATH/?}
+MOODLE_ROOT_IN_FILESTORE=$FILESTORE_MOUNT/$MOODLE_ROOT_PATH_NO_SLASH
