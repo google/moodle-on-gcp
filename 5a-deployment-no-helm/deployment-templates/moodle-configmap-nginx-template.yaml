@@ -17,12 +17,12 @@ metadata:
   name: moodle-configmap
   namespace: moodle
 data:
-  MOODLE_URL: 'https://github.com/moodle/moodle/archive/MOODLE_402_STABLE.tar.gz'
-  MOOSH_URL: 'https://github.com/tmuras/moosh/archive/refs/tags/1.11.tar.gz'
+  MOODLE_URL: 'https://github.com/moodle/moodle/archive/refs/tags/v4.3.3.tar.gz'
+  MOOSH_URL: 'https://github.com/tmuras/moosh/archive/refs/tags/1.17.tar.gz'
   LANG: 'en_US.UTF-8'
   LANGUAGE: 'en_US'
   MOODLE_LANGUAGE: 'en_US'
-  SITE_URL: 'https://www.mymoodlesite.com'
+  SITE_URL: 'https://www.yourmoodlesite.com'
   MOODLE_ROOT_PATH: '/$MOODLE_ROOT_PATH_NO_SLASH'
   MOODLE_DATAROOT_PATH: "/$MOODLE_ROOT_PATH_NO_SLASH/moodledata"
   MOODLE_PATH: "/$MOODLE_ROOT_PATH_NO_SLASH/moodle"
@@ -32,7 +32,7 @@ data:
   DB_NAME: 'moodle-db'
   DB_USER: 'root'
   DB_PREFIX: 'mdl_'
-  MOODLE_SITENAME: 'Moodle 4.2 On GKE'
+  MOODLE_SITENAME: 'Moodle 4.3.3 On GKE'
   MOODLE_SITESUMMARY: 'Brought to you by OSS@Google Cloud with :love'
   MOODLE_USERNAME: 'admin'
   MOODLE_EMAIL: 'user@example.com'
