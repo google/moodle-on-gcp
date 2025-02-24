@@ -28,7 +28,7 @@ Multi-sized environment options. We're starting the project with an enterprise v
 
 From a high-level perspective, what we did was bringing together a set of shell scripts and Kubernetes (YAML) config files that, when executed in order, build the entire infrastructure needed to support Moodle in Google Cloud and then, deploys Moodle itself with all the configuration needed already in place.
 
-Please, visit [Deployment](docs/deployment.md) section in README to see details about how to get it deployed in your environment.
+Please, visit [Deployment](deployment.md) section in README to see details about how to get it deployed in your environment.
 
 ## Cost view
 
