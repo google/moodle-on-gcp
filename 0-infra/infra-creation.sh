@@ -72,7 +72,6 @@ gcloud container clusters create $GKE_NAME \
   --monitoring=SYSTEM \
   --num-nodes=1 \
   --scopes=storage-rw,compute-ro \
-  --enable-autorepair \
   --enable-intra-node-visibility \
   --machine-type=n1-standard-2 \
   --network=$VPC_NAME \
