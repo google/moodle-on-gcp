@@ -21,4 +21,5 @@
 
 echo "Moodle Sucessfully Started. Listening for connections."
 
-tail -f /dev/null
+# removed the tail as it's not necessary
+# tail -f /dev/null
