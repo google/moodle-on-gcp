@@ -96,7 +96,7 @@ To stop watching you can hit Control + C to quit.
 When it is all set, you can then tail the pod logs for the running POD such as this:
 
 ```sh
-kubectl logs -f -n moodle $(k get pods -n moodle -o=name --field-selector=status.phase=Running)
+kubectl logs -f -n moodle $(kubectl get pods -n moodle -o=name --field-selector=status.phase=Running)
 ```
 **Note that this command wast tested with just 1 replica running. We can't guarantee if it works with more than 1 replica running.**
 
@@ -145,7 +145,7 @@ You can always run moosh from a running container too, just run the following co
 ```sh
 kubectl exec -it -n moodle $(kubectl get pods -n moodle -o=name --field-selector=status.phase=Running) -- /bin/sh
 ```
-**Note that this command wast tested with just 1 replica running. We can't guarantee if it works with more than 1 replica running.**
+**Note that this command was tested with just 1 replica running. We can't guarantee if it works with more than 1 replica running.**
 
 Once inside that POD, you can run the following commands to install a different plugin with Moosh:
 
