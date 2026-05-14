@@ -1,9 +1,5 @@
 # Configuring Redis Cache with Moodle
 
-**TLDR** if you are using NGINX, you don't have to go through this process, it is already done for you in Moodle's first run with the newly built image in its startup script.
-
-**Only continue if you are using the Bitnami's based image...**
-
 This document will guide you through the process of getting Moodle to rely on Memorystore for Redis Cache for data persistence in memory. Having this configuration in place is highly recommended as it can increase performance consistently.
 
 > This process must be performed after Moodle's instalation process gets finalized and the application is already up and running.
@@ -35,12 +31,6 @@ $CFG->session_redis_lock_retry = 100;                                 // Optiona
 ```
 
 Save the file and close it.
-
-Next, to refresh `config.php`'s new configuration with the pods, run the following command against the file `moodle-helm-update.sh` which sits on directory `5-helm`.
-
-```
-./moodle-helm-update.sh
-```
 
 Make sure your pods are all back up and in a "running" state after a while by running the command below.
 
@@ -93,3 +83,20 @@ sudo -u www php83 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name=
 sudo -u www php83 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name="session_redis_serializer_use_igbinary" --set=true
 sudo -u www php83 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name="session_redis_compressor" --set='gzip'
 ```
+
+### Required Environment Variables for Redis (Formerly in envs.sh)
+
+If you intend to fully provision Redis through environment variables (for sessions, application caches, and locking) instead of configuring it through the Moodle UI or directly in `config.php`, you must define the following variables in your infrastructure configuration:
+
+* `REDIS_SESSION_ID_HOST`: The Redis Host used to store data for Session IDs (e.g., session cookies).
+* `REDIS_SESSION_ID_PORT`: The Redis Port used to store data for Session IDs.
+* `REDIS_SESSION_ID_AUTH_STRING`: The Redis AUTH String used to authenticate to the Session ID store.
+* `REDIS_APP_IP_AND_PORT`: The Redis Host and Port used to store data in Moodle's Application Store.
+* `REDIS_APP_AUTH_STRING`: The Redis AUTH String used to authenticate to the Application Store.
+* `REDIS_SESSION_IP_AND_PORT`: The Redis Host and Port used to store data in Moodle's Session Store.
+* `REDIS_SESSION_AUTH_STRING`: The Redis AUTH String used to authenticate to the Session Store.
+* `REDIS_LOCK_HOST_AND_PORT`: The Redis Host and Port used to store data for file locks.
+* `REDIS_LOCK_AUTH_STRING`: The Redis AUTH String used to authenticate to the file locks store.
+
+**Note 1:** You can use the same connection values for the Application, Session, and Lock stores, but doing so will require a larger Redis instance to handle the combined IOPS and memory requirements.
+**Note 2:** For highly scaled environments (e.g., sustaining 200K+ concurrent users), splitting these onto separate MemoryStore instances or sharding with Redis Enterprise is recommended.
