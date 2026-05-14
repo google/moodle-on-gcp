@@ -180,20 +180,6 @@ if [ ! -f "$MOODLE_DATAROOT_PATH/.moodle-installed" ] ; then
     sudo -u www php81 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name=noreplyaddress --set=$MOODLE_MAIL_NOREPLY_ADDRESS
     sudo -u www php81 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name=emailsubjectprefix --set=$MOODLE_MAIL_PREFIX
 
-    # redis session cookies
-    # sudo -u www php81 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name="session_handler_class" --set='\core\session\redis'
-    # sudo -u www php81 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name="session_redis_database" --set=0
-    # sudo -u www php81 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name="session_redis_host" --set=$REDIS_SESSION_ID_HOST
-    # sudo -u www php81 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name="session_redis_port" --set=$REDIS_SESSSION_ID_PORT
-    # sudo -u www php81 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name="session_redis_auth" --set=$REDIS_SESSION_ID_AUTH_STRING
-    # sudo -u www php81 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name="session_redis_prefix" --set='mdl_sessid_'
-    # sudo -u www php81 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name="session_redis_acquire_lock_timeout" --set=120
-    # sudo -u www php81 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name="session_redis_acquire_lock_warn" --set=0
-    # sudo -u www php81 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name="session_redis_lock_expire" --set=7200
-    # sudo -u www php81 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name="session_redis_lock_retry" --set=100
-    # sudo -u www php81 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name="session_redis_serializer_use_igbinary" --set=true
-    # sudo -u www php81 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name="session_redis_compressor" --set='gzip'
-
     sudo -u www cp $MOODLE_PATH/config.php $MOODLE_PATH/config.php.bak
     envsubst '$REDIS_LOCK_HOST_AND_PORT $REDIS_LOCK_AUTH_STRING $REDIS_SESSION_ID_HOST $REDIS_SESSION_ID_PORT $REDIS_SESSION_ID_AUTH_STRING' < "/root/.templates/config.php.template" \
       | { head -n 23 $MOODLE_PATH/config.php.bak; cat /dev/stdin; tail -n +24 $MOODLE_PATH/config.php.bak; } > $MOODLE_PATH/config.php
