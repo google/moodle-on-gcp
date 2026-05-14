@@ -1,4 +1,5 @@
 #!/bin/sh
+set -eo pipefail
 #
 ## Copyright 2022 Google LLC
 ## Licensed under the Apache License, Version 2.0 (the "License");
@@ -42,7 +43,7 @@ setupPath /tmp/nginx/uwsgi_temp www root
 setupPath /tmp/nginx/scgi_temp www root
 
 setupPath /etc/nginx root root
-setupPath /etc/php81 root root
+setupPath /etc/php83 root root
 
 setupPath $MOODLE_ROOT_PATH www www
 setupPath $MOODLE_PATH www www
@@ -59,22 +60,22 @@ fi
 echo  "Done checking if NGINX config files exists in nfs ..."
 
 echo  "Checking if PHP8.1 config files exists in nfs ..."
-if [ ! -f "/etc/php81/php-fpm.conf" ] ; then
+if [ ! -f "/etc/php83/php-fpm.conf" ] ; then
   echo "PHP8.1 config files not present..ensuring they are now..."
-  sudo -u root cp -R /root/etc/php81/* /etc/php81/
+  sudo -u root cp -R /root/etc/php83/* /etc/php83/
   echo "Done ensuring PHP8.1 config files are present.."
 fi
 echo  "Done checking if PHP8.1 config files exists in nfs ..."
 
 echo  "Cleaning root's temp files ..."
-rm -rvf /root/etc
+
 
 # run envsubst
 envsubst \$MOODLE_ROOT_PATH < /etc/nginx/nginx.conf-template > /etc/nginx/nginx.conf
-rm -rvf /etc/nginx/nginx.conf-template
 
-envsubst \$MOODLE_ROOT_PATH < /etc/php81/php.ini-template > /etc/php81/php.ini
-rm -rvf /etc/php81/php.ini-template
+
+envsubst \$MOODLE_ROOT_PATH < /etc/php83/php.ini-template > /etc/php83/php.ini
+
 
 echo  "Checking if Moodle is already setup ..."
 if [ ! -f "$MOODLE_DATAROOT_PATH/.moodle-installed" ] ; then
@@ -99,7 +100,7 @@ if [ ! -f "$MOODLE_DATAROOT_PATH/.moodle-installed" ] ; then
     find $MOODLE_DATAROOT_PATH -type f -exec chmod 0664 {} \;
 
     echo "Generating config.php file ..."
-    sudo -u www php81 -d max_input_vars=10000 \
+    sudo -u www php83 -d max_input_vars=10000 \
       $MOODLE_PATH/admin/cli/install.php \
       --lang=$MOODLE_LANGUAGE \
       --wwwroot=$SITE_URL \
@@ -124,7 +125,7 @@ if [ ! -f "$MOODLE_DATAROOT_PATH/.moodle-installed" ] ; then
     echo "Done generating config.php file ..."
 
     echo "Installing database ..."
-    sudo -u www php81 -d max_input_vars=10000 \
+    sudo -u www php83 -d max_input_vars=10000 \
       $MOODLE_PATH/admin/cli/install_database.php \
       --lang="$MOODLE_LANGUANGE" \
       --fullname="$MOODLE_SITENAME" \
@@ -164,35 +165,35 @@ if [ ! -f "$MOODLE_DATAROOT_PATH/.moodle-installed" ] ; then
     echo "Configuring other specific settings ..."
 
     # moodle binaries
-    sudo -u www php81 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name=pathtophp --set=/usr/bin/php81
-    sudo -u www php81 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name=pathtodu --set=/usr/bin/du
-    sudo -u www php81 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name=aspellpath --set=/usr/bin/aspell
-    sudo -u www php81 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name=pathtodot --set=/usr/bin/dot
-    sudo -u www php81 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name=pathtogs --set=/usr/bin/gs
-    sudo -u www php81 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name=pathtopython --set=/usr/bin/python3
-    sudo -u www php81 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name=enableblogs --set=0
+    sudo -u www php83 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name=pathtophp --set=/usr/bin/php83
+    sudo -u www php83 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name=pathtodu --set=/usr/bin/du
+    sudo -u www php83 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name=aspellpath --set=/usr/bin/aspell
+    sudo -u www php83 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name=pathtodot --set=/usr/bin/dot
+    sudo -u www php83 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name=pathtogs --set=/usr/bin/gs
+    sudo -u www php83 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name=pathtopython --set=/usr/bin/python3
+    sudo -u www php83 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name=enableblogs --set=0
 
     # moodle smtp settings
-    sudo -u www php81 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name=smtphosts --set=$SMTP_HOST:$SMTP_PORT
-    sudo -u www php81 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name=smtpuser --set=$SMTP_USER
-    sudo -u www php81 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name=smtppass --set=$SMTP_PASSWORD
-    sudo -u www php81 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name=smtpsecure --set=$SMTP_PROTOCOL
-    sudo -u www php81 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name=noreplyaddress --set=$MOODLE_MAIL_NOREPLY_ADDRESS
-    sudo -u www php81 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name=emailsubjectprefix --set=$MOODLE_MAIL_PREFIX
+    sudo -u www php83 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name=smtphosts --set=$SMTP_HOST:$SMTP_PORT
+    sudo -u www php83 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name=smtpuser --set=$SMTP_USER
+    sudo -u www php83 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name=smtppass --set=$SMTP_PASSWORD
+    sudo -u www php83 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name=smtpsecure --set=$SMTP_PROTOCOL
+    sudo -u www php83 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name=noreplyaddress --set=$MOODLE_MAIL_NOREPLY_ADDRESS
+    sudo -u www php83 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name=emailsubjectprefix --set=$MOODLE_MAIL_PREFIX
 
     # redis session cookies
-    # sudo -u www php81 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name="session_handler_class" --set='\core\session\redis'
-    # sudo -u www php81 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name="session_redis_database" --set=0
-    # sudo -u www php81 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name="session_redis_host" --set=$REDIS_SESSION_ID_HOST
-    # sudo -u www php81 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name="session_redis_port" --set=$REDIS_SESSSION_ID_PORT
-    # sudo -u www php81 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name="session_redis_auth" --set=$REDIS_SESSION_ID_AUTH_STRING
-    # sudo -u www php81 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name="session_redis_prefix" --set='mdl_sessid_'
-    # sudo -u www php81 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name="session_redis_acquire_lock_timeout" --set=120
-    # sudo -u www php81 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name="session_redis_acquire_lock_warn" --set=0
-    # sudo -u www php81 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name="session_redis_lock_expire" --set=7200
-    # sudo -u www php81 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name="session_redis_lock_retry" --set=100
-    # sudo -u www php81 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name="session_redis_serializer_use_igbinary" --set=true
-    # sudo -u www php81 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name="session_redis_compressor" --set='gzip'
+    # sudo -u www php83 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name="session_handler_class" --set='\core\session\redis'
+    # sudo -u www php83 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name="session_redis_database" --set=0
+    # sudo -u www php83 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name="session_redis_host" --set=$REDIS_SESSION_ID_HOST
+    # sudo -u www php83 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name="session_redis_port" --set=$REDIS_SESSSION_ID_PORT
+    # sudo -u www php83 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name="session_redis_auth" --set=$REDIS_SESSION_ID_AUTH_STRING
+    # sudo -u www php83 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name="session_redis_prefix" --set='mdl_sessid_'
+    # sudo -u www php83 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name="session_redis_acquire_lock_timeout" --set=120
+    # sudo -u www php83 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name="session_redis_acquire_lock_warn" --set=0
+    # sudo -u www php83 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name="session_redis_lock_expire" --set=7200
+    # sudo -u www php83 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name="session_redis_lock_retry" --set=100
+    # sudo -u www php83 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name="session_redis_serializer_use_igbinary" --set=true
+    # sudo -u www php83 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name="session_redis_compressor" --set='gzip'
 
     sudo -u www cp $MOODLE_PATH/config.php $MOODLE_PATH/config.php.bak
     envsubst '$REDIS_LOCK_HOST_AND_PORT $REDIS_LOCK_AUTH_STRING $REDIS_SESSION_ID_HOST $REDIS_SESSION_ID_PORT $REDIS_SESSION_ID_AUTH_STRING' < "/root/.templates/config.php.template" \
@@ -216,7 +217,7 @@ if [ ! -f "$MOODLE_DATAROOT_PATH/.moodle-installed" ] ; then
 
   # precomplie css cache for this pod
   echo "Precompiling boost's css theme ..."
-  sudo -u www php81 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/build_theme_css.php --themes=boost
+  sudo -u www php83 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/build_theme_css.php --themes=boost
 
   # persist setup
   sudo -u www touch $MOODLE_DATAROOT_PATH/.moodle-installed
@@ -228,17 +229,17 @@ else
 
   if [ -f "$MOODLE_DATAROOT_PATH/.moodle-autoupgrade" ]; then
     echo "Upgrading moodle..."
-    sudo -u www php81 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/maintenance.php --enable
-    sudo -u www php81 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/upgrade.php --non-interactive --allow-unstable
-    sudo -u www php81 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/maintenance.php --disable
+    sudo -u www php83 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/maintenance.php --enable
+    sudo -u www php83 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/upgrade.php --non-interactive --allow-unstable
+    sudo -u www php83 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/maintenance.php --disable
   else
     echo "Skipped auto update of Moodle"
   fi
 fi
 
 echo "Adding cron entries for Moodle's cron and AdHoc Tasks ..."
-echo "*/1 * * * * /usr/bin/sudo -u www /usr/bin/php81 $MOODLE_PATH/admin/cli/cron.php >> $MOODLE_DATAROOT_PATH/log/moodle_cron.log 2>&1" > /var/spool/cron/crontabs/root
-echo "*/1 * * * * /usr/bin/sudo -u www /usr/bin/php81 $MOODLE_PATH/admin/cli/adhoc_task.php --execute >> $MOODLE_DATAROOT_PATH/log/moodle_task.log 2>&1" >> /var/spool/cron/crontabs/root
+echo "*/1 * * * * /usr/bin/sudo -u www /usr/bin/php83 $MOODLE_PATH/admin/cli/cron.php >> $MOODLE_DATAROOT_PATH/log/moodle_cron.log 2>&1" > /var/spool/cron/crontabs/root
+echo "*/1 * * * * /usr/bin/sudo -u www /usr/bin/php83 $MOODLE_PATH/admin/cli/adhoc_task.php --execute >> $MOODLE_DATAROOT_PATH/log/moodle_task.log 2>&1" >> /var/spool/cron/crontabs/root
 echo "0 0 * * * /usr/bin/freshclam >> $MOODLE_DATAROOT_PATH/log/freshclam.log 2>&1" >> /var/spool/cron/crontabs/root
 
 ## Testing for Moosh setup
@@ -323,3 +324,16 @@ if [ ! -z "$cache_adjusted" ]; then
 fi
 
 echo "All steps are done properly now! Moodle is poperly installed ..."
+
+if [ -n "$PHP_MEMORY_LIMIT" ]; then
+    sudo -u root sed -i "s/memory_limit = .*/memory_limit = $PHP_MEMORY_LIMIT/" /etc/php83/php.ini
+fi
+if [ -n "$PHP_UPLOAD_MAX_FILESIZE" ]; then
+    sudo -u root sed -i "s/upload_max_filesize = .*/upload_max_filesize = $PHP_UPLOAD_MAX_FILESIZE/" /etc/php83/php.ini
+fi
+if [ -n "$PHP_POST_MAX_SIZE" ]; then
+    sudo -u root sed -i "s/post_max_size = .*/post_max_size = $PHP_POST_MAX_SIZE/" /etc/php83/php.ini
+fi
+if [ -n "$NGINX_CLIENT_MAX_BODY_SIZE" ]; then
+    sudo -u root sed -i "s/# client_max_body_size.*/client_max_body_size $NGINX_CLIENT_MAX_BODY_SIZE;/" /etc/nginx/nginx.conf
+fi

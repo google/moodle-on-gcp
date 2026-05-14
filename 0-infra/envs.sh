@@ -17,13 +17,13 @@
 # make changes to your project, region, zone and networking resources
 # ip ranges here described are suggestive and can be adjusted to fit production's needs
 
-PROJECT_NUMBER=<YOUR-PROJECT-NUMBER>
-PROJECT_ID=<YOUR-PROJECT-ID>
-REGION=<YOUR-PREFERED-REGION>
+PROJECT_NUMBER=123
+PROJECT_ID=456
+REGION=us-central1
 ZONE=$REGION-a
 
-VPC_NAME=<YOUR-VPC-NAME>
-SUBNET_NAME=<YOUR-SUBNET-NAME>
+VPC_NAME=vpc1
+SUBNET_NAME=subnet1
 SUBNET_RANGE=10.10.0.0/24
 
 # gke specific variables
@@ -43,20 +43,21 @@ MOODLE_MYSQL_MANAGED_PEERING_RANGE=10.9.0.0
 MOODLE_FILESTORE_MANAGED_PEERING_RANGE=10.12.0.0
 
 # NAT config
-NAT_CONFIG=<YOUR-NAT-CONFIG-NAME>
-NAT_ROUTER=<YOUR-NAT-CONFIG-ROUTER>
+NAT_CONFIG=nat1
+NAT_ROUTER=router1
 
 # db specific variables
-GKE_NAME=<YOUR-GKE-CLUSTER-NAME>
-MYSQL_INSTANCE_NAME=<YOUR-MYSQL-INSTANCE-NAME>
-MYSQL_ROOT_PASSWORD=<YOUR-MYSQL-INSTANCE-PASSWORD>
-MYSQL_DB=<YOUR-MOODLE-DB-NAME>
-MYSQL_MOODLE_DB_CHARSET=utf8mb4 #recommended collation for Moodle. Change only if necessary.
+GKE_NAME=gke1
+MYSQL_INSTANCE_NAME=db1
+# MYSQL_ROOT_PASSWORD is not set here to avoid hardcoding secrets.
+# It will be prompted for during infra-creation.sh if not already set.
+MYSQL_DB=db1
+MYSQL_MOODLE_DB_CHARSET=utf8mb4 #recommended charset for Moodle. Change only if necessary.
 MYSQL_MOODLE_DB_COLLATION=utf8mb4_unicode_ci #recommended collation for Moodle. Change only if necessary.
 
 # other managed services variables
-REDIS_NAME=<YOUR-REDIS-CACHE-NAME>
-FILESTORE_NAME=<YOUR-FILESTORE-NAME>
+REDIS_NAME=redis1
+FILESTORE_NAME=fs1
 FILESTORE_MOUNT=/mnt/filestore1
 
 # variables for config files and companion shell scripts

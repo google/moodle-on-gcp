@@ -17,8 +17,8 @@ metadata:
   name: moodle-configmap
   namespace: moodle
 data:
-  MOODLE_URL: 'https://github.com/moodle/moodle/archive/refs/tags/v4.3.3.tar.gz'
-  MOOSH_URL: 'https://github.com/tmuras/moosh/archive/refs/tags/1.17.tar.gz'
+  MOODLE_URL: 'https://github.com/moodle/moodle/archive/refs/tags/v4.4.1.tar.gz'
+  MOOSH_URL: 'https://github.com/tmuras/moosh/archive/refs/tags/1.18.tar.gz'
   LANG: 'en_US.UTF-8'
   LANGUAGE: 'en_US'
   MOODLE_LANGUAGE: 'en_US'
@@ -53,8 +53,12 @@ data:
   NOEMAIL_EVER: 'true' # blocks moodle from sending e-mails
   SMTP_HOST: 'some.smtp.com'
   SMTP_PORT: '587'
-  SMTP_USER: 'your_email@yourserver.com'
-  SMTP_PASSWORD: 'your_password'
+  SMTP_USER: '<REPLACE_WITH_YOUR_SMTP_USER>'
+  SMTP_PASSWORD: '<REPLACE_WITH_YOUR_SMTP_PASSWORD>'
   SMTP_PROTOCOL: 'tls'
   MOODLE_MAIL_NOREPLY_ADDRESS: 'noreply@localhost'
   MOODLE_MAIL_PREFIX: '[moodle]'
+  PHP_MEMORY_LIMIT: "256M"
+  PHP_UPLOAD_MAX_FILESIZE: "512M"
+  PHP_POST_MAX_SIZE: "512M"
+  NGINX_CLIENT_MAX_BODY_SIZE: "512M"

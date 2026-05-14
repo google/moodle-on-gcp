@@ -96,7 +96,7 @@ To stop watching you can hit Control + C to quit.
 When it is all set, you can then tail the pod logs for the running POD such as this:
 
 ```sh
-kubectl logs -f -n moodle $(k get pods -n moodle -o=name --field-selector=status.phase=Running)
+kubectl logs -f -n moodle $(kubectl get pods -n moodle -o=name --field-selector=status.phase=Running)
 ```
 **Note that this command wast tested with just 1 replica running. We can't guarantee if it works with more than 1 replica running.**
 
@@ -145,7 +145,7 @@ You can always run moosh from a running container too, just run the following co
 ```sh
 kubectl exec -it -n moodle $(kubectl get pods -n moodle -o=name --field-selector=status.phase=Running) -- /bin/sh
 ```
-**Note that this command wast tested with just 1 replica running. We can't guarantee if it works with more than 1 replica running.**
+**Note that this command was tested with just 1 replica running. We can't guarantee if it works with more than 1 replica running.**
 
 Once inside that POD, you can run the following commands to install a different plugin with Moosh:
 
@@ -162,41 +162,12 @@ sudo -u www moosh --moodle-path=$MOODLE_PATH plugin-install -f plugin_name
 The same process can be done to manually run the Moodle upgrade process, such as:
 
 ```sh
-sudo -u www php81 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/maintenance.php --enable
+sudo -u www php83 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/maintenance.php --enable
 
-sudo -u www php81 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/upgrade.php --non-interactive --allow-unstable
+sudo -u www php83 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/upgrade.php --non-interactive --allow-unstable
 
-sudo -u www php81 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/maintenance.php --disable
+sudo -u www php83 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/maintenance.php --disable
 ```
 
 That's it, hopefully this works for you and don't hesitate to let us know of your success or failures using github issues.
 ---
-# Migration recommendations (Bitnami) (Deprecated)
-
-## 1. Reconfigure Redis mapping within Moodle's admin section
-
-If you're facing slowliness after migrating into your new instance of Moodle in Google Cloud, it might be associated with the loss of mapping to Redis Cache service.
-
-To reconfigure that mapping manually, please, follow the [instructions described in this document](configuring-redis-cache-with-moodle).
-
-## 2. Run a cron job inside the newly migrated pods
-
-1. First, get pod names by running the following command.
-
-```
-kubectl get pods -n moodle
-```
-
-2. With Pod's name in your hands, get into the pod's shell by running the following command line.
-
-```
-kubectl -n moodle  exec --stdin --tty <POD_NAME> -- /bin/bash
-```
-
-3. Once inside the pod, run the following command line to clean up everything inside the pod. You can automate this process in two different ways: 1) running it from a jumpbox virtual machine; 2) running it from pods (root mode) within the cluster. Instructions on how to do so are coming soon.
-
-> This operation can take several minutes depending on the size of the information coming out of moodledata.
-
-```
-/opt/bitnami/php/bin/php /opt/bitnami/moodle/admin/cli/cron.php
-```

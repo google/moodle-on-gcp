@@ -27,6 +27,13 @@ spec:
   - host: moodle.<YOUR-LB-EXTERNAL-IP>.nip.io
     http:
       paths:
+      - path: /repository/repository_ajax.php
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: moodle-uploads
+            port:
+              number: 80
       - path: /*
         pathType: ImplementationSpecific
         backend:

@@ -1,3 +1,4 @@
+#!/bin/bash
 # Copyright 2022 Google LLC
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -11,10 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-#!/bin/bash
 
 # habilita o modo verboso
-set -ex
+set -eo pipefail
 
 # carrega as env vars
 source ../0-infra/envs.sh
@@ -30,3 +30,9 @@ envsubst \$MOODLE_ROOT_PATH_NO_SLASH < ./deployment-templates/moodle-configmap-n
 
 # gera o arquivo de deployment específico
 envsubst \$MOODLE_ROOT_PATH_NO_SLASH < ./deployment-templates/moodle-deployment-nginx-template.yaml > ./moodle-deployment-nginx.yaml
+
+# gera o arquivo de configmap para uploads
+envsubst \$MOODLE_ROOT_PATH_NO_SLASH < ./deployment-templates/moodle-configmap-nginx-uploads-template.yaml > ./moodle-configmap-nginx-uploads.yaml
+
+# gera o arquivo de deployment para uploads
+envsubst \$MOODLE_ROOT_PATH_NO_SLASH < ./deployment-templates/moodle-deployment-nginx-uploads-template.yaml > ./moodle-deployment-nginx-uploads.yaml
