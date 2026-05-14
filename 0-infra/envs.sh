@@ -49,9 +49,10 @@ NAT_ROUTER=<YOUR-NAT-CONFIG-ROUTER>
 # db specific variables
 GKE_NAME=<YOUR-GKE-CLUSTER-NAME>
 MYSQL_INSTANCE_NAME=<YOUR-MYSQL-INSTANCE-NAME>
-MYSQL_ROOT_PASSWORD=<YOUR-MYSQL-INSTANCE-PASSWORD>
+# MYSQL_ROOT_PASSWORD is not set here to avoid hardcoding secrets.
+# It will be prompted for during infra-creation.sh if not already set.
 MYSQL_DB=<YOUR-MOODLE-DB-NAME>
-MYSQL_MOODLE_DB_CHARSET=utf8mb4 #recommended collation for Moodle. Change only if necessary.
+MYSQL_MOODLE_DB_CHARSET=utf8mb4 #recommended charset for Moodle. Change only if necessary.
 MYSQL_MOODLE_DB_COLLATION=utf8mb4_unicode_ci #recommended collation for Moodle. Change only if necessary.
 
 # other managed services variables

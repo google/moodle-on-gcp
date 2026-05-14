@@ -178,9 +178,10 @@ gcloud services vpc-peerings connect \
   --network=$VPC_NAME
 ```
 
-13. Creates a Cloud SQL instance (managed).
+13. Creates a Cloud SQL instance (managed). The command is wrapped in `set +x` to ensure the password is not logged.
 
 ```
+{ set +x; } 2>/dev/null
 gcloud sql instances create $MYSQL_INSTANCE_NAME \
   --database-version=MYSQL_8_0 \
   --cpu 1 \
@@ -201,6 +202,7 @@ gcloud sql instances create $MYSQL_INSTANCE_NAME \
   --backup-start-time=03:00 \
   --database-flags=character_set_server=utf8,default_time_zone=-03:00 \
   --root-password=$MYSQL_ROOT_PASSWORD
+set -x
 ```
 
 14. Creates Moodle's database with proper charset.
