@@ -27,7 +27,7 @@ The following table outlines all the variables that need to be filled in.
 | NAT_ROUTER | Names Nat Router service.  |
 | GKE_NAME | Names Google Kubernetes Engine (GKE) cluster that will host Moodle's web application. |
 | MYSQL_INSTANCE_NAME | Names MySQL instance out of Cloud SQL. |
-| MYSQL_ROOT_PASSWORD | Plain text that settles database's password. |
+| MYSQL_ROOT_PASSWORD | Optional. Plain text that settles database's password. If not provided, it will be prompted for during infrastructure creation. |
 | MYSQL_DB | Names Moodle's MySQL database. |
 | MYSQL_MOODLE_DB_CHARSET | Recommended charset for Moodle. Change only if necessary and you're absolutely sure of it. |
 | MYSQL_MOODLE_DB_COLLATION | Recommended collation for Moodle. Change only if necessary and you're absolutely sure of it. |
