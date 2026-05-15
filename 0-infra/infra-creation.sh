@@ -20,7 +20,7 @@ set -eo pipefail
 source ./envs.sh
 
 # prompt for mysql root password if not set
-if [ -z "${MYSQL_ROOT_PASSWORD}" ]; then
+if [ -z "${MYSQL_ROOT_PASSWORD:-}" ]; then
   read -sp "Enter MySQL root password: " MYSQL_ROOT_PASSWORD
   echo
 fi

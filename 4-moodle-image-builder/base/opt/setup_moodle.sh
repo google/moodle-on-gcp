@@ -325,15 +325,15 @@ fi
 
 echo "All steps are done properly now! Moodle is poperly installed ..."
 
-if [ -n "$PHP_MEMORY_LIMIT" ]; then
+if [ -n "${PHP_MEMORY_LIMIT:-}" ]; then
     sudo -u root sed -i "s/memory_limit = .*/memory_limit = $PHP_MEMORY_LIMIT/" /etc/php83/php.ini
 fi
-if [ -n "$PHP_UPLOAD_MAX_FILESIZE" ]; then
+if [ -n "${PHP_UPLOAD_MAX_FILESIZE:-}" ]; then
     sudo -u root sed -i "s/upload_max_filesize = .*/upload_max_filesize = $PHP_UPLOAD_MAX_FILESIZE/" /etc/php83/php.ini
 fi
-if [ -n "$PHP_POST_MAX_SIZE" ]; then
+if [ -n "${PHP_POST_MAX_SIZE:-}" ]; then
     sudo -u root sed -i "s/post_max_size = .*/post_max_size = $PHP_POST_MAX_SIZE/" /etc/php83/php.ini
 fi
-if [ -n "$NGINX_CLIENT_MAX_BODY_SIZE" ]; then
+if [ -n "${NGINX_CLIENT_MAX_BODY_SIZE:-}" ]; then
     sudo -u root sed -i "s/# client_max_body_size.*/client_max_body_size $NGINX_CLIENT_MAX_BODY_SIZE;/" /etc/nginx/nginx.conf
 fi
