@@ -1,4 +1,4 @@
-# Update moodle-values.yaml and upgrade with Helm
+# Update moodle-deployment.yaml and upgrade with NGINX
 
 This session is designed to guide you through some small adjustments that can improve Moodle's stability and performance in Google Cloud. 
 

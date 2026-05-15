@@ -132,3 +132,5 @@ The reason we recommend GCE Ingress (Google Compute Engine / Load Balancer) is t
 Horizontal Pod Autoscaling (HPA) is a state that allows pods in Kubernetes to expand their capacity horizontally (adding more pods) when meeting certain thresholds. This document adds HPA capacity to GKE to get Moodle's pods automatically scaling out.
 
 * *[moodle-hpa](../9-hpa/moodle-hpa.yaml)*: Enables HPA for Moodle's pods in GKE.
+### Dynamic Configuration (envsubst)
+ConfigMap files such as `moodle-configmap-nginx-template.yaml` include placeholder environment variables. During deployment, the `create-config-files.sh` script employs `envsubst` to dynamically replace these placeholders with values supplied at runtime or configured inside `0-infra/envs.sh`, allowing for secure and programmatic environment provisioning.
