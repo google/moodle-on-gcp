@@ -262,26 +262,6 @@ spec:
             configMapKeyRef:
               name: moodle-configmap
               key: MOODLE_MAIL_PREFIX
-        - name: PHP_MEMORY_LIMIT
-          valueFrom:
-            configMapKeyRef:
-              name: moodle-configmap
-              key: PHP_MEMORY_LIMIT
-        - name: PHP_UPLOAD_MAX_FILESIZE
-          valueFrom:
-            configMapKeyRef:
-              name: moodle-configmap
-              key: PHP_UPLOAD_MAX_FILESIZE
-        - name: PHP_POST_MAX_SIZE
-          valueFrom:
-            configMapKeyRef:
-              name: moodle-configmap
-              key: PHP_POST_MAX_SIZE
-        - name: NGINX_CLIENT_MAX_BODY_SIZE
-          valueFrom:
-            configMapKeyRef:
-              name: moodle-configmap
-              key: NGINX_CLIENT_MAX_BODY_SIZE
         # livenessProbe:
         #   failureThreshold: 60
         #   httpGet:
@@ -318,8 +298,8 @@ spec:
           mountPath: /etc/nginx
           subPath: $MOODLE_ROOT_PATH_NO_SLASH/etc/nginx
         - name: moodleroot-vol
-          mountPath: /etc/php83
-          subPath: $MOODLE_ROOT_PATH_NO_SLASH/etc/php83
+          mountPath: /etc/php81
+          subPath: $MOODLE_ROOT_PATH_NO_SLASH/etc/php81
         - name: tmp-vol
           mountPath: /tmp
       volumes:

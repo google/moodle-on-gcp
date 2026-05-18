@@ -13,20 +13,6 @@
 
 #!/bin/bash
 
-# habilita o modo verboso
-set -ex
-
-# carrega as env vars
 source ../0-infra/envs.sh
 
-# garante que o sistema esteja atualizado
-sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y
-
-# garante que o envsubst esteja instalado
-sudo apt install -y gettext-base
-
-# gera o arquivo de configmap específico
-envsubst \$MOODLE_ROOT_PATH_NO_SLASH < ./deployment-templates/moodle-configmap-nginx-template.yaml > ./moodle-configmap-nginx.yaml
-
-# gera o arquivo de deployment específico
-envsubst \$MOODLE_ROOT_PATH_NO_SLASH < ./deployment-templates/moodle-deployment-nginx-template.yaml > ./moodle-deployment-nginx.yaml
+gcloud builds submit --config cloudbuild-bitnami.yaml --region $REGION

@@ -13,14 +13,16 @@
 
 #!/bin/bash
 
-# habilita o modo verboso
-set -ex
+# add helm chart
+helm repo add bitnami https://charts.bitnami.com/bitnami
 
-# carrega as env vars
-source ../0-infra/envs.sh
+# update helm repo list
+helm repo update
 
-# constrói a imagem para o nginx
-gcloud builds submit \
-  --config cloudbuild-nginx.yaml \
-  --substitutions=_MOODLE_ROOT_PATH=$MOODLE_ROOT_PATH,_MOODLE_DATAROOT_PATH=$MOODLE_ROOT_PATH/moodledata,_MOODLE_PATH=$MOODLE_ROOT_PATH/moodle \
-  --region $REGION
+# make sure db is empty and filestore volume is too.
+
+# install Moodle via Helm chart
+helm install \
+  --namespace moodle \
+  -f moodle-values.yaml \
+  moodle bitnami/moodle

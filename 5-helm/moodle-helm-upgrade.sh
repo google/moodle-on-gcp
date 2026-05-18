@@ -10,21 +10,10 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
----
-apiVersion: v1
-kind: Service
-metadata:
-  annotations:
-    cloud.google.com/backend-config: '{"ports": {"moodle-port": "ingress-backendconfig"}}' # must match backendconfig label in step 6
-    cloud.google.com/neg: '{"ingress": true}'
-  name: moodle-uploads
-  namespace: moodle
-spec:
-  ports:
-  - name: moodle-port
-    port: 80
-    targetPort: 8080
-  selector:
-    app.kubernetes.io/instance: moodle-uploads
-    app.kubernetes.io/name: moodle-uploads
-  type: ClusterIP
+
+#!/bin/bash
+
+helm upgrade \
+  --namespace moodle \
+  -f moodle-values.yaml \
+  moodle bitnami/moodle
