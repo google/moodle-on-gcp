@@ -16,4 +16,3 @@
 source ../0-infra/envs.sh
 
 gcloud builds submit --config cloudbuild-bitnami.yaml --region $REGION
-
