@@ -17,8 +17,8 @@ metadata:
   name: moodle-configmap
   namespace: moodle
 data:
-  MOODLE_URL: 'https://github.com/moodle/moodle/archive/MOODLE_402_STABLE.tar.gz'
-  MOOSH_URL: 'https://github.com/tmuras/moosh/archive/refs/tags/1.11.tar.gz'
+  MOODLE_URL: 'https://github.com/moodle/moodle/archive/refs/tags/v5.2.0.tar.gz'
+  MOOSH_URL: 'https://github.com/tmuras/moosh/archive/refs/tags/1.27.tar.gz'
   LANG: 'pt_BR.UTF-8'
   LANGUAGE: 'pt_BR'
   MOODLE_LANGUAGE: 'pt_BR'

@@ -3,7 +3,7 @@
 This step will set up a cloud build in Google Cloud to generate a new container image for Moodle. For that, we need to edit the information available in the file [cloudbuild-nginx.yaml](../4-moodle-image-builder/cloudbuild-nginx.yaml) or [cloudbuild-bitnami.yaml](../4-moodle-image-builder/cloudbuild-bitnami.yaml), you can use the given shell script files such as [*(Recommended)* build-nginx-based-image.sh](../4-moodle-image-builder/build-nginx-based-image.sh) or [*(Deprecated)* build-bitnami-based-image.sh](../4-moodle-image-builder/build-bitnami-based-image.sh) which seats on directory [4-moodle-image-builder](../4-moodle-image-builder/).
 
 The reason we do recommend the NGINX based image is listed below:
-  - Adjusted performance tuning on NGINX, php8.1-fpm, Opcache, PHP enabled JIT, etc.
+  - Adjusted performance tuning on NGINX, php8.3-fpm, Opcache, PHP enabled JIT, etc.
   - Latest Version of Moodle: 4.2.1
   - NGINX itself, lighter httpd server
   - No need for SSL since the termination is done in Ingress.

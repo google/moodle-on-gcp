@@ -27,7 +27,7 @@ data:
   MOODLE_DATAROOT_PATH: "/$MOODLE_ROOT_PATH_NO_SLASH/moodledata"
   MOODLE_PATH: "/$MOODLE_ROOT_PATH_NO_SLASH/moodle"
   DB_TYPE: 'mysqli'
-  DB_HOST: '127.0.0.1' # don't use a local IP address, this is here as an IP address reference only.
+  DB_HOST: ''
   DB_HOST_PORT: '3306'
   DB_NAME: 'moodle-db'
   DB_USER: 'root'
@@ -40,21 +40,21 @@ data:
   DB_READ_REPLICA_PORT: ''
   DB_READ_REPLICA_USER: ''
   DB_READ_REPLICA_PASSWORD: ''
-  REDIS_SESSION_ID_HOST: '127.0.0.1' # don't use a local IP address, this is here as an IP address reference only.
-  REDIS_SESSION_ID_PORT: '6379'
-  REDIS_SESSION_ID_AUTH_STRING: 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'
-  REDIS_APP_IP_AND_PORT: '127.0.0.1:6379' # don't use a local IP address, this is here as an IP address reference only.
-  REDIS_APP_AUTH_STRING: 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'
-  REDIS_SESSION_IP_AND_PORT: '127.0.0.1:6379' # don't use a local IP address, this is here as an IP address reference only.
-  REDIS_SESSION_AUTH_STRING: 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'
-  REDIS_LOCK_HOST_AND_PORT: '127.0.0.1:6379' # don't use a local IP address, this is here as an IP address reference only.
-  REDIS_LOCK_AUTH_STRING: 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'
+  REDIS_SESSION_ID_HOST: ''
+  REDIS_SESSION_ID_PORT: ''
+  REDIS_SESSION_ID_AUTH_STRING: ''
+  REDIS_APP_IP_AND_PORT: ''
+  REDIS_APP_AUTH_STRING: ''
+  REDIS_SESSION_IP_AND_PORT: ''
+  REDIS_SESSION_AUTH_STRING: ''
+  REDIS_LOCK_HOST_AND_PORT: ''
+  REDIS_LOCK_AUTH_STRING: ''
   SSLPROXY: 'true' # In GKE, moodle will always be under a Proxy (Ingress).
   NOEMAIL_EVER: 'true' # blocks moodle from sending e-mails
   SMTP_HOST: 'some.smtp.com'
   SMTP_PORT: '587'
   SMTP_USER: '<REPLACE_WITH_YOUR_SMTP_USER>'
-  SMTP_PASSWORD: '<REPLACE_WITH_YOUR_SMTP_PASSWORD>'
+  SMTP_PASSWORD: '${SMTP_PASSWORD}'
   SMTP_PROTOCOL: 'tls'
   MOODLE_MAIL_NOREPLY_ADDRESS: 'noreply@localhost'
   MOODLE_MAIL_PREFIX: '[moodle]'

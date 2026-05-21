@@ -1,3 +1,4 @@
+#!/bin/bash
 # Copyright 2022 Google LLC
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -11,17 +12,26 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-#!/bin/bash
 
 # set to halt on execution errors and output the commands
-set -ex
+set -eo pipefail
 
 # load env vars file
 source ./envs.sh
 
 # prompt for mysql root password if not set
-if [ -z "${MYSQL_ROOT_PASSWORD}" ]; then
+if [ -z "${MYSQL_ROOT_PASSWORD:-}" ]; then
   read -sp "Enter MySQL root password: " MYSQL_ROOT_PASSWORD
+  echo
+fi
+
+if [ -z "${SMTP_PASSWORD:-}" ]; then
+  read -sp "Enter SMTP password (leave blank if not using SMTP): " SMTP_PASSWORD
+  echo
+fi
+
+if [ -z "${SMTP_PASSWORD:-}" ]; then
+  read -sp "Enter SMTP password (leave blank if not using SMTP): " SMTP_PASSWORD
   echo
 fi
 
@@ -159,7 +169,6 @@ gcloud services vpc-peerings connect \
 gcloud services vpc-peerings list --network=$VPC_NAME
 
 # creates cloud sql instance (managed)
-{ set +x; } 2>/dev/null
 gcloud sql instances create $MYSQL_INSTANCE_NAME \
   --database-version=MYSQL_8_0 \
   --cpu 1 \
@@ -180,7 +189,6 @@ gcloud sql instances create $MYSQL_INSTANCE_NAME \
   --backup-start-time=03:00 \
   --database-flags=character_set_server=utf8,default_time_zone=-03:00 \
   --root-password="$MYSQL_ROOT_PASSWORD"
-set -x
 
 # list cloud sql instances created
 gcloud sql instances list

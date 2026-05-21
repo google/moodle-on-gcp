@@ -162,11 +162,11 @@ sudo -u www moosh --moodle-path=$MOODLE_PATH plugin-install -f plugin_name
 The same process can be done to manually run the Moodle upgrade process, such as:
 
 ```sh
-sudo -u www php81 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/maintenance.php --enable
+sudo -u www php83 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/maintenance.php --enable
 
-sudo -u www php81 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/upgrade.php --non-interactive --allow-unstable
+sudo -u www php83 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/upgrade.php --non-interactive --allow-unstable
 
-sudo -u www php81 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/maintenance.php --disable
+sudo -u www php83 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/maintenance.php --disable
 ```
 
 That's it, hopefully this works for you and don't hesitate to let us know of your success or failures using github issues.
