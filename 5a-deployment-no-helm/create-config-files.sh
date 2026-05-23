@@ -30,3 +30,9 @@ envsubst \$MOODLE_ROOT_PATH_NO_SLASH < ./deployment-templates/moodle-configmap-n
 
 # gera o arquivo de deployment específico
 envsubst \$MOODLE_ROOT_PATH_NO_SLASH < ./deployment-templates/moodle-deployment-nginx-template.yaml > ./moodle-deployment-nginx.yaml
+
+# gera o arquivo de configmap para uploads
+envsubst \$MOODLE_ROOT_PATH_NO_SLASH < ./deployment-templates/moodle-configmap-nginx-uploads-template.yaml > ./moodle-configmap-nginx-uploads.yaml
+
+# gera o arquivo de deployment para uploads
+envsubst \$MOODLE_ROOT_PATH_NO_SLASH < ./deployment-templates/moodle-deployment-nginx-uploads-template.yaml > ./moodle-deployment-nginx-uploads.yaml

@@ -67,14 +67,11 @@ fi
 echo  "Done checking if PHP8.1 config files exists in nfs ..."
 
 echo  "Cleaning root's temp files ..."
-rm -rvf /root/etc
 
 # run envsubst
 envsubst \$MOODLE_ROOT_PATH < /etc/nginx/nginx.conf-template > /etc/nginx/nginx.conf
-rm -rvf /etc/nginx/nginx.conf-template
 
 envsubst \$MOODLE_ROOT_PATH < /etc/php83/php.ini-template > /etc/php83/php.ini
-rm -rvf /etc/php83/php.ini-template
 
 echo  "Checking if Moodle is already setup ..."
 if [ ! -f "$MOODLE_DATAROOT_PATH/.moodle-installed" ] ; then
@@ -309,3 +306,16 @@ if [ ! -z "$cache_adjusted" ]; then
 fi
 
 echo "All steps are done properly now! Moodle is poperly installed ..."
+
+if [ -n "${PHP_MEMORY_LIMIT:-}" ]; then
+    sudo -u root sed -i "s/memory_limit = .*/memory_limit = $PHP_MEMORY_LIMIT/" /etc/php83/php.ini
+fi
+if [ -n "${PHP_UPLOAD_MAX_FILESIZE:-}" ]; then
+    sudo -u root sed -i "s/upload_max_filesize = .*/upload_max_filesize = $PHP_UPLOAD_MAX_FILESIZE/" /etc/php83/php.ini
+fi
+if [ -n "${PHP_POST_MAX_SIZE:-}" ]; then
+    sudo -u root sed -i "s/post_max_size = .*/post_max_size = $PHP_POST_MAX_SIZE/" /etc/php83/php.ini
+fi
+if [ -n "${NGINX_CLIENT_MAX_BODY_SIZE:-}" ]; then
+    sudo -u root sed -i "s/# client_max_body_size.*/client_max_body_size $NGINX_CLIENT_MAX_BODY_SIZE;/" /etc/nginx/nginx.conf
+fi

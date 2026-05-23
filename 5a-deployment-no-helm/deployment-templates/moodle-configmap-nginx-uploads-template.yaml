@@ -14,7 +14,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: moodle-configmap
+  name: moodle-configmap-uploads
   namespace: moodle
 data:
   MOODLE_URL: 'https://github.com/moodle/moodle/archive/refs/tags/v5.2.0.tar.gz'
@@ -58,7 +58,7 @@ data:
   SMTP_PROTOCOL: 'tls'
   MOODLE_MAIL_NOREPLY_ADDRESS: 'noreply@localhost'
   MOODLE_MAIL_PREFIX: '[moodle]'
-  PHP_MEMORY_LIMIT: "256M"
-  PHP_UPLOAD_MAX_FILESIZE: "512M"
-  PHP_POST_MAX_SIZE: "512M"
-  NGINX_CLIENT_MAX_BODY_SIZE: "512M"
+  PHP_MEMORY_LIMIT: "2048M"
+  PHP_UPLOAD_MAX_FILESIZE: "2G"
+  PHP_POST_MAX_SIZE: "2G"
+  NGINX_CLIENT_MAX_BODY_SIZE: "2G"

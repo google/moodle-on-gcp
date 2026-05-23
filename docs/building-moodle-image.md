@@ -4,7 +4,7 @@ This step will set up a cloud build in Google Cloud to generate a new container 
 
 The reason we do recommend the NGINX based image is listed below:
   - Adjusted performance tuning on NGINX, php8.3-fpm, Opcache, PHP enabled JIT, etc.
-  - Latest Version of Moodle: 4.2.1
+  - Latest Version of Moodle: 5.2.0
   - NGINX itself, lighter httpd server
   - No need for SSL since the termination is done in Ingress.
   - Improved self instalation in first run:

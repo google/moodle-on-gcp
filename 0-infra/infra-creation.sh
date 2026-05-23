@@ -30,11 +30,6 @@ if [ -z "${SMTP_PASSWORD:-}" ]; then
   echo
 fi
 
-if [ -z "${SMTP_PASSWORD:-}" ]; then
-  read -sp "Enter SMTP password (leave blank if not using SMTP): " SMTP_PASSWORD
-  echo
-fi
-
 # sets up the default project where this infra will be deployed into
 gcloud config set project $PROJECT_ID
 
