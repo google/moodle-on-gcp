@@ -288,3 +288,10 @@ gcloud projects add-iam-policy-binding $PROJECT_ID \
 cd ../4-moodle-image-builder && \
   gcloud builds submit --region $REGION
 ```
+## Infrastructure information needed for Moodle image configuration
+Some information to be obtained from the infrastructure created in this section is needed for the [configmap file](../5a-deployment-no-helm/moodle-configmap-nginx.yaml),
+such as the "REDIS_APP_AUTH_STRING", "REDIS_SESSION_AUTH_STRING", and "REDIS_LOCK_AUTH_STRING", which can be obtained by running the following command:
+```
+gcloud redis instances get-auth-string $REDIS_NAME \
+    --region=$REGION
+```
