@@ -32,6 +32,12 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" &&
 # Optional packages
 RUN apk add --no-cache aspell graphviz ghostscript python3 poppler-utils clamav
 
+# Alpine php-iconv extension is dynamically linked against musl's libc, which has very limited 'iconv' support.
+# This causes problems when running Moodle under Alpine, for example: https://moodle.atlassian.net/browse/MDL-80440
+# One solution is to preload the gnu-libiconv, to be used in place of musl's.
+RUN apk add --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/v3.13/community/ gnu-libiconv==1.15-r3
+ENV LD_PRELOAD /usr/lib/preloadable_libiconv.so php
+
 RUN adduser -D -g 'www' www
 
 ARG MOODLE_ROOT_PATH='/moodleroot-instance1' \
