@@ -289,11 +289,11 @@ spec:
             memory: 1Gi
         volumeMounts:
         - name: moodleroot-vol
-          mountPath: /moodleroot/moodle
-          subPath: moodleroot/moodle
+          mountPath: /moodleroot-instance1/moodle
+          subPath: moodleroot-instance1/moodle
         - name: moodleroot-vol
-          mountPath: /moodleroot/moodledata
-          subPath: moodleroot/moodledata
+          mountPath: /moodleroot-instance1/moodledata
+          subPath: moodleroot-instance1/moodledata
         - name: moodleroot-vol
           mountPath: /etc/nginx
           subPath: etc/nginx
