@@ -77,3 +77,15 @@ sudo -u www php -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name="s
 sudo -u www php -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name="session_redis_serializer_use_igbinary" --set=true
 sudo -u www php -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name="session_redis_compressor" --set='gzip'
 ```
+
+## 4. Large-Scale Deployments: Memorystore for Redis Cluster (MRC)
+
+For large-scale Moodle 5.2+ deployments (see [Issue #23](https://github.com/google/moodle-on-gcp/issues/23) and [MDL-59196](https://tracker.moodle.org/browse/MDL-59196)), you can provision **Google Cloud Memorystore for Redis Cluster** instead of a single standalone instance by setting `CREATE_REDIS=false` and `CREATE_REDIS_CLUSTER=true` in `0-infra/envs.sh`.
+
+Because Moodle's native `\core\session\redis` and `cachestore_redis` classes activate `RedisCluster` mode when `$CFG->session_redis_host` (or the cache store server field) contains multiple comma-separated `host:port` entries, and Memorystore for Redis Cluster exposes a single Discovery Endpoint (`<DISCOVERY-IP>:6379`), repeat the discovery endpoint twice separated by a comma so `phpredis` initializes `RedisCluster`:
+
+```php
+$CFG->session_handler_class = '\core\session\redis';
+$CFG->session_redis_host = '<DISCOVERY-ENDPOINT-IP>:6379,<DISCOVERY-ENDPOINT-IP>:6379';
+```
+
