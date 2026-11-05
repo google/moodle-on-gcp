@@ -1,25 +1,26 @@
-# Enabling horizontal scale for Pods
+# Enabling Horizontal Pod Autoscaling (HPA)
 
-> This document assumes that the working machine from where you pushing commands from has access to Google Kubernetes Engine (GKE) control plane.
+> This document assumes that the working machine from where you are running commands has access to the Google Kubernetes Engine (GKE) control plane.
 
-Horizontal Pod Autoscaling (HPA) is a state that allows pods in Kubernetes to expand their capacity horizontally (adding more pods) when meeting certain thresholds. This document adds HPA capacity to GKE to get Moodle's pods automatically scaling out.
+Horizontal Pod Autoscaling (HPA) allows pods in Kubernetes to expand their capacity horizontally (adding more pods) when meeting CPU or memory thresholds. This repository provides independent HPA configurations for the primary Moodle web tier (`moodle-hpa`) and the dedicated file upload tier (`moodle-uploads-hpa`).
 
-1. Connect to the GKE cluster via the command line and update local cluster credentials.
+1. Connect to the GKE cluster via the command line and update local cluster credentials:
 
-```
+```bash
 gcloud container clusters get-credentials <GKE-NAME> \
     --region <GKE-REGION> \
-    --project <PROJECT ID>
+    --project <PROJECT-ID>
 ```
 
-1. If you want to keep the suggested configuration for HPA, simply go ahead and run the command below. If you want to customize its parameters, do so before running the command itself. 
+2. Apply the HPA manifests for the primary Moodle deployment and the dedicated upload deployment:
 
-```
+```bash
 kubectl apply -f 9-hpa/moodle-hpa.yaml
+kubectl apply -f 9-hpa/moodle-uploads-hpa.yaml
 ```
 
-3. Make sure the HPA configuration was successfully applied.
+3. Verify that both HPA configurations were applied:
 
-```
+```bash
 kubectl get hpa -n moodle
 ```

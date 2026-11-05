@@ -25,7 +25,7 @@ spec:
   storageClassName: ""
   csi:
     driver: pd.csi.storage.gke.io
-    volumeHandle: projects/<YOUR-PROJECT-ID>/regions/<YOUR-REGION>/disks/moodle-regional-pd
+    volumeHandle: projects/<YOUR-PROJECT-ID>/regions/<YOUR-PREFERED-REGION>/disks/<YOUR-REGIONAL-PD-NAME>
     fsType: ext4
   nodeAffinity:
     required:
@@ -34,5 +34,5 @@ spec:
         - key: topology.gke.io/zone
           operator: In
           values:
-          - <YOUR-ZONE>
-          - <YOUR-REPLICA-ZONE>
+          - <YOUR-PREFERED-REGION>-a
+          - <YOUR-PREFERED-REGION>-b

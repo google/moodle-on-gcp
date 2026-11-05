@@ -116,12 +116,12 @@ ENV MOODLE_URL='' \
 COPY ["./base/opt", "/opt"]
 
 COPY --chown=root:root ["./base/etc", "/root/etc"]
-COPY --chown=www:www ["./config.php.template", "/root/.templates/"]
-COPY --chown=www:www ["./base/moodle", "/root/.templates/moodle"]
+COPY --chown=root:root ["./config.php.template", "/root/.templates/"]
+COPY --chown=root:root ["./base/moodle", "/root/.templates/moodle"]
 
-RUN chown -R www:www /var/lib/nginx \
+RUN (chown -R www:www /var/lib/nginx 2>/dev/null || true) \
     && chmod 1700 /opt/*.sh \
-    && chown -R www:www /opt/*.sh \
+    && (chown -R www:www /opt/*.sh 2>/dev/null || true) \
     && echo "America/Sao_Paulo" > /etc/timezone
 
 ENTRYPOINT [ "/opt/entrypoint.sh" ]

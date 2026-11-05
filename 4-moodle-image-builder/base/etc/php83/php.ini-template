@@ -445,7 +445,7 @@ max_input_vars = 6000
 
 ; Maximum amount of memory a script may consume
 ; https://php.net/memory-limit
-memory_limit = 512M
+memory_limit = 256M
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; Error handling and logging ;

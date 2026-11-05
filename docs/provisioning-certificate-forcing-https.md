@@ -58,6 +58,8 @@ Verify the updates were properly applied by running the command below.
 kubectl get managedcertificate -n moodle
 ```
 
+> **Important Note ([Issue #33](https://github.com/google/moodle-on-gcp/issues/33)):** The `ManagedCertificate` resource will remain in the `Provisioning` state (`STATUS: Provisioning`) until you complete the next step ([Deploying Ingress](deploying-ingress.md)). Google Cloud Certificate Manager requires the External HTTP(S) Load Balancer (Ingress) to be actively routing traffic to healthy Moodle backend pods (returning HTTP 200) and the domain/`.nip.io` DNS record to resolve to the Load Balancer's public IP before it can complete domain validation and transition the certificate to `Active`.
+
 <p align="left">
     <img src="../img/certificate-created.png">
 </p>

@@ -70,14 +70,16 @@ fi
 
 cd "$SCRIPT_DIR"
 
-# gera o arquivo de configmap específico
+# gera os arquivos de configmap específicos (principal e uploads)
 envsubst '$MOODLE_ROOT_PATH_NO_SLASH' < ./deployment-templates/moodle-configmap-nginx-template.yaml > ./moodle-configmap-nginx.yaml
+envsubst '$MOODLE_ROOT_PATH_NO_SLASH' < ./deployment-templates/moodle-configmap-nginx-uploads-template.yaml > ./moodle-configmap-nginx-uploads.yaml
 
-# gera o arquivo de deployment específico
+# gera os arquivos de deployment específicos (principal e uploads)
 envsubst '$MOODLE_ROOT_PATH_NO_SLASH $PVC_CLAIM_NAME' < ./deployment-templates/moodle-deployment-nginx-template.yaml > ./moodle-deployment-nginx.yaml
+envsubst '$MOODLE_ROOT_PATH_NO_SLASH $PVC_CLAIM_NAME' < ./deployment-templates/moodle-deployment-nginx-uploads-template.yaml > ./moodle-deployment-nginx-uploads.yaml
 
 # gera os manifestos de PV/PVC e StorageClass com os tamanhos configurados em envs.sh
-envsubst '$PV_STORAGE_SIZE $FILESTORE_IP' < ./deployment-templates/pv-filestore-template.yaml > ../1-pv/pv-filestore.yaml
+envsubst '$PV_STORAGE_SIZE $FILESTORE_SHARE_NAME $FILESTORE_IP_ADDRESS' < ./deployment-templates/pv-filestore-template.yaml > ../1-pv/pv-filestore.yaml
 envsubst '$PVC_STORAGE_SIZE $PVC_LIMIT_STORAGE_SIZE' < ./deployment-templates/pvc-filestore-template.yaml > ../3-pvc/pvc-filestore.yaml
 envsubst '$PD_DISK_TYPE $ZONE $REPLICA_ZONE' < ./deployment-templates/storageclass-regional-pd-template.yaml > ../1-pv/storageclass-regional-pd.yaml
 envsubst '$PD_DISK_SIZE $PD_ACCESS_MODE $PROJECT_ID $REGION $PD_DISK_NAME $ZONE $REPLICA_ZONE' < ./deployment-templates/pv-regional-pd-template.yaml > ../1-pv/pv-regional-pd.yaml
@@ -86,4 +88,5 @@ envsubst '$PD_DISK_SIZE $PD_ACCESS_MODE' < ./deployment-templates/pvc-regional-p
 if [ -n "${SMTP_PASSWORD:-}" ]; then
   ESCAPED_SMTP_PASSWORD=$(printf '%s\n' "$SMTP_PASSWORD" | sed -e 's/[\/&]/\\&/g')
   sed -i "s/<REPLACE_WITH_YOUR_SMTP_PASSWORD>/$ESCAPED_SMTP_PASSWORD/g" ./moodle-configmap-nginx.yaml
+  sed -i "s/<REPLACE_WITH_YOUR_SMTP_PASSWORD>/$ESCAPED_SMTP_PASSWORD/g" ./moodle-configmap-nginx-uploads.yaml
 fi

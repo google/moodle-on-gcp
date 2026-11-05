@@ -40,6 +40,8 @@ kubectl apply -f 8-ingress/gce-ingress-external.yaml
 kubectl get ingress -n moodle
 ```
 
+> **Note:** Once the Ingress is deployed and all backend services report `HEALTHY`, the Google-managed SSL certificate created in the previous step (`7-ssl-certificate-and-redirect`) will begin domain validation and transition from `Provisioning` to `Active` within 15–60 minutes. You can monitor its progress with `kubectl describe managedcertificate moodle-google-managed-certificate -n moodle`.
+
 <p align="left">
     <img src="../img/ingress-created.png">
 </p>
