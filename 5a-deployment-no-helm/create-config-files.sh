@@ -30,6 +30,16 @@ if ! command -v envsubst >/dev/null 2>&1; then
   sudo apt update && sudo apt install -y gettext-base
 fi
 
+if [ -z "${PVC_CLAIM_NAME:-}" ]; then
+  if [ "${STORAGE_TYPE:-filestore}" = "regional-pd" ]; then
+    export PVC_CLAIM_NAME="pvc-regional-pd"
+  else
+    export PVC_CLAIM_NAME="pvc-filestore"
+  fi
+fi
+
+export FILESTORE_IP="${FILESTORE_IP:-<YOUR-FILESTORE-INTERNAL-IP>}"
+
 CONFIGURE_SMTP="${ENABLE_SMTP:-}"
 if [ -z "$CONFIGURE_SMTP" ] && [ -t 0 ]; then
   read -rp "Do you want to configure an SMTP password for Moodle email delivery now? [y/N]: " smtp_answer
@@ -64,7 +74,14 @@ cd "$SCRIPT_DIR"
 envsubst '$MOODLE_ROOT_PATH_NO_SLASH' < ./deployment-templates/moodle-configmap-nginx-template.yaml > ./moodle-configmap-nginx.yaml
 
 # gera o arquivo de deployment específico
-envsubst '$MOODLE_ROOT_PATH_NO_SLASH' < ./deployment-templates/moodle-deployment-nginx-template.yaml > ./moodle-deployment-nginx.yaml
+envsubst '$MOODLE_ROOT_PATH_NO_SLASH $PVC_CLAIM_NAME' < ./deployment-templates/moodle-deployment-nginx-template.yaml > ./moodle-deployment-nginx.yaml
+
+# gera os manifestos de PV/PVC e StorageClass com os tamanhos configurados em envs.sh
+envsubst '$PV_STORAGE_SIZE $FILESTORE_IP' < ./deployment-templates/pv-filestore-template.yaml > ../1-pv/pv-filestore.yaml
+envsubst '$PVC_STORAGE_SIZE $PVC_LIMIT_STORAGE_SIZE' < ./deployment-templates/pvc-filestore-template.yaml > ../3-pvc/pvc-filestore.yaml
+envsubst '$PD_DISK_TYPE $ZONE $REPLICA_ZONE' < ./deployment-templates/storageclass-regional-pd-template.yaml > ../1-pv/storageclass-regional-pd.yaml
+envsubst '$PD_DISK_SIZE $PD_ACCESS_MODE $PROJECT_ID $REGION $PD_DISK_NAME $ZONE $REPLICA_ZONE' < ./deployment-templates/pv-regional-pd-template.yaml > ../1-pv/pv-regional-pd.yaml
+envsubst '$PD_DISK_SIZE $PD_ACCESS_MODE' < ./deployment-templates/pvc-regional-pd-template.yaml > ../3-pvc/pvc-regional-pd.yaml
 
 if [ -n "${SMTP_PASSWORD:-}" ]; then
   ESCAPED_SMTP_PASSWORD=$(printf '%s\n' "$SMTP_PASSWORD" | sed -e 's/[\/&]/\\&/g')

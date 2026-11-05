@@ -305,7 +305,7 @@ spec:
       volumes:
       - name: moodleroot-vol
         persistentVolumeClaim:
-          claimName: pvc-filestore
+          claimName: $PVC_CLAIM_NAME
       - name: tmp-vol
         emptyDir:
           medium: Memory

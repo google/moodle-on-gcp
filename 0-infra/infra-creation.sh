@@ -22,8 +22,8 @@ source "$SCRIPT_DIR/envs.sh"
 
 validate_moodle_envs
 
-# prompt for mysql root password if not set
-if [ -z "${MYSQL_ROOT_PASSWORD:-}" ]; then
+# prompt for mysql root password if Cloud SQL creation is enabled and password is not set
+if [ "${CREATE_CLOUD_SQL:-true}" = "true" ] && [ -z "${MYSQL_ROOT_PASSWORD:-}" ]; then
   while true; do
     read -rsp "Enter MySQL root password: " MYSQL_ROOT_PASSWORD
     echo
@@ -79,7 +79,7 @@ gcloud compute networks subnets update "$SUBNET_NAME" \
 gcloud services enable container.googleapis.com \
   --project="$PROJECT_ID"
 
-# creates gke with necessary addons
+# creates gke with necessary addons (both Filestore CSI and GCE Persistent Disk CSI drivers enabled)
 gcloud container clusters create "$GKE_NAME" \
   --release-channel=stable \
   --region="$REGION" \
@@ -154,100 +154,151 @@ gcloud compute routers nats create "$NAT_CONFIG" \
     --enable-logging \
     --region="$REGION"
 
-# defines an ip address range for vpc peering for mysql
-gcloud compute addresses create moodle-managed-range-mysql \
-  --global \
-  --purpose=VPC_PEERING \
-  --addresses="$MOODLE_MYSQL_MANAGED_PEERING_RANGE" \
-  --prefix-length=24 \
-  --description="Moodle Range for MYSQL" \
-  --network="$VPC_NAME"
+if [ "${CREATE_CLOUD_SQL:-true}" = "true" ]; then
+  # defines an ip address range for vpc peering for mysql
+  gcloud compute addresses create moodle-managed-range-mysql \
+    --global \
+    --purpose=VPC_PEERING \
+    --addresses="$MOODLE_MYSQL_MANAGED_PEERING_RANGE" \
+    --prefix-length=24 \
+    --description="Moodle Range for MYSQL" \
+    --network="$VPC_NAME"
 
-# list addresses range created for vpc peering
-gcloud compute addresses list --global --filter="purpose=VPC_PEERING"
+  # list addresses range created for vpc peering
+  gcloud compute addresses list --global --filter="purpose=VPC_PEERING"
 
-# attach the range to the service networking API
-gcloud services vpc-peerings connect \
-  --service=servicenetworking.googleapis.com \
-  --ranges=moodle-managed-range-mysql \
-  --network="$VPC_NAME"
+  # attach the range to the service networking API
+  gcloud services vpc-peerings connect \
+    --service=servicenetworking.googleapis.com \
+    --ranges=moodle-managed-range-mysql \
+    --network="$VPC_NAME"
 
-# list vpc peering connections
-gcloud services vpc-peerings list --network="$VPC_NAME"
+  # list vpc peering connections
+  gcloud services vpc-peerings list --network="$VPC_NAME"
 
-# creates cloud sql instance (managed)
-{ set +x; } 2>/dev/null
-gcloud sql instances create "$MYSQL_INSTANCE_NAME" \
-  --database-version="${MYSQL_DATABASE_VERSION:-MYSQL_8_4}" \
-  --cpu 1 \
-  --memory 3840MB \
-  --zone "$ZONE" \
-  --network="$VPC_NAME" \
-  --retained-backups-count=7 \
-  --enable-bin-log \
-  --retained-transaction-log-days=7 \
-  --maintenance-release-channel=production \
-  --maintenance-window-day=SUN \
-  --maintenance-window-hour=08 \
-  --availability-type=zonal \
-  --storage-type=SSD \
-  --storage-auto-increase \
-  --storage-size=10GB \
-  --backup-start-time=03:00 \
-  --database-flags=character_set_server=utf8mb4,default_time_zone=-03:00 \
-  --root-password="$MYSQL_ROOT_PASSWORD"
+  # creates cloud sql instance (managed)
+  { set +x; } 2>/dev/null
+  gcloud sql instances create "$MYSQL_INSTANCE_NAME" \
+    --database-version="${MYSQL_DATABASE_VERSION:-MYSQL_8_4}" \
+    --cpu 1 \
+    --memory 3840MB \
+    --zone "$ZONE" \
+    --network="$VPC_NAME" \
+    --retained-backups-count=7 \
+    --enable-bin-log \
+    --retained-transaction-log-days=7 \
+    --maintenance-release-channel=production \
+    --maintenance-window-day=SUN \
+    --maintenance-window-hour=08 \
+    --availability-type=zonal \
+    --storage-type=SSD \
+    --storage-auto-increase \
+    --storage-size=10GB \
+    --backup-start-time=03:00 \
+    --database-flags=character_set_server=utf8mb4,default_time_zone=-03:00 \
+    --root-password="$MYSQL_ROOT_PASSWORD"
 
-# list cloud sql instances created
-gcloud sql instances list
+  # list cloud sql instances created
+  gcloud sql instances list
 
-# creates cloud sql database with proper charset for moodle
-gcloud sql databases create "$MYSQL_DB" \
-  --instance "$MYSQL_INSTANCE_NAME" \
-  --charset "$MYSQL_MOODLE_DB_CHARSET" \
-  --collation "$MYSQL_MOODLE_DB_COLLATION"
+  # creates cloud sql database with proper charset for moodle
+  gcloud sql databases create "$MYSQL_DB" \
+    --instance "$MYSQL_INSTANCE_NAME" \
+    --charset "$MYSQL_MOODLE_DB_CHARSET" \
+    --collation "$MYSQL_MOODLE_DB_COLLATION"
 
-# list cloud sql databases created
-gcloud sql databases list --instance "$MYSQL_INSTANCE_NAME"
+  # list cloud sql databases created
+  gcloud sql databases list --instance "$MYSQL_INSTANCE_NAME"
+fi
 
-# creates memorystore redis (managed)
-gcloud redis instances create "$REDIS_NAME" \
-  --size=1 \
-  --network="$VPC_NAME" \
-  --enable-auth \
-  --maintenance-window-day=sunday \
-  --maintenance-window-hour=08 \
-  --redis-version=redis_6_x \
-  --redis-config maxmemory-policy=allkeys-lru \
-  --region="$REGION"
+if [ "${CREATE_REDIS:-true}" = "true" ]; then
+  # creates memorystore redis (managed)
+  gcloud redis instances create "$REDIS_NAME" \
+    --size=1 \
+    --network="$VPC_NAME" \
+    --enable-auth \
+    --maintenance-window-day=sunday \
+    --maintenance-window-hour=08 \
+    --redis-version=redis_6_x \
+    --redis-config maxmemory-policy=allkeys-lru \
+    --region="$REGION"
 
-# list redis instances created
-gcloud redis instances list --region "$REGION"
+  # list redis instances created
+  gcloud redis instances list --region "$REGION"
+fi
 
-# defines an ip address range for vpc peering for filestore
-gcloud compute addresses create moodle-managed-range-filestore \
-  --global \
-  --purpose=VPC_PEERING \
-  --addresses="$MOODLE_FILESTORE_MANAGED_PEERING_RANGE" \
-  --prefix-length=24 \
-  --description="Moodle Range for Filestore" \
-  --network="$VPC_NAME"
+if [ "${CREATE_REDIS_CLUSTER:-false}" = "true" ]; then
+  echo "Provisioning Memorystore for Redis Cluster '$REDIS_CLUSTER_NAME' (shards: ${REDIS_CLUSTER_SHARD_COUNT:-3}, replicas: ${REDIS_CLUSTER_REPLICA_COUNT:-1})..."
+  gcloud services enable redis.googleapis.com networkconnectivity.googleapis.com --project="$PROJECT_ID"
+  gcloud redis clusters create "$REDIS_CLUSTER_NAME" \
+    --region="$REGION" \
+    --shard-count="${REDIS_CLUSTER_SHARD_COUNT:-3}" \
+    --replica-count="${REDIS_CLUSTER_REPLICA_COUNT:-1}" \
+    --node-type="${REDIS_CLUSTER_NODE_TYPE:-REDIS_STANDARD_SMALL}" \
+    --network="projects/$PROJECT_ID/global/networks/$VPC_NAME" \
+    --transit-encryption-mode=DISABLED \
+    --authorization-mode=AUTH_MODE_DISABLED
 
-# updates the peering connection adding both sql and filestore ranges
-gcloud services vpc-peerings update \
-  --service=servicenetworking.googleapis.com \
-  --ranges=moodle-managed-range-mysql,moodle-managed-range-filestore \
-  --network="$VPC_NAME"
+  gcloud redis clusters list --region "$REGION"
+fi
 
-# creates a filestore service for NFS support
-gcloud filestore instances create "$FILESTORE_NAME" \
-  --description="NFS to support Moodle data." \
-  --tier=BASIC_SSD \
-  --file-share="name=moodleshare,capacity=2.5TB" \
-  --network="name=$VPC_NAME,reserved-ip-range=moodle-managed-range-filestore,connect-mode=PRIVATE_SERVICE_ACCESS" \
-  --zone="$ZONE"
+# ==============================================================================
+# Selective Storage Provisioning (Filestore OR Regional Replicated PD)
+# ==============================================================================
+if [ "${CREATE_FILESTORE:-true}" = "true" ]; then
+  echo "Provisioning Cloud Filestore instance '$FILESTORE_NAME' (tier: $FILESTORE_TIER, capacity: $FILESTORE_CAPACITY)..."
+  gcloud services enable file.googleapis.com --project="$PROJECT_ID"
 
-# lists filestores available
-gcloud filestore instances list
+  # defines an ip address range for vpc peering for filestore
+  gcloud compute addresses create moodle-managed-range-filestore \
+    --global \
+    --purpose=VPC_PEERING \
+    --addresses="$MOODLE_FILESTORE_MANAGED_PEERING_RANGE" \
+    --prefix-length=24 \
+    --description="Moodle Range for Filestore" \
+    --network="$VPC_NAME"
+
+  if [ "${CREATE_CLOUD_SQL:-true}" = "true" ]; then
+    PEERING_RANGES="moodle-managed-range-mysql,moodle-managed-range-filestore"
+    gcloud services vpc-peerings update \
+      --service=servicenetworking.googleapis.com \
+      --ranges="$PEERING_RANGES" \
+      --network="$VPC_NAME"
+  else
+    gcloud services vpc-peerings connect \
+      --service=servicenetworking.googleapis.com \
+      --ranges=moodle-managed-range-filestore \
+      --network="$VPC_NAME"
+  fi
+
+  # Regional/Enterprise tiers use --location=$REGION; Zonal/Basic tiers use --zone=$ZONE
+  if [ "$FILESTORE_TIER" = "REGIONAL" ] || [ "$FILESTORE_TIER" = "ENTERPRISE" ]; then
+    FILESTORE_LOCATION_FLAG="--location=$REGION"
+  else
+    FILESTORE_LOCATION_FLAG="--zone=$ZONE"
+  fi
+
+  gcloud filestore instances create "$FILESTORE_NAME" \
+    --description="NFS to support Moodle data." \
+    --tier="$FILESTORE_TIER" \
+    --file-share="name=${FILESTORE_SHARE_NAME:-moodleshare},capacity=${FILESTORE_CAPACITY:-2.5TB}" \
+    --network="name=$VPC_NAME,reserved-ip-range=moodle-managed-range-filestore,connect-mode=PRIVATE_SERVICE_ACCESS" \
+    "$FILESTORE_LOCATION_FLAG"
+
+  gcloud filestore instances list
+fi
+
+if [ "${CREATE_REGIONAL_PD:-false}" = "true" ]; then
+  echo "Provisioning Regional Replicated Persistent Disk '$PD_DISK_NAME' (type: $PD_DISK_TYPE, size: $PD_DISK_SIZE, zones: $ZONE,$REPLICA_ZONE)..."
+  gcloud compute disks create "$PD_DISK_NAME" \
+    --project="$PROJECT_ID" \
+    --region="$REGION" \
+    --replica-zones="projects/$PROJECT_ID/zones/$ZONE,projects/$PROJECT_ID/zones/$REPLICA_ZONE" \
+    --type="$PD_DISK_TYPE" \
+    --size="$PD_DISK_SIZE"
+
+  gcloud compute disks list --filter="name=$PD_DISK_NAME"
+fi
 
 # enable artifact registry api if not enabled yet
 gcloud services enable artifactregistry.googleapis.com
@@ -265,20 +316,22 @@ gcloud projects add-iam-policy-binding "$PROJECT_ID" \
   --member "serviceAccount:$CLOUD_BUILD_SA_EMAIL" \
   --role roles/artifactregistry.writer
 
-# create the jumpbox vm instance to manipulate the private GKE cluster on the same VPC
-gcloud compute instances create vm-jumpbox-moodle \
-  --project="$PROJECT_ID" \
-  --zone="$ZONE" \
-  --machine-type=e2-micro \
-  --network-interface="stack-type=IPV4_ONLY,subnet=$SUBNET_NAME,no-address" \
-  --metadata=enable-oslogin=true \
-  --maintenance-policy=MIGRATE \
-  --provisioning-model=STANDARD \
-  --instance-termination-action=STOP \
-  --service-account="$PROJECT_NUMBER-compute@developer.gserviceaccount.com" \
-  --scopes=https://www.googleapis.com/auth/cloud-platform \
-  --create-disk="auto-delete=yes,boot=yes,device-name=vm-jumpbox-moodle,image=projects/debian-cloud/global/images/debian-12-bookworm-v20240312,mode=rw,size=10,type=projects/$PROJECT_ID/zones/$ZONE/diskTypes/pd-balanced" \
-  --no-shielded-secure-boot \
-  --shielded-vtpm \
-  --shielded-integrity-monitoring \
-  --reservation-affinity=any
+if [ "${CREATE_JUMPBOX:-true}" = "true" ]; then
+  # create the jumpbox vm instance to manipulate the private GKE cluster on the same VPC
+  gcloud compute instances create vm-jumpbox-moodle \
+    --project="$PROJECT_ID" \
+    --zone="$ZONE" \
+    --machine-type=e2-micro \
+    --network-interface="stack-type=IPV4_ONLY,subnet=$SUBNET_NAME,no-address" \
+    --metadata=enable-oslogin=true \
+    --maintenance-policy=MIGRATE \
+    --provisioning-model=STANDARD \
+    --instance-termination-action=STOP \
+    --service-account="$PROJECT_NUMBER-compute@developer.gserviceaccount.com" \
+    --scopes=https://www.googleapis.com/auth/cloud-platform \
+    --create-disk="auto-delete=yes,boot=yes,device-name=vm-jumpbox-moodle,image=projects/debian-cloud/global/images/debian-12-bookworm-v20240312,mode=rw,size=10,type=projects/$PROJECT_ID/zones/$ZONE/diskTypes/pd-balanced" \
+    --no-shielded-secure-boot \
+    --shielded-vtpm \
+    --shielded-integrity-monitoring \
+    --reservation-affinity=any
+fi
