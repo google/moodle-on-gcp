@@ -1,3 +1,4 @@
+#!/bin/bash
 # Copyright 2022 Google LLC
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -11,19 +12,25 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-#!/bin/bash
+# set to halt on execution errors and pipe failures
+set -eo pipefail
 
-# set verbose mode
-set -ex
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # load envs vars file
-source ./envs.sh
+source "$SCRIPT_DIR/envs.sh"
 
-# ensure system is updated
-sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y
+validate_moodle_envs
+
+# ensure system is updated when requested
+if [ "${RUN_APT_UPGRADE:-false}" = "true" ]; then
+  sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y
+fi
 
 # ensure jq is installed
-sudo apt install -y jq
+if ! command -v jq >/dev/null 2>&1; then
+  sudo apt update && sudo apt install -y jq
+fi
 
 # throw confirmation dialog
 cat <<- warning
@@ -38,22 +45,23 @@ if [[ $REPLY =~ ^[Yy]$ ]]
 then
 
   echo "Deleting $MYSQL_DB database, please wait ..."
-  gcloud sql databases delete $MYSQL_DB \
-    --instance $MYSQL_INSTANCE_NAME
+  gcloud sql databases delete "$MYSQL_DB" \
+    --instance "$MYSQL_INSTANCE_NAME" \
+    --quiet
   echo "Done deleting $MYSQL_DB database ..."
 
-  echo "Re-creating MYSQL_DB database, please wait ..."
-  gcloud sql databases create $MYSQL_DB \
-    --instance $MYSQL_INSTANCE_NAME \
-    --charset $MYSQL_MOODLE_DB_CHARSET \
-    --collation $MYSQL_MOODLE_DB_COLLATION
-  echo "Done re-creating MYSQL_DB database ..."
+  echo "Re-creating $MYSQL_DB database, please wait ..."
+  gcloud sql databases create "$MYSQL_DB" \
+    --instance "$MYSQL_INSTANCE_NAME" \
+    --charset "$MYSQL_MOODLE_DB_CHARSET" \
+    --collation "$MYSQL_MOODLE_DB_COLLATION"
+  echo "Done re-creating $MYSQL_DB database ..."
 
   DIR="$MOODLE_ROOT_IN_FILESTORE"
 
-  if [ -d "$DIR" ]; then
+  if [ -n "$DIR" ] && [ "$DIR" != "/" ] && [ -d "$DIR" ]; then
     echo "Removing moodleroot path from filestore mount at $DIR ..."
-    sudo rm -rvf $DIR
+    sudo rm -rvf "${DIR:?}"
     echo "Done removing moodleroot path from filestore mount at $DIR ..."
   else
     echo "Directory $DIR does not exist...nothing to remove..."
@@ -61,13 +69,15 @@ then
 
   echo "Removing latest container images from artifact registry ..."
 
-  SHA_256=$(gcloud artifacts docker images list \
-    $REGION-docker.pkg.dev/$PROJECT_ID/moodle-filestore/moodle-nginx \
-    --quiet --format json | jq --raw-output '.[].version')
+  SHA_256_LIST=$(gcloud artifacts docker images list \
+    "$REGION-docker.pkg.dev/$PROJECT_ID/moodle-filestore/moodle-nginx" \
+    --quiet --format json | jq --raw-output '.[].version' || true)
 
-  gcloud artifacts docker images delete \
-    $REGION-docker.pkg.dev/$PROJECT_ID/moodle-filestore/moodle-nginx@$SHA_256 \
-    --delete-tags --quiet
+  for SHA_256 in $SHA_256_LIST; do
+    gcloud artifacts docker images delete \
+      "$REGION-docker.pkg.dev/$PROJECT_ID/moodle-filestore/moodle-nginx@$SHA_256" \
+      --delete-tags --quiet
+  done
 else
   echo "You didn't reply Y or y..."
   echo "The cleanup process has been canceled..."
