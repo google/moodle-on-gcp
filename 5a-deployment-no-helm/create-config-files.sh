@@ -1,3 +1,4 @@
+#!/bin/bash
 # Copyright 2022 Google LLC
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -11,22 +12,61 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-#!/bin/bash
+# halt on execution errors and pipe failures
+set -eo pipefail
 
-# habilita o modo verboso
-set -ex
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # carrega as env vars
-source ../0-infra/envs.sh
+source "$SCRIPT_DIR/../0-infra/envs.sh"
 
-# garante que o sistema esteja atualizado
-sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y
+# garante que o sistema esteja atualizado quando solicitado
+if [ "${RUN_APT_UPGRADE:-false}" = "true" ]; then
+  sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y
+fi
 
 # garante que o envsubst esteja instalado
-sudo apt install -y gettext-base
+if ! command -v envsubst >/dev/null 2>&1; then
+  sudo apt update && sudo apt install -y gettext-base
+fi
+
+CONFIGURE_SMTP="${ENABLE_SMTP:-}"
+if [ -z "$CONFIGURE_SMTP" ] && [ -t 0 ]; then
+  read -rp "Do you want to configure an SMTP password for Moodle email delivery now? [y/N]: " smtp_answer
+  case "$smtp_answer" in
+    [yY]|[yY][eE][sS]) CONFIGURE_SMTP="true" ;;
+    *) CONFIGURE_SMTP="false" ;;
+  esac
+fi
+
+if [ "$CONFIGURE_SMTP" = "true" ] && [ -z "${SMTP_PASSWORD:-}" ] && [ -t 0 ]; then
+  while true; do
+    read -rsp "Enter SMTP password: " SMTP_PASSWORD
+    echo
+    if [ -z "$SMTP_PASSWORD" ]; then
+      echo "SMTP password cannot be empty when SMTP is enabled. Please try again."
+      continue
+    fi
+    read -rsp "Confirm SMTP password: " SMTP_PASSWORD_CONFIRM
+    echo
+    if [ "$SMTP_PASSWORD" = "$SMTP_PASSWORD_CONFIRM" ]; then
+      unset SMTP_PASSWORD_CONFIRM
+      break
+    else
+      echo "Passwords do not match. Please try again."
+    fi
+  done
+fi
+
+cd "$SCRIPT_DIR"
 
 # gera o arquivo de configmap específico
-envsubst \$MOODLE_ROOT_PATH_NO_SLASH < ./deployment-templates/moodle-configmap-nginx-template.yaml > ./moodle-configmap-nginx.yaml
+envsubst '$MOODLE_ROOT_PATH_NO_SLASH' < ./deployment-templates/moodle-configmap-nginx-template.yaml > ./moodle-configmap-nginx.yaml
 
 # gera o arquivo de deployment específico
-envsubst \$MOODLE_ROOT_PATH_NO_SLASH < ./deployment-templates/moodle-deployment-nginx-template.yaml > ./moodle-deployment-nginx.yaml
+envsubst '$MOODLE_ROOT_PATH_NO_SLASH' < ./deployment-templates/moodle-deployment-nginx-template.yaml > ./moodle-deployment-nginx.yaml
+
+if [ -n "${SMTP_PASSWORD:-}" ]; then
+  ESCAPED_SMTP_PASSWORD=$(printf '%s\n' "$SMTP_PASSWORD" | sed -e 's/[\/&]/\\&/g')
+  sed -i "s/<REPLACE_WITH_YOUR_SMTP_PASSWORD>/$ESCAPED_SMTP_PASSWORD/g" ./moodle-configmap-nginx.yaml
+fi
