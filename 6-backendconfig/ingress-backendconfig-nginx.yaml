@@ -19,7 +19,7 @@ metadata:
 spec:
   timeoutSec: 300
   connectionDraining:
-    drainingTimeoutSec: 10
+    drainingTimeoutSec: 30
   healthCheck:
     checkIntervalSec: 10
     timeoutSec: 10
@@ -29,20 +29,22 @@ spec:
   logging:
     enable: false
     sampleRate: 0.1 # 0.1 means only 10% will be logged, 1 all will be logged
-  # to uncoment when a cloud armor security policy exists and you want to apply it to the LB
+  # Uncomment when a Cloud Armor security policy exists and you want to apply it to the LB
   # securityPolicy:
   #   name: "moodle-armor-policy"
-  # to uncoment when you want to enable CDN
+  # Cloud CDN configured for functional Moodle:
+  # Uses USE_ORIGIN_HEADERS so Cloud CDN strictly caches public versioned Moodle assets
+  # (/theme/styles.php, /theme/image.php, /lib/javascript.php, /lib/requirejs.php, static files)
+  # where NGINX sets Cache-Control: "public, max-age=..., immutable" and strips Set-Cookie,
+  # while never caching private course files (/pluginfile.php) or authenticated PHP pages.
   cdn:
     enabled: true
+    cacheMode: USE_ORIGIN_HEADERS
+    negativeCaching: false
+    serveWhileStale: 86400
     cachePolicy:
       includeHost: true
       includeProtocol: true
       includeQueryString: true
-  #     queryStringBlacklist: ""
-  #     queryStringWhitelist: ""
-  # to uncoment when gke >= 1.23.3-gke.900
-    # cacheMode: CACHE_ALL_STATIC
-    # clientTtl: 3600
-    # defaultTtl: 3600
-  #   maxTtl: 86400
+      # queryStringBlacklist: []
+      # queryStringWhitelist: []
