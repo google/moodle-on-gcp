@@ -1,74 +1,26 @@
-# Update moodle-values.yaml and upgrade with Helm
+# Updating Environment Variables and Upgrading Pods
 
-This session is designed to guide you through some small adjustments that can improve Moodle's stability and performance in Google Cloud. 
+This guide walks through updating Moodle configuration values (ConfigMap or Secrets) and applying the changes to your running Google Kubernetes Engine (GKE) deployment.
 
-> This document assumes that the working machine from where you pushing commands from has access to Google Kubernetes Engine (GKE) control plane.
+> This document assumes that the working machine from where you are running commands has access to the GKE control plane.
 
-## For installations based on Helm only
+## 1. Updating ConfigMap Values (`5a-deployment-no-helm`)
 
-The instructions below apply only for scenarios in which the installation is Helm-based.
+1. Edit `5a-deployment-no-helm/moodle-configmap-nginx.yaml` (or `moodle-configmap-nginx-uploads.yaml` if adjusting upload pod settings) with your updated environment variables:
 
-### 1. Update `moodleSkipInstall` in moodle-values.yaml (Helm-based only)
-
-From your working machine, edit the file `moodle-values.yaml` under `5-helm` and update the value of the variable `moodleSkipInstall` to `true`, as you can see below.
-
-```
-...
-moodleSkipInstall: false
-...
+```bash
+kubectl apply -f 5a-deployment-no-helm/moodle-configmap-nginx.yaml
 ```
 
-### 2. Update `volumePermissions` in moodle-values.yaml (Helm-based only)
+2. Note that Moodle's `config.php` is generated on first install and stored on the persistent volume (`$MOODLE_PATH/config.php`). If you are changing runtime PHP or NGINX limits (`PHP_MEMORY_LIMIT`, `PHP_UPLOAD_MAX_FILESIZE`, `PHP_POST_MAX_SIZE`, `NGINX_CLIENT_MAX_BODY_SIZE`), those are re-applied automatically from the ConfigMap every time a pod starts.
 
-From your working machine, edit the file `moodle-values.yaml` under `5-helm` and update the value of the variable `volumePermissions` to `false`, as listed below.
+3. If you are changing database, Redis, or `wwwroot` parameters after initial installation, also update `$MOODLE_PATH/config.php` on the shared volume (or remove `$MOODLE_DATAROOT_PATH/.moodle-installed` only if you intend to re-run config initialization).
 
-```
-...
-volumePermissions:
-  enabled: false
-...
-```
+## 2. Restarting Pods to Pick Up Updated Configuration
 
-### 3. Upgrade your Moodle's pods (Helm-only)
+After applying ConfigMap or Secret changes, trigger a rolling restart of the Moodle deployment:
 
-Upgrade your Moodle's pods by running the file `moodle-helm-upgrade.sh` under `5-helm` through the command line, as described below.
-
-```
-./moodle-helm-upgrade.sh
-```
-## For installations not based on Helm (5a-deployment-no-helm)
-
-The instructions below apply only for scenarios in which the installation is NOT Helm-based and should be disconsidered if otherwise.
-
-### 1. Update `MOODLE_SKIP_BOOTSTRAP` in moodle-deployment.yaml (5a-deployment model only)
-
-From your working machine, edit the file `moodle-deployment.yaml` under `5a-deployment-no-helm-this-is-optional` and update the value of variable `MOODLE_SKIP_BOOTSTRAP` to `yes`, as you can see below.
-
-```
-...
-- name: MOODLE_SKIP_BOOTSTRAP
-  value: "yes" 
-...
-```
-### 2. Comment on the following segment in `moodle-deployment.yaml`
-
-From your working machine, edit the file `moodle-deployment.yaml` under the directory `5a-deployment-no-helm-this-is-optional` and comment out the following code segment.
-
-```
-...
-#initContainers:
-#- command:
-#  - sh
-#  - -c
-#  - |
-#    mkdir -p "/bitnami/moodle" "/bitnami/moodledata"
-#    chown -R "1001:1001" "/bitnami/moodle" "/bitnami/moodledata"
-...
-```
-### 3. Apply the update
-
-From your working machine make sure to apply the updates just made by running the following command.
-
-```
-kubectl apply -f 5a-deployment-no-helm-this-is-optional/moodle-deployment.yaml
+```bash
+kubectl rollout restart deployment/moodle -n moodle
+kubectl rollout status deployment/moodle -n moodle
 ```

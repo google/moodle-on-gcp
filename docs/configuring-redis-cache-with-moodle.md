@@ -1,24 +1,20 @@
 # Configuring Redis Cache with Moodle
 
-**TLDR** if you are using NGINX, you don't have to go through this process, it is already done for you in Moodle's first run with the newly built image in its startup script.
+**TLDR**: When deploying the NGINX-based Moodle image, Redis session handling, application caching, and lock configuration are automatically configured during the first run via `setup_moodle.sh` using the environment variables defined in `moodle-configmap-nginx.yaml`.
 
-**Only continue if you are using the Bitnami's based image...**
+This document serves as a reference for understanding or manually adjusting the Redis configuration in `config.php`, Moodle UI, or via the Moodle CLI.
 
-This document will guide you through the process of getting Moodle to rely on Memorystore for Redis Cache for data persistence in memory. Having this configuration in place is highly recommended as it can increase performance consistently.
+> Manual adjustments should only be performed after Moodle's initial installation process finishes and the application is up and running.
 
-> This process must be performed after Moodle's instalation process gets finalized and the application is already up and running.
+## 1. Add or verify entries in Moodle's config.php file
 
-## 1. Add new entries to Moodle's config.php file
+Modern Moodle on Google Cloud stores both `moodle` and `moodledata` directories on the shared persistent volume, and Moodle's `config.php` file sits inside the `moodle` directory.
 
-Modern Moodle on Google Cloud relies on Filestore, a GCP's managed NFS file storage service. That means that both `moodle` and `moodledata` directories are deployed in there for pod consumption and as we know, Moodle's `config.php` file does sit in `moodle` directory so, we need to find a way to get there.
+Once mounted or accessed via a running pod, inspect `/var/www/html/moodle/config.php` (or `<MOODLE_PATH>/config.php`):
 
-The easiest way is to mount Filestore drive in the working virtual machine (that needs to be connected to the same VPC as Filestore). [This tutorial](https://cloud.google.com/filestore/docs/mounting-fileshares) describes the process of mounting the volume with all types of operational systems.
-
-Once mounted, browse the the location where the file sits through the shared volume (for instance, `cd /mnt/mymoodleshare/moodle/`). Once in there, edit the file `config.php` and add (updating placeholders with the values of your environment) the following entries.
-
-```
+```php
 // Set local cache dir for pod's tmp folder
-$CFG->localcachedir = '/tmp/moodle';
+$CFG->localcachedir = '/var/local/cache';
 
 // Redis session handler (requires redis server and redis extension):
 $CFG->session_handler_class = '\core\session\redis';
@@ -26,70 +22,58 @@ $CFG->session_redis_host = '<IP-REDIS-SERVICE>';
 $CFG->session_redis_port = 6379;                                      // Optional.
 $CFG->session_redis_database = 0;                                     // Optional, default is db 0.
 $CFG->session_redis_auth = '<AUTH-STRING-REDIS-SERVICE>';             // Optional, default is don't set one.
-$CFG->session_redis_prefix = 'moodle_sess_1_';                        // Optional, default is don't set one.
+$CFG->session_redis_prefix = 'mdl_sessid_';                           // Optional, default is don't set one.
 $CFG->session_redis_acquire_lock_timeout = 120;                       // Default is 2 minutes.
-$CFG->session_redis_acquire_lock_warn = 0;                            // If set logs early warning if a lock has not been acquried.
-$CFG->session_redis_lock_expire = 1200;                               // Optional, defaults to session timeout.
+$CFG->session_redis_acquire_lock_warn = 0;                            // If set logs early warning if a lock has not been acquired.
+$CFG->session_redis_lock_expire = 7200;                               // Optional, defaults to session timeout.
 $CFG->session_redis_lock_retry = 100;                                 // Optional wait between lock attempts in ms, default is 100.
-                                                                      // After 5 seconds it will throttle down to once per second.
 ```
 
-Save the file and close it.
+Save the file and restart the deployment pods if needed:
 
-Next, to refresh `config.php`'s new configuration with the pods, run the following command against the file `moodle-helm-update.sh` which sits on directory `5-helm`.
-
-```
-./moodle-helm-update.sh
-```
-
-Make sure your pods are all back up and in a "running" state after a while by running the command below.
-
-```
+```bash
+kubectl rollout restart deployment/moodle -n moodle
 kubectl get pods -n moodle -w
 ```
 
 ## 2. Create a mapping for Redis from Moodle UI
 
-1. Get back to Moodle's UI on your browser and log in with administrative credentials.
+1. Log in to Moodle's UI with administrative credentials.
 
-2. Navigate to "Site admin" > "Plugins" > "Caching" > "Configuration".
+2. Navigate to "Site administration" > "Plugins" > "Caching" > "Configuration".
 
-3. When installed, you should see a tick next to "Redis" under "Installed cache stores" and a link to add an instance, as depicted in the image below.
+3. Under "Installed cache stores", locate "Redis" and click "Add instance":
 
 <p align="center">
     <img src="../img/Redis_cache_ready.png">
 </p>
 
-4. Click "Add instance".
+4. Configure the store instance:
+   1. Give your Redis instance a name (e.g., `moodle_redis_1`) and set the `IP:port` for the Memorystore for Redis server.
+   2. The new instance will appear under "Configured store instances" with a "Ready" status.
 
-   1. Give your Redis instance a name, like "Redis1" and set the IP:port for the Redis server (you can gather that information in GCP's web console at Memorystore's service blade).
-
-   2. The new instance should appear under "Configured store instances" with a "Ready" tick.
-
-5. Under "Stores used when no mapping is present" click Edit mappings". Set "Redis1" (or the name used earlier) for the "Application" and "Session" caches.
+5. Under "Stores used when no mapping is present", click "Edit mappings" and select your Redis instance for the "Application" and "Session" caches:
 
 <p align="center">
     <img src="../img/Set_Redis_as_default_Application_and_Session_cache.png">
 </p>
 
-6. After saving this, you should see Redis as the cache for most cache stores.
-
 ## 3. CLI-based Redis Configuration Reference
 
-The following commands are provided as a reference for configuring Redis sessions directly via the Moodle CLI. This can be useful for advanced setups, such as Redis clusters, where configuration via `config.php` might be supplemented or replaced by database-stored settings.
+The following commands are provided as a reference for configuring Redis sessions directly via the Moodle CLI:
 
 ```bash
 # Redis session configuration via Moodle CLI
-sudo -u www php81 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name="session_handler_class" --set='\core\session\redis'
-sudo -u www php81 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name="session_redis_database" --set=0
-sudo -u www php81 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name="session_redis_host" --set=$REDIS_SESSION_ID_HOST
-sudo -u www php81 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name="session_redis_port" --set=$REDIS_SESSSION_ID_PORT
-sudo -u www php81 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name="session_redis_auth" --set=$REDIS_SESSION_ID_AUTH_STRING
-sudo -u www php81 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name="session_redis_prefix" --set='mdl_sessid_'
-sudo -u www php81 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name="session_redis_acquire_lock_timeout" --set=120
-sudo -u www php81 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name="session_redis_acquire_lock_warn" --set=0
-sudo -u www php81 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name="session_redis_lock_expire" --set=7200
-sudo -u www php81 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name="session_redis_lock_retry" --set=100
-sudo -u www php81 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name="session_redis_serializer_use_igbinary" --set=true
-sudo -u www php81 -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name="session_redis_compressor" --set='gzip'
+sudo -u www php -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name="session_handler_class" --set='\core\session\redis'
+sudo -u www php -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name="session_redis_database" --set=0
+sudo -u www php -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name="session_redis_host" --set=$REDIS_SESSION_ID_HOST
+sudo -u www php -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name="session_redis_port" --set=$REDIS_SESSION_ID_PORT
+sudo -u www php -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name="session_redis_auth" --set=$REDIS_SESSION_ID_AUTH_STRING
+sudo -u www php -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name="session_redis_prefix" --set='mdl_sessid_'
+sudo -u www php -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name="session_redis_acquire_lock_timeout" --set=120
+sudo -u www php -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name="session_redis_acquire_lock_warn" --set=0
+sudo -u www php -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name="session_redis_lock_expire" --set=7200
+sudo -u www php -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name="session_redis_lock_retry" --set=100
+sudo -u www php -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name="session_redis_serializer_use_igbinary" --set=true
+sudo -u www php -d max_input_vars=10000 $MOODLE_PATH/admin/cli/cfg.php --name="session_redis_compressor" --set='gzip'
 ```
