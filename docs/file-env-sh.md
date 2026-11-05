@@ -33,3 +33,8 @@ The following table outlines all the variables that need to be filled in.
 | MYSQL_MOODLE_DB_COLLATION | Recommended collation for Moodle. Change only if necessary and you're absolutely sure of it. |
 | REDIS_NAME | Names Redis instance serving Moodle. |
 | FILESTORE_NAME | Names Filestore instance serving Moodle. |
+| STORAGE_TYPE | Selects the storage modality to provision and mount: `filestore` (default), `regional-pd` (Regional Replicated Persistent Disk across `ZONE` and `REPLICA_ZONE`), or `none` (bring-your-own storage). |
+| CREATE_CLOUD_SQL / CREATE_REDIS / CREATE_FILESTORE / CREATE_REGIONAL_PD / CREATE_JUMPBOX | Selective infrastructure adoption flags (`true` or `false`) allowing individual components to be skipped when reusing existing infrastructure. |
+| FILESTORE_TIER / FILESTORE_CAPACITY | Configures Cloud Filestore service tier (`BASIC_HDD`, `BASIC_SSD`, `ZONAL`, `REGIONAL`, `ENTERPRISE`) and capacity (e.g., `2.5Ti`, `1Ti`). |
+| REPLICA_ZONE / PD_DISK_NAME / PD_DISK_TYPE / PD_DISK_SIZE / PD_ACCESS_MODE | Configures the secondary replica zone, disk name, disk type (`pd-balanced`, `pd-ssd`, `pd-standard`), capacity (e.g., `200Gi`), and access mode for Regional Replicated Persistent Disks (`regional-pd`). |
+| PV_STORAGE_SIZE / PVC_STORAGE_SIZE / PVC_LIMIT_STORAGE_SIZE | Configures the Kubernetes PersistentVolume and PersistentVolumeClaim storage request and limit sizes rendered by `5a-deployment-no-helm/create-config-files.sh`. |
