@@ -95,7 +95,7 @@ http {
       fastcgi_split_path_info ^(.+\.php)(/.+)$;
       include fastcgi_params;
       fastcgi_index index.php;
-      fastcgi_pass unix:/var/run/php8.1-fpm-moodle.sock;
+      fastcgi_pass unix:/var/run/php8.3-fpm-moodle.sock;
       fastcgi_read_timeout 1200;
     }
 
@@ -128,7 +128,7 @@ http {
       #allow 127.0.0.1;
       #deny all;
       include fastcgi_params;
-      fastcgi_pass unix:/var/run/php8.1-fpm-moodle.sock;
+      fastcgi_pass unix:/var/run/php8.3-fpm-moodle.sock;
       fastcgi_read_timeout 300;
     }
   }
