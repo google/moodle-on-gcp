@@ -298,8 +298,8 @@ spec:
           mountPath: /etc/nginx
           subPath: $MOODLE_ROOT_PATH_NO_SLASH/etc/nginx
         - name: moodleroot-vol
-          mountPath: /etc/php81
-          subPath: $MOODLE_ROOT_PATH_NO_SLASH/etc/php81
+          mountPath: /etc/php83
+          subPath: $MOODLE_ROOT_PATH_NO_SLASH/etc/php83
         - name: tmp-vol
           mountPath: /tmp
       volumes:
