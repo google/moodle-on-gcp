@@ -25,7 +25,7 @@ Below you can find the documentation that outlines all the different aspects rel
    5. [Deploying Moodle's namespace](docs/deploying-namespace.md)
    6. [Deploying a persistent volume claim](docs/deploying-persistent-volume-claim.md)
    7. [Building Moodle's container image](docs/building-moodle-image.md)
-   8. [Installing Moodle with Helm](docs/install-moodle-helm.md)
+   8. [Installing Moodle with YAML files (Recommended)](docs/install-moodle-nginx.md)
    9. [Deploying backend config](docs/deploying-backend-config.md)
    10. [Configuring SSL and forcing HTTPS redirect](docs/provisioning-certificate-forcing-https.md)
    11. [Deploying ingress](docs/deploying-ingress.md)

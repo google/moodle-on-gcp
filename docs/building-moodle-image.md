@@ -1,68 +1,45 @@
 # Building Moodle's container image
 
-This step will set up a cloud build in Google Cloud to generate a new container image for Moodle. For that, we need to edit the information available in the file [cloudbuild-nginx.yaml](../4-moodle-image-builder/cloudbuild-nginx.yaml) or [cloudbuild-bitnami.yaml](../4-moodle-image-builder/cloudbuild-bitnami.yaml), you can use the given shell script files such as [*(Recommended)* build-nginx-based-image.sh](../4-moodle-image-builder/build-nginx-based-image.sh) or [*(Deprecated)* build-bitnami-based-image.sh](../4-moodle-image-builder/build-bitnami-based-image.sh) which seats on directory [4-moodle-image-builder](../4-moodle-image-builder/).
+This step will set up a Cloud Build in Google Cloud to generate a new container image for Moodle. For that, edit the information available in [cloudbuild-nginx.yaml](../4-moodle-image-builder/cloudbuild-nginx.yaml) and use the shell script [build-nginx-based-image.sh](../4-moodle-image-builder/build-nginx-based-image.sh) located in the [4-moodle-image-builder](../4-moodle-image-builder/) directory.
 
-The reason we do recommend the NGINX based image is listed below:
-  - Adjusted performance tuning on NGINX, php8.1-fpm, Opcache, PHP enabled JIT, etc.
-  - Latest Version of Moodle: 4.2.1
-  - NGINX itself, lighter httpd server
-  - No need for SSL since the termination is done in Ingress.
-  - Improved self instalation in first run:
-    - Adds cron and tasks inside of the image.
-    - Moosh utility for ease of use in cli admin operations.
-    - Uses moosh to install recommended plugins (tool_opcache, report_benchmark)
-    - Sets default recommended settings in config.php (Uses Redis as Session, Application Store and File Locking table)
-    - Tested with 200K online users along with Redis Enterprise (Require sharding adjustments for better IOPS)
-    - Works with Google Cloud MemoryStore (Redis)
-    - Can be spreaded into different instances of Google Cloud MemoryStore (Redis) as well, one for each store, session handling, file locks, etc.
-    - The Bitnami image is now considered **Deprecated**, which means we won't work with it anymore and all improvements are shifted to NGINX based image from here on.
+Key highlights of the NGINX-based Moodle image:
+  - Adjusted performance tuning on NGINX, PHP-FPM, OPcache, and PHP JIT.
+  - Lighter HTTP server footprint with NGINX.
+  - No need for pod-level SSL since TLS termination is handled at the Google Cloud Load Balancer / Ingress.
+  - Automated self-installation on first run:
+    - Configures cron and background tasks inside the container.
+    - Bundles the `moosh` utility for CLI admin operations.
+    - Uses `moosh` to install recommended plugins (`tool_opcache`, `report_benchmark`, and `local_redislock` when Redis locking is enabled).
+    - Configures default recommended settings in `config.php` (Redis for Session, Application Store, and File Locking).
+    - Tested with 200K+ concurrent users alongside Redis Enterprise / Google Cloud Memorystore for Redis.
+    - Supports separate Redis instances for application store, session handling, and file locks.
 
-1. Let's build the image first. For that, under the `steps` below, update the second line `args` described below with information on your container registry, we recommend using `moodle-nginx` or `moodle-bitnami` as the image name depending on the Moodle flavor you choose to run.
+1. First, under `steps` in `cloudbuild-nginx.yaml`, update the `args` line with your container registry details. We recommend using `moodle-nginx` as the image name:
 
-If the desired choice is to go with our recommended updated NGINX based image, then replace `moodle-nginx` in `cloudbuild-nginx.yaml` file if you want a different image name for this build, or, leave just like that.
-The same goes for if your choice is to go with the Bitnami based image, replacing the value of `moodle-bitnami` in `cloudbuild-bitnami.yaml` to something you might prefer or, leave it otherwise like that.
-
-So, if NGINX change this:
+Change:
 ```
 '$LOCATION-docker.pkg.dev/$PROJECT_ID/moodle-filestore/moodle-nginx:$BUILD_ID',
 ```
-to something like this:
+to your desired repository/image name if customized:
 ```
 '$LOCATION-docker.pkg.dev/$PROJECT_ID/moodle-filestore/my-nginx-moodle-image:$BUILD_ID',
 ```
 
-And if Bitnami's, then:
-```
-'$LOCATION-docker.pkg.dev/$PROJECT_ID/moodle-filestore/moodle-bitnami:$BUILD_ID',
-```
-to something like this:
-```
-'$LOCATION-docker.pkg.dev/$PROJECT_ID/moodle-filestore/my-bitnami-moodle-image:$BUILD_ID',
-```
-
-If you're using Google Cloud Artifact Registry (like the example below), that information should be available to you in the context of the service's blade, as depicted by the Figure below.
+If you're using Google Cloud Artifact Registry (like the example below), that information is available in the service's console page, as depicted below.
 
 <p align="center">
     <img src="../img/artifact-registry-connection-info.png">
 </p>
 
-If you're using whatever other container image repository, please collect that connection information properly and make sure it can communicate back with the Kubernetes cluster.
+If you're using another container image repository, collect the connection information and make sure it is accessible by your GKE cluster.
 
-For Artifact Registry, the default version of that line should look like the one described below.
-
-If following the recommended NGINX version:
+For Artifact Registry, the build step looks like this:
 ```
 args: ['build', '-t', '$LOCATION-docker.pkg.dev/$PROJECT_ID/moodle-filestore/moodle-nginx:$BUILD_ID', '.', '-f', 'Dockerfile.nginx']
 ```
 
-Or if using Bitnami's:
-```
-args: ['build', '-t', '$LOCATION-docker.pkg.dev/$PROJECT_ID/moodle-filestore/moodle-bitnami:$BUILD_ID', '.', '-f', 'Dockerfile.bitnami']
-```
+2. Ensure the same image URI is configured in the `push` step inside `cloudbuild-nginx.yaml`:
 
-2. Now, the same changes should be made in the push command inside of the `cloudbuild-nginx.yaml` or `cloudbuild-bitnami.yaml` in order to be able to push the image to the correct repository in Artifactory Registry. For that, simply repeat the process described in step 1 for the second `args` line, described below.
-
-If following the recommended NGINX version:
 ```
 args: [
     'push',
@@ -70,27 +47,13 @@ args: [
   ]
 ```
 
-Or if using Bitnami's:
+3. Finally, kick off the `build` and `push` process via `0-infra/infra-creation.sh` or directly by running:
+
 ```
-args: [
-    'push',
-    '$LOCATION-docker.pkg.dev/$PROJECT_ID/moodle-filestore/moodle-bitnami:$BUILD_ID'
-  ]
+cd ../4-moodle-image-builder && ./build-nginx-based-image.sh
 ```
 
-3. Finally, kick off the `build` and `push` process by coming back to the file `infra-creation.sh` within the directory `0-infra` and executing the following command line, placed at the end of the file.
-
-If following the recommended NGINX version:
-```
-cd ../4-moodle-image-builder && build-nginx-based-image.sh
-```
-
-Or if using Bitnami's:
-```
-cd ../4-moodle-image-builder && build-bitnami-based-image.sh
-```
-
-Wait until you get confirmation from the command line the process finished successfully. Additionally, you can head to your image repository and double-check that the image is properly sitting there.
+Wait until you get confirmation from the command line that the process finished successfully. Additionally, you can head to your image repository and double-check that the image is available.
 
 <p align="center">
     <img src="../img/moodle-image-in-container-registry.png">
