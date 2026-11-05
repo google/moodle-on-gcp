@@ -35,28 +35,15 @@ Once the file store (PV) exists we can go ahead and claim access to it. This is 
 <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/folder.svg" width="50" height="50">
 <h2>4-moodle-image-builder</h2>
 
-Responsible for group steps needed to generate a customer Moodle image.
-* *[](../4-moodle-image-builder/build-nginx-based-image.sh)*: Script that uses gcloud to trigger Google Cloud Build to build and push the image into Artifact Registry for the NGINX based image.
-* *[cloudbuild-nginx.yaml](../4-moodle-image-builder/cloudbuild-nginx.yaml)*: Google Cloud service that allows building Moodle images through continuous integration (CI) using NGINX based setup.
-* *[Dockerfile.nginx](../4-moodle-image-builder/Dockerfile.nginx)*: Dockerfile customizes Moodle images with necessary components for the NGINX based image.
-
-**(Deprecated)**
-* *[](../4-moodle-image-builder/build-bitnami-based-image.sh)*: Script that uses gcloud to trigger Google Cloud Build to build and push the image into Artifact Registry for the Bitnami based image.
-* *[cloudbuild-bitnami.yaml](../4-moodle-image-builder/cloudbuild-bitnami.yaml)*: Google Cloud service that allows building Moodle images through continuous integration (CI) using Bitnami based setup.
-* *[Dockerfile.bitnami](../4-moodle-image-builder/Dockerfile.bitnami)*: Dockerfile customizes Moodle images with necessary components for the Bitnami based image.
+Responsible for grouping steps needed to generate the Moodle container image.
+* *[build-nginx-based-image.sh](../4-moodle-image-builder/build-nginx-based-image.sh)*: Script that uses `gcloud` to trigger Google Cloud Build to build and push the NGINX-based Moodle image into Artifact Registry.
+* *[cloudbuild-nginx.yaml](../4-moodle-image-builder/cloudbuild-nginx.yaml)*: Google Cloud Build configuration for building the NGINX-based Moodle image.
+* *[Dockerfile.nginx](../4-moodle-image-builder/Dockerfile.nginx)*: Dockerfile that builds the Alpine + NGINX + PHP-FPM Moodle runtime image.
 ---
 <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/folder.svg" width="50" height="50">
-<h2>5-helm (For Bitnami only) (Deprecated)</h2>
+<h2>5a-deployment-no-helm</h2>
 
-Once both Moodle's image and the infrastructure to host it are created, we can move forward and deploy it in GKE as a Helm Chart. This directory groups the tasks to do just it.
-* *[moodle-helm-install.sh](../5-helm/moodle-helm-install.sh)*: Installs Helm chart using "moodle-values" as parameters for the deployment.
-* *[moodle-helm-upgrade.sh](../5-helm/moodle-helm-upgrade.sh)*: Does upgrade a given version of Moodle already deployed.
-* *[moodle-values.yaml](../5-helm/moodle-values.yaml)*: Parameters used by Helm chart to deploy Moodle objects in GKE.
----
-<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/folder.svg" width="50" height="50">
-<h2>5a-deployment-no-helm (Mostly for NGINX and recommended)</h2>
-
-Once both NGINX based Moodle's image and the infrastructure to host it are created, we can move forward and deploy it in GKE with vanilla deployment yaml files. This directory groups the tasks to do just it.
+Once both the NGINX-based Moodle image and the underlying infrastructure are created, deploy Moodle in GKE using the Kubernetes YAML manifests in this directory.
 
 * *[moodle-configmap-nginx.yaml](../5a-deployment-no-helm/moodle-configmap-nginx.yaml)*: For NGINX based deployment, it should contain all variables necessary for Moodle to Work, such as Redis and DB's hostname/ip, user, etc. - make sure to populate this file appropriately.
 * *[moodle-configmap-nginx-sample.yaml](../5a-deployment-no-helm/moodle-configmap-nginx-sample.yaml)*: A sample file of the configmap, explaining what to input in there.
@@ -111,10 +98,8 @@ Also, please find here the explanation of all the values:
   For a more detailed understanding of Moodle's config.php file, check its distribution example file, which is located at: [https://github.com/moodle/moodle/blob/master/config-dist.php](https://github.com/moodle/moodle/blob/master/config-dist.php)
 * *[moodle-externaldb-secret.yaml](../5a-deployment-no-helm/moodle-externaldb-secret.yaml)*: Kubernetes Secret, Base64 encoded value for Database (MySQL) password.
 * *[moodle-password-secret.yaml](../5a-deployment-no-helm/moodle-password-secret.yaml)*: Kubernetes Secret, Base64 encoded value for Moodle's admin and initial user.
-* *[moodle-deployment-nginx.yaml](../5a-deployment-no-helm/moodle-deployment-nginx.yaml)*: The Deployment object for the NGINX based image, make sure to change the image tags and repository name once you finsh building it and pushing it in [folder of Step 4](../4-moodle-image-builder/).
-* *[moodle-deployment-bitnami.yaml](../5a-deployment-no-helm/moodle-deployment-bitnami.yaml)*: The Deployment object for the Bitnami's based image, make sure to change the image tags and repository name once you finsh building it and pushing it in [folder of Step 4](../4-moodle-image-builder/).
-  **(Note: this won't use the given configmap up above, confogmap is only meant for NGINX based deployment)**.
-* *[moodle-service-.yaml](../5a-deployment-no-helm/moodle-service.yaml)*: The Service object for any based image, you don't and shouldn't change anything in this file if you don't know about GKE's BackendConfig object, leave it default and it should suffice.
+* *[moodle-deployment-nginx.yaml](../5a-deployment-no-helm/moodle-deployment-nginx.yaml)*: The Deployment object for the NGINX based image, make sure to change the image tags and repository name once you finish building and pushing it in [folder of Step 4](../4-moodle-image-builder/).
+* *[moodle-service.yaml](../5a-deployment-no-helm/moodle-service.yaml)*: The Service object for the deployment.
 
 
 ---
@@ -124,7 +109,6 @@ Also, please find here the explanation of all the values:
 This step is responsible for creating a backend config object that links the service with the Google Cloud's Load Balancer in form of an Ingress Controller, it also defines CDN and Cloud Armor rules as well as its own HTTP Healthcheck settings.
 
 * *[ingress-backendconfig-nginx](../6-backendconfig/ingress-backendconfig-nginx.yaml)*: The given configuration for NGINX based deployment.
-* *[ingress-backendconfig-bitnami](../6-backendconfig/ingress-backendconfig-bitnami.yaml)*: The given configuration for Bitnami based deployment.
 ---
 <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/folder.svg" width="50" height="50">
 <h2>7-ssl-certificate-and-redirect</h2>
