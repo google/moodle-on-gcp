@@ -1,3 +1,4 @@
+#!/bin/bash
 # Copyright 2022 Google LLC
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -11,16 +12,20 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-#!/bin/bash
+# halt on execution errors and pipe failures
+set -eo pipefail
 
-# habilita o modo verboso
-set -ex
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # carrega as env vars
-source ../0-infra/envs.sh
+source "$SCRIPT_DIR/../0-infra/envs.sh"
+
+validate_moodle_envs
+
+cd "$SCRIPT_DIR"
 
 # constrói a imagem para o nginx
 gcloud builds submit \
   --config cloudbuild-nginx.yaml \
-  --substitutions=_MOODLE_ROOT_PATH=$MOODLE_ROOT_PATH,_MOODLE_DATAROOT_PATH=$MOODLE_ROOT_PATH/moodledata,_MOODLE_PATH=$MOODLE_ROOT_PATH/moodle \
-  --region $REGION
+  --substitutions="_MOODLE_ROOT_PATH=$MOODLE_ROOT_PATH,_MOODLE_DATAROOT_PATH=$MOODLE_ROOT_PATH/moodledata,_MOODLE_PATH=$MOODLE_ROOT_PATH/moodle" \
+  --region "$REGION"
