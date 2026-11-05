@@ -81,24 +81,39 @@ if [ -f "/etc/php83/php.ini-template" ]; then
 fi
 
 # Dynamic PHP and NGINX overrides for specialized deployments (e.g., upload pods)
+EFFECTIVE_UPLOAD_MAX_FILESIZE="${PHP_UPLOAD_MAX_FILESIZE:-$UPLOAD_MAX_FILESIZE}"
+EFFECTIVE_POST_MAX_SIZE="${PHP_POST_MAX_SIZE:-$POST_MAX_SIZE}"
+EFFECTIVE_CLIENT_MAX_BODY_SIZE="${NGINX_CLIENT_MAX_BODY_SIZE:-$CLIENT_MAX_BODY_SIZE}"
+
 if [ -n "$PHP_MEMORY_LIMIT" ]; then
   echo "Adjusting PHP memory_limit to $PHP_MEMORY_LIMIT..."
   sed -i "s/^memory_limit = .*/memory_limit = $PHP_MEMORY_LIMIT/" /etc/php83/php.ini
 fi
 
-if [ -n "$PHP_UPLOAD_MAX_FILESIZE" ]; then
-  echo "Adjusting PHP upload_max_filesize to $PHP_UPLOAD_MAX_FILESIZE..."
-  sed -i "s/^upload_max_filesize = .*/upload_max_filesize = $PHP_UPLOAD_MAX_FILESIZE/" /etc/php83/php.ini
+if [ -n "$EFFECTIVE_UPLOAD_MAX_FILESIZE" ]; then
+  echo "Adjusting PHP upload_max_filesize to $EFFECTIVE_UPLOAD_MAX_FILESIZE..."
+  sed -i "s/^upload_max_filesize = .*/upload_max_filesize = $EFFECTIVE_UPLOAD_MAX_FILESIZE/" /etc/php83/php.ini
 fi
 
-if [ -n "$PHP_POST_MAX_SIZE" ]; then
-  echo "Adjusting PHP post_max_size to $PHP_POST_MAX_SIZE..."
-  sed -i "s/^post_max_size = .*/post_max_size = $PHP_POST_MAX_SIZE/" /etc/php83/php.ini
+if [ -n "$EFFECTIVE_POST_MAX_SIZE" ]; then
+  echo "Adjusting PHP post_max_size to $EFFECTIVE_POST_MAX_SIZE..."
+  sed -i "s/^post_max_size = .*/post_max_size = $EFFECTIVE_POST_MAX_SIZE/" /etc/php83/php.ini
 fi
 
-if [ -n "$NGINX_CLIENT_MAX_BODY_SIZE" ]; then
-  echo "Adjusting NGINX client_max_body_size to $NGINX_CLIENT_MAX_BODY_SIZE..."
-  sed -i "s/client_max_body_size .*;/client_max_body_size $NGINX_CLIENT_MAX_BODY_SIZE;/" /etc/nginx/nginx.conf
+if [ -n "$PHP_MAX_EXECUTION_TIME" ]; then
+  echo "Adjusting PHP max_execution_time to $PHP_MAX_EXECUTION_TIME..."
+  sed -i "s/^max_execution_time = .*/max_execution_time = $PHP_MAX_EXECUTION_TIME/" /etc/php83/php.ini
+  sed -i "s/^request_terminate_timeout = .*/request_terminate_timeout = $PHP_MAX_EXECUTION_TIME/" /etc/php83/php-fpm.d/moodle.conf
+fi
+
+if [ -n "$PHP_MAX_INPUT_TIME" ]; then
+  echo "Adjusting PHP max_input_time to $PHP_MAX_INPUT_TIME..."
+  sed -i "s/^max_input_time = .*/max_input_time = $PHP_MAX_INPUT_TIME/" /etc/php83/php.ini
+fi
+
+if [ -n "$EFFECTIVE_CLIENT_MAX_BODY_SIZE" ]; then
+  echo "Adjusting NGINX client_max_body_size to $EFFECTIVE_CLIENT_MAX_BODY_SIZE..."
+  sed -i "s/^[[:space:]#]*client_max_body_size .*/    client_max_body_size $EFFECTIVE_CLIENT_MAX_BODY_SIZE;/" /etc/nginx/nginx.conf
 fi
 
 echo "Checking if Moodle is already setup ..."

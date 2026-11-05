@@ -296,10 +296,10 @@ spec:
           subPath: moodleroot-instance1/moodledata
         - name: moodleroot-vol
           mountPath: /etc/nginx
-          subPath: etc/nginx
+          subPath: moodleroot-instance1/etc/nginx
         - name: moodleroot-vol
           mountPath: /etc/php83
-          subPath: etc/php83
+          subPath: moodleroot-instance1/etc/php83
         - name: tmp-vol
           mountPath: /tmp
       volumes:

@@ -111,7 +111,7 @@ export FILESTORE_MOUNT="/mnt/filestore1"
 export PD_DISK_NAME="${PD_DISK_NAME:-<YOUR-REGIONAL-PD-NAME>}"
 # Supported PD_DISK_TYPE values: pd-balanced (default), pd-ssd, pd-standard, hyperdisk-balanced-high-availability
 export PD_DISK_TYPE="${PD_DISK_TYPE:-pd-balanced}"
-export PD_DISK_SIZE="${PD_DISK_SIZE:-200GB}"
+export PD_DISK_SIZE="${PD_DISK_SIZE:-200Gi}"
 # Access mode for Regional PD: ReadWriteOnce (standard for ext4 on pd-balanced/pd-ssd) or ReadWriteMany
 export PD_ACCESS_MODE="${PD_ACCESS_MODE:-ReadWriteOnce}"
 
