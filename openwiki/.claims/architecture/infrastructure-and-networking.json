@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:ff9ce808006ef2ac0e80ac23c2c8aca71b4b981d20f1d52b06159be836ef9c59",
+  "claims": [
+    {
+      "id": "claim_86ed963d1a844b9ca110d2041f752439",
+      "statement": "O script 0-infra/envs.sh define a função pre-flight validate_moodle_envs(), invocada por 0-infra/infra-creation.sh sob set -eo pipefail para bloquear a execução caso PROJECT_NUMBER, PROJECT_ID ou REGION estejam vazios ou contenham placeholders <YOUR-...>.",
+      "evidence": [
+        {
+          "resource": "repo://0-infra/envs.sh#L132-L145",
+          "version": "repo-lines-v1:sha256:2d9420921d846bf2e748a7bfe058376556e53b3266a47e554e381dd96d156e71:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJjN2IzZWQwYmY4MzdkY2YzZjUxY2ZiN2YyNjMwYjE4ZmZjMTlhNTViYjA1NWJkZWRjYTgzOThkMmFmMGM1ODQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImRjN2MyZjk4YzcwZGViNmVjZThjYzEyNzY4YzlmMTdmMmM2YTc5MTQ3OTdiZmI0MDUzMDBmMjkzZmYxMjViNzIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://0-infra/infra-creation.sh#L16-L24",
+          "version": "repo-lines-v1:sha256:210fc8d56c97a9e42cbd99dca4bab13edc7ab712413c44d4f370eb7b741ce88d:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNzJkMzFjMDQxMzcxNzMyNzVlNzYwMGRhNzEzZDY4YjAzMzdjN2Q1NGMzZmNlNGI5NDliMjRlNzk4ZmRlODlkOSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMjUxNDUwYjNjM2QyMzJlZjZlMmY3Y2U0ODM3OTg3NmU0NWI0MWRkYWUwYjcyYWY3YmU5Njk2MGU3YWYxZTI3OCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNjgxZDdlYjBjNWQ4NmQzNmY2NzViYzUxOGI3NDlmNmUwMjQwMTEzZjk5NjBhZDdmYWVjNjQyZjcwOTFiYmE4OCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_e272e6c165bf475c81a8230a54605f49",
+      "statement": "O provisionamento do Cloud SQL utiliza por padrão MYSQL_DATABASE_VERSION=MYSQL_8_4 com charset utf8mb4 e collation utf8mb4_unicode_ci para atender ao requisito mínimo do Moodle 5.0+.",
+      "evidence": [
+        {
+          "resource": "repo://0-infra/envs.sh#L52-L58",
+          "version": "repo-lines-v1:sha256:4aacb3d83b9b412cdfe7e8027e3e8b1870c27b3cbf35bc449c8271ce1fbc7fb1:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNWI5NDk3MjAxZDYzNGY4ZWQ2OTcwNDAwZmMxZjE2NGE5NTM2OTRiNGE4YzMwYTIzZDVhZmFmOGZjYzQxOGJlNiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOTJiOWVkMDljNGU3OWZhZmMyOGMzNzlhMGY2OTA1NDFlYTRkOTVkZTAyMDdjNDNiM2IxYmJkM2IzN2I4NGU3YSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTliNTNkYjM0YWM0ZWNhNzJmYzE2MzFlNDRjY2Y5M2U1OTI2NTU3NmRjODk4ZTYxZDViOGNiZGI3MDUyZDQ0OCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiM2Q0ODBmMjQ1YjE1YjM2YjQ1MDZjYTI3YTMzZjk4NTgxNThhMzYzYWFiNTlkYjA5NDc2YzkxYTczYjdjZWNhMSJ9"
+        },
+        {
+          "resource": "repo://0-infra/infra-creation.sh#L180-L209",
+          "version": "repo-lines-v1:sha256:e87ee81d751457553cacd35057d409850c98d8d22a325e8118a1cc7cd6406c2f:eyJzZWxlY3RlZExpbmVDb3VudCI6MzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZkMjVmODhkZDA5ZDdmNjIyOTkwNGNmODAwOTIyMWJkNzFmNTQyNzUwMDc2OGVkZDY4MTQ4NzhmZDU1Nzg5ZDIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA4NzMyZTdiNTVlM2E4YjE4Njg5NzdmYzIyODYzOWRkYzA1ODVlYzg0ZjA5YTk1MGZlMjY4MzgzM2U5MTU2MTMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjA1NTVlZDYyMWMyZTVmYTI2YTFmMGY1YzAyOWRmMTE1ZGI3N2E2NGZjYjIxM2M4MzJjZjk1ZjhhODE1MDFiODYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_32c16f3c98e64538a221173eab7b434c",
+      "statement": "O provisionamento de infraestrutura suporta adoção seletiva por meio das variáveis STORAGE_TYPE, CREATE_CLOUD_SQL, CREATE_REDIS, CREATE_REDIS_CLUSTER, CREATE_FILESTORE, CREATE_REGIONAL_PD e CREATE_JUMPBOX.",
+      "evidence": [
+        {
+          "resource": "repo://0-infra/envs.sh#L75-L94",
+          "version": "repo-lines-v1:sha256:eb82e5e54dbeeb0c63a0b19a654f796738fa3763079dfbbd2d7f3f974cd83933:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImIwNjg2Yjk4ZTU2OTYxNjJmODFmZmM5OGI4MWI1MjZiZWU3ZmU4OTc3Y2UzZmI0ZTFkZDBlOGZiMTQ2OTNjMzUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM3NjlkMjM3Y2Q0MjBiOWQzOGI5ODFhMGE0ZjY3NzAxOTBhNGE4M2RjYTFmZTU2YzRmNWJhMWUyY2JjMGVmNzYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjgzNGU2ZDAyMjc2ZjU0ZTRhYWVhYmE0MTFiNzY0NGRiNTg1MGY2ZGMwYjdlMzFmZWJhODUzY2NmMTY0MzMwYWEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjkzMDFmODcyZTcxNzE4NTNkNGI2ZjMyMjI4ODU3NzAzZjM1NWFmOGE3MjkyM2E1MjU0ZDZmYTg1NDlhMjNhYjcifQ"
+        },
+        {
+          "resource": "repo://0-infra/infra-creation.sh#L157-L337",
+          "version": "repo-lines-v1:sha256:8eee59d15c650e636101ef754067980417dac26052d3430e11fe29122cc7e911:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgxLCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiJjOTQxYWNmNmUzZjc1OTY1YjJmMDU3ZTY5NDgzOTMwOGYzYWExZDAxNjgyZTgzZjgzYjhmNGIzZDUwNjVmNWEyIiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiIzNzY5ZDIzN2NkNDIwYjlkMzhiOTgxYTBhNGY2NzcwMTkwYTRhODNkY2ExZmU1NmM0ZjViYTFlMmNiYzBlZjc2IiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiJkMDI1ZWY4MTJlMjU5MGI5YTk1MmEyYWRkOWUwYTZlMjM1YWM0NjVlNzg3YWU3YjNhZWMzNTA1MTkzN2Q5ZGNlIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MCwiZm9sbG93aW5nQ29udGV4dEhhc2giOiJlM2IwYzQ0Mjk4ZmMxYzE0OWFmYmY0Yzg5OTZmYjkyNDI3YWU0MWU0NjQ5YjkzNGNhNDk1OTkxYjc4NTJiODU1In0"
+        }
+      ]
+    },
+    {
+      "id": "claim_86890ee67dba4e12912c932432a951b4",
+      "statement": "O cluster GKE é criado com Dataplane V2 e com os addons HttpLoadBalancing, HorizontalPodAutoscaling, GcpFilestoreCsiDriver e GcePersistentDiskCsiDriver habilitados.",
+      "evidence": [
+        {
+          "resource": "repo://0-infra/infra-creation.sh#L83-L106",
+          "version": "repo-lines-v1:sha256:1dd6219da15d0a85dba4ed3b17ee3128af66a04aaff691a0028720af17043462:eyJzZWxlY3RlZExpbmVDb3VudCI6MjQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBlNTg3ZmM4YjEyY2Y3NTU5YTEyYmIxMzNkMGU3MGY1Y2FiMmMzZjkwMmY5OWE0YmY0YjA0YTYyNmI0NzMwYWQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRiYjhhZGI5ZWU3NzUwMDk4ZDM1M2FlODgxOWI3YWU0NjIwMTQxYmI2MDllYjAyYzIwNzYzZTc2ZTBiMTdmZjEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQxODVmOWEwYjRlZTk2OTRhMWIxM2I2MzYyZmFkN2I0MjMxOTUyYmJjZjg3YWFmOWUwZThiMWMyZjUxYWVkZGYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImRlNjkyMWI4OWQwMWRmOGMwYzhkZWM3YmM2MmUxN2E1YTVkNmZiNWYyNjczZmQwYjI3NDk0YTRjNjkyN2IzMzIifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.5.1",
+    "at": "2026-11-05T12:48:25.564Z"
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:56fc94ce57844d8135dc31bde61bbd576f4714f7ac183de9c490fdf11d059988",
+  "claims": [
+    {
+      "id": "claim_03fe0ac01f6b4eb4a676bd753e952267",
+      "statement": "O Dockerfile.nginx compila /usr/lib/preloadable_libiconv.so em um estágio builder dedicado (build-gnu-libiconv.sh), configura ENV LD_PRELOAD=/usr/lib/preloadable_libiconv.so e valida iconv('UTF-8', 'ASCII//TRANSLIT', 'Olá') em tempo de build.",
+      "evidence": [
+        {
+          "resource": "repo://4-moodle-image-builder/Dockerfile.nginx#L16-L45",
+          "version": "repo-lines-v1:sha256:bf16917e9507d3a136446b2ed8bc4d984630f8dd2713c886037ffec707e62cd8:eyJzZWxlY3RlZExpbmVDb3VudCI6MzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM3ZTNmOGNlMzA1Zjg2NWJjNjgwMDcxNGU5Yzg2YTg4OTQ3YTM0OGQzNjk4NzQzYTRkNTlhYzE1YTE5NWE0MmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQyMWI4YmI4OTJjNmVmNzI5MWJkMzJjZTMxMmJlNmY2MDI5NGQzMWIxMmY1NGQ4ZWNiNmVjMjQ5NWYwZWQxYWEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQwOGRiMmIwZDBhZjM2YmI0NDgzYzcxMjE0NmE0OGNjMGQ5YWQ3MTA3NmFjZjNiMTdhYWU4NWY2ZTQ5ZmZmMjkifQ"
+        },
+        {
+          "resource": "repo://4-moodle-image-builder/scripts/build-gnu-libiconv.sh#L32-L77",
+          "version": "repo-lines-v1:sha256:30ae16e6cbc2771ed38208b8fb445dd314ed281b7e5bcc9fd8d06ce5ad789ff9:eyJzZWxlY3RlZExpbmVDb3VudCI6NDYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNkMmJkYzhhYjQ1NGI2ZDdkYmUzMjBhNDVkMzY1OGM2ODU3ZjZkODdkYjVhYjI0YTcyNWZhZTVhZDA5YWY0NGEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjViNjE5MjM5OTU0ZGNlZTZlN2Q5NjU1M2JlOWNmNWE0ZWM4NmU3OWQyNzRjNzkxZmY3YzAxNzFmOGI5MmE4NGIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjE2MTAzMmViOGE0NzY5OTc0Yjk5Zjg2NzQ2MjU5ZDFmYjVlOTUyMGVkZGIyMTEwZTk1MTIzNDBmMGE3OTZlNDUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_8296634d6a184e56a3d08c42e2350bd5",
+      "statement": "A imagem container instala o PHP 8.3 (php83-fpm e extensões) sobre Alpine 3.21, valida dinamicamente o checksum SHA-384 do Composer e inicia /usr/sbin/php-fpm83 no entrypoint.sh.",
+      "evidence": [
+        {
+          "resource": "repo://4-moodle-image-builder/Dockerfile.nginx#L28-L56",
+          "version": "repo-lines-v1:sha256:6cab81c478c384484dc04324c33c0815eac7fd8501732f1048983b7b2e5be7d6:eyJzZWxlY3RlZExpbmVDb3VudCI6MjksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZhMTRmNWUzZDJiYzVmOWM3Y2RiZmZiNzZjNDMyYzY3YTdkMWMzZjgyOTlhOGM1YWYyZTA1YmM5MzY1ZGYxMWMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM3YzhhMDRiY2Q1ZjhjMzI2M2IwZmU3N2YzYzg3NGE2ODJiYTIxMmU4MDdhNDRiZWRiZjg3NDMyNjQ2NDZhNjgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImFhNmY1ZDlmZTYxMWRlNTY1ODhkMTcxOGFkYmJmOTFkM2YzNDlhOGVmNmE4MmZmZmE2NTY1MzhkNDFhNmIwNWEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjBhMTVjN2Y1YjVhODQ2ZDc5NDA2NGNmM2E3MjIzYzFhMGE0NmRhZjU2ZmJmNGNlNjRlZDMzZTEyM2VlM2YxNzQifQ"
+        },
+        {
+          "resource": "repo://4-moodle-image-builder/base/opt/entrypoint.sh#L15-L19",
+          "version": "repo-lines-v1:sha256:ce3d7e638d4305b680f1bccd78693eb028f43ec789461109b249a49094d55233:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNWM4ODMyOTZlNzBkNTY4NTM2MTJlYTU3MDU1NzM3YWUyMWQzM2ZhMDBjZjc2ZmY2ODhiNTA2MGZkMzQ2MmYxZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYWJiM2JiMThkMDYyYWQzMDJmZWZkYmVlOTkzMTZhMDE5OWE3YzJmZTJiMzllNmVlODRiMWRmYmE5NjUxYTI2NCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZmQxZTQyY2U3ZTc2ZDVjMWZjMjEzNmU1ZmIyZjA0MDZkODFlOTYwNzMwNzQ4OTE0MWY1YTIyNmQwOTJhZWZlMCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_d8a1536626514ea9925515e520c9eb3a",
+      "statement": "O script setup_moodle.sh executa composer install --no-dev --classmap-authoritative em $MOODLE_PATH e aponta automaticamente o root do NGINX para $MOODLE_ROOT_PATH/moodle/public quando o diretório public/ do Moodle 5.1+ está presente.",
+      "evidence": [
+        {
+          "resource": "repo://4-moodle-image-builder/base/opt/setup_moodle.sh#L119-L123",
+          "version": "repo-lines-v1:sha256:8e90020c4d27f4d9047729d8a1d3a2594e6b39dc3f7a5c1c6d5fcf247a5fa3ab:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMmViMjk3ZjBiOTQ0MzkwMmIxZTkyNmIxYjUxODIzNzNhNjQ2ODkxZjkxZjc5ZjNiMjZjYmY0MjQ4MjFhZTdhYSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNzY1ZjMwMjgzOTU1ZGI0ZGRjNGQ5N2U0ZmQ1ZTFmNzQwN2I2NjAxYmQyZjFiNmM0MGY2MGRhYTJjZGYxMmM0NSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMGIwMjJmZDY1Y2Y3YTgwM2JlYmI0N2MwYTU4ODI0ODFjYTFkMzJjM2ZhOThiZGZkZWQwMWU1Y2M2ZjdjYWFiMSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTMxN2I3ODNmNTZkNDhhNDAzNDRjMDJiYWZlMzNkOGZhY2JlY2U2OTk0OTI2MmRhZDAzZmIzODUzOTMxZWIyOSJ9"
+        },
+        {
+          "resource": "repo://4-moodle-image-builder/base/opt/setup_moodle.sh#L262-L267",
+          "version": "repo-lines-v1:sha256:5577c4d241f3a90e213ccab9554877199fecdfe18f8bb09008b0885f7793b862:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNDYxYThhODQ3YjQ0MDllMGE2MmIyOGU2ZWVmZDQ4MDJhZjZhYWIyM2JlM2M5YzAzYTI0ZGRlNWNiNWNkZDgzZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYzNlODJhMDAyZDI4YjZkM2FjOGUyYTI5MWNjZjBhYzA4YTkxMTAyMmE5NWI3MjkzMThmYmY4OWY2ODYwMWE1OSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiM2I4ZDUyOTNlYWI4YzM1MTkzNzEzZWJkN2Y3MGY3MWMyNjc4MzZjMWE1NGQ4ODdjMjJlM2NlN2IwNzIwY2EzMyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNGE4ODY0YWRlOTI0N2M0OGFhNjQ2YTcxZDY5Njc5MzBjNTRlMDVlZmEzNmZmYmU4OTU1ZDc5NTgzNzgwMjAxMSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_c150732cd9024abf9ce14a67c2c2fc4c",
+      "statement": "O arquivo config.php.template protege a configuração de $CFG->lock_factory com class_exists('\\\\local_redislock\\\\lock\\\\redis_lock_factory') e o setup_moodle.sh instala automaticamente o plugin local_redislock via Moosh quando REDIS_LOCK_HOST_AND_PORT está configurado.",
+      "evidence": [
+        {
+          "resource": "repo://4-moodle-image-builder/base/opt/setup_moodle.sh#L315-L324",
+          "version": "repo-lines-v1:sha256:59d6656f01c6822c618b5a51fde3eafc839edf9272374e32d10645e739e0a0c4:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdjMjdlMTJhYzJlMDhjNjJhNjc3M2FmNzUxODYzNWZkNzNlZDExZDhjMDAxYzNiMzg2NDExNjQ0MzdjZWMwODAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg0MGI5MmNlMTMwODczMDk2MmY5MzAyZGJlZjBkNzgzOTBkYzc3ZWVjMjY0YWZiY2ZjMGFiMjkwMWFkM2M3ODEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijc5ZjBmMjBmN2I5OTZkYmEyNmQ1MjhhYzZkMjJlMGZhY2M5OWMxYjFjYTIwODRlN2NlZTdhNGYyYzdiZDhiYzMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImM2ZTRiYjEzYzZjM2Q3ODU0NmJjY2QzZWMyYjZjNjgyN2EyMDJmMmM4MDBiYmM5MWYyNTNmMzFkNWZjNDc3ZWQifQ"
+        },
+        {
+          "resource": "repo://4-moodle-image-builder/config.php.template#L8-L13",
+          "version": "repo-lines-v1:sha256:6b87baebf7b30075db96f75abc3aab2a1f9960967b593fe2016e28c9f076801c:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZTZjYWRhNzExYzI4NDQ1N2I2ODUwZmNiMWVhOTM1MzJjOGY4NzQ4OWFlNDNjY2NjYzc1MTIxYTAzNTgzODJiMyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDQ1OWI5NjJkZGRkZDNhMmNlZmYwNzNlZjRmMjkwYjUwODIyYzRiOTVlMWZjYmZmMzEzNWM0ODM1ZTRkMzUwNyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiODFlNWY5YWQ3Y2QxOTA5ZWNhNzYwNDIwM2YxYzYyYjViOWVlMGExMmJjMjg3MzIyMTFlYWY2NzUyYzhmMTNmZSJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.5.1",
+    "at": "2026-11-05T11:15:21.468Z"
+  }
+}

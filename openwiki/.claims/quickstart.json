@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:c2645fb7ae7d1b13fe935f639653490ea77a82f33ef66940ccc3754c460d9fb4",
+  "claims": [
+    {
+      "id": "claim_ea9a44aaccb9487482727af03a2a0dcc",
+      "statement": "O fluxo de implantação do Moodle on GCP é estruturado nas etapas numeradas de 0-infra a 9-hpa, parametrizadas centralmente por 0-infra/envs.sh.",
+      "evidence": [
+        {
+          "resource": "repo://0-infra/envs.sh#L67-L137",
+          "version": "repo-lines-v1:sha256:03d4d1f2f31969af5e56673a640c7b0d6c9d7dd238757c55a7ade6e8d70ecbc1:eyJzZWxlY3RlZExpbmVDb3VudCI6NzEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAzYTYyMTUzYjQzMjAzYTg4NTk2NDM0OGU4NjZmMzZmMWRjMTYzYTUyZDMyMDVkMzAzM2UxZGNlYzM1MWIzYTgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU2MGYwN2YzNjE0YzM4MmJmYTViZDYxOGUzNTYyODhjNzVmZDA2OGQ0MTJhNGI4YWJlYWYzMDA5NGNiMmM0ZTgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjNiM2RhMzRlNmZhODVlZTYxMjIzNDJhOTgxNDVhYjMxNjAzMDY1M2I2N2Q2YTZmNjA5ZmQxZTliYjljN2UyOWEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjE0OGU0YzlkNGEyZmFiOWQzODhkYWY5ZTcyOTU4NWQyOWJmOTA2ZDcxMGM2NmU0MDUwMmVjNDliMmQ1ZTZkOTIifQ"
+        },
+        {
+          "resource": "repo://README.md#L13-L37",
+          "version": "repo-lines-v1:sha256:c252507880f283f85e3e61fde3149d43a34cd79598e4aba3af82a736db2a823c:eyJzZWxlY3RlZExpbmVDb3VudCI6MjUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ2MmFhMzI0NDcxOWE3MTE2ZDIwMDE3ZWRiNWI5OWM4YmNkMTMzOTdhM2Y5MWFiMDljYzVhMWQyMmI1NTM3ZDMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjcxY2FjNGUxNjZhZjIyMDI0ZDU3ODIwYWNjOThjNzFhMGVjZDA5OGMzMzk0OTE3MjhlOGE0ZmVmOTg2NmE5YTAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQxNGYyODA1NWRkYzBhYzE2ZGNhMWM2ZjU5NGMxMzBjMTk4ZWQyNDIyMGU2NThkOGUwMjNiYjEzNmM4MjBlODYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImEyOTYzZmY3Y2E2ZWI5MjY2M2M3MTk0NjNmY2VlYTM3ZDg0Njg3NzAzMzE4ZDU0NjRkMTRkYmRlMzQ0ZWFlOWIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_257118bfa1c24195b8f0995f372e27fc",
+      "statement": "O script 5a-deployment-no-helm/create-config-files.sh gera a partir de templates os manifestos de ConfigMap, Deployment (web e uploads), PersistentVolume, PersistentVolumeClaim e StorageClass antes da aplicação via kubectl.",
+      "evidence": [
+        {
+          "resource": "repo://5a-deployment-no-helm/create-config-files.sh#L64-L87",
+          "version": "repo-lines-v1:sha256:b2ece163daead46c7381aef0a5c1efcaf89e67b358c333afd6a16401eeb4be06:eyJzZWxlY3RlZExpbmVDb3VudCI6MjQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjExNmQ3OWQxNmQwMWU2ZGJiNjQxNzY1NGE3NzI1NTQyNjdiMDVkZGUxOWUwNTg5OTkxODA4ZTUwOTEwYTMxMDciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImMxM2IwY2Q2ZDIwNzYyMTAxNTFjNTVlNTdlNzVmZjNkZmM2Yjg0ZWFjYTVhYTJlY2ZhMjVjNzlhNjM2MmU3ZjciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjA0MmU3NmFjNmNiOTY3YjdjYzFhMGE4Y2MwNzI3ZDVjNjRmZGFiZDlmZDNlNDUzNTlmMzRlZjdlNTBjYTA3ZWMifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.5.1",
+    "at": "2026-11-05T12:48:25.564Z"
+  }
+}

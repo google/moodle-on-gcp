@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:f8fedf1051e6b3b972392f0ff379750b6fb906796e981b13d5b1d93474aa4706",
+  "claims": [
+    {
+      "id": "claim_e16278952a984bf58d8c8e9a1a697e2b",
+      "statement": "O arquivo config.php.template habilita $CFG->slasharguments = true e o nginx.conf-template propaga fastcgi_param PATH_INFO $fastcgi_path_info para que o PHP-FPM processe URLs versionadas do Moodle.",
+      "evidence": [
+        {
+          "resource": "repo://4-moodle-image-builder/base/etc/nginx/nginx.conf-template#L95-L135",
+          "version": "repo-lines-v1:sha256:cfc4c411394daa5ad4fd2d52c866f64203fba2c2db857d188e4521badd93acfe:eyJzZWxlY3RlZExpbmVDb3VudCI6NDEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhhZjVhN2RjZDMwMTVjYmMxNGI5ZmFhYTkzZDU0NTQ3NzBjMzdiYTM1YTNjZTEyODg3MWY1MWUyOTVhMmM4OWMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImMyMGUzNjA2MjNkNzVlZmEyMDVlZGE1YjM3ZGUyY2Y2Y2MyOWI2NTFmMWJmZTYzYjcxMGU0NGI5Yjk2MzQ0YmMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQ5YTM4NTRkMzk1N2Q0NGY4Mzk0MGU0Yjc2NjA5MjNmZjZjNGU4MmU5NGE3NDI1NTMzYzkzMmEzYjczYzQ3MWMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjRiZmVjYTgzY2Y0ZWJkODdhNTVmNmJhYjJlMWI5ZWM0MDdiZDBiMjRmOGRjNTM1NmJkZTkxNTYxZGU4MjZjMjUifQ"
+        },
+        {
+          "resource": "repo://4-moodle-image-builder/config.php.template#L6-L6",
+          "version": "repo-lines-v1:sha256:cce476d8c8a55e01281b059d857bcb3a4e46d2470d88143ca2af768e9e5f7794:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiY2NlNDc2ZDhjOGE1NWUwMTI4MWIwNTlkODU3YmNiM2E0ZTQ2ZDI0NzBkODgxNDNjYTJhZjc2OGU5ZTVmNzc5NCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiY2NlNDc2ZDhjOGE1NWUwMTI4MWIwNTlkODU3YmNiM2E0ZTQ2ZDI0NzBkODgxNDNjYTJhZjc2OGU5ZTVmNzc5NCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiODhlOTZlMDY3M2FlM2U4MGEyYTUwMDM0MDJiZDJiYTkwZTQ5ZjRmYzAzZjk1ODdhMDI0YzIyYmI5YzM0ZmU5NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMzY5ZDhiMTYyYzg3N2E4MzlmOGNlMmM0YWEzZjBkNmEzMzY5NDljNWU5NmEyZjIwNWE4MTJjYTg2ZmNlNWFkMiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_41815cb39c4b45719d0630591f0a7be9",
+      "statement": "O nginx.conf-template remove o cabeçalho Set-Cookie e define Cache-Control public immutable nos loaders públicos (/theme/styles.php, /theme/image.php, /lib/javascript.php, /lib/requirejs.php), enquanto força Cache-Control private no-store em /pluginfile.php, /draftfile.php, /tokenpluginfile.php, /repository/ e /login/.",
+      "evidence": [
+        {
+          "resource": "repo://4-moodle-image-builder/base/etc/nginx/nginx.conf-template#L95-L124",
+          "version": "repo-lines-v1:sha256:7b0f2b831e438f27029943506b810e3ee1c8f4cf2dcdb4300e24ba25c366dd1b:eyJzZWxlY3RlZExpbmVDb3VudCI6MzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhhZjVhN2RjZDMwMTVjYmMxNGI5ZmFhYTkzZDU0NTQ3NzBjMzdiYTM1YTNjZTEyODg3MWY1MWUyOTVhMmM4OWMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk0MzhlZGEwM2VmNjA1NGIxMDE1NWQzNjAwZjlmYjMzNDNhZDc2MTcwNGY2YmQ3NmUwZTM1ZGI0YWQwYTk0NDQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQ5YTM4NTRkMzk1N2Q0NGY4Mzk0MGU0Yjc2NjA5MjNmZjZjNGU4MmU5NGE3NDI1NTMzYzkzMmEzYjczYzQ3MWMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjE5MWQzNzM4NjcwODVkOGNiNjNhNDExZjBjYjJiOTU4ZGFhOWRhYjNlN2ZkN2E3YzdiYmIwNmVkYjZlZmM4MWEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_3c827eb58ae64340bc726c3e56352dca",
+      "statement": "O BackendConfig principal (ingress-backendconfig) habilita Cloud CDN com cacheMode USE_ORIGIN_HEADERS e negativeCaching false, enquanto o BackendConfig de uploads (ingress-backendconfig-uploads) mantém cdn.enabled false e timeoutSec 3600.",
+      "evidence": [
+        {
+          "resource": "repo://6-backendconfig/ingress-backendconfig-nginx-uploads.yaml#L14-L34",
+          "version": "repo-lines-v1:sha256:b463805af3e9d1484ed1f3b24f53f081dd1c14808c081c0b36ccf3845ba98c4d:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjcwNWM3YmEzYjViNThlNjEwZWIzM2RhY2EwYTVkYzA0MjRjZmNiOTE0MGVjN2U4M2E5NWY0ZTBmYWNkZmRjOTMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRiOTA4ZTZmMGY3ZTI5NzQ1NmMyMzY1YmJjOWFhNmU4NmM4M2I5ZTQ0YzM5MGNlNzZkZmIwNTQ2ZDhjOGJkZTAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImMwZWY5OWFhOGMyODhmMTcxMGU1ODAxN2JmMjRjNjBjYmU0YzgzNDI4NDE3MzQ0N2ZjZDk2NmYxYjNhMmVlZWMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://6-backendconfig/ingress-backendconfig-nginx.yaml#L35-L49",
+          "version": "repo-lines-v1:sha256:03ab6b999d2c660dd7660b5d7af42659be4e31dcb4a830059f1aadf7e5580320:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjYzMGEyZmQ3MWU3MzgwNjkwYjYzY2Y2MzUzMzlkYTdjM2MzNTk1ZjAyODZkYzEwMTMzZTAxZmNjNGJhYTBmMjAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZkNjhkYmEwY2Y2MTJkYTNhY2VlZTI3ZTU5MDkxNjMxODdiZmI4MmM1YjM2MTY3NzMyMTJhOTA2YTEyMThjOTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQzNzMxNDM3YTczMDcyYTgxYzc5ZmYyMGRmZTJkYTA2YjI0YThmNzg4ZWNkNWFhZWNkM2IyYjllNTU4ZTA4ZDYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImJkZmQxZjAzYTBmYWU0NTAyMDQyZDZkMjMyMjlhZjRiMjhjODlhZThiNGMwMWRmMjI2MDQzYTMwYTIyYTJjYWMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_7411816ecb8f444aac687f976d533235",
+      "statement": "O Ingress roteia /repository/repository_ajax.php e /repository/draftfiles_ajax.php para moodle-service-uploads e o pool PHP-FPM opera com pm = ondemand, pm.max_children = 8 e pm.max_requests = 500.",
+      "evidence": [
+        {
+          "resource": "repo://4-moodle-image-builder/base/etc/php83/php-fpm.d/moodle.conf#L29-L40",
+          "version": "repo-lines-v1:sha256:13f3dd58d2fe68bc6fe157d67cc8933500d549d725cf65f6f035858a3dc20449:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQzOGYyYmM0N2JmMzkyM2YwNTJkNGZjM2ViZTJlNzNiZDJmZTM2MGQ4ZmZmYjc2ZjYwYTA2NWRlZmVkMWY5ZjMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM2YmJhY2E5Zjg4ZGFhYjFkNTU0Y2ZiZjNiNDA1OTk3OGI4ODI5YmJkYmY3MWVmZTM4ZGZkMjkyMDQ5YzJlOWQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjUyMTBmNDliODY3OTFiZDUyZjA1YjRjMmViZjUwNmQ4NmE3M2I4YWY4NWI1NDRlNjgzMjY3NzM0YjAxZTkwZTkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://8-ingress/gce-ingress-external.yaml#L26-L49",
+          "version": "repo-lines-v1:sha256:f09ff11b8fd573128df3989bdaa788677e1b8898eb260549e5f4918ed31901e9:eyJzZWxlY3RlZExpbmVDb3VudCI6MjQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBhNDcxNTJlMjFkYzEwOTIwNTBiZDc5YzRlN2U4Y2FmZjNlZWRhOGI4ZTVmZmQxYjdjMzcyNzU2MTg2NDQ0ZjIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA5ZTE2N2VhMmQ1NjhhZDM5Y2RmMmM5NGY2N2M3M2VjZjVmMDgwMDc4YmZiMGRlMzc5M2QxZTU4Y2NmYWZkNWQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjBlMmM0ZjVlODVjZjAxZmVkOWZkMmIxYTU2N2FiYjMwYTU2ZjJjM2I0Yjc1OGEwMTJlZTEwYmU2ZjVlNDdiN2UiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImNkNzAyZjczYTFkNmY3ZmVhYTdlN2U2ZDc4YWM3YzM1YjZmY2RhOWRkY2ZjOWEwMTEzZmU4ZGJlNmIxMmY5YjIifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.5.1",
+    "at": "2026-11-05T11:15:21.468Z"
+  }
+}
