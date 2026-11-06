@@ -17,8 +17,10 @@ metadata:
   name: moodle-configmap-uploads
   namespace: moodle
 data:
-  MOODLE_URL: "moodle.<YOUR-LOAD-BALANCER-IP>.nip.io"
-  MOOSH_URL: "http://moodle.<YOUR-LOAD-BALANCER-IP>.nip.io"
+  MOODLE_URL: 'https://github.com/moodle/moodle/archive/refs/tags/v5.2.4.tar.gz'
+  MOODLE_SHA256: ''
+  MOOSH_URL: 'https://github.com/tmuras/moosh/archive/refs/heads/master.tar.gz'
+  MOOSH_SHA256: ''
   SITE_URL: "http://moodle.<YOUR-LOAD-BALANCER-IP>.nip.io"
   LANG: "pt_BR.UTF-8"
   LANGUAGE: "pt_BR.UTF-8"

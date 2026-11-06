@@ -1637,12 +1637,6 @@
           "gke",
           "architecture-map"
         ],
-        "verified": [
-          {
-            "by": "openwiki/0.5.1",
-            "at": "2026-11-05 11:15:21.468000+00:00"
-          }
-        ],
         "sources": [
           {
             "id": "openwiki-source-75467caa28be1defc4942cd3",
@@ -1659,8 +1653,14 @@
         ],
         "generated": {
           "by": "antigravity",
-          "at": "2026-11-05T11:15:21.468Z"
-        }
+          "at": "2026-11-05T12:48:25.564Z"
+        },
+        "verified": [
+          {
+            "by": "openwiki/0.5.1",
+            "at": "2026-11-05 12:48:25.564000+00:00"
+          }
+        ]
       },
       "node_kind": "page",
       "norm_label": "quickstart.md",
@@ -1716,7 +1716,7 @@
       "node_kind": "heading",
       "norm_label": "fluxo rapido de implantacao (passo a passo)",
       "source_file": "openwiki/quickstart.md",
-      "source_location": "L33"
+      "source_location": "L32"
     },
     {
       "id": "openwiki_quickstart_mapa_de_roteamento_de_tarefas_da_documenta\u00e7\u00e3o_openwiki",
@@ -1728,7 +1728,7 @@
       "node_kind": "heading",
       "norm_label": "mapa de roteamento de tarefas da documentacao openwiki",
       "source_file": "openwiki/quickstart.md",
-      "source_location": "L51"
+      "source_location": "L50"
     },
     {
       "id": "openwiki_quickstart_quickstart_e_mapa_arquitetural_do_moodle_on_gcp",
@@ -2069,10 +2069,70 @@
       "label": "AGENTS.md",
       "_origin": "ast",
       "community": 17,
-      "community_name": "AGENTS.md",
+      "community_name": "Sentinel's Journal \u2014 Security, Hardening & Review Guardrails (`google/moodle-on-gcp`)",
       "file_type": "document",
       "node_kind": "page",
       "norm_label": "agents.md",
+      "source_file": "AGENTS.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "agents_1_repository_architecture_current_stack_main",
+      "label": "1. Repository Architecture & Current Stack (`main`)",
+      "_origin": "ast",
+      "community": 17,
+      "community_name": "Sentinel's Journal \u2014 Security, Hardening & Review Guardrails (`google/moodle-on-gcp`)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "1. repository architecture & current stack (`main`)",
+      "source_file": "AGENTS.md",
+      "source_location": "L8"
+    },
+    {
+      "id": "agents_2_mandatory_guardrails_preventing_pr_38_regressions",
+      "label": "2. Mandatory Guardrails (Preventing PR #38 Regressions)",
+      "_origin": "ast",
+      "community": 17,
+      "community_name": "Sentinel's Journal \u2014 Security, Hardening & Review Guardrails (`google/moodle-on-gcp`)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "2. mandatory guardrails (preventing pr #38 regressions)",
+      "source_file": "AGENTS.md",
+      "source_location": "L25"
+    },
+    {
+      "id": "agents_3_verification_test_suite_run_before_every_commit_pr",
+      "label": "3. Verification & Test Suite (Run Before Every Commit / PR)",
+      "_origin": "ast",
+      "community": 17,
+      "community_name": "Sentinel's Journal \u2014 Security, Hardening & Review Guardrails (`google/moodle-on-gcp`)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "3. verification & test suite (run before every commit / pr)",
+      "source_file": "AGENTS.md",
+      "source_location": "L56"
+    },
+    {
+      "id": "agents_4_using_the_jules_cli_google_jules_with_this_repository",
+      "label": "4. Using the Jules CLI (`@google/jules`) with This Repository",
+      "_origin": "ast",
+      "community": 17,
+      "community_name": "Sentinel's Journal \u2014 Security, Hardening & Review Guardrails (`google/moodle-on-gcp`)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "4. using the jules cli (`@google/jules`) with this repository",
+      "source_file": "AGENTS.md",
+      "source_location": "L84"
+    },
+    {
+      "id": "agents_agent_jules_configuration_guide_google_moodle_on_gcp",
+      "label": "Agent & Jules Configuration Guide (`google/moodle-on-gcp`)",
+      "_origin": "ast",
+      "community": 17,
+      "community_name": "Sentinel's Journal \u2014 Security, Hardening & Review Guardrails (`google/moodle-on-gcp`)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "agent & jules configuration guide (`google/moodle-on-gcp`)",
       "source_file": "AGENTS.md",
       "source_location": "L1"
     },
@@ -2081,22 +2141,34 @@
       "label": "OpenWiki",
       "_origin": "ast",
       "community": 17,
-      "community_name": "AGENTS.md",
+      "community_name": "Sentinel's Journal \u2014 Security, Hardening & Review Guardrails (`google/moodle-on-gcp`)",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "openwiki",
       "source_file": "AGENTS.md",
-      "source_location": "L3"
+      "source_location": "L107"
     },
     {
       "id": "claude",
       "label": "CLAUDE.md",
       "_origin": "ast",
       "community": 17,
-      "community_name": "AGENTS.md",
+      "community_name": "Sentinel's Journal \u2014 Security, Hardening & Review Guardrails (`google/moodle-on-gcp`)",
       "file_type": "document",
       "node_kind": "page",
       "norm_label": "claude.md",
+      "source_file": "CLAUDE.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "claude_claude_agent_instructions_google_moodle_on_gcp",
+      "label": "Claude & Agent Instructions (`google/moodle-on-gcp`)",
+      "_origin": "ast",
+      "community": 17,
+      "community_name": "Sentinel's Journal \u2014 Security, Hardening & Review Guardrails (`google/moodle-on-gcp`)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "claude & agent instructions (`google/moodle-on-gcp`)",
       "source_file": "CLAUDE.md",
       "source_location": "L1"
     },
@@ -2105,12 +2177,120 @@
       "label": "OpenWiki",
       "_origin": "ast",
       "community": 17,
-      "community_name": "AGENTS.md",
+      "community_name": "Sentinel's Journal \u2014 Security, Hardening & Review Guardrails (`google/moodle-on-gcp`)",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "openwiki",
       "source_file": "CLAUDE.md",
-      "source_location": "L3"
+      "source_location": "L7"
+    },
+    {
+      "id": "jules_sentinel",
+      "label": "sentinel.md",
+      "_origin": "ast",
+      "community": 17,
+      "community_name": "Sentinel's Journal \u2014 Security, Hardening & Review Guardrails (`google/moodle-on-gcp`)",
+      "file_type": "document",
+      "node_kind": "page",
+      "norm_label": "sentinel.md",
+      "source_file": ".jules/sentinel.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "jules_sentinel_2026_05_14_shell_script_input_validation_command_injection_prevention_pr_35_pr_38_pr_44",
+      "label": "2026-05-14 \u2014 Shell Script Input Validation & Command Injection Prevention (`PR #35`, `PR #38`, `PR #44`)",
+      "_origin": "ast",
+      "community": 17,
+      "community_name": "Sentinel's Journal \u2014 Security, Hardening & Review Guardrails (`google/moodle-on-gcp`)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "2026-05-14 \u2014 shell script input validation & command injection prevention (`pr #35`, `pr #38`, `pr #44`)",
+      "source_file": ".jules/sentinel.md",
+      "source_location": "L12"
+    },
+    {
+      "id": "jules_sentinel_2026_05_15_hardcoded_secrets_interactive_secret_prompting_pr_37_pr_38_pr_44",
+      "label": "2026-05-15 \u2014 Hardcoded Secrets & Interactive Secret Prompting (`PR #37`, `PR #38`, `PR #44`)",
+      "_origin": "ast",
+      "community": 17,
+      "community_name": "Sentinel's Journal \u2014 Security, Hardening & Review Guardrails (`google/moodle-on-gcp`)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "2026-05-15 \u2014 hardcoded secrets & interactive secret prompting (`pr #37`, `pr #38`, `pr #44`)",
+      "source_file": ".jules/sentinel.md",
+      "source_location": "L22"
+    },
+    {
+      "id": "jules_sentinel_2026_10_25_unquoted_angle_bracket_placeholders_in_0_infra_envs_sh_pr_38_pr_44",
+      "label": "2026-10-25 \u2014 Unquoted Angle-Bracket Placeholders in `0-infra/envs.sh` (`PR #38`, `PR #44`)",
+      "_origin": "ast",
+      "community": 17,
+      "community_name": "Sentinel's Journal \u2014 Security, Hardening & Review Guardrails (`google/moodle-on-gcp`)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "2026-10-25 \u2014 unquoted angle-bracket placeholders in `0-infra/envs.sh` (`pr #38`, `pr #44`)",
+      "source_file": ".jules/sentinel.md",
+      "source_location": "L30"
+    },
+    {
+      "id": "jules_sentinel_2026_11_05_moodle_5_2_public_webroot_mdl_83424_gnu_libiconv_and_cloud_cdn_cookie_stripping_pr_42_pr_45_pr_47",
+      "label": "2026-11-05 \u2014 Moodle 5.2+ Public Webroot (`MDL-83424`), `gnu-libiconv`, and Cloud CDN Cookie Stripping (`PR #42`, `PR #45`, `PR #47`)",
+      "_origin": "ast",
+      "community": 17,
+      "community_name": "Sentinel's Journal \u2014 Security, Hardening & Review Guardrails (`google/moodle-on-gcp`)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "2026-11-05 \u2014 moodle 5.2+ public webroot (`mdl-83424`), `gnu-libiconv`, and cloud cdn cookie stripping (`pr #42`, `pr #45`, `pr #47`)",
+      "source_file": ".jules/sentinel.md",
+      "source_location": "L36"
+    },
+    {
+      "id": "jules_sentinel_2026_11_06_proactive_hardening_least_privilege_file_permissions_getenv_read_replica_smtp_secret_isolation_batch_set_config_and_publicpaths_php_port_8080_pr_48",
+      "label": "2026-11-06 \u2014 Proactive Hardening: Least-Privilege File Permissions, `getenv()` Read-Replica & SMTP Secret Isolation, Batch `set_config()`, and `publicpaths.php` Port 8080 (`PR #48`)",
+      "_origin": "ast",
+      "community": 17,
+      "community_name": "Sentinel's Journal \u2014 Security, Hardening & Review Guardrails (`google/moodle-on-gcp`)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "2026-11-06 \u2014 proactive hardening: least-privilege file permissions, `getenv()` read-replica & smtp secret isolation, batch `set_config()`, and `publicpaths.php` port 8080 (`pr #48`)",
+      "source_file": ".jules/sentinel.md",
+      "source_location": "L68"
+    },
+    {
+      "id": "jules_sentinel_chronological_security_hardening_learnings",
+      "label": "Chronological Security & Hardening Learnings",
+      "_origin": "ast",
+      "community": 17,
+      "community_name": "Sentinel's Journal \u2014 Security, Hardening & Review Guardrails (`google/moodle-on-gcp`)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "chronological security & hardening learnings",
+      "source_file": ".jules/sentinel.md",
+      "source_location": "L10"
+    },
+    {
+      "id": "jules_sentinel_mandatory_guardrails_for_jules_coding_agents_learned_from_pr_38_review",
+      "label": "Mandatory Guardrails for Jules & Coding Agents (Learned from PR #38 Review)",
+      "_origin": "ast",
+      "community": 17,
+      "community_name": "Sentinel's Journal \u2014 Security, Hardening & Review Guardrails (`google/moodle-on-gcp`)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "mandatory guardrails for jules & coding agents (learned from pr #38 review)",
+      "source_file": ".jules/sentinel.md",
+      "source_location": "L48"
+    },
+    {
+      "id": "jules_sentinel_sentinel_s_journal_security_hardening_review_guardrails_google_moodle_on_gcp",
+      "label": "Sentinel's Journal \u2014 Security, Hardening & Review Guardrails (`google/moodle-on-gcp`)",
+      "_origin": "ast",
+      "community": 17,
+      "community_name": "Sentinel's Journal \u2014 Security, Hardening & Review Guardrails (`google/moodle-on-gcp`)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "sentinel's journal \u2014 security, hardening & review guardrails (`google/moodle-on-gcp`)",
+      "source_file": ".jules/sentinel.md",
+      "source_location": "L1"
     },
     {
       "id": "docs_configuring_cloud_cdn_1_how_cloud_cdn_caching_works_with_moodle_5_2",
@@ -2292,7 +2472,7 @@
         "verified": [
           {
             "by": "openwiki/0.5.1",
-            "at": "2026-11-05 11:15:21.468000+00:00"
+            "at": "2026-11-05 12:48:25.564000+00:00"
           }
         ],
         "sources": [
@@ -2307,7 +2487,7 @@
         ],
         "generated": {
           "by": "antigravity",
-          "at": "2026-11-05T11:15:21.468Z"
+          "at": "2026-11-05T12:48:25.564Z"
         }
       },
       "node_kind": "page",
@@ -2361,7 +2541,7 @@
       "node_kind": "heading",
       "norm_label": "cloud sql mysql 8.4 para moodle 5.0+",
       "source_file": "openwiki/architecture/infrastructure-and-networking.md",
-      "source_location": "L62"
+      "source_location": "L63"
     },
     {
       "id": "openwiki_architecture_infrastructure_and_networking_infraestrutura_gcp_ado\u00e7\u00e3o_seletiva_e_cloud_sql_mysql_8_4",
@@ -2385,7 +2565,7 @@
       "node_kind": "heading",
       "norm_label": "limpeza e reinicializacao segura (`0-infra/cleanup-moodle-install.sh`)",
       "source_file": "openwiki/architecture/infrastructure-and-networking.md",
-      "source_location": "L70"
+      "source_location": "L71"
     },
     {
       "id": "openwiki_architecture_infrastructure_and_networking_parametriza\u00e7\u00e3o_central_e_valida\u00e7\u00e3o_pre_flight_0_infra_envs_sh",
@@ -2409,7 +2589,7 @@
       "node_kind": "heading",
       "norm_label": "rede vpc, cluster gke privado e drivers csi",
       "source_file": "openwiki/architecture/infrastructure-and-networking.md",
-      "source_location": "L54"
+      "source_location": "L55"
     },
     {
       "id": "openwiki_architecture_storage_modalities_comparativo_entre_cloud_filestore_e_regional_replicated_pd",
@@ -2829,6 +3009,66 @@
       "node_kind": "page",
       "norm_label": "license.md",
       "source_file": "LICENSE.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "tests_verify_scripts_and_configs",
+      "label": "verify-scripts-and-configs.sh",
+      "_origin": "ast",
+      "community": 31,
+      "community_name": "verify-scripts-and-configs.sh",
+      "file_type": "code",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "norm_label": "verify-scripts-and-configs.sh",
+      "source_file": "tests/verify-scripts-and-configs.sh",
+      "source_location": "L1"
+    },
+    {
+      "id": "tests_verify_scripts_and_configs_create_mock_config",
+      "label": "create_mock_config()",
+      "_origin": "ast",
+      "community": 31,
+      "community_name": "verify-scripts-and-configs.sh",
+      "file_type": "code",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_function"
+      },
+      "norm_label": "create_mock_config()",
+      "source_file": "tests/verify-scripts-and-configs.sh",
+      "source_location": "L70"
+    },
+    {
+      "id": "tests_verify_scripts_and_configs_run_replica_snippet",
+      "label": "run_replica_snippet()",
+      "_origin": "ast",
+      "community": 31,
+      "community_name": "verify-scripts-and-configs.sh",
+      "file_type": "code",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_function"
+      },
+      "norm_label": "run_replica_snippet()",
+      "source_file": "tests/verify-scripts-and-configs.sh",
+      "source_location": "L84"
+    },
+    {
+      "id": "tests_verify_scripts_and_configs_sh__entry",
+      "label": "verify-scripts-and-configs.sh script",
+      "_origin": "ast",
+      "community": 31,
+      "community_name": "verify-scripts-and-configs.sh",
+      "file_type": "code",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "norm_label": "verify-scripts-and-configs.sh script",
+      "source_file": "tests/verify-scripts-and-configs.sh",
       "source_location": "L1"
     },
     {
@@ -3393,6 +3633,30 @@
       "weight": 1.0
     },
     {
+      "source": "tests_verify_scripts_and_configs_sh__entry",
+      "target": "tests_verify_scripts_and_configs_create_mock_config",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "tests/verify-scripts-and-configs.sh",
+      "source_location": "L96",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_verify_scripts_and_configs_sh__entry",
+      "target": "tests_verify_scripts_and_configs_run_replica_snippet",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "tests/verify-scripts-and-configs.sh",
+      "source_location": "L97",
+      "weight": 1.0
+    },
+    {
       "source": "0_infra_cleanup_moodle_install",
       "target": "0_infra_cleanup_moodle_install_sh__entry",
       "relation": "contains",
@@ -3482,24 +3746,90 @@
     },
     {
       "source": "agents",
+      "target": "agents_agent_jules_configuration_guide_google_moodle_on_gcp",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "AGENTS.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "agents_agent_jules_configuration_guide_google_moodle_on_gcp",
       "target": "agents_openwiki",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "AGENTS.md",
-      "source_location": "L3",
+      "source_location": "L107",
+      "weight": 1.0
+    },
+    {
+      "source": "agents_agent_jules_configuration_guide_google_moodle_on_gcp",
+      "target": "agents_2_mandatory_guardrails_preventing_pr_38_regressions",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "AGENTS.md",
+      "source_location": "L25",
+      "weight": 1.0
+    },
+    {
+      "source": "agents_agent_jules_configuration_guide_google_moodle_on_gcp",
+      "target": "agents_3_verification_test_suite_run_before_every_commit_pr",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "AGENTS.md",
+      "source_location": "L56",
+      "weight": 1.0
+    },
+    {
+      "source": "agents_agent_jules_configuration_guide_google_moodle_on_gcp",
+      "target": "agents_1_repository_architecture_current_stack_main",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "AGENTS.md",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "agents_agent_jules_configuration_guide_google_moodle_on_gcp",
+      "target": "agents_4_using_the_jules_cli_google_jules_with_this_repository",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "AGENTS.md",
+      "source_location": "L84",
       "weight": 1.0
     },
     {
       "source": "claude",
+      "target": "claude_claude_agent_instructions_google_moodle_on_gcp",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "claude_claude_agent_instructions_google_moodle_on_gcp",
       "target": "claude_openwiki",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "CLAUDE.md",
-      "source_location": "L3",
+      "source_location": "L7",
       "weight": 1.0
     },
     {
@@ -4240,6 +4570,94 @@
       "weight": 1.0
     },
     {
+      "source": "jules_sentinel",
+      "target": "jules_sentinel_sentinel_s_journal_security_hardening_review_guardrails_google_moodle_on_gcp",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".jules/sentinel.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "jules_sentinel_sentinel_s_journal_security_hardening_review_guardrails_google_moodle_on_gcp",
+      "target": "jules_sentinel_chronological_security_hardening_learnings",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".jules/sentinel.md",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "jules_sentinel_sentinel_s_journal_security_hardening_review_guardrails_google_moodle_on_gcp",
+      "target": "jules_sentinel_2026_05_14_shell_script_input_validation_command_injection_prevention_pr_35_pr_38_pr_44",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".jules/sentinel.md",
+      "source_location": "L12",
+      "weight": 1.0
+    },
+    {
+      "source": "jules_sentinel_sentinel_s_journal_security_hardening_review_guardrails_google_moodle_on_gcp",
+      "target": "jules_sentinel_2026_05_15_hardcoded_secrets_interactive_secret_prompting_pr_37_pr_38_pr_44",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".jules/sentinel.md",
+      "source_location": "L22",
+      "weight": 1.0
+    },
+    {
+      "source": "jules_sentinel_sentinel_s_journal_security_hardening_review_guardrails_google_moodle_on_gcp",
+      "target": "jules_sentinel_2026_10_25_unquoted_angle_bracket_placeholders_in_0_infra_envs_sh_pr_38_pr_44",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".jules/sentinel.md",
+      "source_location": "L30",
+      "weight": 1.0
+    },
+    {
+      "source": "jules_sentinel_sentinel_s_journal_security_hardening_review_guardrails_google_moodle_on_gcp",
+      "target": "jules_sentinel_2026_11_05_moodle_5_2_public_webroot_mdl_83424_gnu_libiconv_and_cloud_cdn_cookie_stripping_pr_42_pr_45_pr_47",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".jules/sentinel.md",
+      "source_location": "L36",
+      "weight": 1.0
+    },
+    {
+      "source": "jules_sentinel_sentinel_s_journal_security_hardening_review_guardrails_google_moodle_on_gcp",
+      "target": "jules_sentinel_mandatory_guardrails_for_jules_coding_agents_learned_from_pr_38_review",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".jules/sentinel.md",
+      "source_location": "L48",
+      "weight": 1.0
+    },
+    {
+      "source": "jules_sentinel_sentinel_s_journal_security_hardening_review_guardrails_google_moodle_on_gcp",
+      "target": "jules_sentinel_2026_11_06_proactive_hardening_least_privilege_file_permissions_getenv_read_replica_smtp_secret_isolation_batch_set_config_and_publicpaths_php_port_8080_pr_48",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".jules/sentinel.md",
+      "source_location": "L68",
+      "weight": 1.0
+    },
+    {
       "source": "openwiki_architecture_index",
       "target": "openwiki_architecture_index_arquivos",
       "relation": "contains",
@@ -4291,7 +4709,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "openwiki/architecture/infrastructure-and-networking.md",
-      "source_location": "L54",
+      "source_location": "L55",
       "weight": 1.0
     },
     {
@@ -4302,7 +4720,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "openwiki/architecture/infrastructure-and-networking.md",
-      "source_location": "L62",
+      "source_location": "L63",
       "weight": 1.0
     },
     {
@@ -4313,7 +4731,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "openwiki/architecture/infrastructure-and-networking.md",
-      "source_location": "L70",
+      "source_location": "L71",
       "weight": 1.0
     },
     {
@@ -4511,7 +4929,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "openwiki/quickstart.md",
-      "source_location": "L33",
+      "source_location": "L32",
       "weight": 1.0
     },
     {
@@ -4522,7 +4940,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "openwiki/quickstart.md",
-      "source_location": "L51",
+      "source_location": "L50",
       "weight": 1.0
     },
     {
@@ -4622,6 +5040,17 @@
       "confidence_score": 1.0,
       "source_file": "README.md",
       "source_location": "L13",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_verify_scripts_and_configs",
+      "target": "tests_verify_scripts_and_configs_sh__entry",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/verify-scripts-and-configs.sh",
+      "source_location": "L1",
       "weight": 1.0
     },
     {
@@ -5175,6 +5604,28 @@
       "weight": 1.0
     },
     {
+      "source": "tests_verify_scripts_and_configs",
+      "target": "tests_verify_scripts_and_configs_create_mock_config",
+      "relation": "defines",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/verify-scripts-and-configs.sh",
+      "source_location": "L70",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_verify_scripts_and_configs",
+      "target": "tests_verify_scripts_and_configs_run_replica_snippet",
+      "relation": "defines",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/verify-scripts-and-configs.sh",
+      "source_location": "L84",
+      "weight": 1.0
+    },
+    {
       "source": "6_backendconfig_ingress_backendconfig_nginx_ingress_backendconfig",
       "target": "6_backendconfig_ingress_backendconfig_nginx_cloud_cdn_policy",
       "relation": "implements",
@@ -5450,6 +5901,17 @@
       "weight": 1.0
     },
     {
+      "source": "agents",
+      "target": "jules_sentinel",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "AGENTS.md",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
       "source": "claude",
       "target": "agents",
       "relation": "references",
@@ -5457,7 +5919,18 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "CLAUDE.md",
-      "source_location": "L5",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "claude",
+      "target": "jules_sentinel",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": "L3",
       "weight": 1.0
     },
     {
@@ -6203,5 +6676,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "a5f4359b15b249a5ae8c1a9477ee39466c252480"
+  "built_at_commit": "aab53eee190a1e29b3e4aec066985a99fe99eb40"
 }

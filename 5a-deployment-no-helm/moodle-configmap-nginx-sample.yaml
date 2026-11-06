@@ -18,7 +18,9 @@ metadata:
   namespace: moodle
 data:
   MOODLE_URL: 'https://github.com/moodle/moodle/archive/refs/tags/v5.2.4.tar.gz'
+  MOODLE_SHA256: ''
   MOOSH_URL: 'https://github.com/tmuras/moosh/archive/refs/heads/master.tar.gz'
+  MOOSH_SHA256: ''
   LANG: 'pt_BR.UTF-8'
   LANGUAGE: 'pt_BR'
   MOODLE_LANGUAGE: 'pt_BR'

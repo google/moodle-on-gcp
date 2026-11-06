@@ -16,7 +16,7 @@
   "14": "Choosing and Configuring Storage (`Filestore` vs. `Regional Replicated Persistent Disk`)",
   "15": "How to Contribute",
   "16": "Configuring Redis Cache with Moodle",
-  "17": "AGENTS.md",
+  "17": "Sentinel's Journal — Security, Hardening & Review Guardrails (`google/moodle-on-gcp`)",
   "18": "Configuring Cloud CDN and Dedicated Upload Pods with Functional Moodle",
   "19": "Project overview",
   "20": "Documentation",
@@ -29,5 +29,6 @@
   "27": "Updating Environment Variables and Upgrading Pods",
   "28": "Configuring SSL and forcing HTTPS redirect",
   "29": "CONTRIBUTORS.md",
-  "30": "LICENSE.md"
+  "30": "LICENSE.md",
+  "31": "verify-scripts-and-configs.sh"
 }
