@@ -124,8 +124,23 @@ if [ ! -f "$MOODLE_DATAROOT_PATH/.moodle-installed" ] ; then
     echo -e "$MOODLE_URL ...\n"
     echo "Hang tight, this will take a while !"
 
-    echo "Downloading and extracting MOODLE files ..."
-    curl --silent --location "$MOODLE_URL" | tar -xz --totals=USR1 --strip-components=1 -C "$MOODLE_PATH/"
+    echo "Downloading MOODLE files ..."
+    curl --silent --location "$MOODLE_URL" --output /tmp/moodle.tar.gz
+    if [ -n "$MOODLE_SHA256" ]; then
+      echo "Verifying MOODLE files checksum ..."
+      if ! echo "$MOODLE_SHA256  /tmp/moodle.tar.gz" | sha256sum -c -; then
+        echo "ERROR: MOODLE checksum verification failed!" >&2
+        rm -fv /tmp/moodle.tar.gz
+        exit 1
+      fi
+      echo "MOODLE checksum verified."
+    else
+      echo "WARNING: MOODLE_SHA256 is not set. Skipping checksum verification."
+    fi
+
+    echo "Extracting MOODLE files ..."
+    tar -xzf /tmp/moodle.tar.gz --totals=USR1 --strip-components=1 -C "$MOODLE_PATH/"
+    rm -fv /tmp/moodle.tar.gz
     echo -e "Done downloading and extracting MOODLE files ...\n"
 
     echo "Setting proper ownership on moodle root and data directories ..."
@@ -138,11 +153,11 @@ if [ ! -f "$MOODLE_DATAROOT_PATH/.moodle-installed" ] ; then
     fi
 
     echo "Setting permissions on moodle and moodledata directories ..."
-    find "$MOODLE_PATH" -type d -exec chmod 0775 {} \;
-    find "$MOODLE_DATAROOT_PATH" -type d -exec chmod 0775 {} \;
+    find "$MOODLE_PATH" -type d -exec chmod 0755 {} +
+    find "$MOODLE_DATAROOT_PATH" -type d -exec chmod 0750 {} +
     echo "Setting permissions on files in moodle and moodledata directories ..."
-    find "$MOODLE_PATH" -type f -exec chmod 0664 {} \;
-    find "$MOODLE_DATAROOT_PATH" -type f -exec chmod 0664 {} \;
+    find "$MOODLE_PATH" -type f -exec chmod 0644 {} +
+    find "$MOODLE_DATAROOT_PATH" -type f -exec chmod 0640 {} +
 
     echo "Generating config.php file ..."
     sudo -u www php83 -d max_input_vars=10000 \
@@ -185,9 +200,9 @@ if [ ! -f "$MOODLE_DATAROOT_PATH/.moodle-installed" ] ; then
     echo "Adding read replica settings if needed ..."
     if [ -n "$DB_READ_REPLICA_HOST" ]; then
       if [ -n "$DB_READ_REPLICA_USER" ] && [ -n "$DB_READ_REPLICA_PASSWORD" ] && [ -n "$DB_READ_REPLICA_PORT" ]; then
-        sed -i "/\$CFG->dboptions/a \ \ "\''readonly'\'" => [ \'instance\' => [ \'dbhost\' => \'$DB_READ_REPLICA_HOST\', \'dbport\' => \'$DB_READ_REPLICA_PORT\', \'dbuser\' => \'$DB_READ_REPLICA_USER\', \'dbpass\' => \'$DB_READ_REPLICA_PASSWORD\' ] ]," "$MOODLE_PATH/config.php"
+        sed -i '/\$CFG->dboptions/a \ \ '\''readonly'\'' => [ '\''instance'\'' => [ '\''dbhost'\'' => getenv('\''DB_READ_REPLICA_HOST'\''), '\''dbport'\'' => getenv('\''DB_READ_REPLICA_PORT'\''), '\''dbuser'\'' => getenv('\''DB_READ_REPLICA_USER'\''), '\''dbpass'\'' => getenv('\''DB_READ_REPLICA_PASSWORD'\'') ] ],' "$MOODLE_PATH/config.php"
       else
-        sed -i "/\$CFG->dboptions/a \ \ "\''readonly'\'" => [ \'instance\' => [ \'$DB_READ_REPLICA_HOST\' ] ]," "$MOODLE_PATH/config.php"
+        sed -i '/\$CFG->dboptions/a \ \ '\''readonly'\'' => [ '\''instance'\'' => [ getenv('\''DB_READ_REPLICA_HOST'\'') ] ],' "$MOODLE_PATH/config.php"
       fi
     fi
 
@@ -208,23 +223,39 @@ if [ ! -f "$MOODLE_DATAROOT_PATH/.moodle-installed" ] ; then
     sed -i '/require_once/i $CFG->forced_plugin_settings = array("antivirus_clamav" => array("pathtoclam" => "/usr/bin/clamscan"));' "$MOODLE_PATH/config.php"
 
     echo "Configuring other specific settings ..."
-
-    # moodle binaries
-    sudo -u www php83 -d max_input_vars=10000 "$MOODLE_PATH/admin/cli/cfg.php" --name=pathtophp --set=/usr/bin/php83
-    sudo -u www php83 -d max_input_vars=10000 "$MOODLE_PATH/admin/cli/cfg.php" --name=pathtodu --set=/usr/bin/du
-    sudo -u www php83 -d max_input_vars=10000 "$MOODLE_PATH/admin/cli/cfg.php" --name=aspellpath --set=/usr/bin/aspell
-    sudo -u www php83 -d max_input_vars=10000 "$MOODLE_PATH/admin/cli/cfg.php" --name=pathtodot --set=/usr/bin/dot
-    sudo -u www php83 -d max_input_vars=10000 "$MOODLE_PATH/admin/cli/cfg.php" --name=pathtogs --set=/usr/bin/gs
-    sudo -u www php83 -d max_input_vars=10000 "$MOODLE_PATH/admin/cli/cfg.php" --name=pathtopython --set=/usr/bin/python3
-    sudo -u www php83 -d max_input_vars=10000 "$MOODLE_PATH/admin/cli/cfg.php" --name=enableblogs --set=0
-
-    # moodle smtp settings
-    sudo -u www php83 -d max_input_vars=10000 "$MOODLE_PATH/admin/cli/cfg.php" --name=smtphosts --set="$SMTP_HOST:$SMTP_PORT"
-    sudo -u www php83 -d max_input_vars=10000 "$MOODLE_PATH/admin/cli/cfg.php" --name=smtpuser --set="$SMTP_USER"
-    sudo -u www php83 -d max_input_vars=10000 "$MOODLE_PATH/admin/cli/cfg.php" --name=smtppass --set="$SMTP_PASSWORD"
-    sudo -u www php83 -d max_input_vars=10000 "$MOODLE_PATH/admin/cli/cfg.php" --name=smtpsecure --set="$SMTP_PROTOCOL"
-    sudo -u www php83 -d max_input_vars=10000 "$MOODLE_PATH/admin/cli/cfg.php" --name=noreplyaddress --set="$MOODLE_MAIL_NOREPLY_ADDRESS"
-    sudo -u www php83 -d max_input_vars=10000 "$MOODLE_PATH/admin/cli/cfg.php" --name=emailsubjectprefix --set="$MOODLE_MAIL_PREFIX"
+    sudo -u www \
+      MOODLE_PATH="$MOODLE_PATH" \
+      SMTP_HOST="$SMTP_HOST" \
+      SMTP_PORT="$SMTP_PORT" \
+      SMTP_USER="$SMTP_USER" \
+      SMTP_PASSWORD="$SMTP_PASSWORD" \
+      SMTP_PROTOCOL="$SMTP_PROTOCOL" \
+      MOODLE_MAIL_NOREPLY_ADDRESS="$MOODLE_MAIL_NOREPLY_ADDRESS" \
+      MOODLE_MAIL_PREFIX="$MOODLE_MAIL_PREFIX" \
+      php83 -d max_input_vars=10000 -r '
+        define("CLI_SCRIPT", true);
+        require(getenv("MOODLE_PATH") . "/config.php");
+        $smtp_host = (string)getenv("SMTP_HOST");
+        $smtp_port = (string)getenv("SMTP_PORT");
+        $settings = [
+          "pathtophp" => "/usr/bin/php83",
+          "pathtodu" => "/usr/bin/du",
+          "aspellpath" => "/usr/bin/aspell",
+          "pathtodot" => "/usr/bin/dot",
+          "pathtogs" => "/usr/bin/gs",
+          "pathtopython" => "/usr/bin/python3",
+          "enableblogs" => "0",
+          "smtphosts" => ($smtp_host !== "" && $smtp_port !== "") ? ($smtp_host . ":" . $smtp_port) : $smtp_host,
+          "smtpuser" => (string)getenv("SMTP_USER"),
+          "smtppass" => (string)getenv("SMTP_PASSWORD"),
+          "smtpsecure" => (string)getenv("SMTP_PROTOCOL"),
+          "noreplyaddress" => (string)getenv("MOODLE_MAIL_NOREPLY_ADDRESS"),
+          "emailsubjectprefix" => (string)getenv("MOODLE_MAIL_PREFIX"),
+        ];
+        foreach ($settings as $name => $value) {
+          set_config($name, $value);
+        }
+      '
 
     sudo -u www cp "$MOODLE_PATH/config.php" "$MOODLE_PATH/config.php.bak"
     envsubst '$REDIS_LOCK_HOST_AND_PORT $REDIS_LOCK_AUTH_STRING $REDIS_SESSION_ID_HOST $REDIS_SESSION_ID_PORT $REDIS_SESSION_ID_AUTH_STRING' < "/root/.templates/config.php.template" \
@@ -245,7 +276,10 @@ if [ ! -f "$MOODLE_DATAROOT_PATH/.moodle-installed" ] ; then
     PUBLICPATHS_DIR="$MOODLE_PATH/public/lib/classes/check/environment"
   fi
   if [ -d "$PUBLICPATHS_DIR" ] && [ ! -f "$PUBLICPATHS_DIR/publicpaths.modified" ] ; then
-    echo "Marking publicpaths.php check ..."
+    echo "Adjusting publicpaths.php check to internal container on port 8080 ..."
+    if [ -f "$PUBLICPATHS_DIR/publicpaths.php" ]; then
+      sudo -u www sed -i 's/\$CFG->wwwroot/"http:\/\/localhost:8080"/g' "$PUBLICPATHS_DIR/publicpaths.php"
+    fi
     sudo -u www touch "$PUBLICPATHS_DIR/publicpaths.modified"
   fi
 
@@ -290,8 +324,23 @@ echo "0 0 * * * /usr/bin/freshclam >> $MOODLE_DATAROOT_PATH/log/freshclam.log 2>
 filename="$MOODLE_DATAROOT_PATH/moosh/.installed"
 echo "Checking if Moosh is already setup ..."
 if [ ! -f "$filename" ] ; then
-    echo "Downloading and extracting Moosh ..."
-    curl --silent --location "$MOOSH_URL" | tar -xz --totals=USR1 --strip-components=1 -C "$MOODLE_DATAROOT_PATH/moosh"
+    echo "Downloading Moosh ..."
+    curl --silent --location "$MOOSH_URL" --output /tmp/moosh.tar.gz
+    if [ -n "$MOOSH_SHA256" ]; then
+      echo "Verifying Moosh checksum ..."
+      if ! echo "$MOOSH_SHA256  /tmp/moosh.tar.gz" | sha256sum -c -; then
+        echo "ERROR: Moosh checksum verification failed!" >&2
+        rm -fv /tmp/moosh.tar.gz
+        exit 1
+      fi
+      echo "Moosh checksum verified."
+    else
+      echo "WARNING: MOOSH_SHA256 is not set. Skipping checksum verification."
+    fi
+
+    echo "Extracting Moosh ..."
+    tar -xzf /tmp/moosh.tar.gz --totals=USR1 --strip-components=1 -C "$MOODLE_DATAROOT_PATH/moosh"
+    rm -fv /tmp/moosh.tar.gz
     chown -R www:www "$MOODLE_DATAROOT_PATH/moosh"
     cd "$MOODLE_DATAROOT_PATH/moosh" && composer --quiet --no-interaction --no-cache update && cd /
     sudo -u www sed -i 's/\$arg, \$v);/\$arg, \$v \? \$v \: \"\");/g' "$MOODLE_DATAROOT_PATH/moosh/Moosh/MooshCommand.php" 2>/dev/null || true

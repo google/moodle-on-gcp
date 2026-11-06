@@ -50,8 +50,10 @@ Once both the NGINX-based Moodle image and the underlying infrastructure are cre
 
 Also, please find here the explanation of all the values:
 
-  - `MOODLE_URL:` The moodle's latest url, as initial, you can leave it as default **which will deploy the 4.2.1 version**.
-  - `MOOSH_URL:` The moosh's latest url, as initial, you can leave it as default **which will deploy the 1.11 version**.
+  - `MOODLE_URL:` The Moodle archive URL, as initial, you can leave it as default **which will deploy the 5.2.4 version**.
+  - `MOODLE_SHA256:` Optional SHA-256 checksum for verifying the downloaded Moodle archive before extraction.
+  - `MOOSH_URL:` The Moosh archive URL, as initial, you can leave it as default **which will deploy the latest version (`1.51+`)**.
+  - `MOOSH_SHA256:` Optional SHA-256 checksum for verifying the downloaded Moosh archive before extraction.
   - `LANG:` The LANG in Unix format, **defaults it to: en_US.UTF-8**.
   - `LANGUAGE:` The OS LANGUAGE, **defaults it to: en_US**.
   - `MOODLE_LANGUAGE:` The Moodle default languagem, **defaults it to: en_US**.
@@ -64,7 +66,7 @@ Also, please find here the explanation of all the values:
   - `DB_NAME:` Database's schema name, **defaults to 'moodle-db'**.
   - `DB_USER:` Database's user, can be set to any user owner of $DB_NAME schema, **defaults to 'root'**.
   - `DB_PREFIX:` Moodle's database's table prefix, in case one has many different setups inside of the same schema, not recommended but possible, **defaults to 'mdl_'**.
-  - `MOODLE_SITENAME:` The Moodle's default site name, **defaults to 'Moodle 4.2 On GKE'**.
+  - `MOODLE_SITENAME:` The Moodle's default site name, **defaults to 'Moodle 5.2.4 On GKE'**.
   - `MOODLE_SITESUMMARY:` The Moodle's site summary, optional, leave '' if you want it blank.
   - `MOODLE_USERNAME:` The Moodle's initial and admin username, **defaults to 'admin'**.
   - `MOODLE_EMAIL:` The Moodle's email address when sending e-mails, **defaults to 'user@example.com'**.

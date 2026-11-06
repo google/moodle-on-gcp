@@ -75,7 +75,8 @@ for f in sorted(glob.glob("**/*.yaml", recursive=True)):
 print("All YAML manifests valid!")
 '
 
-# 4. End-to-end smoke test of 5a-deployment-no-helm/create-config-files.sh
+# 4. Run the automated verification and edge-case test suite
+./tests/verify-scripts-and-configs.sh
 ```
 
 ---

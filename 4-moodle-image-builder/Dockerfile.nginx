@@ -65,7 +65,9 @@ ARG MOODLE_ROOT_PATH='/moodleroot-instance1' \
     MOODLE_PATH='/moodleroot-instance1/moodle'
 
 ENV MOODLE_URL='' \
+    MOODLE_SHA256='' \
     MOOSH_URL='' \
+    MOOSH_SHA256='' \
     MOODLE_PLUGINS='report_benchmark tool_opcache' \
     LANG='' \
     LANGUAGE='' \
