@@ -29,5 +29,6 @@
   "27": "Updating Environment Variables and Upgrading Pods",
   "28": "Configuring SSL and forcing HTTPS redirect",
   "29": "CONTRIBUTORS.md",
-  "30": "LICENSE.md"
+  "30": "LICENSE.md",
+  "31": "verify-scripts-and-configs.sh"
 }

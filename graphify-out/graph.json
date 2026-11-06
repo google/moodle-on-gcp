@@ -2122,7 +2122,7 @@
       "node_kind": "heading",
       "norm_label": "4. using the jules cli (`@google/jules`) with this repository",
       "source_file": "AGENTS.md",
-      "source_location": "L83"
+      "source_location": "L84"
     },
     {
       "id": "agents_agent_jules_configuration_guide_google_moodle_on_gcp",
@@ -2146,7 +2146,7 @@
       "node_kind": "heading",
       "norm_label": "openwiki",
       "source_file": "AGENTS.md",
-      "source_location": "L106"
+      "source_location": "L107"
     },
     {
       "id": "claude",
@@ -2243,6 +2243,18 @@
       "norm_label": "2026-11-05 \u2014 moodle 5.2+ public webroot (`mdl-83424`), `gnu-libiconv`, and cloud cdn cookie stripping (`pr #42`, `pr #45`, `pr #47`)",
       "source_file": ".jules/sentinel.md",
       "source_location": "L36"
+    },
+    {
+      "id": "jules_sentinel_2026_11_06_proactive_hardening_least_privilege_file_permissions_getenv_read_replica_smtp_secret_isolation_batch_set_config_and_publicpaths_php_port_8080_pr_48",
+      "label": "2026-11-06 \u2014 Proactive Hardening: Least-Privilege File Permissions, `getenv()` Read-Replica & SMTP Secret Isolation, Batch `set_config()`, and `publicpaths.php` Port 8080 (`PR #48`)",
+      "_origin": "ast",
+      "community": 17,
+      "community_name": "Sentinel's Journal \u2014 Security, Hardening & Review Guardrails (`google/moodle-on-gcp`)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "2026-11-06 \u2014 proactive hardening: least-privilege file permissions, `getenv()` read-replica & smtp secret isolation, batch `set_config()`, and `publicpaths.php` port 8080 (`pr #48`)",
+      "source_file": ".jules/sentinel.md",
+      "source_location": "L68"
     },
     {
       "id": "jules_sentinel_chronological_security_hardening_learnings",
@@ -3000,6 +3012,66 @@
       "source_location": "L1"
     },
     {
+      "id": "tests_verify_scripts_and_configs",
+      "label": "verify-scripts-and-configs.sh",
+      "_origin": "ast",
+      "community": 31,
+      "community_name": "verify-scripts-and-configs.sh",
+      "file_type": "code",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "norm_label": "verify-scripts-and-configs.sh",
+      "source_file": "tests/verify-scripts-and-configs.sh",
+      "source_location": "L1"
+    },
+    {
+      "id": "tests_verify_scripts_and_configs_create_mock_config",
+      "label": "create_mock_config()",
+      "_origin": "ast",
+      "community": 31,
+      "community_name": "verify-scripts-and-configs.sh",
+      "file_type": "code",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_function"
+      },
+      "norm_label": "create_mock_config()",
+      "source_file": "tests/verify-scripts-and-configs.sh",
+      "source_location": "L75"
+    },
+    {
+      "id": "tests_verify_scripts_and_configs_run_replica_snippet",
+      "label": "run_replica_snippet()",
+      "_origin": "ast",
+      "community": 31,
+      "community_name": "verify-scripts-and-configs.sh",
+      "file_type": "code",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_function"
+      },
+      "norm_label": "run_replica_snippet()",
+      "source_file": "tests/verify-scripts-and-configs.sh",
+      "source_location": "L89"
+    },
+    {
+      "id": "tests_verify_scripts_and_configs_sh__entry",
+      "label": "verify-scripts-and-configs.sh script",
+      "_origin": "ast",
+      "community": 31,
+      "community_name": "verify-scripts-and-configs.sh",
+      "file_type": "code",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "norm_label": "verify-scripts-and-configs.sh script",
+      "source_file": "tests/verify-scripts-and-configs.sh",
+      "source_location": "L1"
+    },
+    {
       "id": "openwiki_operations_gke_deployments_and_uploads_isolation",
       "label": "gke-deployments-and-uploads-isolation.md",
       "_origin": "ast",
@@ -3561,6 +3633,30 @@
       "weight": 1.0
     },
     {
+      "source": "tests_verify_scripts_and_configs_sh__entry",
+      "target": "tests_verify_scripts_and_configs_create_mock_config",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "tests/verify-scripts-and-configs.sh",
+      "source_location": "L101",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_verify_scripts_and_configs_sh__entry",
+      "target": "tests_verify_scripts_and_configs_run_replica_snippet",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "tests/verify-scripts-and-configs.sh",
+      "source_location": "L102",
+      "weight": 1.0
+    },
+    {
       "source": "0_infra_cleanup_moodle_install",
       "target": "0_infra_cleanup_moodle_install_sh__entry",
       "relation": "contains",
@@ -3667,7 +3763,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "AGENTS.md",
-      "source_location": "L106",
+      "source_location": "L107",
       "weight": 1.0
     },
     {
@@ -3711,7 +3807,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "AGENTS.md",
-      "source_location": "L83",
+      "source_location": "L84",
       "weight": 1.0
     },
     {
@@ -4551,6 +4647,17 @@
       "weight": 1.0
     },
     {
+      "source": "jules_sentinel_sentinel_s_journal_security_hardening_review_guardrails_google_moodle_on_gcp",
+      "target": "jules_sentinel_2026_11_06_proactive_hardening_least_privilege_file_permissions_getenv_read_replica_smtp_secret_isolation_batch_set_config_and_publicpaths_php_port_8080_pr_48",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".jules/sentinel.md",
+      "source_location": "L68",
+      "weight": 1.0
+    },
+    {
       "source": "openwiki_architecture_index",
       "target": "openwiki_architecture_index_arquivos",
       "relation": "contains",
@@ -4933,6 +5040,17 @@
       "confidence_score": 1.0,
       "source_file": "README.md",
       "source_location": "L13",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_verify_scripts_and_configs",
+      "target": "tests_verify_scripts_and_configs_sh__entry",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/verify-scripts-and-configs.sh",
+      "source_location": "L1",
       "weight": 1.0
     },
     {
@@ -5483,6 +5601,28 @@
       "confidence_score": 1.0,
       "source_file": "5a-deployment-no-helm/create-config-files.sh",
       "source_location": "L41",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_verify_scripts_and_configs",
+      "target": "tests_verify_scripts_and_configs_create_mock_config",
+      "relation": "defines",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/verify-scripts-and-configs.sh",
+      "source_location": "L75",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_verify_scripts_and_configs",
+      "target": "tests_verify_scripts_and_configs_run_replica_snippet",
+      "relation": "defines",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/verify-scripts-and-configs.sh",
+      "source_location": "L89",
       "weight": 1.0
     },
     {
@@ -6536,5 +6676,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "3cc51e507a833f254500654cb227229615b75799"
+  "built_at_commit": "f09aa841146543e68ac3fce3d79decfa4703acba"
 }
