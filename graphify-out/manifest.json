@@ -12,9 +12,9 @@
     "semantic_hash": ""
   },
   "0-infra/infra-creation.sh": {
-    "mtime": 1794009368.8762147,
-    "seen": 1794010101.3554296,
-    "ast_hash": "32a892603bc1dc63ad5328f403d27d5a",
+    "mtime": 1794012247.872321,
+    "seen": 1794012574.9649525,
+    "ast_hash": "1335ac6a385bbc00d493fbdf48f97b4b",
     "semantic_hash": ""
   },
   "4-moodle-image-builder/base/moodle/local/defaults.php": {
@@ -54,51 +54,51 @@
     "semantic_hash": "d3fff8f8ca0c364d646bdc221cc293c0"
   },
   "openwiki/.claims/architecture/infrastructure-and-networking.json": {
-    "mtime": 1793999595.01425,
-    "seen": 1794010101.3554893,
-    "ast_hash": "74c966f8dc3233bbb7cf8613bb0a6a69",
+    "mtime": 1794010287.002973,
+    "seen": 1794012574.9649706,
+    "ast_hash": "1dece80f1b6c195dcbcac87440ec3d80",
     "semantic_hash": ""
   },
   "openwiki/.claims/architecture/storage-modalities.json": {
-    "mtime": 1793999595.022017,
-    "seen": 1794010101.3554916,
+    "mtime": 1794010287.0109732,
+    "seen": 1794012574.9649954,
     "ast_hash": "dc21196e8eba6f8c65d3644bfa1378e7",
     "semantic_hash": "dc21196e8eba6f8c65d3644bfa1378e7"
   },
   "openwiki/.claims/operations/cloud-cdn-and-ingress.json": {
-    "mtime": 1793999595.0237136,
-    "seen": 1794010101.355493,
+    "mtime": 1794010287.018973,
+    "seen": 1794012574.9649973,
     "ast_hash": "509e6974d35580611298c527980052ae",
     "semantic_hash": "509e6974d35580611298c527980052ae"
   },
   "openwiki/.claims/operations/gke-deployments-and-uploads-isolation.json": {
-    "mtime": 1793999595.029207,
-    "seen": 1794010101.3554978,
+    "mtime": 1794010287.0309732,
+    "seen": 1794012574.9649987,
     "ast_hash": "dee6cb8617b322f18e366d3c830b806d",
     "semantic_hash": "dee6cb8617b322f18e366d3c830b806d"
   },
   "openwiki/.claims/quickstart.json": {
-    "mtime": 1793999595.0300553,
-    "seen": 1794010101.3555024,
+    "mtime": 1794010287.038973,
+    "seen": 1794012574.9650002,
     "ast_hash": "4c6d5576123ef531ccbc0ce848df8ab0",
     "semantic_hash": ""
   },
   "openwiki/.claims/runtime/container-image-moodle52-php83.json": {
-    "mtime": 1793999595.03025,
-    "seen": 1794010101.3555038,
+    "mtime": 1794010287.0512664,
+    "seen": 1794012574.9650018,
     "ast_hash": "117f9c47082cbc1bb711e506fa0cf5d6",
     "semantic_hash": ""
   },
   "openwiki/.last-update.json": {
-    "mtime": 1793999595.2222497,
-    "seen": 1794010101.3555079,
-    "ast_hash": "e7a637fe81ac59ce7bdcf4959b2d1f62",
+    "mtime": 1794010287.4829724,
+    "seen": 1794012574.9650035,
+    "ast_hash": "c59a957da0d4d327bd29446b050ff134",
     "semantic_hash": ""
   },
   "openwiki/.page-manifest.json": {
-    "mtime": 1793999595.07025,
-    "seen": 1794010101.3555126,
-    "ast_hash": "e94ea5cd4c2f5cf821e3de7a664cb2da",
+    "mtime": 1794010287.1309729,
+    "seen": 1794012574.9650047,
+    "ast_hash": "5a2270bcc740c50154bc559bfe23bf08",
     "semantic_hash": ""
   },
   "1-pv/pv-filestore.yaml": {
@@ -384,9 +384,9 @@
     "semantic_hash": "5e3f3174b88ad0300641448daff5986c"
   },
   "openwiki/architecture/infrastructure-and-networking.md": {
-    "mtime": 1793947307.0608675,
-    "seen": 1793947446.6725998,
-    "ast_hash": "9abdc29c0fa2a2c6745c3f0e5a3b2abb",
+    "mtime": 1794010286.9389732,
+    "seen": 1794012574.9651198,
+    "ast_hash": "3f56c20f820d881895b87da3a1d40ac5",
     "semantic_hash": ""
   },
   "openwiki/architecture/storage-modalities.md": {
@@ -480,8 +480,8 @@
     "semantic_hash": ""
   },
   "AGENTS.md": {
-    "mtime": 1793999497.890383,
-    "seen": 1794010101.3556185,
+    "mtime": 1794010150.3071623,
+    "seen": 1794012574.9650507,
     "ast_hash": "9e78472bca7788fc4c6f0ccfdff591ef",
     "semantic_hash": ""
   },
@@ -492,8 +492,8 @@
     "semantic_hash": ""
   },
   "CLAUDE.md": {
-    "mtime": 1793999497.890383,
-    "seen": 1794010101.3556275,
+    "mtime": 1794010150.3071623,
+    "seen": 1794012574.965053,
     "ast_hash": "1983163bf708d0b6be1d42f4bd321cb5",
     "semantic_hash": ""
   },
@@ -684,21 +684,21 @@
     "semantic_hash": ""
   },
   "0-infra/infra-destroy.sh": {
-    "mtime": 1794009440.5401218,
-    "seen": 1794010101.355436,
-    "ast_hash": "23be5a23cd74d7ed75442ffa6317d2c6",
+    "mtime": 1794012252.9643137,
+    "seen": 1794012574.9649549,
+    "ast_hash": "b3665574689d168eaf18c66e8e1be799",
     "semantic_hash": ""
   },
   "0-infra/infra-pause.sh": {
-    "mtime": 1794009442.3841195,
-    "seen": 1794010101.3554442,
-    "ast_hash": "dcaf67079f947a9b4879e0e8c2c66443",
+    "mtime": 1794012545.6719122,
+    "seen": 1794012574.964957,
+    "ast_hash": "b72d91c1ec283ec252a15e718f6925c6",
     "semantic_hash": ""
   },
   "0-infra/infra-resume.sh": {
-    "mtime": 1794009444.1801171,
-    "seen": 1794010101.3554454,
-    "ast_hash": "3229b11f1f48eb04eea449e0f0a1fc29",
+    "mtime": 1794012251.416316,
+    "seen": 1794012574.9649582,
+    "ast_hash": "e11edf95bc0f34f0815b144e05926e3c",
     "semantic_hash": ""
   }
 }

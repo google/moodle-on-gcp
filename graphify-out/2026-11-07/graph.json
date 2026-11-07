@@ -349,6 +349,21 @@
       "source_location": "L1"
     },
     {
+      "id": "0_infra_envs_artifact_registry_name",
+      "label": "ARTIFACT_REGISTRY_NAME",
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "envs.sh",
+      "file_type": "code",
+      "metadata": {
+        "language": "bash",
+        "kind": "code"
+      },
+      "norm_label": "artifact_registry_name",
+      "source_file": "0-infra/envs.sh",
+      "source_location": "L54"
+    },
+    {
       "id": "0_infra_envs_cloud_build_sa_email",
       "label": "CLOUD_BUILD_SA_EMAIL",
       "_origin": "ast",
@@ -376,7 +391,7 @@
       },
       "norm_label": "create_cloud_sql",
       "source_file": "0-infra/envs.sh",
-      "source_location": "L78"
+      "source_location": "L83"
     },
     {
       "id": "0_infra_envs_create_jumpbox",
@@ -391,7 +406,7 @@
       },
       "norm_label": "create_jumpbox",
       "source_file": "0-infra/envs.sh",
-      "source_location": "L83"
+      "source_location": "L88"
     },
     {
       "id": "0_infra_envs_create_redis",
@@ -406,7 +421,7 @@
       },
       "norm_label": "create_redis",
       "source_file": "0-infra/envs.sh",
-      "source_location": "L79"
+      "source_location": "L84"
     },
     {
       "id": "0_infra_envs_create_redis_cluster",
@@ -421,7 +436,7 @@
       },
       "norm_label": "create_redis_cluster",
       "source_file": "0-infra/envs.sh",
-      "source_location": "L82"
+      "source_location": "L87"
     },
     {
       "id": "0_infra_envs_filestore_capacity",
@@ -436,7 +451,7 @@
       },
       "norm_label": "filestore_capacity",
       "source_file": "0-infra/envs.sh",
-      "source_location": "L107"
+      "source_location": "L112"
     },
     {
       "id": "0_infra_envs_filestore_ip_address",
@@ -451,7 +466,7 @@
       },
       "norm_label": "filestore_ip_address",
       "source_file": "0-infra/envs.sh",
-      "source_location": "L98"
+      "source_location": "L103"
     },
     {
       "id": "0_infra_envs_filestore_mount",
@@ -466,7 +481,7 @@
       },
       "norm_label": "filestore_mount",
       "source_file": "0-infra/envs.sh",
-      "source_location": "L108"
+      "source_location": "L113"
     },
     {
       "id": "0_infra_envs_filestore_name",
@@ -481,7 +496,7 @@
       },
       "norm_label": "filestore_name",
       "source_file": "0-infra/envs.sh",
-      "source_location": "L97"
+      "source_location": "L102"
     },
     {
       "id": "0_infra_envs_filestore_share_name",
@@ -496,7 +511,7 @@
       },
       "norm_label": "filestore_share_name",
       "source_file": "0-infra/envs.sh",
-      "source_location": "L106"
+      "source_location": "L111"
     },
     {
       "id": "0_infra_envs_filestore_tier",
@@ -511,7 +526,7 @@
       },
       "norm_label": "filestore_tier",
       "source_file": "0-infra/envs.sh",
-      "source_location": "L105"
+      "source_location": "L110"
     },
     {
       "id": "0_infra_envs_gke_master_ipv4_range",
@@ -527,6 +542,21 @@
       "norm_label": "gke_master_ipv4_range",
       "source_file": "0-infra/envs.sh",
       "source_location": "L33"
+    },
+    {
+      "id": "0_infra_envs_gke_mode",
+      "label": "GKE_MODE",
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "envs.sh",
+      "file_type": "code",
+      "metadata": {
+        "language": "bash",
+        "kind": "code"
+      },
+      "norm_label": "gke_mode",
+      "source_file": "0-infra/envs.sh",
+      "source_location": "L52"
     },
     {
       "id": "0_infra_envs_gke_name",
@@ -574,6 +604,21 @@
       "source_location": "L32"
     },
     {
+      "id": "0_infra_envs_jumpbox_vm_name",
+      "label": "JUMPBOX_VM_NAME",
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "envs.sh",
+      "file_type": "code",
+      "metadata": {
+        "language": "bash",
+        "kind": "code"
+      },
+      "norm_label": "jumpbox_vm_name",
+      "source_file": "0-infra/envs.sh",
+      "source_location": "L55"
+    },
+    {
       "id": "0_infra_envs_master_authorized_networks",
       "label": "MASTER_AUTHORIZED_NETWORKS",
       "_origin": "ast",
@@ -619,6 +664,21 @@
       "source_location": "L42"
     },
     {
+      "id": "0_infra_envs_moodle_replicas",
+      "label": "MOODLE_REPLICAS",
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "envs.sh",
+      "file_type": "code",
+      "metadata": {
+        "language": "bash",
+        "kind": "code"
+      },
+      "norm_label": "moodle_replicas",
+      "source_file": "0-infra/envs.sh",
+      "source_location": "L53"
+    },
+    {
       "id": "0_infra_envs_moodle_root_in_filestore",
       "label": "MOODLE_ROOT_IN_FILESTORE",
       "_origin": "ast",
@@ -631,7 +691,7 @@
       },
       "norm_label": "moodle_root_in_filestore",
       "source_file": "0-infra/envs.sh",
-      "source_location": "L137"
+      "source_location": "L142"
     },
     {
       "id": "0_infra_envs_moodle_root_path",
@@ -646,7 +706,7 @@
       },
       "norm_label": "moodle_root_path",
       "source_file": "0-infra/envs.sh",
-      "source_location": "L135"
+      "source_location": "L140"
     },
     {
       "id": "0_infra_envs_moodle_root_path_no_slash",
@@ -661,7 +721,7 @@
       },
       "norm_label": "moodle_root_path_no_slash",
       "source_file": "0-infra/envs.sh",
-      "source_location": "L136"
+      "source_location": "L141"
     },
     {
       "id": "0_infra_envs_mysql_database_version",
@@ -676,7 +736,7 @@
       },
       "norm_label": "mysql_database_version",
       "source_file": "0-infra/envs.sh",
-      "source_location": "L53"
+      "source_location": "L58"
     },
     {
       "id": "0_infra_envs_mysql_db",
@@ -691,7 +751,7 @@
       },
       "norm_label": "mysql_db",
       "source_file": "0-infra/envs.sh",
-      "source_location": "L56"
+      "source_location": "L61"
     },
     {
       "id": "0_infra_envs_mysql_instance_name",
@@ -706,7 +766,7 @@
       },
       "norm_label": "mysql_instance_name",
       "source_file": "0-infra/envs.sh",
-      "source_location": "L51"
+      "source_location": "L56"
     },
     {
       "id": "0_infra_envs_mysql_moodle_db_charset",
@@ -721,7 +781,7 @@
       },
       "norm_label": "mysql_moodle_db_charset",
       "source_file": "0-infra/envs.sh",
-      "source_location": "L57"
+      "source_location": "L62"
     },
     {
       "id": "0_infra_envs_mysql_moodle_db_collation",
@@ -736,7 +796,7 @@
       },
       "norm_label": "mysql_moodle_db_collation",
       "source_file": "0-infra/envs.sh",
-      "source_location": "L58"
+      "source_location": "L63"
     },
     {
       "id": "0_infra_envs_nat_config",
@@ -796,7 +856,7 @@
       },
       "norm_label": "pd_access_mode",
       "source_file": "0-infra/envs.sh",
-      "source_location": "L116"
+      "source_location": "L121"
     },
     {
       "id": "0_infra_envs_pd_disk_name",
@@ -811,7 +871,7 @@
       },
       "norm_label": "pd_disk_name",
       "source_file": "0-infra/envs.sh",
-      "source_location": "L111"
+      "source_location": "L116"
     },
     {
       "id": "0_infra_envs_pd_disk_size",
@@ -826,7 +886,7 @@
       },
       "norm_label": "pd_disk_size",
       "source_file": "0-infra/envs.sh",
-      "source_location": "L114"
+      "source_location": "L119"
     },
     {
       "id": "0_infra_envs_pd_disk_type",
@@ -841,7 +901,7 @@
       },
       "norm_label": "pd_disk_type",
       "source_file": "0-infra/envs.sh",
-      "source_location": "L113"
+      "source_location": "L118"
     },
     {
       "id": "0_infra_envs_project_id",
@@ -886,7 +946,7 @@
       },
       "norm_label": "redis_cluster_name",
       "source_file": "0-infra/envs.sh",
-      "source_location": "L62"
+      "source_location": "L67"
     },
     {
       "id": "0_infra_envs_redis_cluster_node_type",
@@ -901,7 +961,7 @@
       },
       "norm_label": "redis_cluster_node_type",
       "source_file": "0-infra/envs.sh",
-      "source_location": "L65"
+      "source_location": "L70"
     },
     {
       "id": "0_infra_envs_redis_cluster_replica_count",
@@ -916,7 +976,7 @@
       },
       "norm_label": "redis_cluster_replica_count",
       "source_file": "0-infra/envs.sh",
-      "source_location": "L64"
+      "source_location": "L69"
     },
     {
       "id": "0_infra_envs_redis_cluster_shard_count",
@@ -931,7 +991,7 @@
       },
       "norm_label": "redis_cluster_shard_count",
       "source_file": "0-infra/envs.sh",
-      "source_location": "L63"
+      "source_location": "L68"
     },
     {
       "id": "0_infra_envs_redis_name",
@@ -946,7 +1006,7 @@
       },
       "norm_label": "redis_name",
       "source_file": "0-infra/envs.sh",
-      "source_location": "L61"
+      "source_location": "L66"
     },
     {
       "id": "0_infra_envs_region",
@@ -1006,7 +1066,7 @@
       },
       "norm_label": "storage_type",
       "source_file": "0-infra/envs.sh",
-      "source_location": "L75"
+      "source_location": "L80"
     },
     {
       "id": "0_infra_envs_subnet_name",
@@ -1765,7 +1825,7 @@
         "verified": [
           {
             "by": "openwiki/0.5.1",
-            "at": "2026-11-05 11:15:21.468000+00:00"
+            "at": "2026-11-06 21:11:38.409000+00:00"
           }
         ],
         "sources": [
@@ -1792,7 +1852,7 @@
         ],
         "generated": {
           "by": "antigravity",
-          "at": "2026-11-05T11:15:21.468Z"
+          "at": "2026-11-06T21:11:38.409Z"
         }
       },
       "node_kind": "page",
@@ -1810,7 +1870,7 @@
       "node_kind": "heading",
       "norm_label": "1. compilacao multi-stage do `preloadable_libiconv.so` (mdl-80440)",
       "source_file": "openwiki/runtime/container-image-moodle52-php83.md",
-      "source_location": "L37"
+      "source_location": "L36"
     },
     {
       "id": "openwiki_runtime_container_image_moodle52_php83_2_php_8_3_e_verifica\u00e7\u00e3o_din\u00e2mica_do_composer",
@@ -1822,7 +1882,7 @@
       "node_kind": "heading",
       "norm_label": "2. php 8.3 e verificacao dinamica do composer",
       "source_file": "openwiki/runtime/container-image-moodle52-php83.md",
-      "source_location": "L44"
+      "source_location": "L43"
     },
     {
       "id": "openwiki_runtime_container_image_moodle52_php83_3_bootstrap_do_moodle_5_2_4_depend\u00eancias_composer_e_webroot_public_setup_moodle_sh",
@@ -1834,7 +1894,7 @@
       "node_kind": "heading",
       "norm_label": "3. bootstrap do moodle 5.2.4, dependencias composer e webroot `/public` (`setup_moodle.sh`)",
       "source_file": "openwiki/runtime/container-image-moodle52-php83.md",
-      "source_location": "L50"
+      "source_location": "L49"
     },
     {
       "id": "openwiki_runtime_container_image_moodle52_php83_imagem_container_nginx_php_8_3_gnu_libiconv_e_bootstrap_do_moodle_5_2",
@@ -3370,7 +3430,7 @@
       },
       "norm_label": "validate_moodle_envs()",
       "source_file": "0-infra/envs.sh",
-      "source_location": "L139"
+      "source_location": "L144"
     },
     {
       "id": "0_infra_infra_creation",
@@ -3400,6 +3460,171 @@
       },
       "norm_label": "infra-creation.sh script",
       "source_file": "0-infra/infra-creation.sh",
+      "source_location": "L1"
+    },
+    {
+      "id": "0_infra_infra_destroy",
+      "label": "infra-destroy.sh",
+      "_origin": "ast",
+      "community": 5,
+      "community_name": "validate_moodle_envs",
+      "file_type": "code",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "norm_label": "infra-destroy.sh",
+      "source_file": "0-infra/infra-destroy.sh",
+      "source_location": "L1"
+    },
+    {
+      "id": "0_infra_infra_destroy_is_configured",
+      "label": "is_configured()",
+      "_origin": "ast",
+      "community": 5,
+      "community_name": "validate_moodle_envs",
+      "file_type": "code",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_function"
+      },
+      "norm_label": "is_configured()",
+      "source_file": "0-infra/infra-destroy.sh",
+      "source_location": "L76"
+    },
+    {
+      "id": "0_infra_infra_destroy_sh__entry",
+      "label": "infra-destroy.sh script",
+      "_origin": "ast",
+      "community": 5,
+      "community_name": "validate_moodle_envs",
+      "file_type": "code",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "norm_label": "infra-destroy.sh script",
+      "source_file": "0-infra/infra-destroy.sh",
+      "source_location": "L1"
+    },
+    {
+      "id": "0_infra_infra_pause",
+      "label": "infra-pause.sh",
+      "_origin": "ast",
+      "community": 5,
+      "community_name": "validate_moodle_envs",
+      "file_type": "code",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "norm_label": "infra-pause.sh",
+      "source_file": "0-infra/infra-pause.sh",
+      "source_location": "L1"
+    },
+    {
+      "id": "0_infra_infra_pause_cloudsdk_container_use_application_default_credentials",
+      "label": "CLOUDSDK_CONTAINER_USE_APPLICATION_DEFAULT_CREDENTIALS",
+      "_origin": "ast",
+      "community": 5,
+      "community_name": "validate_moodle_envs",
+      "file_type": "code",
+      "metadata": {
+        "language": "bash",
+        "kind": "code"
+      },
+      "norm_label": "cloudsdk_container_use_application_default_credentials",
+      "source_file": "0-infra/infra-pause.sh",
+      "source_location": "L55"
+    },
+    {
+      "id": "0_infra_infra_pause_is_configured",
+      "label": "is_configured()",
+      "_origin": "ast",
+      "community": 5,
+      "community_name": "validate_moodle_envs",
+      "file_type": "code",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_function"
+      },
+      "norm_label": "is_configured()",
+      "source_file": "0-infra/infra-pause.sh",
+      "source_location": "L50"
+    },
+    {
+      "id": "0_infra_infra_pause_sh__entry",
+      "label": "infra-pause.sh script",
+      "_origin": "ast",
+      "community": 5,
+      "community_name": "validate_moodle_envs",
+      "file_type": "code",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "norm_label": "infra-pause.sh script",
+      "source_file": "0-infra/infra-pause.sh",
+      "source_location": "L1"
+    },
+    {
+      "id": "0_infra_infra_resume",
+      "label": "infra-resume.sh",
+      "_origin": "ast",
+      "community": 5,
+      "community_name": "validate_moodle_envs",
+      "file_type": "code",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "norm_label": "infra-resume.sh",
+      "source_file": "0-infra/infra-resume.sh",
+      "source_location": "L1"
+    },
+    {
+      "id": "0_infra_infra_resume_cloudsdk_container_use_application_default_credentials",
+      "label": "CLOUDSDK_CONTAINER_USE_APPLICATION_DEFAULT_CREDENTIALS",
+      "_origin": "ast",
+      "community": 5,
+      "community_name": "validate_moodle_envs",
+      "file_type": "code",
+      "metadata": {
+        "language": "bash",
+        "kind": "code"
+      },
+      "norm_label": "cloudsdk_container_use_application_default_credentials",
+      "source_file": "0-infra/infra-resume.sh",
+      "source_location": "L58"
+    },
+    {
+      "id": "0_infra_infra_resume_is_configured",
+      "label": "is_configured()",
+      "_origin": "ast",
+      "community": 5,
+      "community_name": "validate_moodle_envs",
+      "file_type": "code",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_function"
+      },
+      "norm_label": "is_configured()",
+      "source_file": "0-infra/infra-resume.sh",
+      "source_location": "L53"
+    },
+    {
+      "id": "0_infra_infra_resume_sh__entry",
+      "label": "infra-resume.sh script",
+      "_origin": "ast",
+      "community": 5,
+      "community_name": "validate_moodle_envs",
+      "file_type": "code",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "norm_label": "infra-resume.sh script",
+      "source_file": "0-infra/infra-resume.sh",
       "source_location": "L1"
     },
     {
@@ -3609,6 +3834,78 @@
       "weight": 1.0
     },
     {
+      "source": "0_infra_infra_destroy_sh__entry",
+      "target": "0_infra_envs_validate_moodle_envs",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "0-infra/infra-destroy.sh",
+      "source_location": "L30",
+      "weight": 1.0
+    },
+    {
+      "source": "0_infra_infra_destroy_sh__entry",
+      "target": "0_infra_infra_destroy_is_configured",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "0-infra/infra-destroy.sh",
+      "source_location": "L82",
+      "weight": 1.0
+    },
+    {
+      "source": "0_infra_infra_pause_sh__entry",
+      "target": "0_infra_envs_validate_moodle_envs",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "0-infra/infra-pause.sh",
+      "source_location": "L34",
+      "weight": 1.0
+    },
+    {
+      "source": "0_infra_infra_pause_sh__entry",
+      "target": "0_infra_infra_pause_is_configured",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "0-infra/infra-pause.sh",
+      "source_location": "L58",
+      "weight": 1.0
+    },
+    {
+      "source": "0_infra_infra_resume_sh__entry",
+      "target": "0_infra_envs_validate_moodle_envs",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "0-infra/infra-resume.sh",
+      "source_location": "L32",
+      "weight": 1.0
+    },
+    {
+      "source": "0_infra_infra_resume_sh__entry",
+      "target": "0_infra_infra_resume_is_configured",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "0-infra/infra-resume.sh",
+      "source_location": "L61",
+      "weight": 1.0
+    },
+    {
       "source": "4_moodle_image_builder_base_opt_setup_moodle_sh__entry",
       "target": "4_moodle_image_builder_base_opt_setup_moodle_setuppath",
       "relation": "calls",
@@ -3686,6 +3983,39 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "0-infra/infra-creation.sh",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "0_infra_infra_destroy",
+      "target": "0_infra_infra_destroy_sh__entry",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "0-infra/infra-destroy.sh",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "0_infra_infra_pause",
+      "target": "0_infra_infra_pause_sh__entry",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "0-infra/infra-pause.sh",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "0_infra_infra_resume",
+      "target": "0_infra_infra_resume_sh__entry",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "0-infra/infra-resume.sh",
       "source_location": "L1",
       "weight": 1.0
     },
@@ -4962,7 +5292,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "openwiki/runtime/container-image-moodle52-php83.md",
-      "source_location": "L37",
+      "source_location": "L36",
       "weight": 1.0
     },
     {
@@ -4973,7 +5303,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "openwiki/runtime/container-image-moodle52-php83.md",
-      "source_location": "L44",
+      "source_location": "L43",
       "weight": 1.0
     },
     {
@@ -4984,7 +5314,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "openwiki/runtime/container-image-moodle52-php83.md",
-      "source_location": "L50",
+      "source_location": "L49",
       "weight": 1.0
     },
     {
@@ -5055,13 +5385,35 @@
     },
     {
       "source": "0_infra_envs",
+      "target": "0_infra_envs_filestore_name",
+      "relation": "defines",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "0-infra/envs.sh",
+      "source_location": "L102",
+      "weight": 1.0
+    },
+    {
+      "source": "0_infra_envs",
+      "target": "0_infra_envs_filestore_ip_address",
+      "relation": "defines",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "0-infra/envs.sh",
+      "source_location": "L103",
+      "weight": 1.0
+    },
+    {
+      "source": "0_infra_envs",
       "target": "0_infra_envs_filestore_tier",
       "relation": "defines",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "0-infra/envs.sh",
-      "source_location": "L105",
+      "source_location": "L110",
       "weight": 1.0
     },
     {
@@ -5072,7 +5424,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "0-infra/envs.sh",
-      "source_location": "L106",
+      "source_location": "L111",
       "weight": 1.0
     },
     {
@@ -5083,7 +5435,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "0-infra/envs.sh",
-      "source_location": "L107",
+      "source_location": "L112",
       "weight": 1.0
     },
     {
@@ -5094,7 +5446,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "0-infra/envs.sh",
-      "source_location": "L108",
+      "source_location": "L113",
       "weight": 1.0
     },
     {
@@ -5105,7 +5457,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "0-infra/envs.sh",
-      "source_location": "L111",
+      "source_location": "L116",
       "weight": 1.0
     },
     {
@@ -5116,7 +5468,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "0-infra/envs.sh",
-      "source_location": "L113",
+      "source_location": "L118",
       "weight": 1.0
     },
     {
@@ -5127,7 +5479,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "0-infra/envs.sh",
-      "source_location": "L114",
+      "source_location": "L119",
       "weight": 1.0
     },
     {
@@ -5138,7 +5490,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "0-infra/envs.sh",
-      "source_location": "L116",
+      "source_location": "L121",
       "weight": 1.0
     },
     {
@@ -5149,7 +5501,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "0-infra/envs.sh",
-      "source_location": "L135",
+      "source_location": "L140",
       "weight": 1.0
     },
     {
@@ -5160,7 +5512,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "0-infra/envs.sh",
-      "source_location": "L136",
+      "source_location": "L141",
       "weight": 1.0
     },
     {
@@ -5171,7 +5523,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "0-infra/envs.sh",
-      "source_location": "L137",
+      "source_location": "L142",
       "weight": 1.0
     },
     {
@@ -5182,7 +5534,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "0-infra/envs.sh",
-      "source_location": "L139",
+      "source_location": "L144",
       "weight": 1.0
     },
     {
@@ -5396,18 +5748,18 @@
     },
     {
       "source": "0_infra_envs",
-      "target": "0_infra_envs_mysql_instance_name",
+      "target": "0_infra_envs_gke_mode",
       "relation": "defines",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "0-infra/envs.sh",
-      "source_location": "L51",
+      "source_location": "L52",
       "weight": 1.0
     },
     {
       "source": "0_infra_envs",
-      "target": "0_infra_envs_mysql_database_version",
+      "target": "0_infra_envs_moodle_replicas",
       "relation": "defines",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -5418,7 +5770,29 @@
     },
     {
       "source": "0_infra_envs",
-      "target": "0_infra_envs_mysql_db",
+      "target": "0_infra_envs_artifact_registry_name",
+      "relation": "defines",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "0-infra/envs.sh",
+      "source_location": "L54",
+      "weight": 1.0
+    },
+    {
+      "source": "0_infra_envs",
+      "target": "0_infra_envs_jumpbox_vm_name",
+      "relation": "defines",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "0-infra/envs.sh",
+      "source_location": "L55",
+      "weight": 1.0
+    },
+    {
+      "source": "0_infra_envs",
+      "target": "0_infra_envs_mysql_instance_name",
       "relation": "defines",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -5429,18 +5803,7 @@
     },
     {
       "source": "0_infra_envs",
-      "target": "0_infra_envs_mysql_moodle_db_charset",
-      "relation": "defines",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "0-infra/envs.sh",
-      "source_location": "L57",
-      "weight": 1.0
-    },
-    {
-      "source": "0_infra_envs",
-      "target": "0_infra_envs_mysql_moodle_db_collation",
+      "target": "0_infra_envs_mysql_database_version",
       "relation": "defines",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -5451,7 +5814,7 @@
     },
     {
       "source": "0_infra_envs",
-      "target": "0_infra_envs_redis_name",
+      "target": "0_infra_envs_mysql_db",
       "relation": "defines",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -5462,7 +5825,7 @@
     },
     {
       "source": "0_infra_envs",
-      "target": "0_infra_envs_redis_cluster_name",
+      "target": "0_infra_envs_mysql_moodle_db_charset",
       "relation": "defines",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -5473,7 +5836,7 @@
     },
     {
       "source": "0_infra_envs",
-      "target": "0_infra_envs_redis_cluster_shard_count",
+      "target": "0_infra_envs_mysql_moodle_db_collation",
       "relation": "defines",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -5484,13 +5847,46 @@
     },
     {
       "source": "0_infra_envs",
+      "target": "0_infra_envs_redis_name",
+      "relation": "defines",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "0-infra/envs.sh",
+      "source_location": "L66",
+      "weight": 1.0
+    },
+    {
+      "source": "0_infra_envs",
+      "target": "0_infra_envs_redis_cluster_name",
+      "relation": "defines",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "0-infra/envs.sh",
+      "source_location": "L67",
+      "weight": 1.0
+    },
+    {
+      "source": "0_infra_envs",
+      "target": "0_infra_envs_redis_cluster_shard_count",
+      "relation": "defines",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "0-infra/envs.sh",
+      "source_location": "L68",
+      "weight": 1.0
+    },
+    {
+      "source": "0_infra_envs",
       "target": "0_infra_envs_redis_cluster_replica_count",
       "relation": "defines",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "0-infra/envs.sh",
-      "source_location": "L64",
+      "source_location": "L69",
       "weight": 1.0
     },
     {
@@ -5501,7 +5897,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "0-infra/envs.sh",
-      "source_location": "L65",
+      "source_location": "L70",
       "weight": 1.0
     },
     {
@@ -5512,7 +5908,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "0-infra/envs.sh",
-      "source_location": "L75",
+      "source_location": "L80",
       "weight": 1.0
     },
     {
@@ -5523,7 +5919,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "0-infra/envs.sh",
-      "source_location": "L78",
+      "source_location": "L83",
       "weight": 1.0
     },
     {
@@ -5534,7 +5930,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "0-infra/envs.sh",
-      "source_location": "L79",
+      "source_location": "L84",
       "weight": 1.0
     },
     {
@@ -5545,7 +5941,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "0-infra/envs.sh",
-      "source_location": "L82",
+      "source_location": "L87",
       "weight": 1.0
     },
     {
@@ -5556,29 +5952,62 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "0-infra/envs.sh",
-      "source_location": "L83",
+      "source_location": "L88",
       "weight": 1.0
     },
     {
-      "source": "0_infra_envs",
-      "target": "0_infra_envs_filestore_name",
+      "source": "0_infra_infra_destroy",
+      "target": "0_infra_infra_destroy_is_configured",
       "relation": "defines",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
-      "source_file": "0-infra/envs.sh",
-      "source_location": "L97",
+      "source_file": "0-infra/infra-destroy.sh",
+      "source_location": "L76",
       "weight": 1.0
     },
     {
-      "source": "0_infra_envs",
-      "target": "0_infra_envs_filestore_ip_address",
+      "source": "0_infra_infra_pause",
+      "target": "0_infra_infra_pause_is_configured",
       "relation": "defines",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
-      "source_file": "0-infra/envs.sh",
-      "source_location": "L98",
+      "source_file": "0-infra/infra-pause.sh",
+      "source_location": "L50",
+      "weight": 1.0
+    },
+    {
+      "source": "0_infra_infra_pause",
+      "target": "0_infra_infra_pause_cloudsdk_container_use_application_default_credentials",
+      "relation": "defines",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "0-infra/infra-pause.sh",
+      "source_location": "L55",
+      "weight": 1.0
+    },
+    {
+      "source": "0_infra_infra_resume",
+      "target": "0_infra_infra_resume_is_configured",
+      "relation": "defines",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "0-infra/infra-resume.sh",
+      "source_location": "L53",
+      "weight": 1.0
+    },
+    {
+      "source": "0_infra_infra_resume",
+      "target": "0_infra_infra_resume_cloudsdk_container_use_application_default_credentials",
+      "relation": "defines",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "0-infra/infra-resume.sh",
+      "source_location": "L58",
       "weight": 1.0
     },
     {
@@ -6629,6 +7058,42 @@
       "weight": 1.0
     },
     {
+      "source": "0_infra_infra_destroy",
+      "target": "0_infra_envs",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.55,
+      "context": "import",
+      "source_file": "0-infra/infra-destroy.sh",
+      "source_location": "L28",
+      "weight": 1.0
+    },
+    {
+      "source": "0_infra_infra_pause",
+      "target": "0_infra_envs",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.55,
+      "context": "import",
+      "source_file": "0-infra/infra-pause.sh",
+      "source_location": "L32",
+      "weight": 1.0
+    },
+    {
+      "source": "0_infra_infra_resume",
+      "target": "0_infra_envs",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.55,
+      "context": "import",
+      "source_file": "0-infra/infra-resume.sh",
+      "source_location": "L30",
+      "weight": 1.0
+    },
+    {
       "source": "4_moodle_image_builder_build_nginx_based_image",
       "target": "0_infra_envs",
       "relation": "imports_from",
@@ -6676,5 +7141,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "f09aa841146543e68ac3fce3d79decfa4703acba"
+  "built_at_commit": "be14d7f28100bb58a667e530677e9f1560724b11"
 }
