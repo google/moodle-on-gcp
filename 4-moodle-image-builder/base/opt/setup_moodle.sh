@@ -405,11 +405,18 @@ cache_adjusted=""
 filename="$MOODLE_DATAROOT_PATH/moosh/.redis-session-mapping-done"
 if [ ! -f "$filename" ] && [ -n "$REDIS_SESSION_IP_AND_PORT" ]; then
   echo "Adding cache redis-store for Session Cache via Moosh ..."
-  sudo -u www moosh --moodle-path="$MOODLE_PATH" cache-add-redis-store \
-    --password "$REDIS_SESSION_AUTH_STRING" \
-    --key-prefix "store_session_1_" \
-    "Session" \
-    "$REDIS_SESSION_IP_AND_PORT"
+  if [ -n "$REDIS_SESSION_AUTH_STRING" ]; then
+    sudo -u www moosh --moodle-path="$MOODLE_PATH" cache-add-redis-store \
+      --password "$REDIS_SESSION_AUTH_STRING" \
+      --key-prefix "store_session_1_" \
+      "Session" \
+      "$REDIS_SESSION_IP_AND_PORT"
+  else
+    sudo -u www moosh --moodle-path="$MOODLE_PATH" cache-add-redis-store \
+      --key-prefix "store_session_1_" \
+      "Session" \
+      "$REDIS_SESSION_IP_AND_PORT"
+  fi
 
   cache_adjusted="true"
   touch "$filename"
@@ -420,11 +427,18 @@ fi
 filename="$MOODLE_DATAROOT_PATH/moosh/.redis-app-mapping-done"
 if [ ! -f "$filename" ] && [ -n "$REDIS_APP_IP_AND_PORT" ]; then
   echo "Adding cache redis-store for Application Cache via Moosh ..."
-  sudo -u www moosh --moodle-path "$MOODLE_PATH" cache-add-redis-store \
-    --password "$REDIS_APP_AUTH_STRING" \
-    --key-prefix "store_app_1_" \
-    "Application" \
-    "$REDIS_APP_IP_AND_PORT"
+  if [ -n "$REDIS_APP_AUTH_STRING" ]; then
+    sudo -u www moosh --moodle-path "$MOODLE_PATH" cache-add-redis-store \
+      --password "$REDIS_APP_AUTH_STRING" \
+      --key-prefix "store_app_1_" \
+      "Application" \
+      "$REDIS_APP_IP_AND_PORT"
+  else
+    sudo -u www moosh --moodle-path "$MOODLE_PATH" cache-add-redis-store \
+      --key-prefix "store_app_1_" \
+      "Application" \
+      "$REDIS_APP_IP_AND_PORT"
+  fi
 
   cache_adjusted="true"
   touch "$filename"
