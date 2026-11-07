@@ -30,9 +30,9 @@
     "semantic_hash": "416a85648b1d3867347a8370371d82c3"
   },
   "4-moodle-image-builder/base/opt/setup_moodle.sh": {
-    "mtime": 1793999425.878481,
-    "seen": 1793999475.8608015,
-    "ast_hash": "a7f068b4c66d53ffa7943e17fad3ab8a",
+    "mtime": 1794016365.0742917,
+    "seen": 1794016598.7403762,
+    "ast_hash": "516c0699c922ac12f453741d8069ba03",
     "semantic_hash": ""
   },
   "4-moodle-image-builder/build-nginx-based-image.sh": {
@@ -696,9 +696,15 @@
     "semantic_hash": ""
   },
   "0-infra/infra-resume.sh": {
-    "mtime": 1794012251.416316,
-    "seen": 1794012574.9649582,
-    "ast_hash": "e11edf95bc0f34f0815b144e05926e3c",
+    "mtime": 1794016444.6541781,
+    "seen": 1794016598.74037,
+    "ast_hash": "0f019f720c2a6550f5adcb75a1211234",
+    "semantic_hash": ""
+  },
+  ".github/workflows/openwiki-update.yml": {
+    "mtime": 1793882882.0,
+    "seen": 1794016598.7404003,
+    "ast_hash": "53b82584ec675902609b0cccb9420dc2",
     "semantic_hash": ""
   }
 }

@@ -84,6 +84,13 @@ fi
 if is_configured "$GKE_NAME"; then
   echo "Connecting to GKE cluster '$GKE_NAME' ($REGION) and scaling moodle-deployment to $TARGET_REPLICAS replicas..."
   gcloud container clusters get-credentials "$GKE_NAME" --region="$REGION" --project="$PROJECT_ID"
+  if is_configured "$REDIS_NAME"; then
+    NEW_REDIS_IP="$(gcloud redis instances describe "$REDIS_NAME" --region="$REGION" --project="$PROJECT_ID" --format="value(host)" 2>/dev/null || true)"
+    if [ -n "$NEW_REDIS_IP" ]; then
+      echo "Updating moodle-configmap with Redis host IP '$NEW_REDIS_IP'..."
+      kubectl patch configmap moodle-configmap -n moodle --type merge -p "{\"data\":{\"REDIS_HOST\":\"$NEW_REDIS_IP\",\"REDIS_SESSION_ID_HOST\":\"$NEW_REDIS_IP\",\"REDIS_SESSION_IP_AND_PORT\":\"${NEW_REDIS_IP}:6379\",\"REDIS_APP_IP_AND_PORT\":\"${NEW_REDIS_IP}:6379\",\"REDIS_LOCK_HOST_AND_PORT\":\"${NEW_REDIS_IP}:6379\"}}" 2>/dev/null || true
+    fi
+  fi
   kubectl scale deployment moodle-deployment -n moodle --replicas="$TARGET_REPLICAS"
   kubectl patch cronjob moodle-cronjob -n moodle -p '{"spec":{"suspend":false}}' 2>/dev/null || true
   kubectl get pods -n moodle -o wide
