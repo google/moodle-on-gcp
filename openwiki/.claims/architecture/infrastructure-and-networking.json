@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:ff9ce808006ef2ac0e80ac23c2c8aca71b4b981d20f1d52b06159be836ef9c59",
+  "pageVersion": "sha256:6171239c30d2bb025d36f7af9fa470cc92e0c9a6b9fb4c2f104cbd2e54d9183f",
   "claims": [
     {
       "id": "claim_86ed963d1a844b9ca110d2041f752439",
@@ -35,28 +35,32 @@
       "statement": "O provisionamento de infraestrutura suporta adoção seletiva por meio das variáveis STORAGE_TYPE, CREATE_CLOUD_SQL, CREATE_REDIS, CREATE_REDIS_CLUSTER, CREATE_FILESTORE, CREATE_REGIONAL_PD e CREATE_JUMPBOX.",
       "evidence": [
         {
-          "resource": "repo://0-infra/envs.sh#L75-L94",
+          "resource": "repo://0-infra/envs.sh#L80-L99",
           "version": "repo-lines-v1:sha256:eb82e5e54dbeeb0c63a0b19a654f796738fa3763079dfbbd2d7f3f974cd83933:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImIwNjg2Yjk4ZTU2OTYxNjJmODFmZmM5OGI4MWI1MjZiZWU3ZmU4OTc3Y2UzZmI0ZTFkZDBlOGZiMTQ2OTNjMzUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM3NjlkMjM3Y2Q0MjBiOWQzOGI5ODFhMGE0ZjY3NzAxOTBhNGE4M2RjYTFmZTU2YzRmNWJhMWUyY2JjMGVmNzYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjgzNGU2ZDAyMjc2ZjU0ZTRhYWVhYmE0MTFiNzY0NGRiNTg1MGY2ZGMwYjdlMzFmZWJhODUzY2NmMTY0MzMwYWEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjkzMDFmODcyZTcxNzE4NTNkNGI2ZjMyMjI4ODU3NzAzZjM1NWFmOGE3MjkyM2E1MjU0ZDZmYTg1NDlhMjNhYjcifQ"
         },
         {
-          "resource": "repo://0-infra/infra-creation.sh#L157-L337",
-          "version": "repo-lines-v1:sha256:8eee59d15c650e636101ef754067980417dac26052d3430e11fe29122cc7e911:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgxLCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiJjOTQxYWNmNmUzZjc1OTY1YjJmMDU3ZTY5NDgzOTMwOGYzYWExZDAxNjgyZTgzZjgzYjhmNGIzZDUwNjVmNWEyIiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiIzNzY5ZDIzN2NkNDIwYjlkMzhiOTgxYTBhNGY2NzcwMTkwYTRhODNkY2ExZmU1NmM0ZjViYTFlMmNiYzBlZjc2IiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiJkMDI1ZWY4MTJlMjU5MGI5YTk1MmEyYWRkOWUwYTZlMjM1YWM0NjVlNzg3YWU3YjNhZWMzNTA1MTkzN2Q5ZGNlIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MCwiZm9sbG93aW5nQ29udGV4dEhhc2giOiJlM2IwYzQ0Mjk4ZmMxYzE0OWFmYmY0Yzg5OTZmYjkyNDI3YWU0MWU0NjQ5YjkzNGNhNDk1OTkxYjc4NTJiODU1In0"
+          "resource": "repo://0-infra/infra-creation.sh#L172-L352",
+          "version": "repo-lines-v1:sha256:5de8fc1268c4ca21db6ac30e969648c62f144794d0be284ca188cc5335098ecf:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgxLCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiJjOTQxYWNmNmUzZjc1OTY1YjJmMDU3ZTY5NDgzOTMwOGYzYWExZDAxNjgyZTgzZjgzYjhmNGIzZDUwNjVmNWEyIiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiIzNzY5ZDIzN2NkNDIwYjlkMzhiOTgxYTBhNGY2NzcwMTkwYTRhODNkY2ExZmU1NmM0ZjViYTFlMmNiYzBlZjc2IiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiJkMDI1ZWY4MTJlMjU5MGI5YTk1MmEyYWRkOWUwYTZlMjM1YWM0NjVlNzg3YWU3YjNhZWMzNTA1MTkzN2Q5ZGNlIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MCwiZm9sbG93aW5nQ29udGV4dEhhc2giOiJlM2IwYzQ0Mjk4ZmMxYzE0OWFmYmY0Yzg5OTZmYjkyNDI3YWU0MWU0NjQ5YjkzNGNhNDk1OTkxYjc4NTJiODU1In0"
         }
       ]
     },
     {
       "id": "claim_86890ee67dba4e12912c932432a951b4",
-      "statement": "O cluster GKE é criado com Dataplane V2 e com os addons HttpLoadBalancing, HorizontalPodAutoscaling, GcpFilestoreCsiDriver e GcePersistentDiskCsiDriver habilitados.",
+      "statement": "O cluster GKE pode ser provisionado em modo Autopilot (GKE_MODE=autopilot via gcloud container clusters create-auto) ou Standard (Dataplane V2 com addons HttpLoadBalancing, HorizontalPodAutoscaling, GcpFilestoreCsiDriver e GcePersistentDiskCsiDriver).",
       "evidence": [
         {
-          "resource": "repo://0-infra/infra-creation.sh#L83-L106",
-          "version": "repo-lines-v1:sha256:1dd6219da15d0a85dba4ed3b17ee3128af66a04aaff691a0028720af17043462:eyJzZWxlY3RlZExpbmVDb3VudCI6MjQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBlNTg3ZmM4YjEyY2Y3NTU5YTEyYmIxMzNkMGU3MGY1Y2FiMmMzZjkwMmY5OWE0YmY0YjA0YTYyNmI0NzMwYWQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRiYjhhZGI5ZWU3NzUwMDk4ZDM1M2FlODgxOWI3YWU0NjIwMTQxYmI2MDllYjAyYzIwNzYzZTc2ZTBiMTdmZjEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQxODVmOWEwYjRlZTk2OTRhMWIxM2I2MzYyZmFkN2I0MjMxOTUyYmJjZjg3YWFmOWUwZThiMWMyZjUxYWVkZGYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImRlNjkyMWI4OWQwMWRmOGMwYzhkZWM3YmM2MmUxN2E1YTVkNmZiNWYyNjczZmQwYjI3NDk0YTRjNjkyN2IzMzIifQ"
+          "resource": "repo://0-infra/envs.sh#L50-L55",
+          "version": "repo-lines-v1:sha256:18adf6d81305a4d2baf6e39de20f6fe2d6ab76577644ed1ece135e24b1ec25ea:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiODY3N2U1ZTc4ZmIyOWUxNzJkODI4YWJmMDU2Njg5ZWI5MWFlMzllOWQzMGY5M2MzZjI3MGE3ZDU5ZDc0OGMzOCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMzMwNzg5MmU1MzM5MzEwN2NhYjNkMmIxODdkZTNlN2IzOThlYjAzYjk4ZTZiMGI3MjgyMjgyZjg5M2RkNWRiZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZGZlMDRlMDQzMTkwMjdmMTUyNzVkOTc0MmNlMjQyMzBlNTNlNzU2YmUxNTdhNzZmM2YxYWQ1ODU4ZGJkMjI5ZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNGMwMzY2ZjIwMmUyYzIwMjZjZTQxNGU5MTBjM2E1ODVlOWM4ZDI2NWI5NDJkYzRiNDVkMWYyY2MzZTcwOTRlMiJ9"
+        },
+        {
+          "resource": "repo://0-infra/infra-creation.sh#L82-L122",
+          "version": "repo-lines-v1:sha256:c834ec906d69842e894547cc9ff2fcb6754a91e5ea584c3046c003e07ce1b2dc:eyJzZWxlY3RlZExpbmVDb3VudCI6NDEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjViMGMyZGU2M2E5OTQ3ODk1NDMxNmZiZGViNmE3NDFkNGVhMDYzYmFiYWIwNGE1ZjUxOTkwMDM5YzYwY2I1NGYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjFmZjdmODgwOWIxNjllMTU1NjNiM2NhNjBmZGYwYzZhMTQ4Njk2NjM0ZjMwNDFiODUwNmQ4NTUxYmJhMzViOWQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjY1NWY1ZGEwZjIzZjNjNTk0ZDdmNjQ0ZjJjZjU1OGZhZDVlMjJiMDVjYmNhODUyNmJkODI0ZmUzZGRhMThmMmMifQ"
         }
       ]
     }
   ],
   "verification": {
     "by": "openwiki/0.5.1",
-    "at": "2026-11-05T12:48:25.564Z"
+    "at": "2026-11-07T00:09:11.359Z"
   }
 }
