@@ -323,7 +323,7 @@ echo "0 0 * * * /usr/bin/freshclam >> $MOODLE_DATAROOT_PATH/log/freshclam.log 2>
 ## Testing for Moosh setup
 filename="$MOODLE_DATAROOT_PATH/moosh/.installed"
 echo "Checking if Moosh is already setup ..."
-if [ ! -f "$filename" ] ; then
+if [ ! -f "$filename" ] || [ ! -f "$MOODLE_DATAROOT_PATH/moosh/vendor/autoload.php" ] ; then
     echo "Downloading Moosh ..."
     curl --silent --location "$MOOSH_URL" --output /tmp/moosh.tar.gz
     if [ -n "$MOOSH_SHA256" ]; then
@@ -342,9 +342,12 @@ if [ ! -f "$filename" ] ; then
     tar -xzf /tmp/moosh.tar.gz --totals=USR1 --strip-components=1 -C "$MOODLE_DATAROOT_PATH/moosh"
     rm -fv /tmp/moosh.tar.gz
     chown -R www:www "$MOODLE_DATAROOT_PATH/moosh"
-    cd "$MOODLE_DATAROOT_PATH/moosh" && composer --quiet --no-interaction --no-cache update && cd /
+    cd "$MOODLE_DATAROOT_PATH/moosh" && (sudo -u www composer --quiet --no-interaction --no-cache install --no-dev || sudo -u www composer --quiet --no-interaction --no-cache update) && cd /
+    chown -R www:www "$MOODLE_DATAROOT_PATH/moosh"
     sudo -u www sed -i 's/\$arg, \$v);/\$arg, \$v \? \$v \: \"\");/g' "$MOODLE_DATAROOT_PATH/moosh/Moosh/MooshCommand.php" 2>/dev/null || true
-    touch "$filename"
+    if [ -f "$MOODLE_DATAROOT_PATH/moosh/vendor/autoload.php" ]; then
+      touch "$filename"
+    fi
     echo -e "Done downloading and setting up Moosh ...\n"
 else
   echo "Moosh is already setup, skipping ..."
