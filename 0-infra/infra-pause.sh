@@ -29,7 +29,7 @@
 set -eo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-source "$SCRIPT_DIR/envs.sh"
+source "${ENVS_FILE:-$SCRIPT_DIR/envs.sh}"
 
 validate_moodle_envs
 
@@ -59,8 +59,8 @@ if is_configured "$GKE_NAME"; then
   if gcloud container clusters describe "$GKE_NAME" --region="$REGION" --project="$PROJECT_ID" >/dev/null 2>&1; then
     echo "Connecting to GKE cluster '$GKE_NAME' ($REGION) and scaling Moodle workloads to 0 replicas..."
     gcloud container clusters get-credentials "$GKE_NAME" --region="$REGION" --project="$PROJECT_ID"
-    kubectl scale deployment moodle-deployment -n moodle --replicas=0 --ignore-not-found=true || true
-    kubectl scale deployment moodle-deployment-uploads -n moodle --replicas=0 --ignore-not-found=true || true
+    kubectl scale deployment moodle-deployment -n moodle --replicas=0 2>/dev/null || true
+    kubectl scale deployment moodle-deployment-uploads -n moodle --replicas=0 2>/dev/null || true
     kubectl patch cronjob moodle-cronjob -n moodle -p '{"spec":{"suspend":true}}' 2>/dev/null || true
     echo "GKE Moodle workloads scaled to 0 replicas."
   fi
