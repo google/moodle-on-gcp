@@ -46,8 +46,13 @@ export MOODLE_FILESTORE_MANAGED_PEERING_RANGE="10.12.0.0"
 export NAT_CONFIG="<YOUR-NAT-CONFIG-NAME>"
 export NAT_ROUTER="<YOUR-NAT-CONFIG-ROUTER>"
 
-# db specific variables
+# db & gke specific variables
 export GKE_NAME="<YOUR-GKE-CLUSTER-NAME>"
+# GKE_MODE controls whether GKE is provisioned in "autopilot" (recommended, scales to $0 pod compute when paused) or "standard" mode:
+export GKE_MODE="${GKE_MODE:-autopilot}"
+export MOODLE_REPLICAS="${MOODLE_REPLICAS:-3}"
+export ARTIFACT_REGISTRY_NAME="${ARTIFACT_REGISTRY_NAME:-moodle-filestore}"
+export JUMPBOX_VM_NAME="${JUMPBOX_VM_NAME:-vm-jumpbox-moodle}"
 export MYSQL_INSTANCE_NAME="<YOUR-MYSQL-INSTANCE-NAME>"
 # Moodle 5.0+ requires MySQL 8.4 (MYSQL_8_4). Use MYSQL_8_0 only if deploying Moodle 4.x.
 export MYSQL_DATABASE_VERSION="${MYSQL_DATABASE_VERSION:-MYSQL_8_4}"

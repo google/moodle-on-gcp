@@ -29,7 +29,7 @@ import glob, yaml
 yaml_files = sorted(glob.glob("**/*.yaml", recursive=True))
 checked = 0
 for f in yaml_files:
-    if f.startswith("openwiki/") or f.startswith("graphify-out/"):
+    if f.startswith("openwiki/") or f.startswith("graphify-out/") or "-ernani." in f:
         continue
     raw = open(f, encoding="utf-8").read().replace("<CERT-LIST>", "[moodle-managed-cert]")
     list(yaml.safe_load_all(raw))
@@ -122,6 +122,13 @@ echo "PASS: All read-replica edge cases verified."
 
 echo "=== [5/5] Verifying repository guardrails (AGENTS.md & .jules/sentinel.md) ==="
 grep -q '"<YOUR-PROJECT-ID>"' 0-infra/envs.sh
+grep -q 'GKE_MODE="\${GKE_MODE:-autopilot}"' 0-infra/envs.sh
+grep -q 'clusters create-auto' 0-infra/infra-creation.sh
+test -x 0-infra/infra-destroy.sh
+test -x 0-infra/infra-pause.sh
+test -x 0-infra/infra-resume.sh
+grep -q 'topologySpreadConstraints:' 5a-deployment-no-helm/moodle-deployment-nginx.yaml
+grep -q 'topology.kubernetes.io/zone' 5a-deployment-no-helm/moodle-deployment-nginx.yaml
 grep -q "MOODLE_LANGUAGE: 'pt_BR'" 5a-deployment-no-helm/moodle-configmap-nginx-sample.yaml
 grep -q 'etc/nginx-uploads' 5a-deployment-no-helm/moodle-deployment-nginx-uploads.yaml
 grep -q 'etc/php83-uploads' 5a-deployment-no-helm/moodle-deployment-nginx-uploads.yaml

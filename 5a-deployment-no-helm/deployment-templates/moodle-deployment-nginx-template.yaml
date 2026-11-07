@@ -17,7 +17,7 @@ metadata:
   name: moodle-deployment
   namespace: moodle
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app.kubernetes.io/instance: moodle
@@ -32,6 +32,14 @@ spec:
         kubernetes.io/os: linux
         # cloud.google.com/compute-class: "Balanced"
         # supported-cpu-platform.cloud.google.com/Intel_Ice_Lake: "true"
+      topologySpreadConstraints:
+      - maxSkew: 1
+        topologyKey: topology.kubernetes.io/zone
+        whenUnsatisfiable: ScheduleAnyway
+        labelSelector:
+          matchLabels:
+            app.kubernetes.io/instance: moodle
+            app.kubernetes.io/name: moodle
       affinity:
         podAntiAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
