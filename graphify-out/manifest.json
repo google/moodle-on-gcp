@@ -30,9 +30,9 @@
     "semantic_hash": "416a85648b1d3867347a8370371d82c3"
   },
   "4-moodle-image-builder/base/opt/setup_moodle.sh": {
-    "mtime": 1794016365.0742917,
-    "seen": 1794016598.7403762,
-    "ast_hash": "516c0699c922ac12f453741d8069ba03",
+    "mtime": 1794017952.628247,
+    "seen": 1794017969.2596035,
+    "ast_hash": "1f8f8c77636cff0a43f4e467021b49d6",
     "semantic_hash": ""
   },
   "4-moodle-image-builder/build-nginx-based-image.sh": {
