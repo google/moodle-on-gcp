@@ -18,7 +18,7 @@ set -eo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # load env vars file
-source "$SCRIPT_DIR/envs.sh"
+source "${ENVS_FILE:-$SCRIPT_DIR/envs.sh}"
 
 validate_moodle_envs
 

@@ -2532,7 +2532,7 @@
         "verified": [
           {
             "by": "openwiki/0.5.1",
-            "at": "2026-11-05 12:48:25.564000+00:00"
+            "at": "2026-11-07 00:09:11.359000+00:00"
           }
         ],
         "sources": [
@@ -2547,7 +2547,7 @@
         ],
         "generated": {
           "by": "antigravity",
-          "at": "2026-11-05T12:48:25.564Z"
+          "at": "2026-11-07T00:09:11.359Z"
         }
       },
       "node_kind": "page",
@@ -2616,14 +2616,14 @@
       "source_location": "L17"
     },
     {
-      "id": "openwiki_architecture_infrastructure_and_networking_limpeza_e_reinicializa\u00e7\u00e3o_segura_0_infra_cleanup_moodle_install_sh",
-      "label": "Limpeza e Reinicializa\u00e7\u00e3o Segura (`0-infra/cleanup-moodle-install.sh`)",
+      "id": "openwiki_architecture_infrastructure_and_networking_limpeza_e_ciclo_de_vida_de_infraestrutura_cleanup_moodle_install_sh_infra_destroy_sh_infra_pause_sh_infra_resume_sh",
+      "label": "Limpeza e Ciclo de Vida de Infraestrutura (`cleanup-moodle-install.sh`, `infra-destroy.sh`, `infra-pause.sh`, `infra-resume.sh`)",
       "_origin": "ast",
       "community": 2,
       "community_name": "Infraestrutura GCP, Ado\u00e7\u00e3o Seletiva e Cloud SQL MySQL 8.4",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "limpeza e reinicializacao segura (`0-infra/cleanup-moodle-install.sh`)",
+      "norm_label": "limpeza e ciclo de vida de infraestrutura (`cleanup-moodle-install.sh`, `infra-destroy.sh`, `infra-pause.sh`, `infra-resume.sh`)",
       "source_file": "openwiki/architecture/infrastructure-and-networking.md",
       "source_location": "L71"
     },
@@ -3132,6 +3132,201 @@
       "source_location": "L1"
     },
     {
+      "id": "0_infra_infra_pause",
+      "label": "infra-pause.sh",
+      "_origin": "ast",
+      "community": 32,
+      "community_name": "infra-pause.sh",
+      "file_type": "code",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "norm_label": "infra-pause.sh",
+      "source_file": "0-infra/infra-pause.sh",
+      "source_location": "L1"
+    },
+    {
+      "id": "0_infra_infra_pause_cloudsdk_container_use_application_default_credentials",
+      "label": "CLOUDSDK_CONTAINER_USE_APPLICATION_DEFAULT_CREDENTIALS",
+      "_origin": "ast",
+      "community": 32,
+      "community_name": "infra-pause.sh",
+      "file_type": "code",
+      "metadata": {
+        "language": "bash",
+        "kind": "code"
+      },
+      "norm_label": "cloudsdk_container_use_application_default_credentials",
+      "source_file": "0-infra/infra-pause.sh",
+      "source_location": "L55"
+    },
+    {
+      "id": "0_infra_infra_pause_is_configured",
+      "label": "is_configured()",
+      "_origin": "ast",
+      "community": 32,
+      "community_name": "infra-pause.sh",
+      "file_type": "code",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_function"
+      },
+      "norm_label": "is_configured()",
+      "source_file": "0-infra/infra-pause.sh",
+      "source_location": "L50"
+    },
+    {
+      "id": "0_infra_infra_pause_sh__entry",
+      "label": "infra-pause.sh script",
+      "_origin": "ast",
+      "community": 32,
+      "community_name": "infra-pause.sh",
+      "file_type": "code",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "norm_label": "infra-pause.sh script",
+      "source_file": "0-infra/infra-pause.sh",
+      "source_location": "L1"
+    },
+    {
+      "id": "0_infra_infra_resume",
+      "label": "infra-resume.sh",
+      "_origin": "ast",
+      "community": 33,
+      "community_name": "infra-resume.sh",
+      "file_type": "code",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "norm_label": "infra-resume.sh",
+      "source_file": "0-infra/infra-resume.sh",
+      "source_location": "L1"
+    },
+    {
+      "id": "0_infra_infra_resume_cloudsdk_container_use_application_default_credentials",
+      "label": "CLOUDSDK_CONTAINER_USE_APPLICATION_DEFAULT_CREDENTIALS",
+      "_origin": "ast",
+      "community": 33,
+      "community_name": "infra-resume.sh",
+      "file_type": "code",
+      "metadata": {
+        "language": "bash",
+        "kind": "code"
+      },
+      "norm_label": "cloudsdk_container_use_application_default_credentials",
+      "source_file": "0-infra/infra-resume.sh",
+      "source_location": "L58"
+    },
+    {
+      "id": "0_infra_infra_resume_is_configured",
+      "label": "is_configured()",
+      "_origin": "ast",
+      "community": 33,
+      "community_name": "infra-resume.sh",
+      "file_type": "code",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_function"
+      },
+      "norm_label": "is_configured()",
+      "source_file": "0-infra/infra-resume.sh",
+      "source_location": "L53"
+    },
+    {
+      "id": "0_infra_infra_resume_sh__entry",
+      "label": "infra-resume.sh script",
+      "_origin": "ast",
+      "community": 33,
+      "community_name": "infra-resume.sh",
+      "file_type": "code",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "norm_label": "infra-resume.sh script",
+      "source_file": "0-infra/infra-resume.sh",
+      "source_location": "L1"
+    },
+    {
+      "id": "0_infra_infra_destroy",
+      "label": "infra-destroy.sh",
+      "_origin": "ast",
+      "community": 34,
+      "community_name": "infra-destroy.sh",
+      "file_type": "code",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "norm_label": "infra-destroy.sh",
+      "source_file": "0-infra/infra-destroy.sh",
+      "source_location": "L1"
+    },
+    {
+      "id": "0_infra_infra_destroy_is_configured",
+      "label": "is_configured()",
+      "_origin": "ast",
+      "community": 34,
+      "community_name": "infra-destroy.sh",
+      "file_type": "code",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_function"
+      },
+      "norm_label": "is_configured()",
+      "source_file": "0-infra/infra-destroy.sh",
+      "source_location": "L76"
+    },
+    {
+      "id": "0_infra_infra_destroy_sh__entry",
+      "label": "infra-destroy.sh script",
+      "_origin": "ast",
+      "community": 34,
+      "community_name": "infra-destroy.sh",
+      "file_type": "code",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "norm_label": "infra-destroy.sh script",
+      "source_file": "0-infra/infra-destroy.sh",
+      "source_location": "L1"
+    },
+    {
+      "id": "0_infra_infra_creation",
+      "label": "infra-creation.sh",
+      "_origin": "ast",
+      "community": 35,
+      "community_name": "infra-creation.sh",
+      "file_type": "code",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "norm_label": "infra-creation.sh",
+      "source_file": "0-infra/infra-creation.sh",
+      "source_location": "L1"
+    },
+    {
+      "id": "0_infra_infra_creation_sh__entry",
+      "label": "infra-creation.sh script",
+      "_origin": "ast",
+      "community": 35,
+      "community_name": "infra-creation.sh",
+      "file_type": "code",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "norm_label": "infra-creation.sh script",
+      "source_file": "0-infra/infra-creation.sh",
+      "source_location": "L1"
+    },
+    {
       "id": "openwiki_operations_gke_deployments_and_uploads_isolation",
       "label": "gke-deployments-and-uploads-isolation.md",
       "_origin": "ast",
@@ -3433,201 +3628,6 @@
       "source_location": "L144"
     },
     {
-      "id": "0_infra_infra_creation",
-      "label": "infra-creation.sh",
-      "_origin": "ast",
-      "community": 5,
-      "community_name": "validate_moodle_envs",
-      "file_type": "code",
-      "metadata": {
-        "language": "bash",
-        "kind": "file"
-      },
-      "norm_label": "infra-creation.sh",
-      "source_file": "0-infra/infra-creation.sh",
-      "source_location": "L1"
-    },
-    {
-      "id": "0_infra_infra_creation_sh__entry",
-      "label": "infra-creation.sh script",
-      "_origin": "ast",
-      "community": 5,
-      "community_name": "validate_moodle_envs",
-      "file_type": "code",
-      "metadata": {
-        "language": "bash",
-        "kind": "bash_entrypoint"
-      },
-      "norm_label": "infra-creation.sh script",
-      "source_file": "0-infra/infra-creation.sh",
-      "source_location": "L1"
-    },
-    {
-      "id": "0_infra_infra_destroy",
-      "label": "infra-destroy.sh",
-      "_origin": "ast",
-      "community": 5,
-      "community_name": "validate_moodle_envs",
-      "file_type": "code",
-      "metadata": {
-        "language": "bash",
-        "kind": "file"
-      },
-      "norm_label": "infra-destroy.sh",
-      "source_file": "0-infra/infra-destroy.sh",
-      "source_location": "L1"
-    },
-    {
-      "id": "0_infra_infra_destroy_is_configured",
-      "label": "is_configured()",
-      "_origin": "ast",
-      "community": 5,
-      "community_name": "validate_moodle_envs",
-      "file_type": "code",
-      "metadata": {
-        "language": "bash",
-        "kind": "bash_function"
-      },
-      "norm_label": "is_configured()",
-      "source_file": "0-infra/infra-destroy.sh",
-      "source_location": "L76"
-    },
-    {
-      "id": "0_infra_infra_destroy_sh__entry",
-      "label": "infra-destroy.sh script",
-      "_origin": "ast",
-      "community": 5,
-      "community_name": "validate_moodle_envs",
-      "file_type": "code",
-      "metadata": {
-        "language": "bash",
-        "kind": "bash_entrypoint"
-      },
-      "norm_label": "infra-destroy.sh script",
-      "source_file": "0-infra/infra-destroy.sh",
-      "source_location": "L1"
-    },
-    {
-      "id": "0_infra_infra_pause",
-      "label": "infra-pause.sh",
-      "_origin": "ast",
-      "community": 5,
-      "community_name": "validate_moodle_envs",
-      "file_type": "code",
-      "metadata": {
-        "language": "bash",
-        "kind": "file"
-      },
-      "norm_label": "infra-pause.sh",
-      "source_file": "0-infra/infra-pause.sh",
-      "source_location": "L1"
-    },
-    {
-      "id": "0_infra_infra_pause_cloudsdk_container_use_application_default_credentials",
-      "label": "CLOUDSDK_CONTAINER_USE_APPLICATION_DEFAULT_CREDENTIALS",
-      "_origin": "ast",
-      "community": 5,
-      "community_name": "validate_moodle_envs",
-      "file_type": "code",
-      "metadata": {
-        "language": "bash",
-        "kind": "code"
-      },
-      "norm_label": "cloudsdk_container_use_application_default_credentials",
-      "source_file": "0-infra/infra-pause.sh",
-      "source_location": "L55"
-    },
-    {
-      "id": "0_infra_infra_pause_is_configured",
-      "label": "is_configured()",
-      "_origin": "ast",
-      "community": 5,
-      "community_name": "validate_moodle_envs",
-      "file_type": "code",
-      "metadata": {
-        "language": "bash",
-        "kind": "bash_function"
-      },
-      "norm_label": "is_configured()",
-      "source_file": "0-infra/infra-pause.sh",
-      "source_location": "L50"
-    },
-    {
-      "id": "0_infra_infra_pause_sh__entry",
-      "label": "infra-pause.sh script",
-      "_origin": "ast",
-      "community": 5,
-      "community_name": "validate_moodle_envs",
-      "file_type": "code",
-      "metadata": {
-        "language": "bash",
-        "kind": "bash_entrypoint"
-      },
-      "norm_label": "infra-pause.sh script",
-      "source_file": "0-infra/infra-pause.sh",
-      "source_location": "L1"
-    },
-    {
-      "id": "0_infra_infra_resume",
-      "label": "infra-resume.sh",
-      "_origin": "ast",
-      "community": 5,
-      "community_name": "validate_moodle_envs",
-      "file_type": "code",
-      "metadata": {
-        "language": "bash",
-        "kind": "file"
-      },
-      "norm_label": "infra-resume.sh",
-      "source_file": "0-infra/infra-resume.sh",
-      "source_location": "L1"
-    },
-    {
-      "id": "0_infra_infra_resume_cloudsdk_container_use_application_default_credentials",
-      "label": "CLOUDSDK_CONTAINER_USE_APPLICATION_DEFAULT_CREDENTIALS",
-      "_origin": "ast",
-      "community": 5,
-      "community_name": "validate_moodle_envs",
-      "file_type": "code",
-      "metadata": {
-        "language": "bash",
-        "kind": "code"
-      },
-      "norm_label": "cloudsdk_container_use_application_default_credentials",
-      "source_file": "0-infra/infra-resume.sh",
-      "source_location": "L58"
-    },
-    {
-      "id": "0_infra_infra_resume_is_configured",
-      "label": "is_configured()",
-      "_origin": "ast",
-      "community": 5,
-      "community_name": "validate_moodle_envs",
-      "file_type": "code",
-      "metadata": {
-        "language": "bash",
-        "kind": "bash_function"
-      },
-      "norm_label": "is_configured()",
-      "source_file": "0-infra/infra-resume.sh",
-      "source_location": "L53"
-    },
-    {
-      "id": "0_infra_infra_resume_sh__entry",
-      "label": "infra-resume.sh script",
-      "_origin": "ast",
-      "community": 5,
-      "community_name": "validate_moodle_envs",
-      "file_type": "code",
-      "metadata": {
-        "language": "bash",
-        "kind": "bash_entrypoint"
-      },
-      "norm_label": "infra-resume.sh script",
-      "source_file": "0-infra/infra-resume.sh",
-      "source_location": "L1"
-    },
-    {
       "id": "4_moodle_image_builder_build_nginx_based_image",
       "label": "build-nginx-based-image.sh",
       "_origin": "ast",
@@ -3822,30 +3822,6 @@
       "weight": 1.0
     },
     {
-      "source": "0_infra_infra_creation_sh__entry",
-      "target": "0_infra_envs_validate_moodle_envs",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "0-infra/infra-creation.sh",
-      "source_location": "L23",
-      "weight": 1.0
-    },
-    {
-      "source": "0_infra_infra_destroy_sh__entry",
-      "target": "0_infra_envs_validate_moodle_envs",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "0-infra/infra-destroy.sh",
-      "source_location": "L30",
-      "weight": 1.0
-    },
-    {
       "source": "0_infra_infra_destroy_sh__entry",
       "target": "0_infra_infra_destroy_is_configured",
       "relation": "calls",
@@ -3859,18 +3835,6 @@
     },
     {
       "source": "0_infra_infra_pause_sh__entry",
-      "target": "0_infra_envs_validate_moodle_envs",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "0-infra/infra-pause.sh",
-      "source_location": "L34",
-      "weight": 1.0
-    },
-    {
-      "source": "0_infra_infra_pause_sh__entry",
       "target": "0_infra_infra_pause_is_configured",
       "relation": "calls",
       "_origin": "ast",
@@ -3879,18 +3843,6 @@
       "context": "call",
       "source_file": "0-infra/infra-pause.sh",
       "source_location": "L58",
-      "weight": 1.0
-    },
-    {
-      "source": "0_infra_infra_resume_sh__entry",
-      "target": "0_infra_envs_validate_moodle_envs",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "0-infra/infra-resume.sh",
-      "source_location": "L32",
       "weight": 1.0
     },
     {
@@ -5055,7 +5007,7 @@
     },
     {
       "source": "openwiki_architecture_infrastructure_and_networking_infraestrutura_gcp_ado\u00e7\u00e3o_seletiva_e_cloud_sql_mysql_8_4",
-      "target": "openwiki_architecture_infrastructure_and_networking_limpeza_e_reinicializa\u00e7\u00e3o_segura_0_infra_cleanup_moodle_install_sh",
+      "target": "openwiki_architecture_infrastructure_and_networking_limpeza_e_ciclo_de_vida_de_infraestrutura_cleanup_moodle_install_sh_infra_destroy_sh_infra_pause_sh_infra_resume_sh",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -7046,54 +6998,6 @@
       "weight": 1.0
     },
     {
-      "source": "0_infra_infra_creation",
-      "target": "0_infra_envs",
-      "relation": "imports_from",
-      "_origin": "ast",
-      "confidence": "INFERRED",
-      "confidence_score": 0.55,
-      "context": "import",
-      "source_file": "0-infra/infra-creation.sh",
-      "source_location": "L21",
-      "weight": 1.0
-    },
-    {
-      "source": "0_infra_infra_destroy",
-      "target": "0_infra_envs",
-      "relation": "imports_from",
-      "_origin": "ast",
-      "confidence": "INFERRED",
-      "confidence_score": 0.55,
-      "context": "import",
-      "source_file": "0-infra/infra-destroy.sh",
-      "source_location": "L28",
-      "weight": 1.0
-    },
-    {
-      "source": "0_infra_infra_pause",
-      "target": "0_infra_envs",
-      "relation": "imports_from",
-      "_origin": "ast",
-      "confidence": "INFERRED",
-      "confidence_score": 0.55,
-      "context": "import",
-      "source_file": "0-infra/infra-pause.sh",
-      "source_location": "L32",
-      "weight": 1.0
-    },
-    {
-      "source": "0_infra_infra_resume",
-      "target": "0_infra_envs",
-      "relation": "imports_from",
-      "_origin": "ast",
-      "confidence": "INFERRED",
-      "confidence_score": 0.55,
-      "context": "import",
-      "source_file": "0-infra/infra-resume.sh",
-      "source_location": "L30",
-      "weight": 1.0
-    },
-    {
       "source": "4_moodle_image_builder_build_nginx_based_image",
       "target": "0_infra_envs",
       "relation": "imports_from",
@@ -7141,5 +7045,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "be14d7f28100bb58a667e530677e9f1560724b11"
+  "built_at_commit": "cd6f46d2e9607c430d28349121bc87c2ce2c1e6f"
 }

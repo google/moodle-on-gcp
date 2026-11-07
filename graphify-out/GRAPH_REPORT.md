@@ -1,17 +1,17 @@
 # Graph Report - modern-moodle-correction  (2026-11-07)
 
 ## Corpus Check
-- 63 files · ~113,666 words
+- 63 files · ~113,753 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 41 file(s) not represented in the graph (top: .ini 30, .conf 4, (none) 2)
 
 ## Summary
-- 268 nodes · 301 edges · 32 communities (24 shown, 8 thin omitted)
-- Extraction: 97% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 9 edges (avg confidence: 0.6)
+- 268 nodes · 293 edges · 36 communities (26 shown, 10 thin omitted)
+- Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 5 edges (avg confidence: 0.68)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `be14d7f2`
+- Built from commit: `cd6f46d2`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -46,35 +46,39 @@
 - Configuring SSL and forcing HTTPS redirect
 - CONTRIBUTORS.md
 - verify-scripts-and-configs.sh
+- infra-pause.sh
+- infra-resume.sh
+- infra-destroy.sh
+- infra-creation.sh
 
 ## God Nodes (most connected - your core abstractions)
 1. `Sentinel's Journal — Security, Hardening & Review Guardrails (`google/moodle-on-gcp`)` - 8 edges
-2. `validate_moodle_envs()` - 7 edges
-3. `Pre-requisites` - 7 edges
-4. `Deployment moodle-deployment (Primary Web Pod, PHP 8.3 & NGINX Mounts, tmpfs /tmp)` - 7 edges
-5. `Agent & Jules Configuration Guide (`google/moodle-on-gcp`)` - 6 edges
-6. `Infraestrutura GCP, Adoção Seletiva e Cloud SQL MySQL 8.4` - 6 edges
-7. `Namespace moodle` - 6 edges
-8. `Deployment moodle-deployment-uploads (Dedicated Large Upload Pod, 512M/3600s)` - 6 edges
-9. `Configuring Redis Cache with Moodle` - 5 edges
-10. `Cloud CDN com Moodle Funcional, Tuning NGINX/PHP-FPM e Ingress` - 5 edges
+2. `Pre-requisites` - 7 edges
+3. `Deployment moodle-deployment (Primary Web Pod, PHP 8.3 & NGINX Mounts, tmpfs /tmp)` - 7 edges
+4. `Agent & Jules Configuration Guide (`google/moodle-on-gcp`)` - 6 edges
+5. `Infraestrutura GCP, Adoção Seletiva e Cloud SQL MySQL 8.4` - 6 edges
+6. `Namespace moodle` - 6 edges
+7. `Deployment moodle-deployment-uploads (Dedicated Large Upload Pod, 512M/3600s)` - 6 edges
+8. `Configuring Redis Cache with Moodle` - 5 edges
+9. `Cloud CDN com Moodle Funcional, Tuning NGINX/PHP-FPM e Ingress` - 5 edges
+10. `How to Contribute` - 4 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `Deployment moodle-deployment (Primary Web Pod, PHP 8.3 & NGINX Mounts, tmpfs /tmp)` --conceptually_related_to--> `Cloud Build Pipeline moodle-nginx Image Builder (Dockerfile.nginx)`  [INFERRED]
   5a-deployment-no-helm/moodle-deployment-nginx.yaml → 4-moodle-image-builder/cloudbuild-nginx.yaml
-- `build-nginx-based-image.sh script` --calls--> `validate_moodle_envs()`  [EXTRACTED]
-  4-moodle-image-builder/build-nginx-based-image.sh → 0-infra/envs.sh
 - `PersistentVolumeClaim pvc-regional-pd (200Gi ReadWriteOnce)` --references--> `Namespace moodle`  [EXTRACTED]
   3-pvc/pvc-regional-pd.yaml → 2-namespace/namespace-moodle.yaml
 - `ConfigMap moodle-configmap-uploads (512M Uploads, 3600s PHP Execution Timeout)` --references--> `Namespace moodle`  [EXTRACTED]
   5a-deployment-no-helm/moodle-configmap-nginx-uploads.yaml → 2-namespace/namespace-moodle.yaml
 - `HorizontalPodAutoscaler moodle-hpa (3-9 Replicas, CPU 75%, Memory 80%)` --references--> `Deployment moodle-deployment (Primary Web Pod, PHP 8.3 & NGINX Mounts, tmpfs /tmp)`  [EXTRACTED]
   9-hpa/moodle-hpa.yaml → 5a-deployment-no-helm/moodle-deployment-nginx.yaml
+- `HorizontalPodAutoscaler moodle-uploads-hpa (1-5 Replicas, CPU 75%, Memory 80%)` --references--> `Deployment moodle-deployment-uploads (Dedicated Large Upload Pod, 512M/3600s)`  [EXTRACTED]
+  9-hpa/moodle-uploads-hpa.yaml → 5a-deployment-no-helm/moodle-deployment-nginx-uploads.yaml
 
 ## Import Cycles
 - None detected.
 
-## Communities (32 total, 8 thin omitted)
+## Communities (36 total, 10 thin omitted)
 
 ### Community 0 - "envs.sh"
 Cohesion: 0.04
@@ -86,7 +90,7 @@ Nodes (13): Building Moodle's container image, Deploying Backend Configuration (
 
 ### Community 2 - "Infraestrutura GCP, Adoção Seletiva e Cloud SQL MySQL 8.4"
 Cohesion: 0.14
-Nodes (11): Arquivos, Adoção Seletiva de Componentes de Infraestrutura, Cloud SQL MySQL 8.4 para Moodle 5.0+, Infraestrutura GCP, Adoção Seletiva e Cloud SQL MySQL 8.4, Limpeza e Reinicialização Segura (`0-infra/cleanup-moodle-install.sh`), Parametrização Central e Validação Pre-Flight (`0-infra/envs.sh`), Rede VPC, Cluster GKE Privado e Drivers CSI, Comparativo entre Cloud Filestore e Regional Replicated PD (+3 more)
+Nodes (11): Arquivos, Adoção Seletiva de Componentes de Infraestrutura, Cloud SQL MySQL 8.4 para Moodle 5.0+, Infraestrutura GCP, Adoção Seletiva e Cloud SQL MySQL 8.4, Limpeza e Ciclo de Vida de Infraestrutura (`cleanup-moodle-install.sh`, `infra-destroy.sh`, `infra-pause.sh`, `infra-resume.sh`), Parametrização Central e Validação Pre-Flight (`0-infra/envs.sh`), Rede VPC, Cluster GKE Privado e Drivers CSI, Comparativo entre Cloud Filestore e Regional Replicated PD (+3 more)
 
 ### Community 3 - "Deployment moodle-deployment (Primary Web Pod, PHP 8.3 & NGINX Mounts, tmpfs /tmp)"
 Cohesion: 0.13
@@ -97,8 +101,8 @@ Cohesion: 0.15
 Nodes (10): 1. Habilitação de `slasharguments` e `PATH_INFO` no Moodle e NGINX, 2. Regras de Cache do NGINX para o Cloud CDN, 3. Configuração dos `BackendConfig` (`USE_ORIGIN_HEADERS` vs. `uploads`), 4. Tuning de NGINX e PHP-FPM 8.3 e Roteamento no Ingress, Cloud CDN com Moodle Funcional, Tuning NGINX/PHP-FPM e Ingress, 1. Renderização Automatizada de Manifestos (`create-config-files.sh`), 2. Isolamento de Configuração e Recursos nos Pods de Upload, 3. Escalonamento Horizontal Independente (`9-hpa/`) (+2 more)
 
 ### Community 5 - "validate_moodle_envs"
-Cohesion: 0.13
-Nodes (12): cleanup-moodle-install.sh script, validate_moodle_envs(), infra-creation.sh script, is_configured(), infra-destroy.sh script, CLOUDSDK_CONTAINER_USE_APPLICATION_DEFAULT_CREDENTIALS, is_configured(), infra-pause.sh script (+4 more)
+Cohesion: 0.40
+Nodes (3): cleanup-moodle-install.sh script, validate_moodle_envs(), build-nginx-based-image.sh script
 
 ### Community 11 - "Pre-requisites"
 Cohesion: 0.29
@@ -172,10 +176,18 @@ Nodes (3): Configuring SSL and forcing HTTPS redirect, Forcing HTTPS for incomin
 Cohesion: 0.83
 Nodes (3): create_mock_config(), run_replica_snippet(), verify-scripts-and-configs.sh script
 
+### Community 32 - "infra-pause.sh"
+Cohesion: 0.67
+Nodes (3): CLOUDSDK_CONTAINER_USE_APPLICATION_DEFAULT_CREDENTIALS, is_configured(), infra-pause.sh script
+
+### Community 33 - "infra-resume.sh"
+Cohesion: 0.67
+Nodes (3): CLOUDSDK_CONTAINER_USE_APPLICATION_DEFAULT_CREDENTIALS, is_configured(), infra-resume.sh script
+
 ## Knowledge Gaps
-- **157 isolated node(s):** `envs.sh script`, `PROJECT_NUMBER`, `PROJECT_ID`, `REGION`, `ZONE` (+152 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 163 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
-- **8 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **158 isolated node(s):** `envs.sh script`, `PROJECT_NUMBER`, `PROJECT_ID`, `REGION`, `ZONE` (+153 more)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 165 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **10 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
@@ -187,7 +199,7 @@ _Questions this graph is uniquely positioned to answer:_
 - **Why does `Configuring Redis Cache with Moodle` connect `Configuring Redis Cache with Moodle` to `README.md`?**
   _High betweenness centrality (0.010) - this node is a cross-community bridge._
 - **What connects `envs.sh script`, `PROJECT_NUMBER`, `PROJECT_ID` to the rest of the system?**
-  _157 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _158 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `envs.sh` be split into smaller, more focused modules?**
   _Cohesion score 0.03773584905660377 - nodes in this community are weakly interconnected._
 - **Should `README.md` be split into smaller, more focused modules?**
