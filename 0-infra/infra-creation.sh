@@ -18,7 +18,7 @@ set -eo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # load env vars file
-source "$SCRIPT_DIR/envs.sh"
+source "${ENVS_FILE:-$SCRIPT_DIR/envs.sh}"
 
 validate_moodle_envs
 
@@ -79,31 +79,46 @@ gcloud compute networks subnets update "$SUBNET_NAME" \
 gcloud services enable container.googleapis.com \
   --project="$PROJECT_ID"
 
-# creates gke with necessary addons (both Filestore CSI and GCE Persistent Disk CSI drivers enabled)
-gcloud container clusters create "$GKE_NAME" \
-  --release-channel=stable \
-  --region="$REGION" \
-  --enable-dataplane-v2 \
-  --enable-ip-alias \
-  --enable-private-nodes \
-  --enable-private-endpoint \
-  --enable-master-global-access \
-  --enable-autoscaling \
-  --min-nodes=1 \
-  --max-nodes=3 \
-  --enable-autorepair \
-  --monitoring=SYSTEM \
-  --num-nodes=1 \
-  --scopes=storage-rw,compute-ro \
-  --enable-intra-node-visibility \
-  --machine-type=n1-standard-2 \
-  --network="$VPC_NAME" \
-  --subnetwork="$SUBNET_NAME" \
-  --addons=HttpLoadBalancing,HorizontalPodAutoscaling,GcpFilestoreCsiDriver,GcePersistentDiskCsiDriver \
-  --master-ipv4-cidr="$GKE_MASTER_IPV4_RANGE" \
-  --logging=SYSTEM,WORKLOAD \
-  --cluster-secondary-range-name=pod-range-gke-1 \
-  --services-secondary-range-name=svc-range-gke-1
+# creates gke in Autopilot (recommended) or Standard mode with Filestore CSI and GCE Persistent Disk CSI drivers enabled
+if [ "${GKE_MODE:-autopilot}" = "autopilot" ]; then
+  echo "Provisioning GKE Autopilot cluster '$GKE_NAME' in '$REGION'..."
+  gcloud container clusters create-auto "$GKE_NAME" \
+    --release-channel=stable \
+    --region="$REGION" \
+    --enable-private-nodes \
+    --enable-master-global-access \
+    --network="$VPC_NAME" \
+    --subnetwork="$SUBNET_NAME" \
+    --master-ipv4-cidr="$GKE_MASTER_IPV4_RANGE" \
+    --cluster-secondary-range-name=pod-range-gke-1 \
+    --services-secondary-range-name=svc-range-gke-1
+else
+  echo "Provisioning GKE Standard cluster '$GKE_NAME' in '$REGION'..."
+  gcloud container clusters create "$GKE_NAME" \
+    --release-channel=stable \
+    --region="$REGION" \
+    --enable-dataplane-v2 \
+    --enable-ip-alias \
+    --enable-private-nodes \
+    --enable-private-endpoint \
+    --enable-master-global-access \
+    --enable-autoscaling \
+    --min-nodes=1 \
+    --max-nodes=3 \
+    --enable-autorepair \
+    --monitoring=SYSTEM \
+    --num-nodes=1 \
+    --scopes=storage-rw,compute-ro \
+    --enable-intra-node-visibility \
+    --machine-type=n1-standard-2 \
+    --network="$VPC_NAME" \
+    --subnetwork="$SUBNET_NAME" \
+    --addons=HttpLoadBalancing,HorizontalPodAutoscaling,GcpFilestoreCsiDriver,GcePersistentDiskCsiDriver \
+    --master-ipv4-cidr="$GKE_MASTER_IPV4_RANGE" \
+    --logging=SYSTEM,WORKLOAD \
+    --cluster-secondary-range-name=pod-range-gke-1 \
+    --services-secondary-range-name=svc-range-gke-1
+fi
 
 # grant minimal roles to the cluster service account
 gcloud projects add-iam-policy-binding "$PROJECT_ID" \
@@ -304,7 +319,7 @@ fi
 gcloud services enable artifactregistry.googleapis.com
 
 # create artifact registry repo for building Moodle images (you can skip it if you already have a repo for images)
-gcloud artifacts repositories create moodle-filestore \
+gcloud artifacts repositories create "${ARTIFACT_REGISTRY_NAME:-moodle-filestore}" \
   --location="$REGION" \
   --repository-format=docker
 
@@ -318,7 +333,7 @@ gcloud projects add-iam-policy-binding "$PROJECT_ID" \
 
 if [ "${CREATE_JUMPBOX:-true}" = "true" ]; then
   # create the jumpbox vm instance to manipulate the private GKE cluster on the same VPC
-  gcloud compute instances create vm-jumpbox-moodle \
+  gcloud compute instances create "${JUMPBOX_VM_NAME:-vm-jumpbox-moodle}" \
     --project="$PROJECT_ID" \
     --zone="$ZONE" \
     --machine-type=e2-micro \
@@ -329,7 +344,7 @@ if [ "${CREATE_JUMPBOX:-true}" = "true" ]; then
     --instance-termination-action=STOP \
     --service-account="$PROJECT_NUMBER-compute@developer.gserviceaccount.com" \
     --scopes=https://www.googleapis.com/auth/cloud-platform \
-    --create-disk="auto-delete=yes,boot=yes,device-name=vm-jumpbox-moodle,image=projects/debian-cloud/global/images/debian-12-bookworm-v20240312,mode=rw,size=10,type=projects/$PROJECT_ID/zones/$ZONE/diskTypes/pd-balanced" \
+    --create-disk="auto-delete=yes,boot=yes,device-name=${JUMPBOX_VM_NAME:-vm-jumpbox-moodle},image=projects/debian-cloud/global/images/debian-12-bookworm-v20240312,mode=rw,size=10,type=projects/$PROJECT_ID/zones/$ZONE/diskTypes/pd-balanced" \
     --no-shielded-secure-boot \
     --shielded-vtpm \
     --shielded-integrity-monitoring \

@@ -64,3 +64,20 @@ This journal records all security vulnerabilities, architectural invariants, and
    - `4-moodle-image/config/php83/php.ini`: keep `memory_limit = 256M`, `post_max_size = 100M`, `upload_max_filesize = 100M`, `max_execution_time = 300`, `max_input_time = 300`, `max_input_vars = 5000`, `opcache.memory_consumption = 128`, `opcache.max_accelerated_files = 10000`.
 7. **Do Not Re-Add Commented-Out Redis CLI Blocks in `setup_moodle.sh`**:
    - Redis MUC/Session setup instructions belong in `docs/configuring-redis-cache-with-moodle.md` (`PR #36`). Keep `setup_moodle.sh` clean of dead commented-out Redis CLI blocks.
+
+## 2026-11-06 — Proactive Hardening: Least-Privilege File Permissions, `getenv()` Read-Replica & SMTP Secret Isolation, Batch `set_config()`, and `publicpaths.php` Port 8080 (`PR #48`)
+**Vulnerabilities & Code-Health Findings (from Jules Proactive Analysis):**
+1. **Permissive Directory & File Permissions + Slow `find -exec chmod {} \;` (`4-moodle-image-builder/base/opt/setup_moodle.sh:140-145`)**:
+   - Directories and files under `$MOODLE_PATH` and `$MOODLE_DATAROOT_PATH` were granted `0775` and `0664` permissions (allowing group write access to executable PHP source code), and `find ... -exec chmod ... \;` spawned a separate `chmod` process per file.
+2. **Plaintext Secret Exposure in `config.php` (`DB_READ_REPLICA_PASSWORD` via `sed -i`) and Process Arguments (`SMTP_PASSWORD` via `--set` in `ps`), plus 13 Sequential `cfg.php` Invocations (`4-moodle-image-builder/base/opt/setup_moodle.sh:186-228`)**:
+   - Interpolating `$DB_READ_REPLICA_PASSWORD` directly into `config.php` via `sed -i` left plaintext credentials on shared storage and risked `sed` delimiter breakage or PHP code injection if passwords contained `/`, `'`, or `\`.
+   - Calling `php83 ... admin/cli/cfg.php` 13 times sequentially passed `--set="$SMTP_PASSWORD"` on the process command line (visible in `ps`) and bootstrapped Moodle 13 separate times.
+3. **Incomplete `publicpaths.php` Port `8080` Check, Unverified Archive Downloads, & Missing Automated Verification Suite (`4-moodle-image-builder/base/opt/setup_moodle.sh`, `Task 17792592824761015611`, `Task 8163948643911318982`)**:
+   - The `publicpaths.php` block only created `publicpaths.modified` without rewriting `$CFG->wwwroot` to `"http://localhost:8080"` for internal container self-checks (`Task 17792592824761015611`).
+   - Downloading Moodle and Moosh tarballs via `curl | tar -xz` lacked optional `MOODLE_SHA256` and `MOOSH_SHA256` integrity verification (`Task 8163948643911318982`), and `moodle-configmap-nginx-uploads*.yaml` had placeholder domain strings in `MOODLE_URL`/`MOOSH_URL` instead of tarball URLs.
+**Resolution (Merged in `PR #48`):**
+- Restricted `$MOODLE_PATH` to `0755` (directories) / `0644` (files) and `$MOODLE_DATAROOT_PATH` to `0750` (directories) / `0640` (files) using batched `find ... -exec chmod ... +`.
+- Replaced raw `sed -i` string interpolation of `DB_READ_REPLICA_*` with `getenv('DB_READ_REPLICA_HOST')`, `getenv('DB_READ_REPLICA_PORT')`, `getenv('DB_READ_REPLICA_USER')`, and `getenv('DB_READ_REPLICA_PASSWORD')` inside `$CFG->dboptions['readonly']`.
+- Consolidated the 13 `admin/cli/cfg.php` calls into a single `php83 -r` invocation that calls `set_config()` in one bootstrap and reads `SMTP_PASSWORD` from `getenv('SMTP_PASSWORD')` (never passing it on the CLI command line).
+- Added optional `MOODLE_SHA256` and `MOOSH_SHA256` SHA-256 checksum verification (`sha256sum -c -`) before extracting `/tmp/moodle.tar.gz` and `/tmp/moosh.tar.gz` (`Task 8163948643911318982`), and fixed `MOODLE_URL` / `MOOSH_URL` in `moodle-configmap-nginx-uploads*.yaml`.
+- Restored the `sed -i 's/\$CFG->wwwroot/"http:\/\/localhost:8080"/g'` rewrite on `publicpaths.php` before touching `publicpaths.modified` (`Task 17792592824761015611`), and added `tests/verify-scripts-and-configs.sh`.

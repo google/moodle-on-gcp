@@ -1,17 +1,17 @@
-# Graph Report - modern-moodle-correction  (2026-11-06)
+# Graph Report - modern-moodle-correction  (2026-11-07)
 
 ## Corpus Check
-- 59 files · ~110,938 words
+- 63 files · ~113,753 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 41 file(s) not represented in the graph (top: .ini 30, .conf 4, (none) 2)
 
 ## Summary
-- 248 nodes · 274 edges · 31 communities (23 shown, 8 thin omitted)
-- Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 6 edges (avg confidence: 0.65)
+- 268 nodes · 293 edges · 36 communities (26 shown, 10 thin omitted)
+- Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 5 edges (avg confidence: 0.68)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `3cc51e50`
+- Built from commit: `cd6f46d2`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -45,9 +45,14 @@
 - Updating Environment Variables and Upgrading Pods
 - Configuring SSL and forcing HTTPS redirect
 - CONTRIBUTORS.md
+- verify-scripts-and-configs.sh
+- infra-pause.sh
+- infra-resume.sh
+- infra-destroy.sh
+- infra-creation.sh
 
 ## God Nodes (most connected - your core abstractions)
-1. `Sentinel's Journal — Security, Hardening & Review Guardrails (`google/moodle-on-gcp`)` - 7 edges
+1. `Sentinel's Journal — Security, Hardening & Review Guardrails (`google/moodle-on-gcp`)` - 8 edges
 2. `Pre-requisites` - 7 edges
 3. `Deployment moodle-deployment (Primary Web Pod, PHP 8.3 & NGINX Mounts, tmpfs /tmp)` - 7 edges
 4. `Agent & Jules Configuration Guide (`google/moodle-on-gcp`)` - 6 edges
@@ -56,7 +61,7 @@
 7. `Deployment moodle-deployment-uploads (Dedicated Large Upload Pod, 512M/3600s)` - 6 edges
 8. `Configuring Redis Cache with Moodle` - 5 edges
 9. `Cloud CDN com Moodle Funcional, Tuning NGINX/PHP-FPM e Ingress` - 5 edges
-10. `validate_moodle_envs()` - 4 edges
+10. `How to Contribute` - 4 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `Deployment moodle-deployment (Primary Web Pod, PHP 8.3 & NGINX Mounts, tmpfs /tmp)` --conceptually_related_to--> `Cloud Build Pipeline moodle-nginx Image Builder (Dockerfile.nginx)`  [INFERRED]
@@ -73,11 +78,11 @@
 ## Import Cycles
 - None detected.
 
-## Communities (31 total, 8 thin omitted)
+## Communities (36 total, 10 thin omitted)
 
 ### Community 0 - "envs.sh"
 Cohesion: 0.04
-Nodes (48): CLOUD_BUILD_SA_EMAIL, CREATE_CLOUD_SQL, CREATE_JUMPBOX, CREATE_REDIS, CREATE_REDIS_CLUSTER, FILESTORE_CAPACITY, FILESTORE_IP_ADDRESS, FILESTORE_MOUNT (+40 more)
+Nodes (52): ARTIFACT_REGISTRY_NAME, CLOUD_BUILD_SA_EMAIL, CREATE_CLOUD_SQL, CREATE_JUMPBOX, CREATE_REDIS, CREATE_REDIS_CLUSTER, FILESTORE_CAPACITY, FILESTORE_IP_ADDRESS (+44 more)
 
 ### Community 1 - "README.md"
 Cohesion: 0.09
@@ -85,7 +90,7 @@ Nodes (13): Building Moodle's container image, Deploying Backend Configuration (
 
 ### Community 2 - "Infraestrutura GCP, Adoção Seletiva e Cloud SQL MySQL 8.4"
 Cohesion: 0.14
-Nodes (11): Arquivos, Adoção Seletiva de Componentes de Infraestrutura, Cloud SQL MySQL 8.4 para Moodle 5.0+, Infraestrutura GCP, Adoção Seletiva e Cloud SQL MySQL 8.4, Limpeza e Reinicialização Segura (`0-infra/cleanup-moodle-install.sh`), Parametrização Central e Validação Pre-Flight (`0-infra/envs.sh`), Rede VPC, Cluster GKE Privado e Drivers CSI, Comparativo entre Cloud Filestore e Regional Replicated PD (+3 more)
+Nodes (11): Arquivos, Adoção Seletiva de Componentes de Infraestrutura, Cloud SQL MySQL 8.4 para Moodle 5.0+, Infraestrutura GCP, Adoção Seletiva e Cloud SQL MySQL 8.4, Limpeza e Ciclo de Vida de Infraestrutura (`cleanup-moodle-install.sh`, `infra-destroy.sh`, `infra-pause.sh`, `infra-resume.sh`), Parametrização Central e Validação Pre-Flight (`0-infra/envs.sh`), Rede VPC, Cluster GKE Privado e Drivers CSI, Comparativo entre Cloud Filestore e Regional Replicated PD (+3 more)
 
 ### Community 3 - "Deployment moodle-deployment (Primary Web Pod, PHP 8.3 & NGINX Mounts, tmpfs /tmp)"
 Cohesion: 0.13
@@ -96,8 +101,8 @@ Cohesion: 0.15
 Nodes (10): 1. Habilitação de `slasharguments` e `PATH_INFO` no Moodle e NGINX, 2. Regras de Cache do NGINX para o Cloud CDN, 3. Configuração dos `BackendConfig` (`USE_ORIGIN_HEADERS` vs. `uploads`), 4. Tuning de NGINX e PHP-FPM 8.3 e Roteamento no Ingress, Cloud CDN com Moodle Funcional, Tuning NGINX/PHP-FPM e Ingress, 1. Renderização Automatizada de Manifestos (`create-config-files.sh`), 2. Isolamento de Configuração e Recursos nos Pods de Upload, 3. Escalonamento Horizontal Independente (`9-hpa/`) (+2 more)
 
 ### Community 5 - "validate_moodle_envs"
-Cohesion: 0.29
-Nodes (4): cleanup-moodle-install.sh script, validate_moodle_envs(), infra-creation.sh script, build-nginx-based-image.sh script
+Cohesion: 0.40
+Nodes (3): cleanup-moodle-install.sh script, validate_moodle_envs(), build-nginx-based-image.sh script
 
 ### Community 11 - "Pre-requisites"
 Cohesion: 0.29
@@ -124,8 +129,8 @@ Cohesion: 0.40
 Nodes (5): 1. Add or verify entries in Moodle's config.php file, 2. Create a mapping for Redis from Moodle UI, 3. CLI-based Redis Configuration Reference, 4. Large-Scale Deployments: Memorystore for Redis Cluster (MRC), Configuring Redis Cache with Moodle
 
 ### Community 17 - "Sentinel's Journal — Security, Hardening & Review Guardrails (`google/moodle-on-gcp`)"
-Cohesion: 0.12
-Nodes (15): 1. Repository Architecture & Current Stack (`main`), 2. Mandatory Guardrails (Preventing PR #38 Regressions), 3. Verification & Test Suite (Run Before Every Commit / PR), 4. Using the Jules CLI (`@google/jules`) with This Repository, Agent & Jules Configuration Guide (`google/moodle-on-gcp`), OpenWiki, Claude & Agent Instructions (`google/moodle-on-gcp`), OpenWiki (+7 more)
+Cohesion: 0.11
+Nodes (16): 1. Repository Architecture & Current Stack (`main`), 2. Mandatory Guardrails (Preventing PR #38 Regressions), 3. Verification & Test Suite (Run Before Every Commit / PR), 4. Using the Jules CLI (`@google/jules`) with This Repository, Agent & Jules Configuration Guide (`google/moodle-on-gcp`), OpenWiki, Claude & Agent Instructions (`google/moodle-on-gcp`), OpenWiki (+8 more)
 
 ### Community 18 - "Configuring Cloud CDN and Dedicated Upload Pods with Functional Moodle"
 Cohesion: 0.50
@@ -167,24 +172,36 @@ Nodes (3): 1. Updating ConfigMap Values (`5a-deployment-no-helm`), 2. Restarting
 Cohesion: 0.67
 Nodes (3): Configuring SSL and forcing HTTPS redirect, Forcing HTTPS for incoming requests, Provisioning a new certificate managed by Google Cloud
 
+### Community 31 - "verify-scripts-and-configs.sh"
+Cohesion: 0.83
+Nodes (3): create_mock_config(), run_replica_snippet(), verify-scripts-and-configs.sh script
+
+### Community 32 - "infra-pause.sh"
+Cohesion: 0.67
+Nodes (3): CLOUDSDK_CONTAINER_USE_APPLICATION_DEFAULT_CREDENTIALS, is_configured(), infra-pause.sh script
+
+### Community 33 - "infra-resume.sh"
+Cohesion: 0.67
+Nodes (3): CLOUDSDK_CONTAINER_USE_APPLICATION_DEFAULT_CREDENTIALS, is_configured(), infra-resume.sh script
+
 ## Knowledge Gaps
-- **150 isolated node(s):** `envs.sh script`, `PROJECT_NUMBER`, `PROJECT_ID`, `REGION`, `ZONE` (+145 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 156 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
-- **8 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **158 isolated node(s):** `envs.sh script`, `PROJECT_NUMBER`, `PROJECT_ID`, `REGION`, `ZONE` (+153 more)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 165 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **10 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `Pre-requisites` connect `Pre-requisites` to `README.md`?**
-  _High betweenness centrality (0.017) - this node is a cross-community bridge._
+  _High betweenness centrality (0.015) - this node is a cross-community bridge._
 - **Why does `Choosing and Configuring Storage (`Filestore` vs. `Regional Replicated Persistent Disk`)` connect `Choosing and Configuring Storage (`Filestore` vs. `Regional Replicated Persistent Disk`)` to `README.md`?**
-  _High betweenness centrality (0.014) - this node is a cross-community bridge._
-- **Why does `Configuring Redis Cache with Moodle` connect `Configuring Redis Cache with Moodle` to `README.md`?**
   _High betweenness centrality (0.012) - this node is a cross-community bridge._
+- **Why does `Configuring Redis Cache with Moodle` connect `Configuring Redis Cache with Moodle` to `README.md`?**
+  _High betweenness centrality (0.010) - this node is a cross-community bridge._
 - **What connects `envs.sh script`, `PROJECT_NUMBER`, `PROJECT_ID` to the rest of the system?**
-  _150 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _158 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `envs.sh` be split into smaller, more focused modules?**
-  _Cohesion score 0.04081632653061224 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.03773584905660377 - nodes in this community are weakly interconnected._
 - **Should `README.md` be split into smaller, more focused modules?**
   _Cohesion score 0.09246088193456614 - nodes in this community are weakly interconnected._
 - **Should `Infraestrutura GCP, Adoção Seletiva e Cloud SQL MySQL 8.4` be split into smaller, more focused modules?**

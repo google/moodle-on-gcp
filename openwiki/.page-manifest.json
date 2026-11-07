@@ -2,46 +2,46 @@
   "schemaVersion": 1,
   "pages": {
     "/openwiki/architecture/infrastructure-and-networking.md": {
-      "pageVersion": "sha256:ff9ce808006ef2ac0e80ac23c2c8aca71b4b981d20f1d52b06159be836ef9c59",
+      "pageVersion": "sha256:6171239c30d2bb025d36f7af9fa470cc92e0c9a6b9fb4c2f104cbd2e54d9183f",
       "completedBy": "antigravity",
-      "completedRunId": "269064d2-2b8c-43de-8bda-499f4d234bc2",
-      "gitHead": "3cf2a79f28629864df463d7cfff7bf3963a0a937",
-      "sourceFingerprint": "sha256:ec34b2b85ceb36cf1330d9737e2a711fbf8a074a5de4e4f207dd91d43f24c214"
+      "completedRunId": "d8c64fb6-829d-42bd-bb7a-69dff1554089",
+      "gitHead": "be14d7f28100bb58a667e530677e9f1560724b11",
+      "sourceFingerprint": "sha256:49880f662fd8aea4bd3147073dc1231179693d31d3894e0e4964f31f2f0a362e"
     },
     "/openwiki/architecture/storage-modalities.md": {
       "pageVersion": "sha256:65870a9be7821606d4990d056a28039c5ace98e1ec3eadc1fc2b3c65c01cbc57",
       "completedBy": "antigravity",
       "completedRunId": "6f692c81-c8a4-41e2-9b4b-0daeeaa8f4c7",
-      "gitHead": "3cf2a79f28629864df463d7cfff7bf3963a0a937",
-      "sourceFingerprint": "sha256:ec34b2b85ceb36cf1330d9737e2a711fbf8a074a5de4e4f207dd91d43f24c214"
+      "gitHead": "be14d7f28100bb58a667e530677e9f1560724b11",
+      "sourceFingerprint": "sha256:49880f662fd8aea4bd3147073dc1231179693d31d3894e0e4964f31f2f0a362e"
     },
     "/openwiki/operations/cloud-cdn-and-ingress.md": {
       "pageVersion": "sha256:f8fedf1051e6b3b972392f0ff379750b6fb906796e981b13d5b1d93474aa4706",
       "completedBy": "antigravity",
       "completedRunId": "6f692c81-c8a4-41e2-9b4b-0daeeaa8f4c7",
-      "gitHead": "3cf2a79f28629864df463d7cfff7bf3963a0a937",
-      "sourceFingerprint": "sha256:ec34b2b85ceb36cf1330d9737e2a711fbf8a074a5de4e4f207dd91d43f24c214"
+      "gitHead": "be14d7f28100bb58a667e530677e9f1560724b11",
+      "sourceFingerprint": "sha256:49880f662fd8aea4bd3147073dc1231179693d31d3894e0e4964f31f2f0a362e"
     },
     "/openwiki/operations/gke-deployments-and-uploads-isolation.md": {
       "pageVersion": "sha256:66e3594da1c695d38e7e3009b2429cffd2ee9eb6177fc06745875088a0b61c04",
       "completedBy": "antigravity",
       "completedRunId": "6f692c81-c8a4-41e2-9b4b-0daeeaa8f4c7",
-      "gitHead": "3cf2a79f28629864df463d7cfff7bf3963a0a937",
-      "sourceFingerprint": "sha256:ec34b2b85ceb36cf1330d9737e2a711fbf8a074a5de4e4f207dd91d43f24c214"
+      "gitHead": "be14d7f28100bb58a667e530677e9f1560724b11",
+      "sourceFingerprint": "sha256:49880f662fd8aea4bd3147073dc1231179693d31d3894e0e4964f31f2f0a362e"
     },
     "/openwiki/quickstart.md": {
       "pageVersion": "sha256:c2645fb7ae7d1b13fe935f639653490ea77a82f33ef66940ccc3754c460d9fb4",
       "completedBy": "antigravity",
       "completedRunId": "269064d2-2b8c-43de-8bda-499f4d234bc2",
-      "gitHead": "3cf2a79f28629864df463d7cfff7bf3963a0a937",
-      "sourceFingerprint": "sha256:ec34b2b85ceb36cf1330d9737e2a711fbf8a074a5de4e4f207dd91d43f24c214"
+      "gitHead": "be14d7f28100bb58a667e530677e9f1560724b11",
+      "sourceFingerprint": "sha256:49880f662fd8aea4bd3147073dc1231179693d31d3894e0e4964f31f2f0a362e"
     },
     "/openwiki/runtime/container-image-moodle52-php83.md": {
-      "pageVersion": "sha256:56fc94ce57844d8135dc31bde61bbd576f4714f7ac183de9c490fdf11d059988",
+      "pageVersion": "sha256:86540e640818d20b2371877a742f2dbf4ba69cd9349ecbd615390aca34eb9639",
       "completedBy": "antigravity",
-      "completedRunId": "6f692c81-c8a4-41e2-9b4b-0daeeaa8f4c7",
-      "gitHead": "3cf2a79f28629864df463d7cfff7bf3963a0a937",
-      "sourceFingerprint": "sha256:ec34b2b85ceb36cf1330d9737e2a711fbf8a074a5de4e4f207dd91d43f24c214"
+      "completedRunId": "a707f30f-28d2-465c-b44b-7a49606e3c32",
+      "gitHead": "be14d7f28100bb58a667e530677e9f1560724b11",
+      "sourceFingerprint": "sha256:49880f662fd8aea4bd3147073dc1231179693d31d3894e0e4964f31f2f0a362e"
     }
   }
 }
