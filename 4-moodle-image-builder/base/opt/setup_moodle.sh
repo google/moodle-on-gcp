@@ -260,6 +260,7 @@ if [ ! -f "$MOODLE_DATAROOT_PATH/.moodle-installed" ] ; then
     sudo -u www cp "$MOODLE_PATH/config.php" "$MOODLE_PATH/config.php.bak"
     envsubst '$REDIS_LOCK_HOST_AND_PORT $REDIS_LOCK_AUTH_STRING $REDIS_SESSION_ID_HOST $REDIS_SESSION_ID_PORT $REDIS_SESSION_ID_AUTH_STRING' < "/root/.templates/config.php.template" \
       | { head -n 23 "$MOODLE_PATH/config.php.bak"; cat /dev/stdin; tail -n +24 "$MOODLE_PATH/config.php.bak"; } > "$MOODLE_PATH/config.php"
+    rm -fv "$MOODLE_PATH/config.php.bak"
   fi
 
   # Avoid writing the config file
