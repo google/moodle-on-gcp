@@ -2317,6 +2317,18 @@
       "source_location": "L68"
     },
     {
+      "id": "jules_sentinel_2026_11_09_removal_of_temporary_config_php_bak_and_localhost_acl_on_fpm_status_fpm_ping_pr_48",
+      "label": "2026-11-09 \u2014 Removal of Temporary `config.php.bak` and Localhost ACL on `/fpm-status` & `/fpm-ping` (`PR #48`)",
+      "_origin": "ast",
+      "community": 17,
+      "community_name": "Sentinel's Journal \u2014 Security, Hardening & Review Guardrails (`google/moodle-on-gcp`)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "2026-11-09 \u2014 removal of temporary `config.php.bak` and localhost acl on `/fpm-status` & `/fpm-ping` (`pr #48`)",
+      "source_file": ".jules/sentinel.md",
+      "source_location": "L85"
+    },
+    {
       "id": "jules_sentinel_chronological_security_hardening_learnings",
       "label": "Chronological Security & Hardening Learnings",
       "_origin": "ast",
@@ -3099,7 +3111,7 @@
       },
       "norm_label": "create_mock_config()",
       "source_file": "tests/verify-scripts-and-configs.sh",
-      "source_location": "L75"
+      "source_location": "L85"
     },
     {
       "id": "tests_verify_scripts_and_configs_run_replica_snippet",
@@ -3114,7 +3126,7 @@
       },
       "norm_label": "run_replica_snippet()",
       "source_file": "tests/verify-scripts-and-configs.sh",
-      "source_location": "L89"
+      "source_location": "L99"
     },
     {
       "id": "tests_verify_scripts_and_configs_sh__entry",
@@ -3890,7 +3902,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "tests/verify-scripts-and-configs.sh",
-      "source_location": "L101",
+      "source_location": "L111",
       "weight": 1.0
     },
     {
@@ -3902,7 +3914,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "tests/verify-scripts-and-configs.sh",
-      "source_location": "L102",
+      "source_location": "L112",
       "weight": 1.0
     },
     {
@@ -4937,6 +4949,17 @@
       "confidence_score": 1.0,
       "source_file": ".jules/sentinel.md",
       "source_location": "L68",
+      "weight": 1.0
+    },
+    {
+      "source": "jules_sentinel_sentinel_s_journal_security_hardening_review_guardrails_google_moodle_on_gcp",
+      "target": "jules_sentinel_2026_11_09_removal_of_temporary_config_php_bak_and_localhost_acl_on_fpm_status_fpm_ping_pr_48",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".jules/sentinel.md",
+      "source_location": "L85",
       "weight": 1.0
     },
     {
@@ -5992,7 +6015,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "tests/verify-scripts-and-configs.sh",
-      "source_location": "L75",
+      "source_location": "L85",
       "weight": 1.0
     },
     {
@@ -6003,7 +6026,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "tests/verify-scripts-and-configs.sh",
-      "source_location": "L89",
+      "source_location": "L99",
       "weight": 1.0
     },
     {
@@ -7045,5 +7068,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "cd6f46d2e9607c430d28349121bc87c2ce2c1e6f"
+  "built_at_commit": "a51b1417c885fda95b189c6f0e4acb8bf90530ae"
 }

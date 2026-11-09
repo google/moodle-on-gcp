@@ -1,17 +1,17 @@
-# Graph Report - modern-moodle-correction  (2026-11-07)
+# Graph Report - modern-moodle-correction  (2026-11-09)
 
 ## Corpus Check
-- 63 files · ~113,753 words
+- 63 files · ~114,375 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 41 file(s) not represented in the graph (top: .ini 30, .conf 4, (none) 2)
 
 ## Summary
-- 268 nodes · 293 edges · 36 communities (26 shown, 10 thin omitted)
+- 269 nodes · 294 edges · 36 communities (26 shown, 10 thin omitted)
 - Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 5 edges (avg confidence: 0.68)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `cd6f46d2`
+- Built from commit: `a51b1417`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -52,7 +52,7 @@
 - infra-creation.sh
 
 ## God Nodes (most connected - your core abstractions)
-1. `Sentinel's Journal — Security, Hardening & Review Guardrails (`google/moodle-on-gcp`)` - 8 edges
+1. `Sentinel's Journal — Security, Hardening & Review Guardrails (`google/moodle-on-gcp`)` - 9 edges
 2. `Pre-requisites` - 7 edges
 3. `Deployment moodle-deployment (Primary Web Pod, PHP 8.3 & NGINX Mounts, tmpfs /tmp)` - 7 edges
 4. `Agent & Jules Configuration Guide (`google/moodle-on-gcp`)` - 6 edges
@@ -130,7 +130,7 @@ Nodes (5): 1. Add or verify entries in Moodle's config.php file, 2. Create a map
 
 ### Community 17 - "Sentinel's Journal — Security, Hardening & Review Guardrails (`google/moodle-on-gcp`)"
 Cohesion: 0.11
-Nodes (16): 1. Repository Architecture & Current Stack (`main`), 2. Mandatory Guardrails (Preventing PR #38 Regressions), 3. Verification & Test Suite (Run Before Every Commit / PR), 4. Using the Jules CLI (`@google/jules`) with This Repository, Agent & Jules Configuration Guide (`google/moodle-on-gcp`), OpenWiki, Claude & Agent Instructions (`google/moodle-on-gcp`), OpenWiki (+8 more)
+Nodes (17): 1. Repository Architecture & Current Stack (`main`), 2. Mandatory Guardrails (Preventing PR #38 Regressions), 3. Verification & Test Suite (Run Before Every Commit / PR), 4. Using the Jules CLI (`@google/jules`) with This Repository, Agent & Jules Configuration Guide (`google/moodle-on-gcp`), OpenWiki, Claude & Agent Instructions (`google/moodle-on-gcp`), OpenWiki (+9 more)
 
 ### Community 18 - "Configuring Cloud CDN and Dedicated Upload Pods with Functional Moodle"
 Cohesion: 0.50
@@ -185,8 +185,8 @@ Cohesion: 0.67
 Nodes (3): CLOUDSDK_CONTAINER_USE_APPLICATION_DEFAULT_CREDENTIALS, is_configured(), infra-resume.sh script
 
 ## Knowledge Gaps
-- **158 isolated node(s):** `envs.sh script`, `PROJECT_NUMBER`, `PROJECT_ID`, `REGION`, `ZONE` (+153 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 165 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **159 isolated node(s):** `envs.sh script`, `PROJECT_NUMBER`, `PROJECT_ID`, `REGION`, `ZONE` (+154 more)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 166 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
 - **10 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
@@ -199,7 +199,7 @@ _Questions this graph is uniquely positioned to answer:_
 - **Why does `Configuring Redis Cache with Moodle` connect `Configuring Redis Cache with Moodle` to `README.md`?**
   _High betweenness centrality (0.010) - this node is a cross-community bridge._
 - **What connects `envs.sh script`, `PROJECT_NUMBER`, `PROJECT_ID` to the rest of the system?**
-  _158 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _159 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `envs.sh` be split into smaller, more focused modules?**
   _Cohesion score 0.03773584905660377 - nodes in this community are weakly interconnected._
 - **Should `README.md` be split into smaller, more focused modules?**
