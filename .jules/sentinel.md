@@ -81,3 +81,14 @@ This journal records all security vulnerabilities, architectural invariants, and
 - Consolidated the 13 `admin/cli/cfg.php` calls into a single `php83 -r` invocation that calls `set_config()` in one bootstrap and reads `SMTP_PASSWORD` from `getenv('SMTP_PASSWORD')` (never passing it on the CLI command line).
 - Added optional `MOODLE_SHA256` and `MOOSH_SHA256` SHA-256 checksum verification (`sha256sum -c -`) before extracting `/tmp/moodle.tar.gz` and `/tmp/moosh.tar.gz` (`Task 8163948643911318982`), and fixed `MOODLE_URL` / `MOOSH_URL` in `moodle-configmap-nginx-uploads*.yaml`.
 - Restored the `sed -i 's/\$CFG->wwwroot/"http:\/\/localhost:8080"/g'` rewrite on `publicpaths.php` before touching `publicpaths.modified` (`Task 17792592824761015611`), and added `tests/verify-scripts-and-configs.sh`.
+
+## 2026-11-09 — Removal of Temporary `config.php.bak` and Localhost ACL on `/fpm-status` & `/fpm-ping` (`PR #48`)
+**Vulnerabilities & Defense-in-Depth Hardening:**
+1. **Residual `config.php.bak` in `$MOODLE_PATH` (`4-moodle-image-builder/base/opt/setup_moodle.sh:260-263`, `CWE-538`)**:
+   - While Moodle 5.1+ (`MDL-83424`) serves files from `$MOODLE_PATH/public` (leaving `$MOODLE_PATH/config.php.bak` one directory above the NGINX `root`), `setup_moodle.sh` did not delete `$MOODLE_PATH/config.php.bak` after splicing Redis configuration, and the `MDL-69333` NGINX deny-list did not block `.bak` files if an operator deployed Moodle `<= 5.0` without `/public`.
+2. **Commented-Out Localhost ACL on `/fpm-status` and `/fpm-ping` (`4-moodle-image-builder/base/etc/nginx/nginx.conf*`, `CWE-497`)**:
+   - In `nginx.conf` and `nginx.conf-template`, `#allow 127.0.0.1;` and `#deny all;` were commented out inside `location ~ ^/(fpm-status|fpm-ping)$`, allowing external requests to `/fpm-status?full` to inspect active PHP-FPM worker URIs while GCE `BackendConfig` health checks already use `/healthz`.
+**Resolution (Included in `PR #48`):**
+- Added `rm -fv "$MOODLE_PATH/config.php.bak"` immediately after the `envsubst` splice in `4-moodle-image-builder/base/opt/setup_moodle.sh`.
+- Added `|\.bak$` to the `MDL-69333` deny-list regex in `4-moodle-image-builder/base/etc/nginx/nginx.conf` and `nginx.conf-template`.
+- Uncommented `allow 127.0.0.1;` and `deny all;` inside `location ~ ^/(fpm-status|fpm-ping)$` in both `nginx.conf` and `nginx.conf-template`.
