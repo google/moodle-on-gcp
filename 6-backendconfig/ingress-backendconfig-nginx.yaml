@@ -48,3 +48,7 @@ spec:
       includeQueryString: true
       # queryStringBlacklist: []
       # queryStringWhitelist: []
+  customResponseHeaders:
+    headers:
+      - "X-Cache-Status: {cdn_cache_status}"
+      - "X-Cache-Pop: {cdn_cache_id}"

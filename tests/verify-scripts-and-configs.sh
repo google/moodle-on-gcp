@@ -67,10 +67,13 @@ grep -q 'MOODLE_SHA256' "$SETUP_SCRIPT"
 grep -q 'MOOSH_SHA256' "$SETUP_SCRIPT"
 grep -q 'sha256sum -c -' "$SETUP_SCRIPT"
 
-# 6. Verify config.php.bak cleanup and NGINX .bak / fpm-status ACL hardening
+# 6. Verify config.php.bak cleanup and NGINX .bak / fpm-status ACL / X-Accel-Redirect (^~) / Cloud CDN yui_combo hardening
 grep -q 'rm -fv "\$MOODLE_PATH/config.php.bak"' "$SETUP_SCRIPT"
 for nginx_cfg in 4-moodle-image-builder/base/etc/nginx/nginx.conf 4-moodle-image-builder/base/etc/nginx/nginx.conf-template; do
   grep -q '\\.bak\$)' "$nginx_cfg"
+  grep -q 'location \^~ /localcachedir/' "$nginx_cfg"
+  grep -q 'location \^~ /dataroot/' "$nginx_cfg"
+  grep -q 'yui_combo' "$nginx_cfg"
   if grep -q '#allow 127.0.0.1;' "$nginx_cfg" || grep -q '#deny all;' "$nginx_cfg"; then
     echo "FAIL: fpm-status/fpm-ping ACL is still commented out in $nginx_cfg" >&2
     exit 1
