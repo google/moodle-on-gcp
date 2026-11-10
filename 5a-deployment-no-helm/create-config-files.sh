@@ -17,15 +17,15 @@ set -eo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-# carrega as env vars
+# load environment variables
 source "$SCRIPT_DIR/../0-infra/envs.sh"
 
-# garante que o sistema esteja atualizado quando solicitado
+# ensure the system packages are up to date when explicitly requested
 if [ "${RUN_APT_UPGRADE:-false}" = "true" ]; then
   sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y
 fi
 
-# garante que o envsubst esteja instalado
+# ensure envsubst is installed
 if ! command -v envsubst >/dev/null 2>&1; then
   sudo apt update && sudo apt install -y gettext-base
 fi
@@ -70,15 +70,15 @@ fi
 
 cd "$SCRIPT_DIR"
 
-# gera os arquivos de configmap específicos (principal e uploads)
+# generate the ConfigMap manifests (primary and uploads)
 envsubst '$MOODLE_ROOT_PATH_NO_SLASH' < ./deployment-templates/moodle-configmap-nginx-template.yaml > ./moodle-configmap-nginx.yaml
 envsubst '$MOODLE_ROOT_PATH_NO_SLASH' < ./deployment-templates/moodle-configmap-nginx-uploads-template.yaml > ./moodle-configmap-nginx-uploads.yaml
 
-# gera os arquivos de deployment específicos (principal e uploads)
+# generate the Deployment manifests (primary and uploads)
 envsubst '$MOODLE_ROOT_PATH_NO_SLASH $PVC_CLAIM_NAME' < ./deployment-templates/moodle-deployment-nginx-template.yaml > ./moodle-deployment-nginx.yaml
 envsubst '$MOODLE_ROOT_PATH_NO_SLASH $PVC_CLAIM_NAME' < ./deployment-templates/moodle-deployment-nginx-uploads-template.yaml > ./moodle-deployment-nginx-uploads.yaml
 
-# gera os manifestos de PV/PVC e StorageClass com os tamanhos configurados em envs.sh
+# generate the PV/PVC and StorageClass manifests using the storage sizes configured in envs.sh
 envsubst '$PV_STORAGE_SIZE $FILESTORE_SHARE_NAME $FILESTORE_IP_ADDRESS' < ./deployment-templates/pv-filestore-template.yaml > ../1-pv/pv-filestore.yaml
 envsubst '$PVC_STORAGE_SIZE $PVC_LIMIT_STORAGE_SIZE' < ./deployment-templates/pvc-filestore-template.yaml > ../3-pvc/pvc-filestore.yaml
 envsubst '$PD_DISK_TYPE $ZONE $REPLICA_ZONE' < ./deployment-templates/storageclass-regional-pd-template.yaml > ../1-pv/storageclass-regional-pd.yaml
