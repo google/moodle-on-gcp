@@ -3186,6 +3186,21 @@
       "source_location": "L1"
     },
     {
+      "id": "tests_verify_scripts_and_configs_tmp_test_dir",
+      "label": "TMP_TEST_DIR",
+      "_origin": "ast",
+      "community": 31,
+      "community_name": "verify-scripts-and-configs.sh",
+      "file_type": "code",
+      "metadata": {
+        "language": "bash",
+        "kind": "code"
+      },
+      "norm_label": "tmp_test_dir",
+      "source_file": "tests/verify-scripts-and-configs.sh",
+      "source_location": "L86"
+    },
+    {
       "id": "0_infra_infra_pause",
       "label": "infra-pause.sh",
       "_origin": "ast",
@@ -6091,6 +6106,17 @@
       "confidence_score": 1.0,
       "source_file": "tests/verify-scripts-and-configs.sh",
       "source_location": "L194",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_verify_scripts_and_configs",
+      "target": "tests_verify_scripts_and_configs_tmp_test_dir",
+      "relation": "defines",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/verify-scripts-and-configs.sh",
+      "source_location": "L86",
       "weight": 1.0
     },
     {

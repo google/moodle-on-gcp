@@ -678,9 +678,9 @@
     "semantic_hash": ""
   },
   "tests/verify-scripts-and-configs.sh": {
-    "mtime": 1794329619.5136416,
-    "seen": 1794329660.1012306,
-    "ast_hash": "601a7cb0796658d516d44871fc27e17c",
+    "mtime": 1794329776.203641,
+    "seen": 1794329816.9465122,
+    "ast_hash": "d1382bd90c2c0fc7ea5fea23072cfc31",
     "semantic_hash": ""
   },
   "0-infra/infra-destroy.sh": {
