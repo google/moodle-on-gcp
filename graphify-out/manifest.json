@@ -30,9 +30,9 @@
     "semantic_hash": "416a85648b1d3867347a8370371d82c3"
   },
   "4-moodle-image-builder/base/opt/setup_moodle.sh": {
-    "mtime": 1794254789.1417,
-    "seen": 1794255179.2443354,
-    "ast_hash": "f9100c368177d1082b7805e77cc52579",
+    "mtime": 1794329539.270475,
+    "seen": 1794329660.101207,
+    "ast_hash": "ebd2eba7878b708aaf0c53136c623197",
     "semantic_hash": ""
   },
   "4-moodle-image-builder/build-nginx-based-image.sh": {
@@ -672,15 +672,15 @@
     "semantic_hash": ""
   },
   ".jules/sentinel.md": {
-    "mtime": 1794255064.2263083,
-    "seen": 1794255179.244384,
-    "ast_hash": "598ce6af55a290f0e0db6f8d09f6bec7",
+    "mtime": 1794329621.701837,
+    "seen": 1794329660.1012323,
+    "ast_hash": "30669328ed97c01021e42cc2ce8343cc",
     "semantic_hash": ""
   },
   "tests/verify-scripts-and-configs.sh": {
-    "mtime": 1794255065.6024315,
-    "seen": 1794255179.244377,
-    "ast_hash": "4fb3bcf1329a99543a7e3519c4557d13",
+    "mtime": 1794329776.203641,
+    "seen": 1794329816.9465122,
+    "ast_hash": "d1382bd90c2c0fc7ea5fea23072cfc31",
     "semantic_hash": ""
   },
   "0-infra/infra-destroy.sh": {
@@ -699,12 +699,6 @@
     "mtime": 1794016444.6541781,
     "seen": 1794016598.74037,
     "ast_hash": "0f019f720c2a6550f5adcb75a1211234",
-    "semantic_hash": ""
-  },
-  ".github/workflows/openwiki-update.yml": {
-    "mtime": 1793882882.0,
-    "seen": 1794016598.7404003,
-    "ast_hash": "53b82584ec675902609b0cccb9420dc2",
     "semantic_hash": ""
   }
 }

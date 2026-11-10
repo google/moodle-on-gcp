@@ -2329,6 +2329,18 @@
       "source_location": "L85"
     },
     {
+      "id": "jules_sentinel_2026_11_10_pre_autoloader_local_redislock_detection_config_php_template_direct_public_local_redislock_extraction_on_moodle_5_1_and_behavioral_cli_test_suite_pr_48",
+      "label": "2026-11-10 \u2014 Pre-Autoloader `local_redislock` Detection (`config.php.template`), Direct `public/local/redislock` Extraction on Moodle 5.1+, and Behavioral CLI Test Suite (`PR #48`)",
+      "_origin": "ast",
+      "community": 17,
+      "community_name": "Sentinel's Journal \u2014 Security, Hardening & Review Guardrails (`google/moodle-on-gcp`)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "2026-11-10 \u2014 pre-autoloader `local_redislock` detection (`config.php.template`), direct `public/local/redislock` extraction on moodle 5.1+, and behavioral cli test suite (`pr #48`)",
+      "source_file": ".jules/sentinel.md",
+      "source_location": "L96"
+    },
+    {
       "id": "jules_sentinel_chronological_security_hardening_learnings",
       "label": "Chronological Security & Hardening Learnings",
       "_origin": "ast",
@@ -3111,7 +3123,37 @@
       },
       "norm_label": "create_mock_config()",
       "source_file": "tests/verify-scripts-and-configs.sh",
-      "source_location": "L85"
+      "source_location": "L89"
+    },
+    {
+      "id": "tests_verify_scripts_and_configs_gcloud_log",
+      "label": "GCLOUD_LOG",
+      "_origin": "ast",
+      "community": 31,
+      "community_name": "verify-scripts-and-configs.sh",
+      "file_type": "code",
+      "metadata": {
+        "language": "bash",
+        "kind": "code"
+      },
+      "norm_label": "gcloud_log",
+      "source_file": "tests/verify-scripts-and-configs.sh",
+      "source_location": "L193"
+    },
+    {
+      "id": "tests_verify_scripts_and_configs_kubectl_log",
+      "label": "KUBECTL_LOG",
+      "_origin": "ast",
+      "community": 31,
+      "community_name": "verify-scripts-and-configs.sh",
+      "file_type": "code",
+      "metadata": {
+        "language": "bash",
+        "kind": "code"
+      },
+      "norm_label": "kubectl_log",
+      "source_file": "tests/verify-scripts-and-configs.sh",
+      "source_location": "L194"
     },
     {
       "id": "tests_verify_scripts_and_configs_run_replica_snippet",
@@ -3126,7 +3168,7 @@
       },
       "norm_label": "run_replica_snippet()",
       "source_file": "tests/verify-scripts-and-configs.sh",
-      "source_location": "L99"
+      "source_location": "L103"
     },
     {
       "id": "tests_verify_scripts_and_configs_sh__entry",
@@ -3142,6 +3184,21 @@
       "norm_label": "verify-scripts-and-configs.sh script",
       "source_file": "tests/verify-scripts-and-configs.sh",
       "source_location": "L1"
+    },
+    {
+      "id": "tests_verify_scripts_and_configs_tmp_test_dir",
+      "label": "TMP_TEST_DIR",
+      "_origin": "ast",
+      "community": 31,
+      "community_name": "verify-scripts-and-configs.sh",
+      "file_type": "code",
+      "metadata": {
+        "language": "bash",
+        "kind": "code"
+      },
+      "norm_label": "tmp_test_dir",
+      "source_file": "tests/verify-scripts-and-configs.sh",
+      "source_location": "L86"
     },
     {
       "id": "0_infra_infra_pause",
@@ -3902,7 +3959,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "tests/verify-scripts-and-configs.sh",
-      "source_location": "L111",
+      "source_location": "L115",
       "weight": 1.0
     },
     {
@@ -3914,7 +3971,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "tests/verify-scripts-and-configs.sh",
-      "source_location": "L112",
+      "source_location": "L116",
       "weight": 1.0
     },
     {
@@ -4960,6 +5017,17 @@
       "confidence_score": 1.0,
       "source_file": ".jules/sentinel.md",
       "source_location": "L85",
+      "weight": 1.0
+    },
+    {
+      "source": "jules_sentinel_sentinel_s_journal_security_hardening_review_guardrails_google_moodle_on_gcp",
+      "target": "jules_sentinel_2026_11_10_pre_autoloader_local_redislock_detection_config_php_template_direct_public_local_redislock_extraction_on_moodle_5_1_and_behavioral_cli_test_suite_pr_48",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".jules/sentinel.md",
+      "source_location": "L96",
       "weight": 1.0
     },
     {
@@ -6009,24 +6077,57 @@
     },
     {
       "source": "tests_verify_scripts_and_configs",
-      "target": "tests_verify_scripts_and_configs_create_mock_config",
-      "relation": "defines",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "tests/verify-scripts-and-configs.sh",
-      "source_location": "L85",
-      "weight": 1.0
-    },
-    {
-      "source": "tests_verify_scripts_and_configs",
       "target": "tests_verify_scripts_and_configs_run_replica_snippet",
       "relation": "defines",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "tests/verify-scripts-and-configs.sh",
-      "source_location": "L99",
+      "source_location": "L103",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_verify_scripts_and_configs",
+      "target": "tests_verify_scripts_and_configs_gcloud_log",
+      "relation": "defines",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/verify-scripts-and-configs.sh",
+      "source_location": "L193",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_verify_scripts_and_configs",
+      "target": "tests_verify_scripts_and_configs_kubectl_log",
+      "relation": "defines",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/verify-scripts-and-configs.sh",
+      "source_location": "L194",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_verify_scripts_and_configs",
+      "target": "tests_verify_scripts_and_configs_tmp_test_dir",
+      "relation": "defines",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/verify-scripts-and-configs.sh",
+      "source_location": "L86",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_verify_scripts_and_configs",
+      "target": "tests_verify_scripts_and_configs_create_mock_config",
+      "relation": "defines",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/verify-scripts-and-configs.sh",
+      "source_location": "L89",
       "weight": 1.0
     },
     {
@@ -7068,5 +7169,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "a51b1417c885fda95b189c6f0e4acb8bf90530ae"
+  "built_at_commit": "a3cf6fe8ac50197a541a10b9548e29941da40d47"
 }
