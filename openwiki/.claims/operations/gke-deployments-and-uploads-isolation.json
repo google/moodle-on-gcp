@@ -1,38 +1,38 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:66e3594da1c695d38e7e3009b2429cffd2ee9eb6177fc06745875088a0b61c04",
+  "pageVersion": "sha256:996df6befadfd2e0e83fc17e935adf36b71f78de80a28350592ac49d122cade3",
   "claims": [
     {
       "id": "claim_fcb82d9ef5b0414aaad7f3e1667a7917",
-      "statement": "O script create-config-files.sh renderiza via envsubst os ConfigMaps e Deployments (principal e uploads) bem como os manifestos de PV, PVC e StorageClass, além de suportar prompt interativo opcional para SMTP_PASSWORD.",
+      "statement": "create-config-files.sh renders the primary and uploads ConfigMaps and Deployments as well as the PV, PVC, and StorageClass manifests via envsubst, and supports an optional interactive prompt for SMTP_PASSWORD.",
       "evidence": [
         {
           "resource": "repo://5a-deployment-no-helm/create-config-files.sh#L33-L92",
-          "version": "repo-lines-v1:sha256:4d4f9a6c21030f42ea5fcd77b2214db91fe1c5ee62ff2aab02d8c2dad3e0219e:eyJzZWxlY3RlZExpbmVDb3VudCI6NjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM3N2YxYjExYjc1NWMyNTk3MDJiMDg2MDE2ZjA1MjU2ZTZkMTBjZjg5NDUxMWE2N2VmMzBhNTMyY2Q0NTBhN2QiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM3NjlkMjM3Y2Q0MjBiOWQzOGI5ODFhMGE0ZjY3NzAxOTBhNGE4M2RjYTFmZTU2YzRmNWJhMWUyY2JjMGVmNzYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU0NmNjMzNlMzdjNGQ0NmIyZTBmZDc5NjM1YjM5Y2IzNzI4ZGFjNjA5MzJkMjA0OGExMDg4MTQwM2E4ZGU4OTkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+          "version": "repo-lines-v1:sha256:1e1d5d8c5fa57db5825da00fc6f3ff6ec4f79ab61108e20d96fb6128565b7e54:eyJzZWxlY3RlZExpbmVDb3VudCI6NjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM3N2YxYjExYjc1NWMyNTk3MDJiMDg2MDE2ZjA1MjU2ZTZkMTBjZjg5NDUxMWE2N2VmMzBhNTMyY2Q0NTBhN2QiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM3NjlkMjM3Y2Q0MjBiOWQzOGI5ODFhMGE0ZjY3NzAxOTBhNGE4M2RjYTFmZTU2YzRmNWJhMWUyY2JjMGVmNzYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU0NmNjMzNlMzdjNGQ0NmIyZTBmZDc5NjM1YjM5Y2IzNzI4ZGFjNjA5MzJkMjA0OGExMDg4MTQwM2E4ZGU4OTkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
         }
       ]
     },
     {
       "id": "claim_af7d7f3bfbca432ab3d6410ec05f9cf5",
-      "statement": "O deployment moodle-deployment-uploads isola suas configurações de NGINX e PHP 8.3 em subPaths dedicados (moodleroot-instance1/etc/nginx-uploads e moodleroot-instance1/etc/php83-uploads) para não sobrescrever os arquivos do deployment principal.",
+      "statement": "moodle-deployment-uploads isolates its NGINX and PHP 8.3 configurations in dedicated subPaths (moodleroot-instance1/etc/nginx-uploads and moodleroot-instance1/etc/php83-uploads) so upload overrides do not overwrite the primary web deployment files.",
       "evidence": [
         {
-          "resource": "repo://5a-deployment-no-helm/moodle-deployment-nginx-uploads.yaml#L303-L315",
-          "version": "repo-lines-v1:sha256:9aababc801327a589d13d682529e2d16161499d7b0143a8f6c6c9a2ba8e4d851:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjljMjhmZDE1OWQyODU1MGFiNTE4MTYwZGU3MWU4ODMxY2RjMDk1MTE1NTVkMzcwODk4MzViMmY3Mzk2YzE2YzciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE3MzYwNzA5N2FlZTQxN2YwMjRhOTViYjNmMTY1OGZhMmFhODJiNTBmZmU1ZDRjYjVlNzViM2NiZmVkYmM0NjgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImVmZmNmYmQ1YmY4OTY5YWY4Njg2YjJhNzA5ZmYzMTI1NDE5YjM1NWU1ZjQ0MWYyZGQ3OTQzYWQ4MjEwZGZkMmUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjUzZGEwZmIzMTVkZGQzOGNhNTIxYzFmYWE1NjkxYWU4MzI2OTJiZDNhMTU2ODJmYWFhNTBkNjQzNmY1OTEzZjAifQ"
+          "resource": "repo://5a-deployment-no-helm/moodle-deployment-nginx-uploads.yaml#L302-L316",
+          "version": "repo-lines-v1:sha256:5a378483a0f399623f1fea4c1f52be5389e32fa545a3c5c686baaff6a59e4c40:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImM2NDA0MzBiM2FjMWVkZjhkMWM5NWI5NmExNzYwMzAyNGE2Y2ZmNmQ0NzdkNjkzYTQyOTViMWQwMTUzOTM0YjMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE0MTZjNjU4YmRjMTVmMDBjNjRlMTMyNTgzNGZjNTJjZDAwYWFlM2ZmMThkZDNiZjMxNTc1YmM3N2JiMDM2ODYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImY5OTQwYzEzOTY4ZmVhZDhkMDAxZTIxYWQ5YWMzNjdjNDZlYWQxNTgyMGMxODdjMmYxZGYwYjU2ZGY4MDYwODkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImM0YTg0MmU3MGVhZjYzMzE1YzMzZTlkYjRkMjA2ZWNjNDhhM2M5NzU4MjI0ZDc2MTI1NjQyZGFjNTM2YzYwOGMifQ"
         },
         {
-          "resource": "repo://5a-deployment-no-helm/moodle-deployment-nginx.yaml#L291-L303",
-          "version": "repo-lines-v1:sha256:a31b817bd4af076edcfdfcb7c0a45c26dafa14cc8d40487bbc0ae7da86b085ef:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjljMjhmZDE1OWQyODU1MGFiNTE4MTYwZGU3MWU4ODMxY2RjMDk1MTE1NTVkMzcwODk4MzViMmY3Mzk2YzE2YzciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE3MzYwNzA5N2FlZTQxN2YwMjRhOTViYjNmMTY1OGZhMmFhODJiNTBmZmU1ZDRjYjVlNzViM2NiZmVkYmM0NjgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImVmZmNmYmQ1YmY4OTY5YWY4Njg2YjJhNzA5ZmYzMTI1NDE5YjM1NWU1ZjQ0MWYyZGQ3OTQzYWQ4MjEwZGZkMmUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjUzZGEwZmIzMTVkZGQzOGNhNTIxYzFmYWE1NjkxYWU4MzI2OTJiZDNhMTU2ODJmYWFhNTBkNjQzNmY1OTEzZjAifQ"
+          "resource": "repo://5a-deployment-no-helm/moodle-deployment-nginx.yaml#L298-L312",
+          "version": "repo-lines-v1:sha256:b8878d002850b62ac5c95b6624e0c5e51c29163380c43d4cc8cd3be72126a138:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImM2NDA0MzBiM2FjMWVkZjhkMWM5NWI5NmExNzYwMzAyNGE2Y2ZmNmQ0NzdkNjkzYTQyOTViMWQwMTUzOTM0YjMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE0MTZjNjU4YmRjMTVmMDBjNjRlMTMyNTgzNGZjNTJjZDAwYWFlM2ZmMThkZDNiZjMxNTc1YmM3N2JiMDM2ODYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImY5OTQwYzEzOTY4ZmVhZDhkMDAxZTIxYWQ5YWMzNjdjNDZlYWQxNTgyMGMxODdjMmYxZGYwYjU2ZGY4MDYwODkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImM0YTg0MmU3MGVhZjYzMzE1YzMzZTlkYjRkMjA2ZWNjNDhhM2M5NzU4MjI0ZDc2MTI1NjQyZGFjNTM2YzYwOGMifQ"
         }
       ]
     },
     {
       "id": "claim_1528670178f943e98ced25a1199913e0",
-      "statement": "Os pods de upload recebem variáveis dedicadas (CLIENT_MAX_BODY_SIZE=512M, UPLOAD_MAX_FILESIZE=512M, POST_MAX_SIZE=512M, PHP_MAX_EXECUTION_TIME=3600, PHP_MEMORY_LIMIT=512M) e limites de recursos de 500m CPU e 2Gi de memória.",
+      "statement": "Upload pods receive dedicated runtime variables (CLIENT_MAX_BODY_SIZE=512M, UPLOAD_MAX_FILESIZE=512M, POST_MAX_SIZE=512M, PHP_MAX_EXECUTION_TIME=3600, PHP_MEMORY_LIMIT=512M) and resource limits of 500m CPU and 2Gi memory.",
       "evidence": [
         {
-          "resource": "repo://5a-deployment-no-helm/moodle-configmap-nginx-uploads.yaml#L58-L63",
-          "version": "repo-lines-v1:sha256:6861ac0b8012bfe8c3de05a7985f3df999d2eff0d44dd8be156f7738083cb384:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZGJlZGJhYzJkYTYyYjg3YzhjZGU4NmYyMGRkNmI3MGI1MTFhZjIwMmUwNGNlYjA4YTM3Yjg4NTIzYTQ3NDVkZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMjExM2YwZjFmYzU0NmRhMjFkZWFkNzc0ODdlNmQxOWFiMzdlYWE5Zjc4OTc3ZmRlZThjODA5NGRiNzNlOTQ3YyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOWU0OTYxMWM3OTUxYWM2N2I4YTQ5NzQxNDUyOGJjYzJjNjZkNzVkZjMxMzMwZjQzZmJiNjIwMWQ3MTliNTg0MCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjIsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZDE5NjNhN2FiMDQxZjJiZTEwMDIyM2JiZjk2MzM0NmM1ZDFjYmE0MDI4Njg4NGQ1MmQ0NmIwZTQzYTQxZGFjMiJ9"
+          "resource": "repo://5a-deployment-no-helm/moodle-configmap-nginx-uploads.yaml#L62-L67",
+          "version": "repo-lines-v1:sha256:d4d6f895da6425aaf40bca7634a75e641f27871e479ad796ac257af6be17b8dd:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjQwZWYyMzFhNTg4Y2I2NjRhMGFjOTU1ZjdlOTYxNmYyMGJkZDgxMGY3NGUwZjNlNDRlZmVhZWYyMjA2MDU4MiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYTI3N2MzYTE1OTk2NDRhMzc1ZTdkZDcxNmIwMGY0ZDBhZjJkYmNlM2Y3NWQ1NjQ1YjUxMjA5MGU1Yzg1MTI4NiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYTcxM2U5Y2Q3NDM0NTg1MDFlOGE0MmYyNGQxZTBiYWYxYjcwYzFmYTY5MzhiZGJjNTMyMjY3Yzg0NjBjMDFjNiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
         },
         {
           "resource": "repo://5a-deployment-no-helm/moodle-deployment-nginx-uploads.yaml#L265-L302",
@@ -42,7 +42,7 @@
     },
     {
       "id": "claim_73620a53d1134cef8a1621f670086d33",
-      "statement": "Os manifestos moodle-hpa (3 a 9 réplicas) e moodle-uploads-hpa (1 a 5 réplicas) escalam independentemente os deployments principal e de uploads com base em limites de 75% de CPU e 80% de memória.",
+      "statement": "moodle-hpa (3 to 9 replicas) and moodle-uploads-hpa (1 to 5 replicas) independently scale the primary and upload deployments based on 75% CPU and 80% memory utilization targets.",
       "evidence": [
         {
           "resource": "repo://9-hpa/moodle-hpa.yaml#L14-L38",
@@ -57,6 +57,6 @@
   ],
   "verification": {
     "by": "openwiki/0.5.1",
-    "at": "2026-11-05T11:15:21.468Z"
+    "at": "2026-11-10T23:28:03.423Z"
   }
 }

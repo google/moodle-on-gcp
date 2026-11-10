@@ -1,11 +1,11 @@
 ---
 type: architecture
-title: "Modalidades de Storage: Filestore vs. Regional Replicated Persistent Disk"
-description: Arquitetura comparativa, dimensionamento configurável de PV/PVC e provisionamento de Cloud Filestore (RWX) e Regional Replicated Persistent Disks (regional-pd) no GKE.
+title: "Storage Modalities: Filestore vs. Regional Replicated Persistent Disk"
+description: Comparative architecture, configurable PV/PVC sizing, and static vs. dynamic provisioning for Cloud Filestore (RWX) and Regional Replicated Persistent Disks (regional-pd) on GKE.
 tags: [storage, filestore, regional-pd, csi, persistent-volume, gke]
 verified:
   - by: openwiki/0.5.1
-    at: 2026-11-05T11:15:21.468Z
+    at: 2026-11-10T23:28:03.423Z
 sources:
   - id: openwiki-source-75467caa28be1defc4942cd3
     resource: repo://0-infra/envs.sh
@@ -19,65 +19,64 @@ sources:
     resource: repo://3-pvc/pvc-regional-pd.yaml
   - id: openwiki-source-b23bb47d51c7c03a516ab733
     resource: repo://5a-deployment-no-helm/create-config-files.sh
-generated: { by: "antigravity", at: "2026-11-05T11:15:21.468Z" }
+generated: { by: "antigravity", at: "2026-11-10T23:28:03.423Z" }
 ---
 
-# Modalidades de Storage: Filestore vs. Regional Replicated Persistent Disk
+# Storage Modalities: Filestore vs. Regional Replicated Persistent Disk
 
-O Moodle armazena o diretório de dados (`$CFG->dataroot`) e, na arquitetura padrão deste repositório, o código-fonte compartilhado (`/$MOODLE_ROOT_PATH_NO_SLASH/moodle`) e os diretórios de configuração runtime (`/etc/nginx`, `/etc/php83`, `/etc/nginx-uploads`, `/etc/php83-uploads`) em um volume persistente montado pelos pods no GKE.
+Moodle stores its data directory (`$CFG->dataroot`) and, in this repository's standard shared-storage topology, the shared application tree (`/$MOODLE_ROOT_PATH_NO_SLASH/moodle`) and runtime configuration directories (`/etc/nginx`, `/etc/php83`, `/etc/nginx-uploads`, `/etc/php83-uploads`) on a persistent volume mounted by GKE pods.
 
-Por meio da variável `STORAGE_TYPE` em `0-infra/envs.sh`, o repositório suporta três modalidades de adoção de armazenamento:
+Via the `STORAGE_TYPE` variable in `0-infra/envs.sh`, the repository supports three storage adoption modes:
 
-1. **`STORAGE_TYPE="filestore"` (Padrão)**: Cloud Filestore gerenciado via NFS (`ReadWriteMany`).
-2. **`STORAGE_TYPE="regional-pd"`**: Disco Persistente Regionalmente Replicado (`Regional Replicated Persistent Disk`) entre duas zonas (`$ZONE` e `$REPLICA_ZONE`) via driver CSI `pd.csi.storage.gke.io`.
-3. **`STORAGE_TYPE="none"`**: Pula o provisionamento de storage em `0-infra/infra-creation.sh` para permitir a integração de volumes externos pré-existentes.
+1. **`STORAGE_TYPE="filestore"` (Default)**: Managed Cloud Filestore over NFS (`ReadWriteMany`).
+2. **`STORAGE_TYPE="regional-pd"`**: Compute Engine Regional Replicated Persistent Disk synchronously replicated across two zones (`$ZONE` and `$REPLICA_ZONE`) via the `pd.csi.storage.gke.io` CSI driver.
+3. **`STORAGE_TYPE="none"`**: Skips storage provisioning in `0-infra/infra-creation.sh` to allow integrating pre-existing external volumes or sidecar replication layers.
 
-<!-- openwiki: mermaid parse failed and this diagram was converted to a text fence so it does not break rendering. Fix the diagram source and restore the mermaid fence. Parser error: Heuristic: an unescaped angle bracket inside a label breaks rendering; rephrase the label. -->
-```text
+```mermaid
 flowchart LR
-    Env["0-infra/envs.sh<br/>STORAGE_TYPE"] -->|filestore| FS["Cloud Filestore<br/>FILESTORE_TIER + FILESTORE_CAPACITY"]
-    Env -->|regional-pd| RPD["Compute Engine Regional PD<br/>ZONE + REPLICA_ZONE + PD_DISK_SIZE"]
-    FS --> PV_FS["1-pv/pv-filestore.yaml<br/>ReadWriteMany (NFS)"]
-    PV_FS --> PVC_FS["3-pvc/pvc-filestore.yaml<br/>pvc-filestore"]
-    RPD --> PV_RPD["1-pv/pv-regional-pd.yaml<br/>pd.csi.storage.gke.io"]
-    RPD --> SC_RPD["1-pv/storageclass-regional-pd.yaml<br/>replication-type: regional-pd"]
-    PV_RPD --> PVC_RPD["3-pvc/pvc-regional-pd.yaml<br/>pvc-regional-pd"]
+    Env["0-infra/envs.sh - STORAGE_TYPE"] -->|filestore| FS["Cloud Filestore - FILESTORE_TIER + FILESTORE_CAPACITY"]
+    Env -->|regional-pd| RPD["Compute Engine Regional PD - ZONE + REPLICA_ZONE + PD_DISK_SIZE"]
+    FS --> PV_FS["1-pv/pv-filestore.yaml - ReadWriteMany (NFS)"]
+    PV_FS --> PVC_FS["3-pvc/pvc-filestore.yaml - pvc-filestore"]
+    RPD --> PV_RPD["1-pv/pv-regional-pd.yaml - pd.csi.storage.gke.io"]
+    RPD --> SC_RPD["1-pv/storageclass-regional-pd.yaml - replication-type: regional-pd"]
+    PV_RPD --> PVC_RPD["3-pvc/pvc-regional-pd.yaml - pvc-regional-pd"]
 ```
 
-## Comparativo entre Cloud Filestore e Regional Replicated PD
+## Comparison: Cloud Filestore vs. Regional Replicated PD
 
-| Característica | Cloud Filestore (`STORAGE_TYPE="filestore"`) | Regional Replicated Persistent Disk (`STORAGE_TYPE="regional-pd"`) |
+| Feature | Cloud Filestore (`STORAGE_TYPE="filestore"`) | Regional Replicated Persistent Disk (`STORAGE_TYPE="regional-pd"`) |
 | :--- | :--- | :--- |
-| **Protocolo / Driver** | NFSv3 (`nfs` no `PersistentVolume`) | Bloco via CSI (`pd.csi.storage.gke.io`, `fsType: ext4`) |
-| **Modo de Acesso (`accessModes`)** | `ReadWriteMany` (`RWX`) simultâneo entre múltiplos nós GKE | `ReadWriteOnce` (`RWO`, pods no mesmo nó com failover automático entre zonas) ou `ReadOnlyMany` (`ROX`) |
-| **Replicação / Alta Disponibilidade** | Zonal (`BASIC_HDD`, `BASIC_SSD`, `ZONAL`) ou Regional (`REGIONAL`, `ENTERPRISE`) | Replicação síncrona nativa de blocos entre duas zonas (`$ZONE` e `$REPLICA_ZONE`) |
-| **Capacidade Mínima** | `1TB` (`BASIC_HDD`, `ZONAL`, `REGIONAL`) ou `2.5TB` (`BASIC_SSD`) | A partir de `10Gi`–`200Gi` (`PD_DISK_SIZE="200Gi"` por padrão) |
-| **Custo Inicial** | Mais elevado devido à capacidade mínima de 1 TiB / 2.5 TiB | Significativamente menor para ambientes de pequeno/médio porte ou homologação HA |
+| **Protocol / Driver** | NFSv3 (`nfs` in `PersistentVolume`) | Block storage via CSI (`pd.csi.storage.gke.io`, `fsType: ext4`) |
+| **Access Mode (`accessModes`)** | `ReadWriteMany` (`RWX`) concurrently across multiple GKE nodes | `ReadWriteOnce` (`RWO`, pods co-located on the same node with automatic cross-zone failover) or `ReadOnlyMany` (`ROX`) |
+| **Replication / High Availability** | Zonal (`BASIC_HDD`, `BASIC_SSD`, `ZONAL`) or Regional (`REGIONAL`, `ENTERPRISE`) | Native synchronous block replication across two zones (`$ZONE` and `$REPLICA_ZONE`) |
+| **Minimum Capacity** | `1TB` (`BASIC_HDD`, `ZONAL`, `REGIONAL`) or `2.5TB` (`BASIC_SSD`) | Starting from `10Gi`–`200Gi` (`PD_DISK_SIZE="200Gi"` by default) |
+| **Entry Cost** | Higher due to the 1 TiB / 2.5 TiB minimum capacity | Significantly lower for small/medium production or HA staging environments |
 
-## Parametrização de Tamanhos e Capacidades (`0-infra/envs.sh` e `create-config-files.sh`)
+## Configurable Sizes and Capacities (`0-infra/envs.sh` and `create-config-files.sh`)
 
-Todas as variáveis de capacidade e tipo de armazenamento são definidas em `0-infra/envs.sh` e propagadas automaticamente para os manifestos Kubernetes por `5a-deployment-no-helm/create-config-files.sh`:
+All storage capacity and tier variables are defined in `0-infra/envs.sh` and propagated automatically into the Kubernetes manifests by `5a-deployment-no-helm/create-config-files.sh`:
 
 - **Cloud Filestore**:
-  - `FILESTORE_TIER`: `BASIC_SSD` (padrão), `BASIC_HDD`, `ZONAL`, `REGIONAL` ou `ENTERPRISE`. Em `0-infra/infra-creation.sh`, tiers `REGIONAL` e `ENTERPRISE` utilizam `--location="$REGION"`, enquanto tiers zonais utilizam `--zone="$ZONE"`.
-  - `FILESTORE_CAPACITY`: Capacidade da instância Filestore (padrão `2.5TB`).
-  - `FILESTORE_SHARE_NAME`: Nome do compartilhamento NFS (padrão `moodleshare`).
+  - `FILESTORE_TIER`: `BASIC_SSD` (default), `BASIC_HDD`, `ZONAL`, `REGIONAL`, or `ENTERPRISE`. In `0-infra/infra-creation.sh`, `REGIONAL` and `ENTERPRISE` tiers use `--location="$REGION"`, whereas zonal tiers use `--zone="$ZONE"`.
+  - `FILESTORE_CAPACITY`: Capacity of the Filestore instance (default `2.5TB`).
+  - `FILESTORE_SHARE_NAME`: Name of the NFS share (default `moodleshare`).
 - **Regional Replicated Persistent Disk (`regional-pd`)**:
-  - `REPLICA_ZONE`: Segunda zona na mesma região (`$REGION-b`) para replicação síncrona junto à zona primária `$ZONE` (`$REGION-a`).
-  - `PD_DISK_NAME`: Nome do disco regional no Compute Engine.
-  - `PD_DISK_TYPE`: `pd-balanced` (padrão), `pd-ssd`, `pd-standard` ou `hyperdisk-balanced-high-availability`.
-  - `PD_DISK_SIZE`: Tamanho do disco regional e do PV/PVC correspondente (padrão `200Gi`).
-  - `PD_ACCESS_MODE`: Modo de acesso do volume (padrão `ReadWriteOnce`).
-- **Tamanhos de PV e PVC (`PV_STORAGE_SIZE`, `PVC_STORAGE_SIZE`, `PVC_LIMIT_STORAGE_SIZE`)**:
-  - Para `STORAGE_TYPE="filestore"`, os padrões são `PV_STORAGE_SIZE="2.5Ti"`, `PVC_STORAGE_SIZE="300Gi"`, `PVC_LIMIT_STORAGE_SIZE="500Gi"` e `PVC_CLAIM_NAME="pvc-filestore"`.
-  - Para `STORAGE_TYPE="regional-pd"`, os padrões ajustam-se automaticamente para `200Gi` e `PVC_CLAIM_NAME="pvc-regional-pd"`.
+  - `REPLICA_ZONE`: Secondary zone in the same region (`$REGION-b`) for synchronous replication alongside the primary zone `$ZONE` (`$REGION-a`).
+  - `PD_DISK_NAME`: Name of the regional disk in Compute Engine.
+  - `PD_DISK_TYPE`: `pd-balanced` (default), `pd-ssd`, `pd-standard`, or `hyperdisk-balanced-high-availability`.
+  - `PD_DISK_SIZE`: Size of the regional disk and corresponding PV/PVC (default `200Gi`).
+  - `PD_ACCESS_MODE`: Volume access mode (default `ReadWriteOnce`).
+- **PV and PVC Sizes (`PV_STORAGE_SIZE`, `PVC_STORAGE_SIZE`, `PVC_LIMIT_STORAGE_SIZE`)**:
+  - For `STORAGE_TYPE="filestore"`, defaults are `PV_STORAGE_SIZE="2.5Ti"`, `PVC_STORAGE_SIZE="300Gi"`, `PVC_LIMIT_STORAGE_SIZE="500Gi"`, and `PVC_CLAIM_NAME="pvc-filestore"`.
+  - For `STORAGE_TYPE="regional-pd"`, defaults automatically adjust to `200Gi` and `PVC_CLAIM_NAME="pvc-regional-pd"`.
 
-## Provisionamento Estático vs. Dinâmico de Regional Replicated PD
+## Static vs. Dynamic Provisioning for Regional Replicated PD
 
-O repositório oferece suporte tanto ao provisionamento estático quanto dinâmico de discos regionais replicados no GKE:
+The repository supports both static and dynamic provisioning of regional replicated disks on GKE:
 
-1. **Provisionamento Estático (`1-pv/pv-regional-pd.yaml` + `3-pvc/pvc-regional-pd.yaml`)**:
-   - `0-infra/infra-creation.sh` cria o disco regional com `--region="$REGION"` e `--replica-zones="projects/$PROJECT_ID/zones/$ZONE,projects/$PROJECT_ID/zones/$REPLICA_ZONE"`.
-   - `1-pv/pv-regional-pd.yaml` referencia `volumeHandle: projects/$PROJECT_ID/regions/$REGION/disks/$PD_DISK_NAME` via `driver: pd.csi.storage.gke.io` e restringe o agendamento aos nós das duas zonas via `nodeAffinity` (`topology.gke.io/zone in [$ZONE, $REPLICA_ZONE]`).
-2. **Provisionamento Dinâmico (`1-pv/storageclass-regional-pd.yaml`)**:
-   - Define uma `StorageClass` (`moodle-regional-pd`) com `provisioner: pd.csi.storage.gke.io`, `replication-type: regional-pd`, `type: $PD_DISK_TYPE`, `zones: $ZONE, $REPLICA_ZONE`, `allowVolumeExpansion: true` e `volumeBindingMode: WaitForFirstConsumer`.
+1. **Static Provisioning (`1-pv/pv-regional-pd.yaml` + `3-pvc/pvc-regional-pd.yaml`)**:
+   - `0-infra/infra-creation.sh` creates the regional disk with `--region="$REGION"` and `--replica-zones="projects/$PROJECT_ID/zones/$ZONE,projects/$PROJECT_ID/zones/$REPLICA_ZONE"`.
+   - `1-pv/pv-regional-pd.yaml` references `volumeHandle: projects/$PROJECT_ID/regions/$REGION/disks/$PD_DISK_NAME` via `driver: pd.csi.storage.gke.io` and constrains scheduling to nodes in those two zones via `nodeAffinity` (`topology.gke.io/zone in [$ZONE, $REPLICA_ZONE]`).
+2. **Dynamic Provisioning (`1-pv/storageclass-regional-pd.yaml`)**:
+   - Defines a `StorageClass` (`moodle-regional-pd`) with `provisioner: pd.csi.storage.gke.io`, `replication-type: regional-pd`, `type: $PD_DISK_TYPE`, `zones: $ZONE, $REPLICA_ZONE`, `allowVolumeExpansion: true`, and `volumeBindingMode: WaitForFirstConsumer`.

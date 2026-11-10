@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:65870a9be7821606d4990d056a28039c5ace98e1ec3eadc1fc2b3c65c01cbc57",
+  "pageVersion": "sha256:8d768f1cb4dc86a0b5dd26985e34a5da79f9a5b9d5dd28e7633c8feaa1a7d24b",
   "claims": [
     {
       "id": "claim_f9a79b95b3fe457c8fcbf0e6b08c261a",
-      "statement": "O script 0-infra/infra-creation.sh provisiona seletivamente Cloud Filestore (com tier e capacidade configuráveis e flag --location para tiers REGIONAL/ENTERPRISE) ou Regional Replicated Persistent Disks entre ZONE e REPLICA_ZONE conforme STORAGE_TYPE.",
+      "statement": "0-infra/infra-creation.sh selectively provisions Cloud Filestore (with configurable tier and capacity and --location for REGIONAL/ENTERPRISE tiers) or Regional Replicated Persistent Disks across ZONE and REPLICA_ZONE based on STORAGE_TYPE.",
       "evidence": [
         {
           "resource": "repo://0-infra/envs.sh#L98-L122",
@@ -18,7 +18,7 @@
     },
     {
       "id": "claim_1aa626804b254c35b1379d98b8c3d30d",
-      "statement": "O manifesto 1-pv/pv-regional-pd.yaml utiliza o driver CSI pd.csi.storage.gke.io com volumeHandle regional e nodeAffinity restrito às zonas topology.gke.io/zone configuradas.",
+      "statement": "1-pv/pv-regional-pd.yaml uses the pd.csi.storage.gke.io CSI driver with a regional volumeHandle and nodeAffinity restricted to the configured topology.gke.io/zone values.",
       "evidence": [
         {
           "resource": "repo://1-pv/pv-regional-pd.yaml#L15-L38",
@@ -32,7 +32,7 @@
     },
     {
       "id": "claim_bd441aabd45c48f7afbe219cd8c36231",
-      "statement": "A StorageClass moodle-regional-pd configura provisioner pd.csi.storage.gke.io com replication-type regional-pd, allowVolumeExpansion true e volumeBindingMode WaitForFirstConsumer.",
+      "statement": "The moodle-regional-pd StorageClass configures provisioner pd.csi.storage.gke.io with replication-type regional-pd, allowVolumeExpansion true, and volumeBindingMode WaitForFirstConsumer.",
       "evidence": [
         {
           "resource": "repo://1-pv/storageclass-regional-pd.yaml#L15-L28",
@@ -42,17 +42,17 @@
     },
     {
       "id": "claim_80b208d283864e6a92caaa9d1b642283",
-      "statement": "O script 5a-deployment-no-helm/create-config-files.sh seleciona automaticamente PVC_CLAIM_NAME (pvc-filestore ou pvc-regional-pd) com base em STORAGE_TYPE e renderiza os manifestos de PV, PVC e StorageClass com os tamanhos definidos em 0-infra/envs.sh.",
+      "statement": "5a-deployment-no-helm/create-config-files.sh automatically selects PVC_CLAIM_NAME (pvc-filestore or pvc-regional-pd) based on STORAGE_TYPE and renders the PV, PVC, and StorageClass manifests with the sizes configured in 0-infra/envs.sh.",
       "evidence": [
         {
           "resource": "repo://5a-deployment-no-helm/create-config-files.sh#L33-L86",
-          "version": "repo-lines-v1:sha256:9fa2386d9d32894bafaf44998315df8f6fd65c17287e81aad615c3167bcb049f:eyJzZWxlY3RlZExpbmVDb3VudCI6NTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM3N2YxYjExYjc1NWMyNTk3MDJiMDg2MDE2ZjA1MjU2ZTZkMTBjZjg5NDUxMWE2N2VmMzBhNTMyY2Q0NTBhN2QiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFkYzllZTRlM2ZmYmFmYTExYzEzMzkwYTY0MWIwNmNkYzc1NTlmODY2M2YzMTdkNzFiMmNhZTI3OGUxOTUwMGUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU0NmNjMzNlMzdjNGQ0NmIyZTBmZDc5NjM1YjM5Y2IzNzI4ZGFjNjA5MzJkMjA0OGExMDg4MTQwM2E4ZGU4OTkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY5MzVhYzYyMzBlYWYyMzhhOWNlM2U5MjRhMzcwMGYyZGU2NzFjMjc5Y2YxMTVhZGE0YjdmYzgyZDliYzQ5ODgifQ"
+          "version": "repo-lines-v1:sha256:ccaa5e5791eb539e507f01ae7a90443c93d75731082c28d915d93fcbeeb55667:eyJzZWxlY3RlZExpbmVDb3VudCI6NTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM3N2YxYjExYjc1NWMyNTk3MDJiMDg2MDE2ZjA1MjU2ZTZkMTBjZjg5NDUxMWE2N2VmMzBhNTMyY2Q0NTBhN2QiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFkYzllZTRlM2ZmYmFmYTExYzEzMzkwYTY0MWIwNmNkYzc1NTlmODY2M2YzMTdkNzFiMmNhZTI3OGUxOTUwMGUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU0NmNjMzNlMzdjNGQ0NmIyZTBmZDc5NjM1YjM5Y2IzNzI4ZGFjNjA5MzJkMjA0OGExMDg4MTQwM2E4ZGU4OTkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY5MzVhYzYyMzBlYWYyMzhhOWNlM2U5MjRhMzcwMGYyZGU2NzFjMjc5Y2YxMTVhZGE0YjdmYzgyZDliYzQ5ODgifQ"
         }
       ]
     }
   ],
   "verification": {
     "by": "openwiki/0.5.1",
-    "at": "2026-11-05T11:15:21.468Z"
+    "at": "2026-11-10T23:28:03.423Z"
   }
 }

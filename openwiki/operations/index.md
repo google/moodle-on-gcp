@@ -1,4 +1,4 @@
-# Arquivos
+# Files
 
-- [Cloud CDN com Moodle Funcional, Tuning NGINX/PHP-FPM e Ingress](cloud-cdn-and-ingress.md) - Integração entre Google Cloud CDN (USE_ORIGIN_HEADERS), X-Accel-Redirect com prefixo ^~ no NGINX, slasharguments no Moodle, ocultação de Set-Cookie em assets públicos (incluindo yui_combo.php), proteção de /pluginfile.php e roteamento de Ingress.
-- [Deployments GKE, Isolamento de Pods de Upload e HPA](gke-deployments-and-uploads-isolation.md) - Arquitetura de Deployments Kubernetes para o Moodle 5.2.4, isolamento de subPaths e recursos para pods dedicados a uploads pesados, geração via create-config-files.sh e políticas de HPA.
+- [Cloud CDN for Moodle, NGINX/PHP-FPM Tuning, and Ingress Routing](cloud-cdn-and-ingress.md) - Integration between Google Cloud CDN (USE_ORIGIN_HEADERS), NGINX X-Accel-Redirect (^~ prefix protection), Moodle slasharguments, Set-Cookie stripping on public assets (including yui_combo.php), private file protection, and Ingress routing.
+- [GKE Deployments, Upload Pod Isolation, and Horizontal Pod Autoscaling](gke-deployments-and-uploads-isolation.md) - Kubernetes Deployment architecture for Moodle 5.2.4, isolated subPaths and resource limits for dedicated heavy file-upload pods, manifest rendering via create-config-files.sh, and HPA policies.

@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:6887f103bd1e318bfd834f442fd9b9abce12f8611a44251cc381df9c8e343f24",
+  "pageVersion": "sha256:a03824e960ecb38691b2d3cbbcd6eeaea4defa396f06fd42cc552bbaaaa53b30",
   "claims": [
     {
       "id": "claim_03fe0ac01f6b4eb4a676bd753e952267",
-      "statement": "O Dockerfile.nginx compila /usr/lib/preloadable_libiconv.so em um estágio builder dedicado (build-gnu-libiconv.sh), configura ENV LD_PRELOAD=/usr/lib/preloadable_libiconv.so e valida iconv('UTF-8', 'ASCII//TRANSLIT', 'Olá') em tempo de build.",
+      "statement": "Dockerfile.nginx compiles /usr/lib/preloadable_libiconv.so in a dedicated builder stage (build-gnu-libiconv.sh), sets ENV LD_PRELOAD=/usr/lib/preloadable_libiconv.so, and verifies iconv('UTF-8', 'ASCII//TRANSLIT', 'Olá') at build time.",
       "evidence": [
         {
           "resource": "repo://4-moodle-image-builder/Dockerfile.nginx#L16-L45",
@@ -18,7 +18,7 @@
     },
     {
       "id": "claim_8296634d6a184e56a3d08c42e2350bd5",
-      "statement": "A imagem container instala o PHP 8.3 (php83-fpm e extensões) sobre Alpine 3.21, valida dinamicamente o checksum SHA-384 do Composer e inicia /usr/sbin/php-fpm83 no entrypoint.sh.",
+      "statement": "The container image installs PHP 8.3 (php83-fpm and extensions) on Alpine 3.21, dynamically verifies the Composer SHA-384 checksum, and starts /usr/sbin/php-fpm83 in entrypoint.sh.",
       "evidence": [
         {
           "resource": "repo://4-moodle-image-builder/Dockerfile.nginx#L28-L56",
@@ -32,21 +32,21 @@
     },
     {
       "id": "claim_d8a1536626514ea9925515e520c9eb3a",
-      "statement": "O script setup_moodle.sh executa composer install --no-dev --classmap-authoritative em $MOODLE_PATH e aponta automaticamente o root do NGINX para $MOODLE_ROOT_PATH/moodle/public quando o diretório public/ do Moodle 5.1+ está presente.",
+      "statement": "setup_moodle.sh runs composer install --no-dev --classmap-authoritative in $MOODLE_PATH and automatically points the NGINX root directive to $MOODLE_ROOT_PATH/moodle/public when the Moodle 5.1+ public/ directory is present.",
       "evidence": [
         {
-          "resource": "repo://4-moodle-image-builder/base/opt/setup_moodle.sh#L119-L123",
-          "version": "repo-lines-v1:sha256:8e90020c4d27f4d9047729d8a1d3a2594e6b39dc3f7a5c1c6d5fcf247a5fa3ab:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMmViMjk3ZjBiOTQ0MzkwMmIxZTkyNmIxYjUxODIzNzNhNjQ2ODkxZjkxZjc5ZjNiMjZjYmY0MjQ4MjFhZTdhYSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNzY1ZjMwMjgzOTU1ZGI0ZGRjNGQ5N2U0ZmQ1ZTFmNzQwN2I2NjAxYmQyZjFiNmM0MGY2MGRhYTJjZGYxMmM0NSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMGIwMjJmZDY1Y2Y3YTgwM2JlYmI0N2MwYTU4ODI0ODFjYTFkMzJjM2ZhOThiZGZkZWQwMWU1Y2M2ZjdjYWFiMSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTMxN2I3ODNmNTZkNDhhNDAzNDRjMDJiYWZlMzNkOGZhY2JlY2U2OTk0OTI2MmRhZDAzZmIzODUzOTMxZWIyOSJ9"
+          "resource": "repo://4-moodle-image-builder/base/opt/setup_moodle.sh#L149-L153",
+          "version": "repo-lines-v1:sha256:f95241d46b0779fc28a82b0fc21d55130c45a4427ee297b0986194f21b970631:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNmNhNGMwODJkN2MxNjE5YWM1ZTRiM2NlMjRmZDQ1MzVlZmFlOWQ0OTI3YjdlOTQyMGZmNTA2NmQwZTc3ZWQwZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiODRlNzYwNDI2YThlM2E4NjBkZDE1MGU2YzExNzhiYWE2YmYxODI0YzU3ZmU4MjczYjAyYjRhNWNlNDUzYWE3MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYjYxN2ZhZmM2YWNhNzA0MjAwZGNhOTZmODA5YTViMGVlNGUzNzczMTY1ZDQ3YTYxZmQ4M2Q4NjA5OGU0MmI3MCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNTA5ZGYzMmQzMTRiMjQ1NjI1MGZlNmIzMzg1NjgxZGFmMzhmYzRlMjllYjk5MDE5ZmZhMjBhNTExOGQ0NTJkOSJ9"
         },
         {
-          "resource": "repo://4-moodle-image-builder/base/opt/setup_moodle.sh#L262-L267",
-          "version": "repo-lines-v1:sha256:5577c4d241f3a90e213ccab9554877199fecdfe18f8bb09008b0885f7793b862:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNDYxYThhODQ3YjQ0MDllMGE2MmIyOGU2ZWVmZDQ4MDJhZjZhYWIyM2JlM2M5YzAzYTI0ZGRlNWNiNWNkZDgzZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYzNlODJhMDAyZDI4YjZkM2FjOGUyYTI5MWNjZjBhYzA4YTkxMTAyMmE5NWI3MjkzMThmYmY4OWY2ODYwMWE1OSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiM2I4ZDUyOTNlYWI4YzM1MTkzNzEzZWJkN2Y3MGY3MWMyNjc4MzZjMWE1NGQ4ODdjMjJlM2NlN2IwNzIwY2EzMyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNGE4ODY0YWRlOTI0N2M0OGFhNjQ2YTcxZDY5Njc5MzBjNTRlMDVlZmEzNmZmYmU4OTU1ZDc5NTgzNzgwMjAxMSJ9"
+          "resource": "repo://4-moodle-image-builder/base/opt/setup_moodle.sh#L312-L317",
+          "version": "repo-lines-v1:sha256:957a34b58088d6c35b051d70cd3cb0815da404806dbc720aff8c977a32f1707a:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYTc3NGRhMTc1YzJhODQ3YmJmNGUwNDU1YzJkOWEwZTBjOTAyODdlNzVjNzQzNWU0M2ZlN2RjMDBiMzU0YjE5MiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMzc2OWQyMzdjZDQyMGI5ZDM4Yjk4MWEwYTRmNjc3MDE5MGE0YTgzZGNhMWZlNTZjNGY1YmExZTJjYmMwZWY3NiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDEzYmE5ZmIzODRiODg0MWM2ZTU5MDNkYTFhOGYyZjc4ZjA5ZWFmNzM0M2MwNTc2YWYzMTU3ZjUxODYwOWFmYyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNjMwNDg0MTdhM2U0ZGQ1NzI1N2ZlNDNmZWQ4MDhkM2M2ZWRlZmI1ZWU4NjkwN2FmMTQzNmUyMGM4YTM3YmI2YyJ9"
         }
       ]
     },
     {
       "id": "claim_c150732cd9024abf9ce14a67c2c2fc4c",
-      "statement": "O arquivo config.php.template protege a configuração de $CFG->lock_factory verificando is_readable() nos caminhos /public/local/redislock e /local/redislock além de class_exists('\\\\\\\\local_redislock\\\\\\\\lock\\\\\\\\redis_lock_factory'), e o setup_moodle.sh instala automaticamente o plugin local_redislock quando REDIS_LOCK_HOST_AND_PORT está configurado.",
+      "statement": "config.php.template guards $CFG->lock_factory by checking is_readable() on /public/local/redislock and /local/redislock in addition to class_exists('\\\\\\\\local_redislock\\\\\\\\lock\\\\\\\\redis_lock_factory'), and setup_moodle.sh automatically installs the local_redislock plugin when REDIS_LOCK_HOST_AND_PORT is configured.",
       "evidence": [
         {
           "resource": "repo://4-moodle-image-builder/base/opt/setup_moodle.sh#L384-L404",
@@ -61,6 +61,6 @@
   ],
   "verification": {
     "by": "openwiki/0.5.1",
-    "at": "2026-11-10T22:49:21.552Z"
+    "at": "2026-11-10T23:28:03.423Z"
   }
 }
