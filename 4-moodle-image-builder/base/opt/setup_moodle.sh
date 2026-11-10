@@ -389,12 +389,18 @@ if [ -n "$REDIS_LOCK_HOST_AND_PORT" ]; then
     if [ ! -f "$MOODLE_PATH/local/redislock/version.php" ] && [ ! -f "$MOODLE_PATH/public/local/redislock/version.php" ]; then
       echo "Downloading local_redislock directly from GitHub (open-lms-open-source/moodle-local_redislock) ..."
       REDISLOCK_URL="${REDISLOCK_PLUGIN_URL:-https://github.com/open-lms-open-source/moodle-local_redislock/archive/refs/heads/master.tar.gz}"
-      mkdir -p "$MOODLE_PATH/local/redislock"
-      if curl --silent --location --fail "$REDISLOCK_URL" | tar -xz --strip-components=1 -C "$MOODLE_PATH/local/redislock"; then
-        chown -R www:www "$MOODLE_PATH/local/redislock"
-        if [ -d "$MOODLE_PATH/public/local" ] && [ ! -e "$MOODLE_PATH/public/local/redislock" ]; then
-          ln -s "$MOODLE_PATH/local/redislock" "$MOODLE_PATH/public/local/redislock"
-          chown -h www:www "$MOODLE_PATH/public/local/redislock"
+      if [ -d "$MOODLE_PATH/public/local" ]; then
+        REDISLOCK_TARGET_DIR="$MOODLE_PATH/public/local/redislock"
+      else
+        REDISLOCK_TARGET_DIR="$MOODLE_PATH/local/redislock"
+      fi
+      mkdir -p "$REDISLOCK_TARGET_DIR"
+      if curl --silent --location --fail "$REDISLOCK_URL" | tar -xz --strip-components=1 -C "$REDISLOCK_TARGET_DIR"; then
+        chown -R www:www "$REDISLOCK_TARGET_DIR"
+        if [ "$REDISLOCK_TARGET_DIR" = "$MOODLE_PATH/public/local/redislock" ] && [ ! -e "$MOODLE_PATH/local/redislock" ]; then
+          mkdir -p "$MOODLE_PATH/local"
+          cp -a "$REDISLOCK_TARGET_DIR" "$MOODLE_PATH/local/redislock"
+          chown -R www:www "$MOODLE_PATH/local/redislock"
         fi
         sudo -u www php83 -d max_input_vars=10000 "$MOODLE_PATH/admin/cli/upgrade.php" --non-interactive --allow-unstable || true
       fi

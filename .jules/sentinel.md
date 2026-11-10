@@ -92,3 +92,16 @@ This journal records all security vulnerabilities, architectural invariants, and
 - Added `rm -fv "$MOODLE_PATH/config.php.bak"` immediately after the `envsubst` splice in `4-moodle-image-builder/base/opt/setup_moodle.sh`.
 - Added `|\.bak$` to the `MDL-69333` deny-list regex in `4-moodle-image-builder/base/etc/nginx/nginx.conf` and `nginx.conf-template`.
 - Uncommented `allow 127.0.0.1;` and `deny all;` inside `location ~ ^/(fpm-status|fpm-ping)$` in both `nginx.conf` and `nginx.conf-template`.
+
+## 2026-11-10 — Pre-Autoloader `local_redislock` Detection (`config.php.template`), Direct `public/local/redislock` Extraction on Moodle 5.1+, and Behavioral CLI Test Suite (`PR #48`)
+**Findings (Live Multi-Zone GKE Autopilot Validation & Jules Proactive Findings `#4`, `#17`, `#18`, `#20`):**
+1. **`class_exists()` Guard in `4-moodle-image-builder/config.php.template` Evaluates Before Moodle's Autoloader**:
+   - `config.php.template` is spliced into `config.php` above `require_once(__DIR__ . '/lib/setup.php');`. At that point in execution, Moodle's class autoloader has not been registered, so `class_exists('\\local_redislock\\lock\\redis_lock_factory')` always evaluates to `false` and `local_redislock` is silently bypassed.
+2. **Symlink-Based `local_redislock` Fallback in `setup_moodle.sh`**:
+   - Extracting the GitHub fallback tarball into `$MOODLE_PATH/local/redislock` and symlinking `$MOODLE_PATH/public/local/redislock` fails when shared/replicated storage layers do not propagate symlinks, causing follower pods to see a different plugin inventory (`$CFG->allversionshash` mismatch -> false "upgrade pending").
+3. **Behavioral CLI Coverage for `build-nginx-based-image.sh`, `cleanup-moodle-install.sh`, and Lifecycle Scripts (`Jules #4, #17, #18, #20`)**:
+   - Added mocked-CLI behavioral tests in `tests/verify-scripts-and-configs.sh` verifying substitution flags in `build-nginx-based-image.sh`, confirmation and selective cleanup in `cleanup-moodle-install.sh`, and pause/resume/Redis IP patching in `infra-pause.sh` and `infra-resume.sh`.
+**Resolution (Included in `PR #48`):**
+- Updated `4-moodle-image-builder/config.php.template` to check `is_readable(__DIR__ . '/public/local/redislock/classes/lock/redis_lock_factory.php') || is_readable(__DIR__ . '/local/redislock/classes/lock/redis_lock_factory.php') || class_exists('\\local_redislock\\lock\\redis_lock_factory')`.
+- Updated `4-moodle-image-builder/base/opt/setup_moodle.sh` to extract `local_redislock` directly into `$MOODLE_PATH/public/local/redislock` on Moodle 5.1+ (`[ -d "$MOODLE_PATH/public/local" ]`) and copy to `$MOODLE_PATH/local/redislock` as regular files.
+- Expanded `tests/verify-scripts-and-configs.sh` with `[5/6]` mocked-CLI behavioral tests covering all remaining Jules proactive test suggestions.
