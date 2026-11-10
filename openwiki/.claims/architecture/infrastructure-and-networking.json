@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:3b2ae676f44bc54a73117cfffeb43547c78e3b8f63b46752c5a90e19939813f6",
+  "pageVersion": "sha256:ac1a238677ccb8ea2404e7d1f230af6e6466a21203d026ad026f0961fbd912fb",
   "claims": [
     {
       "id": "claim_86ed963d1a844b9ca110d2041f752439",
-      "statement": "O script 0-infra/envs.sh define a função pre-flight validate_moodle_envs(), invocada por 0-infra/infra-creation.sh sob set -eo pipefail para bloquear a execução caso PROJECT_NUMBER, PROJECT_ID ou REGION estejam vazios ou contenham placeholders <YOUR-...>.",
+      "statement": "0-infra/envs.sh defines the pre-flight validate_moodle_envs() function, invoked by 0-infra/infra-creation.sh under set -eo pipefail to block execution if PROJECT_NUMBER, PROJECT_ID, or REGION are empty or still contain <YOUR-...> placeholders.",
       "evidence": [
         {
           "resource": "repo://0-infra/envs.sh#L132-L145",
@@ -18,7 +18,7 @@
     },
     {
       "id": "claim_e272e6c165bf475c81a8230a54605f49",
-      "statement": "O provisionamento do Cloud SQL utiliza por padrão MYSQL_DATABASE_VERSION=MYSQL_8_4 com charset utf8mb4 e collation utf8mb4_unicode_ci para atender ao requisito mínimo do Moodle 5.0+.",
+      "statement": "Cloud SQL provisioning defaults to MYSQL_DATABASE_VERSION=MYSQL_8_4 with utf8mb4 charset and utf8mb4_unicode_ci collation to satisfy the Moodle 5.0+ minimum requirement.",
       "evidence": [
         {
           "resource": "repo://0-infra/envs.sh#L52-L58",
@@ -32,7 +32,7 @@
     },
     {
       "id": "claim_32c16f3c98e64538a221173eab7b434c",
-      "statement": "O provisionamento de infraestrutura suporta adoção seletiva por meio das variáveis STORAGE_TYPE, CREATE_CLOUD_SQL, CREATE_REDIS, CREATE_REDIS_CLUSTER, CREATE_FILESTORE, CREATE_REGIONAL_PD e CREATE_JUMPBOX.",
+      "statement": "Infrastructure provisioning supports selective component adoption via STORAGE_TYPE, CREATE_CLOUD_SQL, CREATE_REDIS, CREATE_REDIS_CLUSTER, CREATE_FILESTORE, CREATE_REGIONAL_PD, and CREATE_JUMPBOX.",
       "evidence": [
         {
           "resource": "repo://0-infra/envs.sh#L80-L99",
@@ -46,7 +46,7 @@
     },
     {
       "id": "claim_86890ee67dba4e12912c932432a951b4",
-      "statement": "O cluster GKE pode ser provisionado em modo Autopilot (GKE_MODE=autopilot via gcloud container clusters create-auto) ou Standard (Dataplane V2 com addons HttpLoadBalancing, HorizontalPodAutoscaling, GcpFilestoreCsiDriver e GcePersistentDiskCsiDriver).",
+      "statement": "The GKE cluster can be provisioned in Autopilot mode (GKE_MODE=autopilot via gcloud container clusters create-auto) or Standard mode (Dataplane V2 with HttpLoadBalancing, HorizontalPodAutoscaling, GcpFilestoreCsiDriver, and GcePersistentDiskCsiDriver addons).",
       "evidence": [
         {
           "resource": "repo://0-infra/envs.sh#L50-L55",
@@ -61,6 +61,6 @@
   ],
   "verification": {
     "by": "openwiki/0.5.1",
-    "at": "2026-11-10T22:49:21.552Z"
+    "at": "2026-11-10T23:28:03.423Z"
   }
 }

@@ -1,11 +1,11 @@
 ---
 type: operations
-title: Deployments GKE, Isolamento de Pods de Upload e HPA
-description: Arquitetura de Deployments Kubernetes para o Moodle 5.2.4, isolamento de subPaths e recursos para pods dedicados a uploads pesados, geração via create-config-files.sh e políticas de HPA.
+title: GKE Deployments, Upload Pod Isolation, and Horizontal Pod Autoscaling
+description: Kubernetes Deployment architecture for Moodle 5.2.4, isolated subPaths and resource limits for dedicated heavy file-upload pods, manifest rendering via create-config-files.sh, and HPA policies.
 tags: [gke, kubernetes, deployments, uploads, hpa, configmap, envsubst]
 verified:
   - by: openwiki/0.5.1
-    at: 2026-11-05T11:15:21.468Z
+    at: 2026-11-10T23:28:03.423Z
 sources:
   - id: openwiki-source-b23bb47d51c7c03a516ab733
     resource: repo://5a-deployment-no-helm/create-config-files.sh
@@ -19,52 +19,51 @@ sources:
     resource: repo://9-hpa/moodle-hpa.yaml
   - id: openwiki-source-d5cb738866bc0951047c9d59
     resource: repo://9-hpa/moodle-uploads-hpa.yaml
-generated: { by: "antigravity", at: "2026-11-05T11:15:21.468Z" }
+generated: { by: "antigravity", at: "2026-11-10T23:28:03.423Z" }
 ---
 
-# Deployments GKE, Isolamento de Pods de Upload e HPA
+# GKE Deployments, Upload Pod Isolation, and Horizontal Pod Autoscaling
 
-O diretório `5a-deployment-no-helm/` implementa uma arquitetura de **dois tiers de aplicação no GKE**:
-1. **Tier Web Principal (`moodle-deployment` + `moodle-configmap` + `moodle`)**: Dimensionado para navegação interativa rápida, cache no Cloud CDN e escalonamento horizontal de 3 a 9 réplicas (`9-hpa/moodle-hpa.yaml`).
-2. **Tier Dedicado de Uploads (`moodle-deployment-uploads` + `moodle-configmap-uploads` + `moodle-service-uploads`)**: Dimensionado para uploads pesados de arquivos (até `512M` por requisição, timeout de `3600s` e limite de `2Gi` de RAM por pod), escalando de 1 a 5 réplicas (`9-hpa/moodle-uploads-hpa.yaml`).
+The `5a-deployment-no-helm/` directory implements a **two-tier application architecture on GKE**:
+1. **Primary Web Tier (`moodle-deployment` + `moodle-configmap` + `moodle`)**: Sized for low-latency interactive navigation, multi-zone topology spread across 3 zones, Cloud CDN edge caching, and horizontal autoscaling between 3 and 9 replicas (`9-hpa/moodle-hpa.yaml`).
+2. **Dedicated Uploads Tier (`moodle-deployment-uploads` + `moodle-configmap-uploads` + `moodle-service-uploads`)**: Sized for heavy file uploads (up to `512M` per request by default, `3600s` timeout, and `2Gi` RAM limit per pod), scaling independently between 1 and 5 replicas (`9-hpa/moodle-uploads-hpa.yaml`).
 
-<!-- openwiki: mermaid parse failed and this diagram was converted to a text fence so it does not break rendering. Fix the diagram source and restore the mermaid fence. Parser error: Heuristic: an unescaped angle bracket inside a label breaks rendering; rephrase the label. -->
-```text
+```mermaid
 flowchart TD
     Script["5a-deployment-no-helm/create-config-files.sh"] --> CM1["moodle-configmap-nginx.yaml"]
-    Script --> CM2["moodle-configmap-nginx-uploads.yaml<br/>CLIENT_MAX_BODY_SIZE=512M<br/>PHP_MEMORY_LIMIT=512M"]
-    Script --> Dep1["moodle-deployment-nginx.yaml<br/>subPath: etc/nginx & etc/php83"]
-    Script --> Dep2["moodle-deployment-nginx-uploads.yaml<br/>subPath: etc/nginx-uploads & etc/php83-uploads"]
+    Script --> CM2["moodle-configmap-nginx-uploads.yaml - CLIENT_MAX_BODY_SIZE=512M, PHP_MEMORY_LIMIT=512M"]
+    Script --> Dep1["moodle-deployment-nginx.yaml - subPath: etc/nginx & etc/php83"]
+    Script --> Dep2["moodle-deployment-nginx-uploads.yaml - subPath: etc/nginx-uploads & etc/php83-uploads"]
     Dep1 --> HPA1["9-hpa/moodle-hpa.yaml (3..9 pods)"]
     Dep2 --> HPA2["9-hpa/moodle-uploads-hpa.yaml (1..5 pods)"]
 ```
 
-## 1. Renderização Automatizada de Manifestos (`create-config-files.sh`)
+## 1. Automated Manifest Rendering (`create-config-files.sh`)
 
-O script `5a-deployment-no-helm/create-config-files.sh` carrega `0-infra/envs.sh` e executa `envsubst` sobre os templates localizados em `5a-deployment-no-helm/deployment-templates/`:
+`5a-deployment-no-helm/create-config-files.sh` loads `0-infra/envs.sh` and runs `envsubst` across the templates in `5a-deployment-no-helm/deployment-templates/`:
 
-- Determina automaticamente `PVC_CLAIM_NAME` (`pvc-regional-pd` quando `STORAGE_TYPE="regional-pd"`, ou `pvc-filestore` caso contrário).
-- Renderiza `moodle-configmap-nginx.yaml`, `moodle-configmap-nginx-uploads.yaml`, `moodle-deployment-nginx.yaml` e `moodle-deployment-nginx-uploads.yaml` substituindo `$MOODLE_ROOT_PATH_NO_SLASH` e `$PVC_CLAIM_NAME`.
-- Renderiza os manifestos de armazenamento (`1-pv/pv-filestore.yaml`, `3-pvc/pvc-filestore.yaml`, `1-pv/storageclass-regional-pd.yaml`, `1-pv/pv-regional-pd.yaml`, `3-pvc/pvc-regional-pd.yaml`) com as capacidades configuradas em `0-infra/envs.sh`.
-- Caso executado em terminal interativo (ou quando `ENABLE_SMTP="true"`), solicita opcionalmente `SMTP_PASSWORD` com confirmação dupla e injeta o valor escapado em `moodle-configmap-nginx.yaml` e `moodle-configmap-nginx-uploads.yaml`.
+- Automatically determines `PVC_CLAIM_NAME` (`pvc-regional-pd` when `STORAGE_TYPE="regional-pd"`, or `pvc-filestore` otherwise).
+- Renders `moodle-configmap-nginx.yaml`, `moodle-configmap-nginx-uploads.yaml`, `moodle-deployment-nginx.yaml`, and `moodle-deployment-nginx-uploads.yaml` by substituting `$MOODLE_ROOT_PATH_NO_SLASH` and `$PVC_CLAIM_NAME`.
+- Renders the storage manifests (`1-pv/pv-filestore.yaml`, `3-pvc/pvc-filestore.yaml`, `1-pv/storageclass-regional-pd.yaml`, `1-pv/pv-regional-pd.yaml`, `3-pvc/pvc-regional-pd.yaml`) using the capacities configured in `0-infra/envs.sh`.
+- When run interactively (or when `ENABLE_SMTP="true"`), optionally prompts for `SMTP_PASSWORD` with double confirmation and injects the escaped value into `moodle-configmap-nginx.yaml` and `moodle-configmap-nginx-uploads.yaml`.
 
-## 2. Isolamento de Configuração e Recursos nos Pods de Upload
+## 2. Configuration and Resource Isolation on Upload Pods
 
-No deployment principal (`moodle-deployment`), os diretórios `/etc/nginx` e `/etc/php83` são montados no volume compartilhado usando `subPath: $MOODLE_ROOT_PATH_NO_SLASH/etc/nginx` e `subPath: $MOODLE_ROOT_PATH_NO_SLASH/etc/php83`.
+In the primary deployment (`moodle-deployment`), `/etc/nginx` and `/etc/php83` are mounted on the shared volume using `subPath: $MOODLE_ROOT_PATH_NO_SLASH/etc/nginx` and `subPath: $MOODLE_ROOT_PATH_NO_SLASH/etc/php83`.
 
-Se os pods dedicados de upload compartilhassem o mesmo `subPath` de configuração, as substituições via `sed -i` executadas por `setup_moodle.sh` nos pods de upload sobrescreveriam o `php.ini` e o `nginx.conf` dos pods web principais no volume compartilhado. Para impedir essa colisão:
+If the dedicated upload pods mounted the same configuration `subPath`, the `sed -i` overrides executed by `setup_moodle.sh` on the upload pods would overwrite `php.ini` and `nginx.conf` for the primary web pods on shared storage. To prevent this collision:
 
-- `5a-deployment-no-helm/moodle-deployment-nginx-uploads.yaml` monta `/etc/nginx` em `subPath: $MOODLE_ROOT_PATH_NO_SLASH/etc/nginx-uploads` e `/etc/php83` em `subPath: $MOODLE_ROOT_PATH_NO_SLASH/etc/php83-uploads`, enquanto continua compartilhando o mesmo código-fonte (`subPath: $MOODLE_ROOT_PATH_NO_SLASH/moodle`) e o mesmo diretório de dados (`subPath: $MOODLE_ROOT_PATH_NO_SLASH/moodledata`).
-- `5a-deployment-no-helm/moodle-configmap-nginx-uploads.yaml` define limites dedicados para uploads grandes:
+- `5a-deployment-no-helm/moodle-deployment-nginx-uploads.yaml` mounts `/etc/nginx` at `subPath: $MOODLE_ROOT_PATH_NO_SLASH/etc/nginx-uploads` and `/etc/php83` at `subPath: $MOODLE_ROOT_PATH_NO_SLASH/etc/php83-uploads`, while sharing the same application code (`subPath: $MOODLE_ROOT_PATH_NO_SLASH/moodle`) and data directory (`subPath: $MOODLE_ROOT_PATH_NO_SLASH/moodledata`).
+- `5a-deployment-no-helm/moodle-configmap-nginx-uploads.yaml` defines dedicated limits for large uploads:
   - `CLIENT_MAX_BODY_SIZE: "512M"`
   - `UPLOAD_MAX_FILESIZE: "512M"`
   - `POST_MAX_SIZE: "512M"`
   - `PHP_MAX_EXECUTION_TIME: "3600"`
   - `PHP_MAX_INPUT_TIME: "3600"`
   - `PHP_MEMORY_LIMIT: "512M"`
-- Os pods de `moodle-deployment-uploads` possuem `limits.cpu: 500m` e `limits.memory: 2Gi` (`requests: 250m / 1Gi`), evitando que uploads simultâneos causem `OOMKilled` ou esgotem workers PHP-FPM do tráfego geral de alunos.
+- Pods in `moodle-deployment-uploads` are configured with `limits.cpu: 500m` and `limits.memory: 2Gi` (`requests: 250m / 1Gi`), preventing concurrent file uploads from exhausting PHP-FPM workers or memory on the general student web tier.
 
-## 3. Escalonamento Horizontal Independente (`9-hpa/`)
+## 3. Independent Horizontal Pod Autoscaling (`9-hpa/`)
 
-- **`9-hpa/moodle-hpa.yaml`**: Escala `moodle-deployment` entre `minReplicas: 3` e `maxReplicas: 9` com metas de utilização média de `75%` de CPU e `80%` de memória.
-- **`9-hpa/moodle-uploads-hpa.yaml`**: Escala `moodle-deployment-uploads` de forma independente entre `minReplicas: 1` e `maxReplicas: 5` com metas de `75%` de CPU e `80%` de memória.
+- **`9-hpa/moodle-hpa.yaml`**: Scales `moodle-deployment` between `minReplicas: 3` and `maxReplicas: 9` based on `75%` average CPU utilization and `80%` memory utilization.
+- **`9-hpa/moodle-uploads-hpa.yaml`**: Independently scales `moodle-deployment-uploads` between `minReplicas: 1` and `maxReplicas: 5` based on `75%` CPU and `80%` memory utilization.

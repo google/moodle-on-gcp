@@ -1,77 +1,77 @@
 ---
 type: architecture
-title: Infraestrutura GCP, Adoção Seletiva e Cloud SQL MySQL 8.4
-description: Arquitetura de provisionamento automatizado de VPC, GKE privado (Standard ou Autopilot) com drivers CSI, Cloud SQL MySQL 8.4, Memorystore Redis e controles de ciclo de vida em 0-infra.
+title: GCP Infrastructure, Selective Adoption, and Cloud SQL MySQL 8.4
+description: Automated provisioning architecture for custom VPC, private GKE (Standard or Autopilot) with CSI drivers, Cloud SQL MySQL 8.4, Memorystore Redis, and lifecycle scripts in 0-infra.
 tags: [gcp, gke, autopilot, cloud-sql, mysql-8-4, redis, vpc, selective-adoption]
 verified:
   - by: openwiki/0.5.1
-    at: 2026-11-10T22:49:21.552Z
+    at: 2026-11-10T23:28:03.423Z
 sources:
   - id: openwiki-source-75467caa28be1defc4942cd3
     resource: repo://0-infra/envs.sh
   - id: openwiki-source-c545e73e5570dc88f600931f
     resource: repo://0-infra/infra-creation.sh
-generated: { by: "antigravity", at: "2026-11-10T22:49:21.552Z" }
+generated: { by: "antigravity", at: "2026-11-10T23:28:03.423Z" }
 ---
 
-# Infraestrutura GCP, Adoção Seletiva e Cloud SQL MySQL 8.4
+# GCP Infrastructure, Selective Adoption, and Cloud SQL MySQL 8.4
 
-O diretório `0-infra/` concentra toda a parametrização (`0-infra/envs.sh`), o provisionamento automatizado (`0-infra/infra-creation.sh`) e os scripts de ciclo de vida (`0-infra/cleanup-moodle-install.sh`, `0-infra/infra-pause.sh`, `0-infra/infra-resume.sh` e `0-infra/infra-destroy.sh`) da topologia do Moodle no Google Cloud Platform (GCP).
+The `0-infra/` directory centralizes environment configuration (`0-infra/envs.sh`), automated provisioning (`0-infra/infra-creation.sh`), and lifecycle management (`0-infra/cleanup-moodle-install.sh`, `0-infra/infra-pause.sh`, `0-infra/infra-resume.sh`, and `0-infra/infra-destroy.sh`) for the Moodle topology on Google Cloud Platform (GCP).
 
 ```mermaid
 flowchart TD
-    Envs["0-infra/envs.sh - Variáveis + validate_moodle_envs()"] --> Infra["0-infra/infra-creation.sh"]
-    Infra --> VPC["VPC Custom + Subnet + Cloud NAT + IP Global moodle-ingress-ip"]
-    Infra --> GKE["GKE Privado (Standard ou Autopilot) - Filestore CSI + PD CSI"]
+    Envs["0-infra/envs.sh - Variables + validate_moodle_envs()"] --> Infra["0-infra/infra-creation.sh"]
+    Infra --> VPC["Custom VPC + Subnet + Cloud NAT + Global IP moodle-ingress-ip"]
+    Infra --> GKE["Private GKE (Standard or Autopilot) - Filestore CSI + PD CSI"]
     Infra -->|CREATE_CLOUD_SQL=true| SQL["Cloud SQL MySQL 8.4 - VPC Peering + utf8mb4_unicode_ci"]
-    Infra -->|CREATE_REDIS=true| Redis["Memorystore Redis 6.x - AUTH habilitado + allkeys-lru"]
+    Infra -->|CREATE_REDIS=true| Redis["Memorystore Redis 6.x - AUTH enabled + allkeys-lru"]
     Infra -->|CREATE_REDIS_CLUSTER=true| MRC["Memorystore for Redis Cluster - Discovery Endpoint (MDL-59196)"]
-    Infra -->|STORAGE_TYPE=filestore| FS["Cloud Filestore NFS - Tier e Capacidade Configuráveis"]
+    Infra -->|STORAGE_TYPE=filestore| FS["Cloud Filestore NFS - Configurable Tier and Capacity"]
     Infra -->|STORAGE_TYPE=regional-pd| RPD["Regional Replicated PD - ZONE + REPLICA_ZONE"]
-    Infra -->|CREATE_JUMPBOX=true| Jump["VM Jumpbox Debian 12 - OS Login + IAP"]
+    Infra -->|CREATE_JUMPBOX=true| Jump["Jumpbox VM Debian 12 - OS Login + IAP"]
 ```
 
-## Parametrização Central e Validação Pre-Flight (`0-infra/envs.sh`)
+## Centralized Configuration and Pre-Flight Validation (`0-infra/envs.sh`)
 
-O arquivo `0-infra/envs.sh` centraliza os parâmetros de projeto, rede, banco de dados, cache e armazenamento:
+`0-infra/envs.sh` centralizes project, network, database, cache, and storage parameters:
 
-- **Validação Pre-Flight (`validate_moodle_envs`)**: A função `validate_moodle_envs()` verifica se `PROJECT_NUMBER`, `PROJECT_ID` e `REGION` foram preenchidos e rejeita valores vazios ou que ainda contenham placeholders no formato `<YOUR-...>`, interrompendo a execução antes de disparar chamadas `gcloud` inválidas.
-- **Execução Segura (`set -eo pipefail`) e Sobrescrita de `ENVS_FILE`**: Todos os scripts em `0-infra/` utilizam `set -eo pipefail` (sem `-x` global durante operações sensíveis) e carregam `source "${ENVS_FILE:-$SCRIPT_DIR/envs.sh}"`, permitindo injetar perfis de ambiente isolados sem alterar o template rastreado pelo Git.
+- **Pre-Flight Validation (`validate_moodle_envs`)**: The `validate_moodle_envs()` function verifies that `PROJECT_NUMBER`, `PROJECT_ID`, and `REGION` are set and rejects empty values or unreplaced `<YOUR-...>` placeholders before invoking `gcloud`.
+- **Fail-Fast Execution (`set -eo pipefail`) and `ENVS_FILE` Override**: All scripts in `0-infra/` run under `set -eo pipefail` (without global `-x` during sensitive operations) and load `source "${ENVS_FILE:-$SCRIPT_DIR/envs.sh}"`, allowing isolated environment profiles without modifying tracked templates.
 
-## Adoção Seletiva de Componentes de Infraestrutura
+## Selective Infrastructure Adoption
 
-Para permitir que organizações reutilizem serviços gerenciados já existentes (como instâncias corporativas de Cloud SQL, Memorystore Redis ou topologias de storage pré-provisionadas), `0-infra/envs.sh` e `0-infra/infra-creation.sh` expõem flags independentes de adoção seletiva:
+To allow organizations to reuse existing managed services (such as corporate Cloud SQL instances, Memorystore Redis, or pre-provisioned storage topologies), `0-infra/envs.sh` and `0-infra/infra-creation.sh` expose independent selective adoption toggles:
 
-| Variável | Valor Padrão | Comportamento em `0-infra/infra-creation.sh` |
+| Variable | Default Value | Behavior in `0-infra/infra-creation.sh` |
 | :--- | :--- | :--- |
-| `GKE_MODE` | `standard` | Seleciona entre GKE `standard` (Dataplane V2 + drivers CSI explícitos) e `autopilot` (`gcloud container clusters create-auto`, com escala a zero pods de custo computacional). |
-| `STORAGE_TYPE` | `filestore` | Define a modalidade de armazenamento (`filestore`, `regional-pd` ou `none`) e ajusta automaticamente os padrões de `CREATE_FILESTORE` e `CREATE_REGIONAL_PD`. |
-| `CREATE_CLOUD_SQL` | `true` | Quando `true`, solicita interativamente `MYSQL_ROOT_PASSWORD` (com confirmação dupla se não definida), cria o range de VPC Peering `moodle-managed-range-mysql` e provisiona a instância Cloud SQL e o schema `$MYSQL_DB`. |
-| `CREATE_REDIS` | `true` | Quando `true`, provisiona uma instância Memorystore for Redis (`redis_6_x`) com autenticação (`--enable-auth`) e política `allkeys-lru`. |
-| `CREATE_REDIS_CLUSTER` | `false` | Quando `true`, provisiona um cluster Memorystore for Redis Cluster (`gcloud redis clusters create`) para implantações de larga escala com `RedisCluster` no Moodle 5.2+ (`Issue #23` / `MDL-59196`). |
-| `CREATE_FILESTORE` | `true` (se `filestore`) | Quando `true`, habilita `file.googleapis.com`, aloca o peering `moodle-managed-range-filestore` e cria a instância Cloud Filestore com tier (`FILESTORE_TIER`) e capacidade (`FILESTORE_CAPACITY`) customizáveis. |
-| `CREATE_REGIONAL_PD` | `true` (se `regional-pd`) | Quando `true`, cria um disco persistente regionalmente replicado (`gcloud compute disks create --region="$REGION" --replica-zones=...`) entre `$ZONE` e `$REPLICA_ZONE`. |
-| `CREATE_JUMPBOX` | `true` | Quando `true`, cria a VM de suporte `vm-jumpbox-moodle` (Debian 12 Bookworm, sem IP externo, com `enable-oslogin=true`) para administração privada do cluster GKE. |
+| `GKE_MODE` | `standard` | Selects between GKE `standard` (Dataplane V2 + explicit CSI drivers) and `autopilot` (`gcloud container clusters create-auto`, scaling compute cost to zero when pods are scaled down). |
+| `STORAGE_TYPE` | `filestore` | Selects the storage modality (`filestore`, `regional-pd`, or `none`) and automatically adjusts defaults for `CREATE_FILESTORE` and `CREATE_REGIONAL_PD`. |
+| `CREATE_CLOUD_SQL` | `true` | When `true`, interactively prompts for `MYSQL_ROOT_PASSWORD` (with double confirmation if unset), allocates the `moodle-managed-range-mysql` VPC Peering range, and provisions the Cloud SQL instance and `$MYSQL_DB` schema. |
+| `CREATE_REDIS` | `true` | When `true`, provisions a Memorystore for Redis (`redis_6_x`) instance with authentication (`--enable-auth`) and `allkeys-lru` eviction policy. |
+| `CREATE_REDIS_CLUSTER` | `false` | When `true`, provisions a Memorystore for Redis Cluster (`gcloud redis clusters create`) for large-scale deployments using `RedisCluster` in Moodle 5.2+ (`Issue #23` / `MDL-59196`). |
+| `CREATE_FILESTORE` | `true` (if `filestore`) | When `true`, enables `file.googleapis.com`, allocates the `moodle-managed-range-filestore` peering range, and creates the Cloud Filestore instance with configurable tier (`FILESTORE_TIER`) and capacity (`FILESTORE_CAPACITY`). |
+| `CREATE_REGIONAL_PD` | `true` (if `regional-pd`) | When `true`, creates a synchronously replicated regional persistent disk (`gcloud compute disks create --region="$REGION" --replica-zones=...`) across `$ZONE` and `$REPLICA_ZONE`. |
+| `CREATE_JUMPBOX` | `true` | When `true`, creates the `vm-jumpbox-moodle` management VM (Debian 12 Bookworm, no external IP, `enable-oslogin=true`) for private GKE cluster administration via IAP. |
 
-## Rede VPC, Cluster GKE Privado e Drivers CSI
+## VPC Network, Private GKE Cluster, and CSI Drivers
 
-O script `0-infra/infra-creation.sh` constrói uma VPC em modo customizado (`--mtu=1460`) com sub-rede primária (`SUBNET_RANGE`, padrão `10.10.0.0/24`) e dois ranges secundários dedicados ao GKE (`pod-range-gke-1` em `10.168.0.0/14` e `svc-range-gke-1` em `10.172.0.0/19`), além de Cloud Router e Cloud NAT para saída à internet dos nós privados.
+`0-infra/infra-creation.sh` builds a custom-mode VPC (`--mtu=1460`) with a primary subnet (`SUBNET_RANGE`, default `10.10.0.0/24`) and two GKE secondary ranges (`pod-range-gke-1` at `10.168.0.0/14` and `svc-range-gke-1` at `10.172.0.0/19`), along with Cloud Router and Cloud NAT for outbound internet access from private nodes.
 
-O cluster GKE (`$GKE_NAME`) é provisionado com:
-- **Modo Standard (`GKE_MODE=standard`)**: Dataplane V2 (`--enable-dataplane-v2`), nós privados (`--enable-private-nodes`), endpoint privado opcional e addons `HttpLoadBalancing`, `HorizontalPodAutoscaling`, `GcpFilestoreCsiDriver` e `GcePersistentDiskCsiDriver`.
-- **Modo Autopilot (`GKE_MODE=autopilot`)**: Provisionado via `gcloud container clusters create-auto` com `--enable-private-nodes` e ranges secundários dedicados, onde os drivers CSI e o escalonamento elástico de nós são gerenciados nativamente pelo GKE Autopilot.
+The GKE cluster (`$GKE_NAME`) is provisioned with:
+- **Standard Mode (`GKE_MODE=standard`)**: Dataplane V2 (`--enable-dataplane-v2`), private nodes (`--enable-private-nodes`), optional private endpoint, and `HttpLoadBalancing`, `HorizontalPodAutoscaling`, `GcpFilestoreCsiDriver`, and `GcePersistentDiskCsiDriver` addons.
+- **Autopilot Mode (`GKE_MODE=autopilot`)**: Provisioned via `gcloud container clusters create-auto` with `--enable-private-nodes` and dedicated secondary ranges, where CSI drivers and elastic node scaling are managed natively by GKE Autopilot.
 
-## Cloud SQL MySQL 8.4 para Moodle 5.0+
+## Cloud SQL MySQL 8.4 for Moodle 5.0+
 
-A partir do Moodle 5.0 (incluindo Moodle 5.1, 5.2.4 e 5.3), o verificador de ambiente do Moodle exige no mínimo **MySQL 8.4** (`MYSQL_8_4`).
+Starting with Moodle 5.0 (including Moodle 5.1, 5.2.4, and 5.3), Moodle's environment check requires at least **MySQL 8.4** (`MYSQL_8_4`).
 
-- `0-infra/envs.sh` define `MYSQL_DATABASE_VERSION="${MYSQL_DATABASE_VERSION:-MYSQL_8_4}"` (permitindo sobrescrever para `MYSQL_8_0` caso o usuário deseje implantar Moodle 4.x).
-- `0-infra/infra-creation.sh` provisiona a instância Cloud SQL com `--database-version="${MYSQL_DATABASE_VERSION:-MYSQL_8_4}"`, `--storage-type=SSD`, `--storage-auto-increase`, `--enable-bin-log` e cria o banco `$MYSQL_DB` com charset `utf8mb4` e collation `utf8mb4_unicode_ci`.
-- Caso `MYSQL_ROOT_PASSWORD` não esteja exportada no ambiente e `CREATE_CLOUD_SQL=true`, `0-infra/infra-creation.sh` solicita a senha em modo silencioso (`read -rsp`) com validação de confirmação e desabilita `set -x` (`{ set +x; } 2>/dev/null`) antes da criação da instância para evitar vazamento de credenciais em logs.
+- `0-infra/envs.sh` sets `MYSQL_DATABASE_VERSION="${MYSQL_DATABASE_VERSION:-MYSQL_8_4}"` (which can be overridden to `MYSQL_8_0` if deploying Moodle 4.x).
+- `0-infra/infra-creation.sh` provisions the Cloud SQL instance with `--database-version="${MYSQL_DATABASE_VERSION:-MYSQL_8_4}"`, `--storage-type=SSD`, `--storage-auto-increase`, `--enable-bin-log`, and creates the `$MYSQL_DB` database with `utf8mb4` charset and `utf8mb4_unicode_ci` collation.
+- If `MYSQL_ROOT_PASSWORD` is not exported in the environment and `CREATE_CLOUD_SQL=true`, `0-infra/infra-creation.sh` prompts silently (`read -rsp`) with confirmation validation and disables `set -x` (`{ set +x; } 2>/dev/null`) before instance creation to prevent credential leakage in logs.
 
-## Limpeza e Ciclo de Vida de Infraestrutura (`cleanup-moodle-install.sh`, `infra-destroy.sh`, `infra-pause.sh`, `infra-resume.sh`)
+## Infrastructure Cleanup and Lifecycle Scripts (`cleanup-moodle-install.sh`, `infra-destroy.sh`, `infra-pause.sh`, `infra-resume.sh`)
 
-O diretório `0-infra/` inclui scripts completos para gerenciamento de ciclo de vida e controle de custos:
-- **`0-infra/cleanup-moodle-install.sh`**: Recria o banco `$MYSQL_DB` no Cloud SQL (quando `CREATE_CLOUD_SQL=true`) e limpa/recria os volumes de armazenamento (`filestore` ou `regional-pd`) sem destruir a infraestrutura base.
-- **`0-infra/infra-destroy.sh`**: Contrapartida direta de desprovisionamento seletivo para `0-infra/infra-creation.sh`. Remove apenas os recursos do Moodle (`$GKE_NAME`, `$FILESTORE_NAME`, `$PD_DISK_NAME`, `$REDIS_NAME` / `$REDIS_CLUSTER_NAME`, `$MYSQL_INSTANCE_NAME` e `$ARTIFACT_REGISTRY_NAME`), preservando VPCs e sub-redes compartilhadas a menos que `--destroy-network` seja informado explicitamente.
-- **`0-infra/infra-pause.sh` e `0-infra/infra-resume.sh`**: Permitem hibernar o ambiente sem perda de dados escalando os Deployments do GKE para `0` réplicas (zerando a cobrança de computação no GKE Autopilot), desligando a instância Cloud SQL (`--activation-policy=NEVER`) e opcionalmente removendo/recriando a instância Memorystore Redis (`--delete-redis` / `--recreate-redis`), atualizando automaticamente o `REDIS_HOST` nos `ConfigMaps` do Kubernetes ao recriar o Redis.
+`0-infra/` includes full lifecycle and cost-control scripts:
+- **`0-infra/cleanup-moodle-install.sh`**: Recreates the `$MYSQL_DB` schema in Cloud SQL (when `CREATE_CLOUD_SQL=true`) and resets the storage volumes (`filestore` or `regional-pd`) without destroying the base infrastructure.
+- **`0-infra/infra-destroy.sh`**: Selective teardown counterpart to `0-infra/infra-creation.sh`. Deletes only the Moodle resources (`$GKE_NAME`, `$FILESTORE_NAME`, `$PD_DISK_NAME`, `$REDIS_NAME` / `$REDIS_CLUSTER_NAME`, `$MYSQL_INSTANCE_NAME`, and `$ARTIFACT_REGISTRY_NAME`), preserving shared VPCs and subnets unless `--destroy-network` is explicitly passed.
+- **`0-infra/infra-pause.sh` and `0-infra/infra-resume.sh`**: Hibernate the environment without data loss by scaling GKE Deployments to `0` replicas (eliminating GKE Autopilot compute charges), stopping the Cloud SQL instance (`--activation-policy=NEVER`), and optionally deleting/recreating the Memorystore Redis instance (`--delete-redis` / `--recreate-redis`), automatically patching the new `REDIS_HOST` IP in Kubernetes `ConfigMaps` upon resume.

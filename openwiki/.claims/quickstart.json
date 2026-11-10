@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:c2645fb7ae7d1b13fe935f639653490ea77a82f33ef66940ccc3754c460d9fb4",
+  "pageVersion": "sha256:b8d28c8c2b5e011bc97b6912102d5b03045dcedd8ff63406b904ca9af621cf61",
   "claims": [
     {
       "id": "claim_ea9a44aaccb9487482727af03a2a0dcc",
-      "statement": "O fluxo de implantação do Moodle on GCP é estruturado nas etapas numeradas de 0-infra a 9-hpa, parametrizadas centralmente por 0-infra/envs.sh.",
+      "statement": "The Moodle on GCP deployment workflow is structured into numbered stages from 0-infra to 9-hpa, centrally parameterized by 0-infra/envs.sh.",
       "evidence": [
         {
           "resource": "repo://0-infra/envs.sh#L67-L137",
@@ -18,17 +18,17 @@
     },
     {
       "id": "claim_257118bfa1c24195b8f0995f372e27fc",
-      "statement": "O script 5a-deployment-no-helm/create-config-files.sh gera a partir de templates os manifestos de ConfigMap, Deployment (web e uploads), PersistentVolume, PersistentVolumeClaim e StorageClass antes da aplicação via kubectl.",
+      "statement": "5a-deployment-no-helm/create-config-files.sh renders the ConfigMap, Deployment (web and uploads), PersistentVolume, PersistentVolumeClaim, and StorageClass manifests from templates before applying them via kubectl.",
       "evidence": [
         {
-          "resource": "repo://5a-deployment-no-helm/create-config-files.sh#L64-L87",
-          "version": "repo-lines-v1:sha256:b2ece163daead46c7381aef0a5c1efcaf89e67b358c333afd6a16401eeb4be06:eyJzZWxlY3RlZExpbmVDb3VudCI6MjQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjExNmQ3OWQxNmQwMWU2ZGJiNjQxNzY1NGE3NzI1NTQyNjdiMDVkZGUxOWUwNTg5OTkxODA4ZTUwOTEwYTMxMDciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImMxM2IwY2Q2ZDIwNzYyMTAxNTFjNTVlNTdlNzVmZjNkZmM2Yjg0ZWFjYTVhYTJlY2ZhMjVjNzlhNjM2MmU3ZjciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjA0MmU3NmFjNmNiOTY3YjdjYzFhMGE4Y2MwNzI3ZDVjNjRmZGFiZDlmZDNlNDUzNTlmMzRlZjdlNTBjYTA3ZWMifQ"
+          "resource": "repo://5a-deployment-no-helm/create-config-files.sh#L71-L87",
+          "version": "repo-lines-v1:sha256:ee742f4b6bb915a270389687b5731ad4d41c23a82207a73881ae0de7a9fb6277:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhjZTAzZDdhOTA5M2NjZjE2NGE4ZTc2NTZlMzFkYzYyYzFkOGJjNjA3ODYzM2Y1ODVhMzQwNGIzZDIzZTNiZGMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImM4ZDA2ZTEyOGM0MjcwNjFlYmJmZjUyYjhkOThiMzFmYjQ0ZjE3M2M0Mzc1OWQ2N2RhMmYxZDJlMmEwNjA5NjEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjA0MmU3NmFjNmNiOTY3YjdjYzFhMGE4Y2MwNzI3ZDVjNjRmZGFiZDlmZDNlNDUzNTlmMzRlZjdlNTBjYTA3ZWMifQ"
         }
       ]
     }
   ],
   "verification": {
     "by": "openwiki/0.5.1",
-    "at": "2026-11-05T12:48:25.564Z"
+    "at": "2026-11-10T23:28:03.423Z"
   }
 }

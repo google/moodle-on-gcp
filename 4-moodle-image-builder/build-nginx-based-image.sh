@@ -17,14 +17,14 @@ set -eo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-# carrega as env vars
+# load environment variables
 source "$SCRIPT_DIR/../0-infra/envs.sh"
 
 validate_moodle_envs
 
 cd "$SCRIPT_DIR"
 
-# constrói a imagem para o nginx
+# build the NGINX-based Moodle image
 gcloud builds submit \
   --config cloudbuild-nginx.yaml \
   --substitutions="_MOODLE_ROOT_PATH=$MOODLE_ROOT_PATH,_MOODLE_DATAROOT_PATH=$MOODLE_ROOT_PATH/moodledata,_MOODLE_PATH=$MOODLE_ROOT_PATH/moodle" \

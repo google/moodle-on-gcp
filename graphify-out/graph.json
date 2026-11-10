@@ -1688,14 +1688,20 @@
       "file_type": "document",
       "frontmatter": {
         "type": "quickstart",
-        "title": "Quickstart e Mapa Arquitetural do Moodle on GCP",
-        "description": "Ponto de entrada, guia r\u00e1pido de implanta\u00e7\u00e3o fim a fim (0-infra a 9-hpa) e mapa de roteamento arquitetural do Moodle 5.2.4 sobre Google Kubernetes Engine (GKE).",
+        "title": "Moodle on GCP Quickstart &amp; Architectural Map",
+        "description": "Entrypoint, end-to-end deployment quickstart (0-infra to 9-hpa), and architectural task-routing map for Moodle 5.2.4 on Google Kubernetes Engine (GKE).",
         "tags": [
           "quickstart",
           "moodle",
           "gcp",
           "gke",
           "architecture-map"
+        ],
+        "verified": [
+          {
+            "by": "openwiki/0.5.1",
+            "at": "2026-11-10 23:28:03.423000+00:00"
+          }
         ],
         "sources": [
           {
@@ -1713,14 +1719,8 @@
         ],
         "generated": {
           "by": "antigravity",
-          "at": "2026-11-05T12:48:25.564Z"
-        },
-        "verified": [
-          {
-            "by": "openwiki/0.5.1",
-            "at": "2026-11-05 12:48:25.564000+00:00"
-          }
-        ]
+          "at": "2026-11-10T23:28:03.423Z"
+        }
       },
       "node_kind": "page",
       "norm_label": "quickstart.md",
@@ -1743,76 +1743,76 @@
       "source_location": "L1"
     },
     {
-      "id": "openwiki_index_arquivos",
-      "label": "Arquivos",
+      "id": "openwiki_index_directories",
+      "label": "Directories",
       "_origin": "ast",
       "community": 12,
       "community_name": "openwiki/index.md",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "arquivos",
-      "source_file": "openwiki/index.md",
-      "source_location": "L5"
-    },
-    {
-      "id": "openwiki_index_diret\u00f3rios",
-      "label": "Diret\u00f3rios",
-      "_origin": "ast",
-      "community": 12,
-      "community_name": "openwiki/index.md",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "diretorios",
+      "norm_label": "directories",
       "source_file": "openwiki/index.md",
       "source_location": "L9"
     },
     {
-      "id": "openwiki_quickstart_fluxo_r\u00e1pido_de_implanta\u00e7\u00e3o_passo_a_passo",
-      "label": "Fluxo R\u00e1pido de Implanta\u00e7\u00e3o (Passo a Passo)",
+      "id": "openwiki_index_files",
+      "label": "Files",
       "_origin": "ast",
       "community": 12,
       "community_name": "openwiki/index.md",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "fluxo rapido de implantacao (passo a passo)",
+      "norm_label": "files",
+      "source_file": "openwiki/index.md",
+      "source_location": "L5"
+    },
+    {
+      "id": "openwiki_quickstart_end_to_end_deployment_quickstart_step_by_step",
+      "label": "End-to-End Deployment Quickstart (Step by Step)",
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "openwiki/index.md",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "end-to-end deployment quickstart (step by step)",
       "source_file": "openwiki/quickstart.md",
       "source_location": "L32"
     },
     {
-      "id": "openwiki_quickstart_mapa_de_roteamento_de_tarefas_da_documenta\u00e7\u00e3o_openwiki",
-      "label": "Mapa de Roteamento de Tarefas da Documenta\u00e7\u00e3o OpenWiki",
+      "id": "openwiki_quickstart_moodle_on_gcp_quickstart_architectural_map",
+      "label": "Moodle on GCP Quickstart & Architectural Map",
       "_origin": "ast",
       "community": 12,
       "community_name": "openwiki/index.md",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "mapa de roteamento de tarefas da documentacao openwiki",
-      "source_file": "openwiki/quickstart.md",
-      "source_location": "L50"
-    },
-    {
-      "id": "openwiki_quickstart_quickstart_e_mapa_arquitetural_do_moodle_on_gcp",
-      "label": "Quickstart e Mapa Arquitetural do Moodle on GCP",
-      "_origin": "ast",
-      "community": 12,
-      "community_name": "openwiki/index.md",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "quickstart e mapa arquitetural do moodle on gcp",
+      "norm_label": "moodle on gcp quickstart & architectural map",
       "source_file": "openwiki/quickstart.md",
       "source_location": "L19"
+    },
+    {
+      "id": "openwiki_quickstart_openwiki_architectural_task_routing_map",
+      "label": "OpenWiki Architectural Task-Routing Map",
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "openwiki/index.md",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "openwiki architectural task-routing map",
+      "source_file": "openwiki/quickstart.md",
+      "source_location": "L50"
     },
     {
       "id": "openwiki_runtime_container_image_moodle52_php83",
       "label": "container-image-moodle52-php83.md",
       "_origin": "ast",
       "community": 13,
-      "community_name": "Imagem Container NGINX + PHP 8.3, GNU libiconv e Bootstrap do Moodle 5.2+",
+      "community_name": "NGINX + PHP 8.3 Container Image, GNU libiconv, and Moodle 5.2+ Bootstrap",
       "file_type": "document",
       "frontmatter": {
         "type": "runtime",
-        "title": "Imagem Container NGINX + PHP 8.3, GNU libiconv e Bootstrap do Moodle 5.2+",
-        "description": "Constru\u00e7\u00e3o multi-stage em Alpine 3.21 + PHP 8.3, compila\u00e7\u00e3o de preloadable_libiconv.so, suporte ao diret\u00f3rio /public do Moodle 5.1+, Composer e Moosh 1.51.",
+        "title": "NGINX + PHP 8.3 Container Image, GNU libiconv, and Moodle 5.2+ Bootstrap",
+        "description": "Multi-stage Alpine 3.21 + PHP 8.3 container build, preloadable_libiconv.so compilation, Moodle 5.1+ /public webroot support, Composer, Moosh 1.51, and pre-autoloader local_redislock detection.",
         "tags": [
           "docker",
           "alpine",
@@ -1820,12 +1820,13 @@
           "libiconv",
           "moodle-5-2",
           "moosh",
-          "composer"
+          "composer",
+          "redislock"
         ],
         "verified": [
           {
             "by": "openwiki/0.5.1",
-            "at": "2026-11-06 21:11:38.409000+00:00"
+            "at": "2026-11-10 23:28:03.423000+00:00"
           }
         ],
         "sources": [
@@ -1852,7 +1853,7 @@
         ],
         "generated": {
           "by": "antigravity",
-          "at": "2026-11-06T21:11:38.409Z"
+          "at": "2026-11-10T23:28:03.423Z"
         }
       },
       "node_kind": "page",
@@ -1861,50 +1862,50 @@
       "source_location": "L1"
     },
     {
-      "id": "openwiki_runtime_container_image_moodle52_php83_1_compila\u00e7\u00e3o_multi_stage_do_preloadable_libiconv_so_mdl_80440",
-      "label": "1. Compila\u00e7\u00e3o Multi-Stage do `preloadable_libiconv.so` (MDL-80440)",
+      "id": "openwiki_runtime_container_image_moodle52_php83_1_multi_stage_preloadable_libiconv_so_compilation_mdl_80440",
+      "label": "1. Multi-Stage `preloadable_libiconv.so` Compilation (MDL-80440)",
       "_origin": "ast",
       "community": 13,
-      "community_name": "Imagem Container NGINX + PHP 8.3, GNU libiconv e Bootstrap do Moodle 5.2+",
+      "community_name": "NGINX + PHP 8.3 Container Image, GNU libiconv, and Moodle 5.2+ Bootstrap",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "1. compilacao multi-stage do `preloadable_libiconv.so` (mdl-80440)",
+      "norm_label": "1. multi-stage `preloadable_libiconv.so` compilation (mdl-80440)",
       "source_file": "openwiki/runtime/container-image-moodle52-php83.md",
       "source_location": "L36"
     },
     {
-      "id": "openwiki_runtime_container_image_moodle52_php83_2_php_8_3_e_verifica\u00e7\u00e3o_din\u00e2mica_do_composer",
-      "label": "2. PHP 8.3 e Verifica\u00e7\u00e3o Din\u00e2mica do Composer",
+      "id": "openwiki_runtime_container_image_moodle52_php83_2_php_8_3_and_dynamic_composer_checksum_verification",
+      "label": "2. PHP 8.3 and Dynamic Composer Checksum Verification",
       "_origin": "ast",
       "community": 13,
-      "community_name": "Imagem Container NGINX + PHP 8.3, GNU libiconv e Bootstrap do Moodle 5.2+",
+      "community_name": "NGINX + PHP 8.3 Container Image, GNU libiconv, and Moodle 5.2+ Bootstrap",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "2. php 8.3 e verificacao dinamica do composer",
+      "norm_label": "2. php 8.3 and dynamic composer checksum verification",
       "source_file": "openwiki/runtime/container-image-moodle52-php83.md",
       "source_location": "L43"
     },
     {
-      "id": "openwiki_runtime_container_image_moodle52_php83_3_bootstrap_do_moodle_5_2_4_depend\u00eancias_composer_e_webroot_public_setup_moodle_sh",
-      "label": "3. Bootstrap do Moodle 5.2.4, Depend\u00eancias Composer e Webroot `/public` (`setup_moodle.sh`)",
+      "id": "openwiki_runtime_container_image_moodle52_php83_3_moodle_5_2_4_bootstrap_composer_dependencies_and_public_webroot_setup_moodle_sh",
+      "label": "3. Moodle 5.2.4 Bootstrap, Composer Dependencies, and `/public` Webroot (`setup_moodle.sh`)",
       "_origin": "ast",
       "community": 13,
-      "community_name": "Imagem Container NGINX + PHP 8.3, GNU libiconv e Bootstrap do Moodle 5.2+",
+      "community_name": "NGINX + PHP 8.3 Container Image, GNU libiconv, and Moodle 5.2+ Bootstrap",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "3. bootstrap do moodle 5.2.4, dependencias composer e webroot `/public` (`setup_moodle.sh`)",
+      "norm_label": "3. moodle 5.2.4 bootstrap, composer dependencies, and `/public` webroot (`setup_moodle.sh`)",
       "source_file": "openwiki/runtime/container-image-moodle52-php83.md",
       "source_location": "L49"
     },
     {
-      "id": "openwiki_runtime_container_image_moodle52_php83_imagem_container_nginx_php_8_3_gnu_libiconv_e_bootstrap_do_moodle_5_2",
-      "label": "Imagem Container NGINX + PHP 8.3, GNU libiconv e Bootstrap do Moodle 5.2+",
+      "id": "openwiki_runtime_container_image_moodle52_php83_nginx_php_8_3_container_image_gnu_libiconv_and_moodle_5_2_bootstrap",
+      "label": "NGINX + PHP 8.3 Container Image, GNU libiconv, and Moodle 5.2+ Bootstrap",
       "_origin": "ast",
       "community": 13,
-      "community_name": "Imagem Container NGINX + PHP 8.3, GNU libiconv e Bootstrap do Moodle 5.2+",
+      "community_name": "NGINX + PHP 8.3 Container Image, GNU libiconv, and Moodle 5.2+ Bootstrap",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "imagem container nginx + php 8.3, gnu libiconv e bootstrap do moodle 5.2+",
+      "norm_label": "nginx + php 8.3 container image, gnu libiconv, and moodle 5.2+ bootstrap",
       "source_file": "openwiki/runtime/container-image-moodle52-php83.md",
       "source_location": "L23"
     },
@@ -1913,7 +1914,7 @@
       "label": "runtime/index.md",
       "_origin": "ast",
       "community": 13,
-      "community_name": "Imagem Container NGINX + PHP 8.3, GNU libiconv e Bootstrap do Moodle 5.2+",
+      "community_name": "NGINX + PHP 8.3 Container Image, GNU libiconv, and Moodle 5.2+ Bootstrap",
       "file_type": "document",
       "node_kind": "page",
       "norm_label": "runtime/index.md",
@@ -1921,14 +1922,14 @@
       "source_location": "L1"
     },
     {
-      "id": "openwiki_runtime_index_arquivos",
-      "label": "Arquivos",
+      "id": "openwiki_runtime_index_files",
+      "label": "Files",
       "_origin": "ast",
       "community": 13,
-      "community_name": "Imagem Container NGINX + PHP 8.3, GNU libiconv e Bootstrap do Moodle 5.2+",
+      "community_name": "NGINX + PHP 8.3 Container Image, GNU libiconv, and Moodle 5.2+ Bootstrap",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "arquivos",
+      "norm_label": "files",
       "source_file": "openwiki/runtime/index.md",
       "source_location": "L1"
     },
@@ -2473,16 +2474,63 @@
       "source_location": "L1"
     },
     {
+      "id": "openwiki_architecture_infrastructure_and_networking",
+      "label": "infrastructure-and-networking.md",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "GCP Infrastructure, Selective Adoption, and Cloud SQL MySQL 8.4",
+      "file_type": "document",
+      "frontmatter": {
+        "type": "architecture",
+        "title": "GCP Infrastructure, Selective Adoption, and Cloud SQL MySQL 8.4",
+        "description": "Automated provisioning architecture for custom VPC, private GKE (Standard or Autopilot) with CSI drivers, Cloud SQL MySQL 8.4, Memorystore Redis, and lifecycle scripts in 0-infra.",
+        "tags": [
+          "gcp",
+          "gke",
+          "autopilot",
+          "cloud-sql",
+          "mysql-8-4",
+          "redis",
+          "vpc",
+          "selective-adoption"
+        ],
+        "verified": [
+          {
+            "by": "openwiki/0.5.1",
+            "at": "2026-11-10 23:28:03.423000+00:00"
+          }
+        ],
+        "sources": [
+          {
+            "id": "openwiki-source-75467caa28be1defc4942cd3",
+            "resource": "repo://0-infra/envs.sh"
+          },
+          {
+            "id": "openwiki-source-c545e73e5570dc88f600931f",
+            "resource": "repo://0-infra/infra-creation.sh"
+          }
+        ],
+        "generated": {
+          "by": "antigravity",
+          "at": "2026-11-10T23:28:03.423Z"
+        }
+      },
+      "node_kind": "page",
+      "norm_label": "infrastructure-and-networking.md",
+      "source_file": "openwiki/architecture/infrastructure-and-networking.md",
+      "source_location": "L1"
+    },
+    {
       "id": "openwiki_architecture_storage_modalities",
       "label": "storage-modalities.md",
       "_origin": "ast",
       "community": 2,
-      "community_name": "Infraestrutura GCP, Ado\u00e7\u00e3o Seletiva e Cloud SQL MySQL 8.4",
+      "community_name": "GCP Infrastructure, Selective Adoption, and Cloud SQL MySQL 8.4",
       "file_type": "document",
       "frontmatter": {
         "type": "architecture",
-        "title": "Modalidades de Storage: Filestore vs. Regional Replicated Persistent Disk",
-        "description": "Arquitetura comparativa, dimensionamento configur\u00e1vel de PV/PVC e provisionamento de Cloud Filestore (RWX) e Regional Replicated Persistent Disks (regional-pd) no GKE.",
+        "title": "Storage Modalities: Filestore vs. Regional Replicated Persistent Disk",
+        "description": "Comparative architecture, configurable PV/PVC sizing, and static vs. dynamic provisioning for Cloud Filestore (RWX) and Regional Replicated Persistent Disks (regional-pd) on GKE.",
         "tags": [
           "storage",
           "filestore",
@@ -2494,7 +2542,7 @@
         "verified": [
           {
             "by": "openwiki/0.5.1",
-            "at": "2026-11-05 11:15:21.468000+00:00"
+            "at": "2026-11-10 23:28:03.423000+00:00"
           }
         ],
         "sources": [
@@ -2525,7 +2573,7 @@
         ],
         "generated": {
           "by": "antigravity",
-          "at": "2026-11-05T11:15:21.468Z"
+          "at": "2026-11-10T23:28:03.423Z"
         }
       },
       "node_kind": "page",
@@ -2534,57 +2582,11 @@
       "source_location": "L1"
     },
     {
-      "id": "openwiki_architecture_infrastructure_and_networking",
-      "label": "infrastructure-and-networking.md",
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "Infraestrutura GCP, Ado\u00e7\u00e3o Seletiva e Cloud SQL MySQL 8.4",
-      "file_type": "document",
-      "frontmatter": {
-        "type": "architecture",
-        "title": "Infraestrutura GCP, Ado\u00e7\u00e3o Seletiva e Cloud SQL MySQL 8.4",
-        "description": "Arquitetura de provisionamento automatizado de VPC, GKE privado com drivers CSI, Cloud SQL MySQL 8.4, Memorystore Redis e controles de ado\u00e7\u00e3o seletiva em 0-infra.",
-        "tags": [
-          "gcp",
-          "gke",
-          "cloud-sql",
-          "mysql-8-4",
-          "redis",
-          "vpc",
-          "selective-adoption"
-        ],
-        "verified": [
-          {
-            "by": "openwiki/0.5.1",
-            "at": "2026-11-07 00:09:11.359000+00:00"
-          }
-        ],
-        "sources": [
-          {
-            "id": "openwiki-source-75467caa28be1defc4942cd3",
-            "resource": "repo://0-infra/envs.sh"
-          },
-          {
-            "id": "openwiki-source-c545e73e5570dc88f600931f",
-            "resource": "repo://0-infra/infra-creation.sh"
-          }
-        ],
-        "generated": {
-          "by": "antigravity",
-          "at": "2026-11-07T00:09:11.359Z"
-        }
-      },
-      "node_kind": "page",
-      "norm_label": "infrastructure-and-networking.md",
-      "source_file": "openwiki/architecture/infrastructure-and-networking.md",
-      "source_location": "L1"
-    },
-    {
       "id": "openwiki_architecture_index",
       "label": "architecture/index.md",
       "_origin": "ast",
       "community": 2,
-      "community_name": "Infraestrutura GCP, Ado\u00e7\u00e3o Seletiva e Cloud SQL MySQL 8.4",
+      "community_name": "GCP Infrastructure, Selective Adoption, and Cloud SQL MySQL 8.4",
       "file_type": "document",
       "node_kind": "page",
       "norm_label": "architecture/index.md",
@@ -2592,136 +2594,136 @@
       "source_location": "L1"
     },
     {
-      "id": "openwiki_architecture_index_arquivos",
-      "label": "Arquivos",
+      "id": "openwiki_architecture_index_files",
+      "label": "Files",
       "_origin": "ast",
       "community": 2,
-      "community_name": "Infraestrutura GCP, Ado\u00e7\u00e3o Seletiva e Cloud SQL MySQL 8.4",
+      "community_name": "GCP Infrastructure, Selective Adoption, and Cloud SQL MySQL 8.4",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "arquivos",
+      "norm_label": "files",
       "source_file": "openwiki/architecture/index.md",
       "source_location": "L1"
     },
     {
-      "id": "openwiki_architecture_infrastructure_and_networking_ado\u00e7\u00e3o_seletiva_de_componentes_de_infraestrutura",
-      "label": "Ado\u00e7\u00e3o Seletiva de Componentes de Infraestrutura",
+      "id": "openwiki_architecture_infrastructure_and_networking_centralized_configuration_and_pre_flight_validation_0_infra_envs_sh",
+      "label": "Centralized Configuration and Pre-Flight Validation (`0-infra/envs.sh`)",
       "_origin": "ast",
       "community": 2,
-      "community_name": "Infraestrutura GCP, Ado\u00e7\u00e3o Seletiva e Cloud SQL MySQL 8.4",
+      "community_name": "GCP Infrastructure, Selective Adoption, and Cloud SQL MySQL 8.4",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "adocao seletiva de componentes de infraestrutura",
-      "source_file": "openwiki/architecture/infrastructure-and-networking.md",
-      "source_location": "L41"
-    },
-    {
-      "id": "openwiki_architecture_infrastructure_and_networking_cloud_sql_mysql_8_4_para_moodle_5_0",
-      "label": "Cloud SQL MySQL 8.4 para Moodle 5.0+",
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "Infraestrutura GCP, Ado\u00e7\u00e3o Seletiva e Cloud SQL MySQL 8.4",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "cloud sql mysql 8.4 para moodle 5.0+",
-      "source_file": "openwiki/architecture/infrastructure-and-networking.md",
-      "source_location": "L63"
-    },
-    {
-      "id": "openwiki_architecture_infrastructure_and_networking_infraestrutura_gcp_ado\u00e7\u00e3o_seletiva_e_cloud_sql_mysql_8_4",
-      "label": "Infraestrutura GCP, Ado\u00e7\u00e3o Seletiva e Cloud SQL MySQL 8.4",
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "Infraestrutura GCP, Ado\u00e7\u00e3o Seletiva e Cloud SQL MySQL 8.4",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "infraestrutura gcp, adocao seletiva e cloud sql mysql 8.4",
-      "source_file": "openwiki/architecture/infrastructure-and-networking.md",
-      "source_location": "L17"
-    },
-    {
-      "id": "openwiki_architecture_infrastructure_and_networking_limpeza_e_ciclo_de_vida_de_infraestrutura_cleanup_moodle_install_sh_infra_destroy_sh_infra_pause_sh_infra_resume_sh",
-      "label": "Limpeza e Ciclo de Vida de Infraestrutura (`cleanup-moodle-install.sh`, `infra-destroy.sh`, `infra-pause.sh`, `infra-resume.sh`)",
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "Infraestrutura GCP, Ado\u00e7\u00e3o Seletiva e Cloud SQL MySQL 8.4",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "limpeza e ciclo de vida de infraestrutura (`cleanup-moodle-install.sh`, `infra-destroy.sh`, `infra-pause.sh`, `infra-resume.sh`)",
-      "source_file": "openwiki/architecture/infrastructure-and-networking.md",
-      "source_location": "L71"
-    },
-    {
-      "id": "openwiki_architecture_infrastructure_and_networking_parametriza\u00e7\u00e3o_central_e_valida\u00e7\u00e3o_pre_flight_0_infra_envs_sh",
-      "label": "Parametriza\u00e7\u00e3o Central e Valida\u00e7\u00e3o Pre-Flight (`0-infra/envs.sh`)",
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "Infraestrutura GCP, Ado\u00e7\u00e3o Seletiva e Cloud SQL MySQL 8.4",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "parametrizacao central e validacao pre-flight (`0-infra/envs.sh`)",
+      "norm_label": "centralized configuration and pre-flight validation (`0-infra/envs.sh`)",
       "source_file": "openwiki/architecture/infrastructure-and-networking.md",
       "source_location": "L34"
     },
     {
-      "id": "openwiki_architecture_infrastructure_and_networking_rede_vpc_cluster_gke_privado_e_drivers_csi",
-      "label": "Rede VPC, Cluster GKE Privado e Drivers CSI",
+      "id": "openwiki_architecture_infrastructure_and_networking_cloud_sql_mysql_8_4_for_moodle_5_0",
+      "label": "Cloud SQL MySQL 8.4 for Moodle 5.0+",
       "_origin": "ast",
       "community": 2,
-      "community_name": "Infraestrutura GCP, Ado\u00e7\u00e3o Seletiva e Cloud SQL MySQL 8.4",
+      "community_name": "GCP Infrastructure, Selective Adoption, and Cloud SQL MySQL 8.4",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "rede vpc, cluster gke privado e drivers csi",
+      "norm_label": "cloud sql mysql 8.4 for moodle 5.0+",
       "source_file": "openwiki/architecture/infrastructure-and-networking.md",
-      "source_location": "L55"
+      "source_location": "L64"
     },
     {
-      "id": "openwiki_architecture_storage_modalities_comparativo_entre_cloud_filestore_e_regional_replicated_pd",
-      "label": "Comparativo entre Cloud Filestore e Regional Replicated PD",
+      "id": "openwiki_architecture_infrastructure_and_networking_gcp_infrastructure_selective_adoption_and_cloud_sql_mysql_8_4",
+      "label": "GCP Infrastructure, Selective Adoption, and Cloud SQL MySQL 8.4",
       "_origin": "ast",
       "community": 2,
-      "community_name": "Infraestrutura GCP, Ado\u00e7\u00e3o Seletiva e Cloud SQL MySQL 8.4",
+      "community_name": "GCP Infrastructure, Selective Adoption, and Cloud SQL MySQL 8.4",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "comparativo entre cloud filestore e regional replicated pd",
+      "norm_label": "gcp infrastructure, selective adoption, and cloud sql mysql 8.4",
+      "source_file": "openwiki/architecture/infrastructure-and-networking.md",
+      "source_location": "L17"
+    },
+    {
+      "id": "openwiki_architecture_infrastructure_and_networking_infrastructure_cleanup_and_lifecycle_scripts_cleanup_moodle_install_sh_infra_destroy_sh_infra_pause_sh_infra_resume_sh",
+      "label": "Infrastructure Cleanup and Lifecycle Scripts (`cleanup-moodle-install.sh`, `infra-destroy.sh`, `infra-pause.sh`, `infra-resume.sh`)",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "GCP Infrastructure, Selective Adoption, and Cloud SQL MySQL 8.4",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "infrastructure cleanup and lifecycle scripts (`cleanup-moodle-install.sh`, `infra-destroy.sh`, `infra-pause.sh`, `infra-resume.sh`)",
+      "source_file": "openwiki/architecture/infrastructure-and-networking.md",
+      "source_location": "L72"
+    },
+    {
+      "id": "openwiki_architecture_infrastructure_and_networking_selective_infrastructure_adoption",
+      "label": "Selective Infrastructure Adoption",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "GCP Infrastructure, Selective Adoption, and Cloud SQL MySQL 8.4",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "selective infrastructure adoption",
+      "source_file": "openwiki/architecture/infrastructure-and-networking.md",
+      "source_location": "L41"
+    },
+    {
+      "id": "openwiki_architecture_infrastructure_and_networking_vpc_network_private_gke_cluster_and_csi_drivers",
+      "label": "VPC Network, Private GKE Cluster, and CSI Drivers",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "GCP Infrastructure, Selective Adoption, and Cloud SQL MySQL 8.4",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "vpc network, private gke cluster, and csi drivers",
+      "source_file": "openwiki/architecture/infrastructure-and-networking.md",
+      "source_location": "L56"
+    },
+    {
+      "id": "openwiki_architecture_storage_modalities_comparison_cloud_filestore_vs_regional_replicated_pd",
+      "label": "Comparison: Cloud Filestore vs. Regional Replicated PD",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "GCP Infrastructure, Selective Adoption, and Cloud SQL MySQL 8.4",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "comparison: cloud filestore vs. regional replicated pd",
       "source_file": "openwiki/architecture/storage-modalities.md",
-      "source_location": "L47"
+      "source_location": "L46"
     },
     {
-      "id": "openwiki_architecture_storage_modalities_modalidades_de_storage_filestore_vs_regional_replicated_persistent_disk",
-      "label": "Modalidades de Storage: Filestore vs. Regional Replicated Persistent Disk",
+      "id": "openwiki_architecture_storage_modalities_configurable_sizes_and_capacities_0_infra_envs_sh_and_create_config_files_sh",
+      "label": "Configurable Sizes and Capacities (`0-infra/envs.sh` and `create-config-files.sh`)",
       "_origin": "ast",
       "community": 2,
-      "community_name": "Infraestrutura GCP, Ado\u00e7\u00e3o Seletiva e Cloud SQL MySQL 8.4",
+      "community_name": "GCP Infrastructure, Selective Adoption, and Cloud SQL MySQL 8.4",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "modalidades de storage: filestore vs. regional replicated persistent disk",
+      "norm_label": "configurable sizes and capacities (`0-infra/envs.sh` and `create-config-files.sh`)",
+      "source_file": "openwiki/architecture/storage-modalities.md",
+      "source_location": "L56"
+    },
+    {
+      "id": "openwiki_architecture_storage_modalities_static_vs_dynamic_provisioning_for_regional_replicated_pd",
+      "label": "Static vs. Dynamic Provisioning for Regional Replicated PD",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "GCP Infrastructure, Selective Adoption, and Cloud SQL MySQL 8.4",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "static vs. dynamic provisioning for regional replicated pd",
+      "source_file": "openwiki/architecture/storage-modalities.md",
+      "source_location": "L74"
+    },
+    {
+      "id": "openwiki_architecture_storage_modalities_storage_modalities_filestore_vs_regional_replicated_persistent_disk",
+      "label": "Storage Modalities: Filestore vs. Regional Replicated Persistent Disk",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "GCP Infrastructure, Selective Adoption, and Cloud SQL MySQL 8.4",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "storage modalities: filestore vs. regional replicated persistent disk",
       "source_file": "openwiki/architecture/storage-modalities.md",
       "source_location": "L25"
-    },
-    {
-      "id": "openwiki_architecture_storage_modalities_parametriza\u00e7\u00e3o_de_tamanhos_e_capacidades_0_infra_envs_sh_e_create_config_files_sh",
-      "label": "Parametriza\u00e7\u00e3o de Tamanhos e Capacidades (`0-infra/envs.sh` e `create-config-files.sh`)",
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "Infraestrutura GCP, Ado\u00e7\u00e3o Seletiva e Cloud SQL MySQL 8.4",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "parametrizacao de tamanhos e capacidades (`0-infra/envs.sh` e `create-config-files.sh`)",
-      "source_file": "openwiki/architecture/storage-modalities.md",
-      "source_location": "L57"
-    },
-    {
-      "id": "openwiki_architecture_storage_modalities_provisionamento_est\u00e1tico_vs_din\u00e2mico_de_regional_replicated_pd",
-      "label": "Provisionamento Est\u00e1tico vs. Din\u00e2mico de Regional Replicated PD",
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "Infraestrutura GCP, Ado\u00e7\u00e3o Seletiva e Cloud SQL MySQL 8.4",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "provisionamento estatico vs. dinamico de regional replicated pd",
-      "source_file": "openwiki/architecture/storage-modalities.md",
-      "source_location": "L75"
     },
     {
       "id": "readme_basic_installation",
@@ -3396,78 +3398,16 @@
       "source_location": "L1"
     },
     {
-      "id": "openwiki_operations_gke_deployments_and_uploads_isolation",
-      "label": "gke-deployments-and-uploads-isolation.md",
-      "_origin": "ast",
-      "community": 4,
-      "community_name": "Cloud CDN com Moodle Funcional, Tuning NGINX/PHP-FPM e Ingress",
-      "file_type": "document",
-      "frontmatter": {
-        "type": "operations",
-        "title": "Deployments GKE, Isolamento de Pods de Upload e HPA",
-        "description": "Arquitetura de Deployments Kubernetes para o Moodle 5.2.4, isolamento de subPaths e recursos para pods dedicados a uploads pesados, gera\u00e7\u00e3o via create-config-files.sh e pol\u00edticas de HPA.",
-        "tags": [
-          "gke",
-          "kubernetes",
-          "deployments",
-          "uploads",
-          "hpa",
-          "configmap",
-          "envsubst"
-        ],
-        "verified": [
-          {
-            "by": "openwiki/0.5.1",
-            "at": "2026-11-05 11:15:21.468000+00:00"
-          }
-        ],
-        "sources": [
-          {
-            "id": "openwiki-source-b23bb47d51c7c03a516ab733",
-            "resource": "repo://5a-deployment-no-helm/create-config-files.sh"
-          },
-          {
-            "id": "openwiki-source-53006dbc93bd922d7c60cef7",
-            "resource": "repo://5a-deployment-no-helm/moodle-configmap-nginx-uploads.yaml"
-          },
-          {
-            "id": "openwiki-source-a72c418fe1c6ecb6d937d386",
-            "resource": "repo://5a-deployment-no-helm/moodle-deployment-nginx-uploads.yaml"
-          },
-          {
-            "id": "openwiki-source-93141f93130a498670374709",
-            "resource": "repo://5a-deployment-no-helm/moodle-deployment-nginx.yaml"
-          },
-          {
-            "id": "openwiki-source-14c80d2e5990cedcc69cd8f7",
-            "resource": "repo://9-hpa/moodle-hpa.yaml"
-          },
-          {
-            "id": "openwiki-source-d5cb738866bc0951047c9d59",
-            "resource": "repo://9-hpa/moodle-uploads-hpa.yaml"
-          }
-        ],
-        "generated": {
-          "by": "antigravity",
-          "at": "2026-11-05T11:15:21.468Z"
-        }
-      },
-      "node_kind": "page",
-      "norm_label": "gke-deployments-and-uploads-isolation.md",
-      "source_file": "openwiki/operations/gke-deployments-and-uploads-isolation.md",
-      "source_location": "L1"
-    },
-    {
       "id": "openwiki_operations_cloud_cdn_and_ingress",
       "label": "cloud-cdn-and-ingress.md",
       "_origin": "ast",
       "community": 4,
-      "community_name": "Cloud CDN com Moodle Funcional, Tuning NGINX/PHP-FPM e Ingress",
+      "community_name": "Cloud CDN for Moodle, NGINX/PHP-FPM Tuning, and Ingress Routing",
       "file_type": "document",
       "frontmatter": {
         "type": "operations",
-        "title": "Cloud CDN com Moodle Funcional, Tuning NGINX/PHP-FPM e Ingress",
-        "description": "Integra\u00e7\u00e3o entre Google Cloud CDN (USE_ORIGIN_HEADERS), slasharguments no Moodle, oculta\u00e7\u00e3o de Set-Cookie em assets p\u00fablicos no NGINX, prote\u00e7\u00e3o de /pluginfile.php e roteamento de Ingress.",
+        "title": "Cloud CDN for Moodle, NGINX/PHP-FPM Tuning, and Ingress Routing",
+        "description": "Integration between Google Cloud CDN (USE_ORIGIN_HEADERS), NGINX X-Accel-Redirect (^~ prefix protection), Moodle slasharguments, Set-Cookie stripping on public assets (including yui_combo.php), private file protection, and Ingress routing.",
         "tags": [
           "cloud-cdn",
           "nginx",
@@ -3475,12 +3415,13 @@
           "ingress",
           "backendconfig",
           "caching",
-          "moodle"
+          "moodle",
+          "x-accel-redirect"
         ],
         "verified": [
           {
             "by": "openwiki/0.5.1",
-            "at": "2026-11-05 11:15:21.468000+00:00"
+            "at": "2026-11-10 23:28:03.423000+00:00"
           }
         ],
         "sources": [
@@ -3511,7 +3452,7 @@
         ],
         "generated": {
           "by": "antigravity",
-          "at": "2026-11-05T11:15:21.468Z"
+          "at": "2026-11-10T23:28:03.423Z"
         }
       },
       "node_kind": "page",
@@ -3520,110 +3461,172 @@
       "source_location": "L1"
     },
     {
-      "id": "openwiki_operations_cloud_cdn_and_ingress_1_habilita\u00e7\u00e3o_de_slasharguments_e_path_info_no_moodle_e_nginx",
-      "label": "1. Habilita\u00e7\u00e3o de `slasharguments` e `PATH_INFO` no Moodle e NGINX",
+      "id": "openwiki_operations_gke_deployments_and_uploads_isolation",
+      "label": "gke-deployments-and-uploads-isolation.md",
       "_origin": "ast",
       "community": 4,
-      "community_name": "Cloud CDN com Moodle Funcional, Tuning NGINX/PHP-FPM e Ingress",
+      "community_name": "Cloud CDN for Moodle, NGINX/PHP-FPM Tuning, and Ingress Routing",
       "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "1. habilitacao de `slasharguments` e `path_info` no moodle e nginx",
-      "source_file": "openwiki/operations/cloud-cdn-and-ingress.md",
-      "source_location": "L57"
+      "frontmatter": {
+        "type": "operations",
+        "title": "GKE Deployments, Upload Pod Isolation, and Horizontal Pod Autoscaling",
+        "description": "Kubernetes Deployment architecture for Moodle 5.2.4, isolated subPaths and resource limits for dedicated heavy file-upload pods, manifest rendering via create-config-files.sh, and HPA policies.",
+        "tags": [
+          "gke",
+          "kubernetes",
+          "deployments",
+          "uploads",
+          "hpa",
+          "configmap",
+          "envsubst"
+        ],
+        "verified": [
+          {
+            "by": "openwiki/0.5.1",
+            "at": "2026-11-10 23:28:03.423000+00:00"
+          }
+        ],
+        "sources": [
+          {
+            "id": "openwiki-source-b23bb47d51c7c03a516ab733",
+            "resource": "repo://5a-deployment-no-helm/create-config-files.sh"
+          },
+          {
+            "id": "openwiki-source-53006dbc93bd922d7c60cef7",
+            "resource": "repo://5a-deployment-no-helm/moodle-configmap-nginx-uploads.yaml"
+          },
+          {
+            "id": "openwiki-source-a72c418fe1c6ecb6d937d386",
+            "resource": "repo://5a-deployment-no-helm/moodle-deployment-nginx-uploads.yaml"
+          },
+          {
+            "id": "openwiki-source-93141f93130a498670374709",
+            "resource": "repo://5a-deployment-no-helm/moodle-deployment-nginx.yaml"
+          },
+          {
+            "id": "openwiki-source-14c80d2e5990cedcc69cd8f7",
+            "resource": "repo://9-hpa/moodle-hpa.yaml"
+          },
+          {
+            "id": "openwiki-source-d5cb738866bc0951047c9d59",
+            "resource": "repo://9-hpa/moodle-uploads-hpa.yaml"
+          }
+        ],
+        "generated": {
+          "by": "antigravity",
+          "at": "2026-11-10T23:28:03.423Z"
+        }
+      },
+      "node_kind": "page",
+      "norm_label": "gke-deployments-and-uploads-isolation.md",
+      "source_file": "openwiki/operations/gke-deployments-and-uploads-isolation.md",
+      "source_location": "L1"
     },
     {
-      "id": "openwiki_operations_cloud_cdn_and_ingress_2_regras_de_cache_do_nginx_para_o_cloud_cdn",
-      "label": "2. Regras de Cache do NGINX para o Cloud CDN",
+      "id": "openwiki_operations_cloud_cdn_and_ingress_1_enabling_slasharguments_path_info_and_x_accel_redirect_in_moodle_and_nginx",
+      "label": "1. Enabling `slasharguments`, `PATH_INFO`, and `X-Accel-Redirect` (`^~`) in Moodle and NGINX",
       "_origin": "ast",
       "community": 4,
-      "community_name": "Cloud CDN com Moodle Funcional, Tuning NGINX/PHP-FPM e Ingress",
+      "community_name": "Cloud CDN for Moodle, NGINX/PHP-FPM Tuning, and Ingress Routing",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "2. regras de cache do nginx para o cloud cdn",
+      "norm_label": "1. enabling `slasharguments`, `path_info`, and `x-accel-redirect` (`^~`) in moodle and nginx",
+      "source_file": "openwiki/operations/cloud-cdn-and-ingress.md",
+      "source_location": "L56"
+    },
+    {
+      "id": "openwiki_operations_cloud_cdn_and_ingress_2_nginx_cache_control_rules_for_cloud_cdn",
+      "label": "2. NGINX Cache Control Rules for Cloud CDN",
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "Cloud CDN for Moodle, NGINX/PHP-FPM Tuning, and Ingress Routing",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "2. nginx cache control rules for cloud cdn",
       "source_file": "openwiki/operations/cloud-cdn-and-ingress.md",
       "source_location": "L64"
     },
     {
-      "id": "openwiki_operations_cloud_cdn_and_ingress_3_configura\u00e7\u00e3o_dos_backendconfig_use_origin_headers_vs_uploads",
-      "label": "3. Configura\u00e7\u00e3o dos `BackendConfig` (`USE_ORIGIN_HEADERS` vs. `uploads`)",
+      "id": "openwiki_operations_cloud_cdn_and_ingress_3_backendconfig_configuration_use_origin_headers_vs_uploads",
+      "label": "3. `BackendConfig` Configuration (`USE_ORIGIN_HEADERS` vs. `uploads`)",
       "_origin": "ast",
       "community": 4,
-      "community_name": "Cloud CDN com Moodle Funcional, Tuning NGINX/PHP-FPM e Ingress",
+      "community_name": "Cloud CDN for Moodle, NGINX/PHP-FPM Tuning, and Ingress Routing",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "3. configuracao dos `backendconfig` (`use_origin_headers` vs. `uploads`)",
+      "norm_label": "3. `backendconfig` configuration (`use_origin_headers` vs. `uploads`)",
       "source_file": "openwiki/operations/cloud-cdn-and-ingress.md",
       "source_location": "L78"
     },
     {
-      "id": "openwiki_operations_cloud_cdn_and_ingress_4_tuning_de_nginx_e_php_fpm_8_3_e_roteamento_no_ingress",
-      "label": "4. Tuning de NGINX e PHP-FPM 8.3 e Roteamento no Ingress",
+      "id": "openwiki_operations_cloud_cdn_and_ingress_4_nginx_php_fpm_8_3_tuning_and_ingress_routing",
+      "label": "4. NGINX & PHP-FPM 8.3 Tuning and Ingress Routing",
       "_origin": "ast",
       "community": 4,
-      "community_name": "Cloud CDN com Moodle Funcional, Tuning NGINX/PHP-FPM e Ingress",
+      "community_name": "Cloud CDN for Moodle, NGINX/PHP-FPM Tuning, and Ingress Routing",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "4. tuning de nginx e php-fpm 8.3 e roteamento no ingress",
+      "norm_label": "4. nginx & php-fpm 8.3 tuning and ingress routing",
       "source_file": "openwiki/operations/cloud-cdn-and-ingress.md",
       "source_location": "L86"
     },
     {
-      "id": "openwiki_operations_cloud_cdn_and_ingress_cloud_cdn_com_moodle_funcional_tuning_nginx_php_fpm_e_ingress",
-      "label": "Cloud CDN com Moodle Funcional, Tuning NGINX/PHP-FPM e Ingress",
+      "id": "openwiki_operations_cloud_cdn_and_ingress_cloud_cdn_for_moodle_nginx_php_fpm_tuning_and_ingress_routing",
+      "label": "Cloud CDN for Moodle, NGINX/PHP-FPM Tuning, and Ingress Routing",
       "_origin": "ast",
       "community": 4,
-      "community_name": "Cloud CDN com Moodle Funcional, Tuning NGINX/PHP-FPM e Ingress",
+      "community_name": "Cloud CDN for Moodle, NGINX/PHP-FPM Tuning, and Ingress Routing",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "cloud cdn com moodle funcional, tuning nginx/php-fpm e ingress",
+      "norm_label": "cloud cdn for moodle, nginx/php-fpm tuning, and ingress routing",
       "source_file": "openwiki/operations/cloud-cdn-and-ingress.md",
       "source_location": "L25"
     },
     {
-      "id": "openwiki_operations_gke_deployments_and_uploads_isolation_1_renderiza\u00e7\u00e3o_automatizada_de_manifestos_create_config_files_sh",
-      "label": "1. Renderiza\u00e7\u00e3o Automatizada de Manifestos (`create-config-files.sh`)",
+      "id": "openwiki_operations_gke_deployments_and_uploads_isolation_1_automated_manifest_rendering_create_config_files_sh",
+      "label": "1. Automated Manifest Rendering (`create-config-files.sh`)",
       "_origin": "ast",
       "community": 4,
-      "community_name": "Cloud CDN com Moodle Funcional, Tuning NGINX/PHP-FPM e Ingress",
+      "community_name": "Cloud CDN for Moodle, NGINX/PHP-FPM Tuning, and Ingress Routing",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "1. renderizacao automatizada de manifestos (`create-config-files.sh`)",
+      "norm_label": "1. automated manifest rendering (`create-config-files.sh`)",
       "source_file": "openwiki/operations/gke-deployments-and-uploads-isolation.md",
-      "source_location": "L42"
+      "source_location": "L41"
     },
     {
-      "id": "openwiki_operations_gke_deployments_and_uploads_isolation_2_isolamento_de_configura\u00e7\u00e3o_e_recursos_nos_pods_de_upload",
-      "label": "2. Isolamento de Configura\u00e7\u00e3o e Recursos nos Pods de Upload",
+      "id": "openwiki_operations_gke_deployments_and_uploads_isolation_2_configuration_and_resource_isolation_on_upload_pods",
+      "label": "2. Configuration and Resource Isolation on Upload Pods",
       "_origin": "ast",
       "community": 4,
-      "community_name": "Cloud CDN com Moodle Funcional, Tuning NGINX/PHP-FPM e Ingress",
+      "community_name": "Cloud CDN for Moodle, NGINX/PHP-FPM Tuning, and Ingress Routing",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "2. isolamento de configuracao e recursos nos pods de upload",
+      "norm_label": "2. configuration and resource isolation on upload pods",
       "source_file": "openwiki/operations/gke-deployments-and-uploads-isolation.md",
-      "source_location": "L51"
+      "source_location": "L50"
     },
     {
-      "id": "openwiki_operations_gke_deployments_and_uploads_isolation_3_escalonamento_horizontal_independente_9_hpa",
-      "label": "3. Escalonamento Horizontal Independente (`9-hpa/`)",
+      "id": "openwiki_operations_gke_deployments_and_uploads_isolation_3_independent_horizontal_pod_autoscaling_9_hpa",
+      "label": "3. Independent Horizontal Pod Autoscaling (`9-hpa/`)",
       "_origin": "ast",
       "community": 4,
-      "community_name": "Cloud CDN com Moodle Funcional, Tuning NGINX/PHP-FPM e Ingress",
+      "community_name": "Cloud CDN for Moodle, NGINX/PHP-FPM Tuning, and Ingress Routing",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "3. escalonamento horizontal independente (`9-hpa/`)",
+      "norm_label": "3. independent horizontal pod autoscaling (`9-hpa/`)",
       "source_file": "openwiki/operations/gke-deployments-and-uploads-isolation.md",
-      "source_location": "L67"
+      "source_location": "L66"
     },
     {
-      "id": "openwiki_operations_gke_deployments_and_uploads_isolation_deployments_gke_isolamento_de_pods_de_upload_e_hpa",
-      "label": "Deployments GKE, Isolamento de Pods de Upload e HPA",
+      "id": "openwiki_operations_gke_deployments_and_uploads_isolation_gke_deployments_upload_pod_isolation_and_horizontal_pod_autoscaling",
+      "label": "GKE Deployments, Upload Pod Isolation, and Horizontal Pod Autoscaling",
       "_origin": "ast",
       "community": 4,
-      "community_name": "Cloud CDN com Moodle Funcional, Tuning NGINX/PHP-FPM e Ingress",
+      "community_name": "Cloud CDN for Moodle, NGINX/PHP-FPM Tuning, and Ingress Routing",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "deployments gke, isolamento de pods de upload e hpa",
+      "norm_label": "gke deployments, upload pod isolation, and horizontal pod autoscaling",
       "source_file": "openwiki/operations/gke-deployments-and-uploads-isolation.md",
       "source_location": "L25"
     },
@@ -3632,7 +3635,7 @@
       "label": "operations/index.md",
       "_origin": "ast",
       "community": 4,
-      "community_name": "Cloud CDN com Moodle Funcional, Tuning NGINX/PHP-FPM e Ingress",
+      "community_name": "Cloud CDN for Moodle, NGINX/PHP-FPM Tuning, and Ingress Routing",
       "file_type": "document",
       "node_kind": "page",
       "norm_label": "operations/index.md",
@@ -3640,14 +3643,14 @@
       "source_location": "L1"
     },
     {
-      "id": "openwiki_operations_index_arquivos",
-      "label": "Arquivos",
+      "id": "openwiki_operations_index_files",
+      "label": "Files",
       "_origin": "ast",
       "community": 4,
-      "community_name": "Cloud CDN com Moodle Funcional, Tuning NGINX/PHP-FPM e Ingress",
+      "community_name": "Cloud CDN for Moodle, NGINX/PHP-FPM Tuning, and Ingress Routing",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "arquivos",
+      "norm_label": "files",
       "source_file": "openwiki/operations/index.md",
       "source_location": "L1"
     },
@@ -5032,7 +5035,7 @@
     },
     {
       "source": "openwiki_architecture_index",
-      "target": "openwiki_architecture_index_arquivos",
+      "target": "openwiki_architecture_index_files",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -5043,7 +5046,7 @@
     },
     {
       "source": "openwiki_architecture_infrastructure_and_networking",
-      "target": "openwiki_architecture_infrastructure_and_networking_infraestrutura_gcp_ado\u00e7\u00e3o_seletiva_e_cloud_sql_mysql_8_4",
+      "target": "openwiki_architecture_infrastructure_and_networking_gcp_infrastructure_selective_adoption_and_cloud_sql_mysql_8_4",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -5053,8 +5056,8 @@
       "weight": 1.0
     },
     {
-      "source": "openwiki_architecture_infrastructure_and_networking_infraestrutura_gcp_ado\u00e7\u00e3o_seletiva_e_cloud_sql_mysql_8_4",
-      "target": "openwiki_architecture_infrastructure_and_networking_parametriza\u00e7\u00e3o_central_e_valida\u00e7\u00e3o_pre_flight_0_infra_envs_sh",
+      "source": "openwiki_architecture_infrastructure_and_networking_gcp_infrastructure_selective_adoption_and_cloud_sql_mysql_8_4",
+      "target": "openwiki_architecture_infrastructure_and_networking_centralized_configuration_and_pre_flight_validation_0_infra_envs_sh",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -5064,8 +5067,8 @@
       "weight": 1.0
     },
     {
-      "source": "openwiki_architecture_infrastructure_and_networking_infraestrutura_gcp_ado\u00e7\u00e3o_seletiva_e_cloud_sql_mysql_8_4",
-      "target": "openwiki_architecture_infrastructure_and_networking_ado\u00e7\u00e3o_seletiva_de_componentes_de_infraestrutura",
+      "source": "openwiki_architecture_infrastructure_and_networking_gcp_infrastructure_selective_adoption_and_cloud_sql_mysql_8_4",
+      "target": "openwiki_architecture_infrastructure_and_networking_selective_infrastructure_adoption",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -5075,41 +5078,41 @@
       "weight": 1.0
     },
     {
-      "source": "openwiki_architecture_infrastructure_and_networking_infraestrutura_gcp_ado\u00e7\u00e3o_seletiva_e_cloud_sql_mysql_8_4",
-      "target": "openwiki_architecture_infrastructure_and_networking_rede_vpc_cluster_gke_privado_e_drivers_csi",
+      "source": "openwiki_architecture_infrastructure_and_networking_gcp_infrastructure_selective_adoption_and_cloud_sql_mysql_8_4",
+      "target": "openwiki_architecture_infrastructure_and_networking_vpc_network_private_gke_cluster_and_csi_drivers",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "openwiki/architecture/infrastructure-and-networking.md",
-      "source_location": "L55",
+      "source_location": "L56",
       "weight": 1.0
     },
     {
-      "source": "openwiki_architecture_infrastructure_and_networking_infraestrutura_gcp_ado\u00e7\u00e3o_seletiva_e_cloud_sql_mysql_8_4",
-      "target": "openwiki_architecture_infrastructure_and_networking_cloud_sql_mysql_8_4_para_moodle_5_0",
+      "source": "openwiki_architecture_infrastructure_and_networking_gcp_infrastructure_selective_adoption_and_cloud_sql_mysql_8_4",
+      "target": "openwiki_architecture_infrastructure_and_networking_cloud_sql_mysql_8_4_for_moodle_5_0",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "openwiki/architecture/infrastructure-and-networking.md",
-      "source_location": "L63",
+      "source_location": "L64",
       "weight": 1.0
     },
     {
-      "source": "openwiki_architecture_infrastructure_and_networking_infraestrutura_gcp_ado\u00e7\u00e3o_seletiva_e_cloud_sql_mysql_8_4",
-      "target": "openwiki_architecture_infrastructure_and_networking_limpeza_e_ciclo_de_vida_de_infraestrutura_cleanup_moodle_install_sh_infra_destroy_sh_infra_pause_sh_infra_resume_sh",
+      "source": "openwiki_architecture_infrastructure_and_networking_gcp_infrastructure_selective_adoption_and_cloud_sql_mysql_8_4",
+      "target": "openwiki_architecture_infrastructure_and_networking_infrastructure_cleanup_and_lifecycle_scripts_cleanup_moodle_install_sh_infra_destroy_sh_infra_pause_sh_infra_resume_sh",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "openwiki/architecture/infrastructure-and-networking.md",
-      "source_location": "L71",
+      "source_location": "L72",
       "weight": 1.0
     },
     {
       "source": "openwiki_architecture_storage_modalities",
-      "target": "openwiki_architecture_storage_modalities_modalidades_de_storage_filestore_vs_regional_replicated_persistent_disk",
+      "target": "openwiki_architecture_storage_modalities_storage_modalities_filestore_vs_regional_replicated_persistent_disk",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -5119,41 +5122,41 @@
       "weight": 1.0
     },
     {
-      "source": "openwiki_architecture_storage_modalities_modalidades_de_storage_filestore_vs_regional_replicated_persistent_disk",
-      "target": "openwiki_architecture_storage_modalities_comparativo_entre_cloud_filestore_e_regional_replicated_pd",
+      "source": "openwiki_architecture_storage_modalities_storage_modalities_filestore_vs_regional_replicated_persistent_disk",
+      "target": "openwiki_architecture_storage_modalities_comparison_cloud_filestore_vs_regional_replicated_pd",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "openwiki/architecture/storage-modalities.md",
-      "source_location": "L47",
+      "source_location": "L46",
       "weight": 1.0
     },
     {
-      "source": "openwiki_architecture_storage_modalities_modalidades_de_storage_filestore_vs_regional_replicated_persistent_disk",
-      "target": "openwiki_architecture_storage_modalities_parametriza\u00e7\u00e3o_de_tamanhos_e_capacidades_0_infra_envs_sh_e_create_config_files_sh",
+      "source": "openwiki_architecture_storage_modalities_storage_modalities_filestore_vs_regional_replicated_persistent_disk",
+      "target": "openwiki_architecture_storage_modalities_configurable_sizes_and_capacities_0_infra_envs_sh_and_create_config_files_sh",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "openwiki/architecture/storage-modalities.md",
-      "source_location": "L57",
+      "source_location": "L56",
       "weight": 1.0
     },
     {
-      "source": "openwiki_architecture_storage_modalities_modalidades_de_storage_filestore_vs_regional_replicated_persistent_disk",
-      "target": "openwiki_architecture_storage_modalities_provisionamento_est\u00e1tico_vs_din\u00e2mico_de_regional_replicated_pd",
+      "source": "openwiki_architecture_storage_modalities_storage_modalities_filestore_vs_regional_replicated_persistent_disk",
+      "target": "openwiki_architecture_storage_modalities_static_vs_dynamic_provisioning_for_regional_replicated_pd",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "openwiki/architecture/storage-modalities.md",
-      "source_location": "L75",
+      "source_location": "L74",
       "weight": 1.0
     },
     {
       "source": "openwiki_index",
-      "target": "openwiki_index_arquivos",
+      "target": "openwiki_index_files",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -5164,7 +5167,7 @@
     },
     {
       "source": "openwiki_index",
-      "target": "openwiki_index_diret\u00f3rios",
+      "target": "openwiki_index_directories",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -5175,7 +5178,7 @@
     },
     {
       "source": "openwiki_operations_cloud_cdn_and_ingress",
-      "target": "openwiki_operations_cloud_cdn_and_ingress_cloud_cdn_com_moodle_funcional_tuning_nginx_php_fpm_e_ingress",
+      "target": "openwiki_operations_cloud_cdn_and_ingress_cloud_cdn_for_moodle_nginx_php_fpm_tuning_and_ingress_routing",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -5185,19 +5188,19 @@
       "weight": 1.0
     },
     {
-      "source": "openwiki_operations_cloud_cdn_and_ingress_cloud_cdn_com_moodle_funcional_tuning_nginx_php_fpm_e_ingress",
-      "target": "openwiki_operations_cloud_cdn_and_ingress_1_habilita\u00e7\u00e3o_de_slasharguments_e_path_info_no_moodle_e_nginx",
+      "source": "openwiki_operations_cloud_cdn_and_ingress_cloud_cdn_for_moodle_nginx_php_fpm_tuning_and_ingress_routing",
+      "target": "openwiki_operations_cloud_cdn_and_ingress_1_enabling_slasharguments_path_info_and_x_accel_redirect_in_moodle_and_nginx",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "openwiki/operations/cloud-cdn-and-ingress.md",
-      "source_location": "L57",
+      "source_location": "L56",
       "weight": 1.0
     },
     {
-      "source": "openwiki_operations_cloud_cdn_and_ingress_cloud_cdn_com_moodle_funcional_tuning_nginx_php_fpm_e_ingress",
-      "target": "openwiki_operations_cloud_cdn_and_ingress_2_regras_de_cache_do_nginx_para_o_cloud_cdn",
+      "source": "openwiki_operations_cloud_cdn_and_ingress_cloud_cdn_for_moodle_nginx_php_fpm_tuning_and_ingress_routing",
+      "target": "openwiki_operations_cloud_cdn_and_ingress_2_nginx_cache_control_rules_for_cloud_cdn",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -5207,8 +5210,8 @@
       "weight": 1.0
     },
     {
-      "source": "openwiki_operations_cloud_cdn_and_ingress_cloud_cdn_com_moodle_funcional_tuning_nginx_php_fpm_e_ingress",
-      "target": "openwiki_operations_cloud_cdn_and_ingress_3_configura\u00e7\u00e3o_dos_backendconfig_use_origin_headers_vs_uploads",
+      "source": "openwiki_operations_cloud_cdn_and_ingress_cloud_cdn_for_moodle_nginx_php_fpm_tuning_and_ingress_routing",
+      "target": "openwiki_operations_cloud_cdn_and_ingress_3_backendconfig_configuration_use_origin_headers_vs_uploads",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -5218,8 +5221,8 @@
       "weight": 1.0
     },
     {
-      "source": "openwiki_operations_cloud_cdn_and_ingress_cloud_cdn_com_moodle_funcional_tuning_nginx_php_fpm_e_ingress",
-      "target": "openwiki_operations_cloud_cdn_and_ingress_4_tuning_de_nginx_e_php_fpm_8_3_e_roteamento_no_ingress",
+      "source": "openwiki_operations_cloud_cdn_and_ingress_cloud_cdn_for_moodle_nginx_php_fpm_tuning_and_ingress_routing",
+      "target": "openwiki_operations_cloud_cdn_and_ingress_4_nginx_php_fpm_8_3_tuning_and_ingress_routing",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -5230,7 +5233,7 @@
     },
     {
       "source": "openwiki_operations_gke_deployments_and_uploads_isolation",
-      "target": "openwiki_operations_gke_deployments_and_uploads_isolation_deployments_gke_isolamento_de_pods_de_upload_e_hpa",
+      "target": "openwiki_operations_gke_deployments_and_uploads_isolation_gke_deployments_upload_pod_isolation_and_horizontal_pod_autoscaling",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -5240,41 +5243,41 @@
       "weight": 1.0
     },
     {
-      "source": "openwiki_operations_gke_deployments_and_uploads_isolation_deployments_gke_isolamento_de_pods_de_upload_e_hpa",
-      "target": "openwiki_operations_gke_deployments_and_uploads_isolation_1_renderiza\u00e7\u00e3o_automatizada_de_manifestos_create_config_files_sh",
+      "source": "openwiki_operations_gke_deployments_and_uploads_isolation_gke_deployments_upload_pod_isolation_and_horizontal_pod_autoscaling",
+      "target": "openwiki_operations_gke_deployments_and_uploads_isolation_1_automated_manifest_rendering_create_config_files_sh",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "openwiki/operations/gke-deployments-and-uploads-isolation.md",
-      "source_location": "L42",
+      "source_location": "L41",
       "weight": 1.0
     },
     {
-      "source": "openwiki_operations_gke_deployments_and_uploads_isolation_deployments_gke_isolamento_de_pods_de_upload_e_hpa",
-      "target": "openwiki_operations_gke_deployments_and_uploads_isolation_2_isolamento_de_configura\u00e7\u00e3o_e_recursos_nos_pods_de_upload",
+      "source": "openwiki_operations_gke_deployments_and_uploads_isolation_gke_deployments_upload_pod_isolation_and_horizontal_pod_autoscaling",
+      "target": "openwiki_operations_gke_deployments_and_uploads_isolation_2_configuration_and_resource_isolation_on_upload_pods",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "openwiki/operations/gke-deployments-and-uploads-isolation.md",
-      "source_location": "L51",
+      "source_location": "L50",
       "weight": 1.0
     },
     {
-      "source": "openwiki_operations_gke_deployments_and_uploads_isolation_deployments_gke_isolamento_de_pods_de_upload_e_hpa",
-      "target": "openwiki_operations_gke_deployments_and_uploads_isolation_3_escalonamento_horizontal_independente_9_hpa",
+      "source": "openwiki_operations_gke_deployments_and_uploads_isolation_gke_deployments_upload_pod_isolation_and_horizontal_pod_autoscaling",
+      "target": "openwiki_operations_gke_deployments_and_uploads_isolation_3_independent_horizontal_pod_autoscaling_9_hpa",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "openwiki/operations/gke-deployments-and-uploads-isolation.md",
-      "source_location": "L67",
+      "source_location": "L66",
       "weight": 1.0
     },
     {
       "source": "openwiki_operations_index",
-      "target": "openwiki_operations_index_arquivos",
+      "target": "openwiki_operations_index_files",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -5285,7 +5288,7 @@
     },
     {
       "source": "openwiki_quickstart",
-      "target": "openwiki_quickstart_quickstart_e_mapa_arquitetural_do_moodle_on_gcp",
+      "target": "openwiki_quickstart_moodle_on_gcp_quickstart_architectural_map",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -5295,8 +5298,8 @@
       "weight": 1.0
     },
     {
-      "source": "openwiki_quickstart_quickstart_e_mapa_arquitetural_do_moodle_on_gcp",
-      "target": "openwiki_quickstart_fluxo_r\u00e1pido_de_implanta\u00e7\u00e3o_passo_a_passo",
+      "source": "openwiki_quickstart_moodle_on_gcp_quickstart_architectural_map",
+      "target": "openwiki_quickstart_end_to_end_deployment_quickstart_step_by_step",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -5306,8 +5309,8 @@
       "weight": 1.0
     },
     {
-      "source": "openwiki_quickstart_quickstart_e_mapa_arquitetural_do_moodle_on_gcp",
-      "target": "openwiki_quickstart_mapa_de_roteamento_de_tarefas_da_documenta\u00e7\u00e3o_openwiki",
+      "source": "openwiki_quickstart_moodle_on_gcp_quickstart_architectural_map",
+      "target": "openwiki_quickstart_openwiki_architectural_task_routing_map",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -5318,7 +5321,7 @@
     },
     {
       "source": "openwiki_runtime_container_image_moodle52_php83",
-      "target": "openwiki_runtime_container_image_moodle52_php83_imagem_container_nginx_php_8_3_gnu_libiconv_e_bootstrap_do_moodle_5_2",
+      "target": "openwiki_runtime_container_image_moodle52_php83_nginx_php_8_3_container_image_gnu_libiconv_and_moodle_5_2_bootstrap",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -5328,8 +5331,8 @@
       "weight": 1.0
     },
     {
-      "source": "openwiki_runtime_container_image_moodle52_php83_imagem_container_nginx_php_8_3_gnu_libiconv_e_bootstrap_do_moodle_5_2",
-      "target": "openwiki_runtime_container_image_moodle52_php83_1_compila\u00e7\u00e3o_multi_stage_do_preloadable_libiconv_so_mdl_80440",
+      "source": "openwiki_runtime_container_image_moodle52_php83_nginx_php_8_3_container_image_gnu_libiconv_and_moodle_5_2_bootstrap",
+      "target": "openwiki_runtime_container_image_moodle52_php83_1_multi_stage_preloadable_libiconv_so_compilation_mdl_80440",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -5339,8 +5342,8 @@
       "weight": 1.0
     },
     {
-      "source": "openwiki_runtime_container_image_moodle52_php83_imagem_container_nginx_php_8_3_gnu_libiconv_e_bootstrap_do_moodle_5_2",
-      "target": "openwiki_runtime_container_image_moodle52_php83_2_php_8_3_e_verifica\u00e7\u00e3o_din\u00e2mica_do_composer",
+      "source": "openwiki_runtime_container_image_moodle52_php83_nginx_php_8_3_container_image_gnu_libiconv_and_moodle_5_2_bootstrap",
+      "target": "openwiki_runtime_container_image_moodle52_php83_2_php_8_3_and_dynamic_composer_checksum_verification",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -5350,8 +5353,8 @@
       "weight": 1.0
     },
     {
-      "source": "openwiki_runtime_container_image_moodle52_php83_imagem_container_nginx_php_8_3_gnu_libiconv_e_bootstrap_do_moodle_5_2",
-      "target": "openwiki_runtime_container_image_moodle52_php83_3_bootstrap_do_moodle_5_2_4_depend\u00eancias_composer_e_webroot_public_setup_moodle_sh",
+      "source": "openwiki_runtime_container_image_moodle52_php83_nginx_php_8_3_container_image_gnu_libiconv_and_moodle_5_2_bootstrap",
+      "target": "openwiki_runtime_container_image_moodle52_php83_3_moodle_5_2_4_bootstrap_composer_dependencies_and_public_webroot_setup_moodle_sh",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -5362,7 +5365,7 @@
     },
     {
       "source": "openwiki_runtime_index",
-      "target": "openwiki_runtime_index_arquivos",
+      "target": "openwiki_runtime_index_files",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -7169,5 +7172,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "a26246bda3c351183ff5e3dcddd4c5f3497f9682"
+  "built_at_commit": "f79aa2206acedd74fca00bfcf641b95664dd20e3"
 }

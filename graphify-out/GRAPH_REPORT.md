@@ -1,7 +1,7 @@
 # Graph Report - modern-moodle-correction  (2026-11-10)
 
 ## Corpus Check
-- 63 files · ~114,790 words
+- 63 files · ~114,594 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 41 file(s) not represented in the graph (top: .ini 30, .conf 4, (none) 2)
 
@@ -11,16 +11,16 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `a26246bd`
+- Built from commit: `f79aa220`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
 - envs.sh
 - README.md
-- Infraestrutura GCP, Adoção Seletiva e Cloud SQL MySQL 8.4
+- GCP Infrastructure, Selective Adoption, and Cloud SQL MySQL 8.4
 - Deployment moodle-deployment (Primary Web Pod, PHP 8.3 & NGINX Mounts, tmpfs /tmp)
-- Cloud CDN com Moodle Funcional, Tuning NGINX/PHP-FPM e Ingress
+- Cloud CDN for Moodle, NGINX/PHP-FPM Tuning, and Ingress Routing
 - validate_moodle_envs
 - setup_moodle.sh
 - create-config-files.sh
@@ -28,7 +28,7 @@
 - build-gnu-libiconv.sh
 - Pre-requisites
 - openwiki/index.md
-- Imagem Container NGINX + PHP 8.3, GNU libiconv e Bootstrap do Moodle 5.2+
+- NGINX + PHP 8.3 Container Image, GNU libiconv, and Moodle 5.2+ Bootstrap
 - Choosing and Configuring Storage (`Filestore` vs. `Regional Replicated Persistent Disk`)
 - How to Contribute
 - Configuring Redis Cache with Moodle
@@ -56,11 +56,11 @@
 2. `Pre-requisites` - 7 edges
 3. `Deployment moodle-deployment (Primary Web Pod, PHP 8.3 & NGINX Mounts, tmpfs /tmp)` - 7 edges
 4. `Agent & Jules Configuration Guide (`google/moodle-on-gcp`)` - 6 edges
-5. `Infraestrutura GCP, Adoção Seletiva e Cloud SQL MySQL 8.4` - 6 edges
+5. `GCP Infrastructure, Selective Adoption, and Cloud SQL MySQL 8.4` - 6 edges
 6. `Namespace moodle` - 6 edges
 7. `Deployment moodle-deployment-uploads (Dedicated Large Upload Pod, 512M/3600s)` - 6 edges
 8. `Configuring Redis Cache with Moodle` - 5 edges
-9. `Cloud CDN com Moodle Funcional, Tuning NGINX/PHP-FPM e Ingress` - 5 edges
+9. `Cloud CDN for Moodle, NGINX/PHP-FPM Tuning, and Ingress Routing` - 5 edges
 10. `How to Contribute` - 4 edges
 
 ## Surprising Connections (you probably didn't know these)
@@ -88,17 +88,17 @@ Nodes (52): ARTIFACT_REGISTRY_NAME, CLOUD_BUILD_SA_EMAIL, CREATE_CLOUD_SQL, CREA
 Cohesion: 0.09
 Nodes (13): Building Moodle's container image, Deploying Backend Configuration (`BackendConfig`), Deploying infrastructure, Infrastructure information needed for Moodle image configuration, Deploying Ingress - Cloud Load Balancer, Deploying Ingress, Deploying Ingress - NGINX, Deploying Moodle's namespace (+5 more)
 
-### Community 2 - "Infraestrutura GCP, Adoção Seletiva e Cloud SQL MySQL 8.4"
+### Community 2 - "GCP Infrastructure, Selective Adoption, and Cloud SQL MySQL 8.4"
 Cohesion: 0.14
-Nodes (11): Arquivos, Adoção Seletiva de Componentes de Infraestrutura, Cloud SQL MySQL 8.4 para Moodle 5.0+, Infraestrutura GCP, Adoção Seletiva e Cloud SQL MySQL 8.4, Limpeza e Ciclo de Vida de Infraestrutura (`cleanup-moodle-install.sh`, `infra-destroy.sh`, `infra-pause.sh`, `infra-resume.sh`), Parametrização Central e Validação Pre-Flight (`0-infra/envs.sh`), Rede VPC, Cluster GKE Privado e Drivers CSI, Comparativo entre Cloud Filestore e Regional Replicated PD (+3 more)
+Nodes (11): Files, Centralized Configuration and Pre-Flight Validation (`0-infra/envs.sh`), Cloud SQL MySQL 8.4 for Moodle 5.0+, GCP Infrastructure, Selective Adoption, and Cloud SQL MySQL 8.4, Infrastructure Cleanup and Lifecycle Scripts (`cleanup-moodle-install.sh`, `infra-destroy.sh`, `infra-pause.sh`, `infra-resume.sh`), Selective Infrastructure Adoption, VPC Network, Private GKE Cluster, and CSI Drivers, Comparison: Cloud Filestore vs. Regional Replicated PD (+3 more)
 
 ### Community 3 - "Deployment moodle-deployment (Primary Web Pod, PHP 8.3 & NGINX Mounts, tmpfs /tmp)"
 Cohesion: 0.13
 Nodes (22): PersistentVolume pv-filestore (2.5Ti ReadWriteMany NFS /moodleshare), PersistentVolume pv-regional-pd (200Gi ReadWriteOnce pd.csi.storage.gke.io), StorageClass moodle-regional-pd-sc (pd-balanced regional-pd WaitForFirstConsumer), Namespace moodle, PersistentVolumeClaim pvc-filestore (300Gi-500Gi ReadWriteMany), PersistentVolumeClaim pvc-regional-pd (200Gi ReadWriteOnce), Cloud Build Pipeline moodle-nginx Image Builder (Dockerfile.nginx), ConfigMap moodle-configmap (Moodle 5.2.4, Moosh, Cloud SQL, Redis Session/App/Lock, SSLProxy) (+14 more)
 
-### Community 4 - "Cloud CDN com Moodle Funcional, Tuning NGINX/PHP-FPM e Ingress"
+### Community 4 - "Cloud CDN for Moodle, NGINX/PHP-FPM Tuning, and Ingress Routing"
 Cohesion: 0.15
-Nodes (10): 1. Habilitação de `slasharguments` e `PATH_INFO` no Moodle e NGINX, 2. Regras de Cache do NGINX para o Cloud CDN, 3. Configuração dos `BackendConfig` (`USE_ORIGIN_HEADERS` vs. `uploads`), 4. Tuning de NGINX e PHP-FPM 8.3 e Roteamento no Ingress, Cloud CDN com Moodle Funcional, Tuning NGINX/PHP-FPM e Ingress, 1. Renderização Automatizada de Manifestos (`create-config-files.sh`), 2. Isolamento de Configuração e Recursos nos Pods de Upload, 3. Escalonamento Horizontal Independente (`9-hpa/`) (+2 more)
+Nodes (10): 1. Enabling `slasharguments`, `PATH_INFO`, and `X-Accel-Redirect` (`^~`) in Moodle and NGINX, 2. NGINX Cache Control Rules for Cloud CDN, 3. `BackendConfig` Configuration (`USE_ORIGIN_HEADERS` vs. `uploads`), 4. NGINX & PHP-FPM 8.3 Tuning and Ingress Routing, Cloud CDN for Moodle, NGINX/PHP-FPM Tuning, and Ingress Routing, 1. Automated Manifest Rendering (`create-config-files.sh`), 2. Configuration and Resource Isolation on Upload Pods, 3. Independent Horizontal Pod Autoscaling (`9-hpa/`) (+2 more)
 
 ### Community 5 - "validate_moodle_envs"
 Cohesion: 0.40
@@ -110,11 +110,11 @@ Nodes (7): Enable Moodle's underlying infrastructure services APIs in Google Clo
 
 ### Community 12 - "openwiki/index.md"
 Cohesion: 0.29
-Nodes (5): Arquivos, Diretórios, Fluxo Rápido de Implantação (Passo a Passo), Mapa de Roteamento de Tarefas da Documentação OpenWiki, Quickstart e Mapa Arquitetural do Moodle on GCP
+Nodes (5): Directories, Files, End-to-End Deployment Quickstart (Step by Step), Moodle on GCP Quickstart & Architectural Map, OpenWiki Architectural Task-Routing Map
 
-### Community 13 - "Imagem Container NGINX + PHP 8.3, GNU libiconv e Bootstrap do Moodle 5.2+"
+### Community 13 - "NGINX + PHP 8.3 Container Image, GNU libiconv, and Moodle 5.2+ Bootstrap"
 Cohesion: 0.29
-Nodes (5): 1. Compilação Multi-Stage do `preloadable_libiconv.so` (MDL-80440), 2. PHP 8.3 e Verificação Dinâmica do Composer, 3. Bootstrap do Moodle 5.2.4, Dependências Composer e Webroot `/public` (`setup_moodle.sh`), Imagem Container NGINX + PHP 8.3, GNU libiconv e Bootstrap do Moodle 5.2+, Arquivos
+Nodes (5): 1. Multi-Stage `preloadable_libiconv.so` Compilation (MDL-80440), 2. PHP 8.3 and Dynamic Composer Checksum Verification, 3. Moodle 5.2.4 Bootstrap, Composer Dependencies, and `/public` Webroot (`setup_moodle.sh`), NGINX + PHP 8.3 Container Image, GNU libiconv, and Moodle 5.2+ Bootstrap, Files
 
 ### Community 14 - "Choosing and Configuring Storage (`Filestore` vs. `Regional Replicated Persistent Disk`)"
 Cohesion: 0.33
@@ -204,5 +204,5 @@ _Questions this graph is uniquely positioned to answer:_
   _Cohesion score 0.03773584905660377 - nodes in this community are weakly interconnected._
 - **Should `README.md` be split into smaller, more focused modules?**
   _Cohesion score 0.09246088193456614 - nodes in this community are weakly interconnected._
-- **Should `Infraestrutura GCP, Adoção Seletiva e Cloud SQL MySQL 8.4` be split into smaller, more focused modules?**
+- **Should `GCP Infrastructure, Selective Adoption, and Cloud SQL MySQL 8.4` be split into smaller, more focused modules?**
   _Cohesion score 0.14285714285714285 - nodes in this community are weakly interconnected._
