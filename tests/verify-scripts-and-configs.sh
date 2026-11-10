@@ -17,12 +17,12 @@ set -eo pipefail
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$REPO_ROOT"
 
-echo "=== [1/5] Validating Bash & POSIX sh syntax across all scripts ==="
+echo "=== [1/6] Validating Bash & POSIX sh syntax across all scripts ==="
 bash -n 0-infra/*.sh 4-moodle-image-builder/build-nginx-based-image.sh 5a-deployment-no-helm/create-config-files.sh
 sh -n 4-moodle-image-builder/scripts/*.sh 4-moodle-image-builder/base/opt/*.sh
 echo "PASS: All shell scripts passed syntax validation."
 
-echo "=== [2/5] Validating all Kubernetes YAML manifests and templates ==="
+echo "=== [2/6] Validating all Kubernetes YAML manifests and templates ==="
 python3 - <<'PYEOF'
 import glob, yaml
 
@@ -37,7 +37,7 @@ for f in yaml_files:
 print(f"PASS: Validated {checked} YAML files successfully.")
 PYEOF
 
-echo "=== [3/5] Verifying setup_moodle.sh security & performance invariants ==="
+echo "=== [3/6] Verifying setup_moodle.sh & config.php.template security & performance invariants ==="
 SETUP_SCRIPT="4-moodle-image-builder/base/opt/setup_moodle.sh"
 
 # 1. Verify least-privilege permissions (0755/0644 on MOODLE_PATH, 0750/0640 on MOODLE_DATAROOT_PATH) and '+' batching
@@ -76,11 +76,15 @@ for nginx_cfg in 4-moodle-image-builder/base/etc/nginx/nginx.conf 4-moodle-image
     exit 1
   fi
 done
-echo "PASS: setup_moodle.sh security & performance invariants verified."
 
-echo "=== [4/5] Unit-testing setup_moodle.sh read-replica & publicpaths edge cases ==="
-TMP_TEST_DIR="$(mktemp -d)"
-trap 'rm -rfv "$TMP_TEST_DIR" >/dev/null' EXIT
+# 7. Verify local_redislock pre-autoloader file check in config.php.template and direct public/local extraction
+grep -q "is_readable(__DIR__ . '/public/local/redislock/classes/lock/redis_lock_factory.php')" 4-moodle-image-builder/config.php.template
+grep -q 'REDISLOCK_TARGET_DIR="\$MOODLE_PATH/public/local/redislock"' "$SETUP_SCRIPT"
+echo "PASS: setup_moodle.sh & config.php.template security & performance invariants verified."
+
+echo "=== [4/6] Unit-testing setup_moodle.sh read-replica & publicpaths edge cases ==="
+export TMP_TEST_DIR="$(mktemp -d)"
+trap 'rm -rfv "$TMP_TEST_DIR"' EXIT
 
 create_mock_config() {
   cat > "$1" <<'PHPEOF'
@@ -130,7 +134,100 @@ if grep -q "p@ss" "$TMP_TEST_DIR/config_full.php"; then
 fi
 echo "PASS: All read-replica edge cases verified."
 
-echo "=== [5/5] Verifying repository guardrails (AGENTS.md & .jules/sentinel.md) ==="
+echo "=== [5/6] Unit-testing build-nginx-based-image.sh, cleanup-moodle-install.sh, and infra scripts with mocked CLIs ==="
+MOCK_ROOT="$TMP_TEST_DIR/mock_repo"
+mkdir -p "$MOCK_ROOT/0-infra" "$MOCK_ROOT/4-moodle-image-builder" "$MOCK_ROOT/bin"
+cp 4-moodle-image-builder/build-nginx-based-image.sh "$MOCK_ROOT/4-moodle-image-builder/"
+cp 0-infra/cleanup-moodle-install.sh 0-infra/infra-pause.sh 0-infra/infra-resume.sh 0-infra/infra-destroy.sh "$MOCK_ROOT/0-infra/"
+
+cat > "$MOCK_ROOT/0-infra/envs.sh" <<'ENVEOF'
+export PROJECT_ID="test-moodle-proj"
+export REGION="us-central1"
+export ZONE="us-central1-a"
+export REPLICA_ZONE="us-central1-b"
+export MOODLE_ROOT_PATH="/moodleroot-instance1"
+export MYSQL_INSTANCE_NAME="moodle-db-test"
+export MYSQL_DB="moodle"
+export MYSQL_MOODLE_DB_CHARSET="utf8mb4"
+export MYSQL_MOODLE_DB_COLLATION="utf8mb4_unicode_ci"
+export STORAGE_TYPE="filestore"
+export FILESTORE_MOUNT="/mnt/filestore"
+export MOODLE_ROOT_IN_FILESTORE="$TMP_TEST_DIR/mock_filestore_data"
+export CREATE_CLOUD_SQL="true"
+export CREATE_REDIS="true"
+export CREATE_REDIS_CLUSTER="false"
+export CREATE_FILESTORE="false"
+export CREATE_REGIONAL_PD="false"
+export CREATE_ARTIFACT_REGISTRY="false"
+export GKE_NAME="moodle-gke-test"
+export GKE_MODE="autopilot"
+export REDIS_NAME="moodle-redis-test"
+export REDIS_SIZE="5"
+export REDIS_TIER="basic"
+export REDIS_VERSION="redis_7_2"
+export VPC_NAME="moodle-vpc-test"
+validate_moodle_envs() { :; }
+ENVEOF
+
+cat > "$MOCK_ROOT/bin/gcloud" <<'GCEOF'
+#!/bin/bash
+echo "gcloud $*" >> "$GCLOUD_LOG"
+if [[ "$*" == *"redis instances describe"*"--format=value(host)"* ]]; then
+  echo "10.99.0.42"
+fi
+GCEOF
+cat > "$MOCK_ROOT/bin/kubectl" <<'KBEOF'
+#!/bin/bash
+echo "kubectl $*" >> "$KUBECTL_LOG"
+KBEOF
+cat > "$MOCK_ROOT/bin/sudo" <<'SUEOF'
+#!/bin/bash
+"$@"
+SUEOF
+cat > "$MOCK_ROOT/bin/jq" <<'JQEOF'
+#!/bin/bash
+exit 0
+JQEOF
+chmod +x "$MOCK_ROOT/bin/gcloud" "$MOCK_ROOT/bin/kubectl" "$MOCK_ROOT/bin/sudo" "$MOCK_ROOT/bin/jq"
+
+export GCLOUD_LOG="$TMP_TEST_DIR/gcloud.log"
+export KUBECTL_LOG="$TMP_TEST_DIR/kubectl.log"
+
+# 1. Test build-nginx-based-image.sh (Jules finding #4)
+: > "$GCLOUD_LOG"
+PATH="$MOCK_ROOT/bin:$PATH" bash "$MOCK_ROOT/4-moodle-image-builder/build-nginx-based-image.sh"
+grep -q "gcloud builds submit --config cloudbuild-nginx.yaml --substitutions=_MOODLE_ROOT_PATH=/moodleroot-instance1,_MOODLE_DATAROOT_PATH=/moodleroot-instance1/moodledata,_MOODLE_PATH=/moodleroot-instance1/moodle --region us-central1" "$GCLOUD_LOG"
+
+# 2. Test cleanup-moodle-install.sh (Jules finding #18: cancel path vs confirmed path)
+: > "$GCLOUD_LOG"
+mkdir -p "$TMP_TEST_DIR/mock_filestore_data/sub"
+printf 'n\n' | PATH="$MOCK_ROOT/bin:$PATH" bash "$MOCK_ROOT/0-infra/cleanup-moodle-install.sh" >/dev/null
+test -d "$TMP_TEST_DIR/mock_filestore_data/sub"
+printf 'y\n' | PATH="$MOCK_ROOT/bin:$PATH" bash "$MOCK_ROOT/0-infra/cleanup-moodle-install.sh" >/dev/null
+grep -q "gcloud sql databases delete moodle --instance moodle-db-test --quiet" "$GCLOUD_LOG"
+grep -q "gcloud sql databases create moodle --instance moodle-db-test --charset utf8mb4 --collation utf8mb4_unicode_ci" "$GCLOUD_LOG"
+if [ -d "$TMP_TEST_DIR/mock_filestore_data" ]; then
+  echo "FAIL: cleanup-moodle-install.sh did not remove MOODLE_ROOT_IN_FILESTORE." >&2
+  exit 1
+fi
+
+# 3. Test infra-pause.sh and infra-resume.sh (Jules findings #17 & #20)
+: > "$GCLOUD_LOG"
+: > "$KUBECTL_LOG"
+PATH="$MOCK_ROOT/bin:$PATH" ENVS_FILE="$MOCK_ROOT/0-infra/envs.sh" bash "$MOCK_ROOT/0-infra/infra-pause.sh" --delete-redis >/dev/null
+grep -q "kubectl scale deployment moodle-deployment -n moodle --replicas=0" "$KUBECTL_LOG"
+grep -q "gcloud sql instances patch moodle-db-test --activation-policy=NEVER --project=test-moodle-proj --quiet" "$GCLOUD_LOG"
+grep -q "gcloud redis instances delete moodle-redis-test --region=us-central1 --project=test-moodle-proj --quiet" "$GCLOUD_LOG"
+
+: > "$GCLOUD_LOG"
+: > "$KUBECTL_LOG"
+PATH="$MOCK_ROOT/bin:$PATH" ENVS_FILE="$MOCK_ROOT/0-infra/envs.sh" bash "$MOCK_ROOT/0-infra/infra-resume.sh" --recreate-redis >/dev/null
+grep -q "gcloud sql instances patch moodle-db-test --activation-policy=ALWAYS --project=test-moodle-proj --quiet" "$GCLOUD_LOG"
+grep -q "10.99.0.42" "$KUBECTL_LOG"
+grep -q "kubectl scale deployment moodle-deployment -n moodle --replicas=3" "$KUBECTL_LOG"
+echo "PASS: Behavioral CLI tests for build, cleanup, pause, and resume scripts verified."
+
+echo "=== [6/6] Verifying repository guardrails (AGENTS.md & .jules/sentinel.md) ==="
 grep -q '"<YOUR-PROJECT-ID>"' 0-infra/envs.sh
 grep -q 'GKE_MODE="\${GKE_MODE:-autopilot}"' 0-infra/envs.sh
 grep -q 'clusters create-auto' 0-infra/infra-creation.sh
