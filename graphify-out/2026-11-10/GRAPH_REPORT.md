@@ -1,12 +1,12 @@
 # Graph Report - modern-moodle-correction  (2026-11-10)
 
 ## Corpus Check
-- 63 files · ~114,696 words
+- 63 files · ~114,700 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 41 file(s) not represented in the graph (top: .ini 30, .conf 4, (none) 2)
 
 ## Summary
-- 272 nodes · 297 edges · 36 communities (26 shown, 10 thin omitted)
+- 273 nodes · 298 edges · 36 communities (26 shown, 10 thin omitted)
 - Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 5 edges (avg confidence: 0.68)
 - Token cost: 0 input · 0 output
 
@@ -173,8 +173,8 @@ Cohesion: 0.67
 Nodes (3): Configuring SSL and forcing HTTPS redirect, Forcing HTTPS for incoming requests, Provisioning a new certificate managed by Google Cloud
 
 ### Community 31 - "verify-scripts-and-configs.sh"
-Cohesion: 0.47
-Nodes (5): create_mock_config(), GCLOUD_LOG, KUBECTL_LOG, run_replica_snippet(), verify-scripts-and-configs.sh script
+Cohesion: 0.38
+Nodes (6): create_mock_config(), GCLOUD_LOG, KUBECTL_LOG, run_replica_snippet(), verify-scripts-and-configs.sh script, TMP_TEST_DIR
 
 ### Community 32 - "infra-pause.sh"
 Cohesion: 0.67
@@ -185,8 +185,8 @@ Cohesion: 0.67
 Nodes (3): CLOUDSDK_CONTAINER_USE_APPLICATION_DEFAULT_CREDENTIALS, is_configured(), infra-resume.sh script
 
 ## Knowledge Gaps
-- **162 isolated node(s):** `envs.sh script`, `PROJECT_NUMBER`, `PROJECT_ID`, `REGION`, `ZONE` (+157 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 169 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **163 isolated node(s):** `envs.sh script`, `PROJECT_NUMBER`, `PROJECT_ID`, `REGION`, `ZONE` (+158 more)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 170 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
 - **10 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
@@ -199,7 +199,7 @@ _Questions this graph is uniquely positioned to answer:_
 - **Why does `Configuring Redis Cache with Moodle` connect `Configuring Redis Cache with Moodle` to `README.md`?**
   _High betweenness centrality (0.010) - this node is a cross-community bridge._
 - **What connects `envs.sh script`, `PROJECT_NUMBER`, `PROJECT_ID` to the rest of the system?**
-  _162 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _163 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `envs.sh` be split into smaller, more focused modules?**
   _Cohesion score 0.03773584905660377 - nodes in this community are weakly interconnected._
 - **Should `README.md` be split into smaller, more focused modules?**

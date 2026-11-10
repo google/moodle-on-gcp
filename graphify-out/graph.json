@@ -3123,7 +3123,7 @@
       },
       "norm_label": "create_mock_config()",
       "source_file": "tests/verify-scripts-and-configs.sh",
-      "source_location": "L89"
+      "source_location": "L92"
     },
     {
       "id": "tests_verify_scripts_and_configs_gcloud_log",
@@ -3138,7 +3138,7 @@
       },
       "norm_label": "gcloud_log",
       "source_file": "tests/verify-scripts-and-configs.sh",
-      "source_location": "L193"
+      "source_location": "L196"
     },
     {
       "id": "tests_verify_scripts_and_configs_kubectl_log",
@@ -3153,7 +3153,7 @@
       },
       "norm_label": "kubectl_log",
       "source_file": "tests/verify-scripts-and-configs.sh",
-      "source_location": "L194"
+      "source_location": "L197"
     },
     {
       "id": "tests_verify_scripts_and_configs_run_replica_snippet",
@@ -3168,7 +3168,7 @@
       },
       "norm_label": "run_replica_snippet()",
       "source_file": "tests/verify-scripts-and-configs.sh",
-      "source_location": "L103"
+      "source_location": "L106"
     },
     {
       "id": "tests_verify_scripts_and_configs_sh__entry",
@@ -3198,7 +3198,7 @@
       },
       "norm_label": "tmp_test_dir",
       "source_file": "tests/verify-scripts-and-configs.sh",
-      "source_location": "L86"
+      "source_location": "L89"
     },
     {
       "id": "0_infra_infra_pause",
@@ -3959,7 +3959,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "tests/verify-scripts-and-configs.sh",
-      "source_location": "L115",
+      "source_location": "L118",
       "weight": 1.0
     },
     {
@@ -3971,7 +3971,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "tests/verify-scripts-and-configs.sh",
-      "source_location": "L116",
+      "source_location": "L119",
       "weight": 1.0
     },
     {
@@ -6083,7 +6083,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "tests/verify-scripts-and-configs.sh",
-      "source_location": "L103",
+      "source_location": "L106",
       "weight": 1.0
     },
     {
@@ -6094,7 +6094,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "tests/verify-scripts-and-configs.sh",
-      "source_location": "L193",
+      "source_location": "L196",
       "weight": 1.0
     },
     {
@@ -6105,7 +6105,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "tests/verify-scripts-and-configs.sh",
-      "source_location": "L194",
+      "source_location": "L197",
       "weight": 1.0
     },
     {
@@ -6116,7 +6116,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "tests/verify-scripts-and-configs.sh",
-      "source_location": "L86",
+      "source_location": "L89",
       "weight": 1.0
     },
     {
@@ -6127,7 +6127,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "tests/verify-scripts-and-configs.sh",
-      "source_location": "L89",
+      "source_location": "L92",
       "weight": 1.0
     },
     {
@@ -7169,5 +7169,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "a3cf6fe8ac50197a541a10b9548e29941da40d47"
+  "built_at_commit": "a26246bda3c351183ff5e3dcddd4c5f3497f9682"
 }
