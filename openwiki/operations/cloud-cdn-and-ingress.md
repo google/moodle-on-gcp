@@ -1,11 +1,11 @@
 ---
 type: operations
 title: Cloud CDN com Moodle Funcional, Tuning NGINX/PHP-FPM e Ingress
-description: Integração entre Google Cloud CDN (USE_ORIGIN_HEADERS), slasharguments no Moodle, ocultação de Set-Cookie em assets públicos no NGINX, proteção de /pluginfile.php e roteamento de Ingress.
-tags: [cloud-cdn, nginx, php-fpm, ingress, backendconfig, caching, moodle]
+description: Integração entre Google Cloud CDN (USE_ORIGIN_HEADERS), X-Accel-Redirect com prefixo ^~ no NGINX, slasharguments no Moodle, ocultação de Set-Cookie em assets públicos (incluindo yui_combo.php), proteção de /pluginfile.php e roteamento de Ingress.
+tags: [cloud-cdn, nginx, php-fpm, ingress, backendconfig, caching, moodle, x-accel-redirect]
 verified:
   - by: openwiki/0.5.1
-    at: 2026-11-05T11:15:21.468Z
+    at: 2026-11-10T22:49:21.552Z
 sources:
   - id: openwiki-source-f1819a6d2572649fd572f139
     resource: repo://4-moodle-image-builder/base/etc/nginx/nginx.conf-template
@@ -19,15 +19,14 @@ sources:
     resource: repo://6-backendconfig/ingress-backendconfig-nginx.yaml
   - id: openwiki-source-93c77b17f1a30ce2778ab508
     resource: repo://8-ingress/gce-ingress-external.yaml
-generated: { by: "antigravity", at: "2026-11-05T11:15:21.468Z" }
+generated: { by: "antigravity", at: "2026-11-10T22:49:21.552Z" }
 ---
 
 # Cloud CDN com Moodle Funcional, Tuning NGINX/PHP-FPM e Ingress
 
-Para que o Google Cloud CDN funcione corretamente diante do Moodle 5.2+ sem quebrar sessões autenticadas nem expor arquivos privados de cursos, a configuração atua de forma coordenada em três camadas: `4-moodle-image-builder/config.php.template`, `4-moodle-image-builder/base/etc/nginx/nginx.conf-template` e `6-backendconfig/ingress-backendconfig-nginx.yaml`.
+Para que o Google Cloud CDN funcione corretamente diante do Moodle 5.2+ sem quebrar sessões autenticadas, sem gerar `404 Not Found` em redirecionamentos internos `X-Accel-Redirect` e sem expor arquivos privados de cursos, a configuração atua de forma coordenada em três camadas: `4-moodle-image-builder/config.php.template`, `4-moodle-image-builder/base/etc/nginx/nginx.conf-template` e `6-backendconfig/ingress-backendconfig-nginx.yaml`.
 
-<!-- openwiki: mermaid parse failed and this diagram was converted to a text fence so it does not break rendering. Fix the diagram source and restore the mermaid fence. Parser error: Heuristic: an unescaped angle bracket inside a label breaks rendering; rephrase the label. -->
-```text
+```mermaid
 sequenceDiagram
     participant User as Navegador / Aluno
     participant CDN as Google Cloud LB + Cloud CDN
@@ -37,10 +36,10 @@ sequenceDiagram
 
     User->>CDN: GET /theme/styles.php/boost/1730800000/all
     alt Cache Hit na Borda
-        CDN-->>User: 200 OK (Cache-Control: public, max-age=31536000, immutable)
+        CDN-->>User: 200 OK (X-Cache-Status: hit, Cache-Control: public, max-age=31536000, immutable)
     else Cache Miss
         CDN->>Ing: Encaminha para Service moodle
-        Ing->>Web: FastCGI com PATH_INFO ($CFG->slasharguments = true)
+        Ing->>Web: FastCGI com PATH_INFO (slasharguments habilitado)
         Web-->>CDN: 200 OK (fastcgi_hide_header Set-Cookie + Cache-Control: public, immutable)
         CDN-->>User: 200 OK (Armazenado no Cloud CDN)
     end
@@ -54,12 +53,13 @@ sequenceDiagram
     Upl-->>User: 200 OK (Upload concluído)
 ```
 
-## 1. Habilitação de `slasharguments` e `PATH_INFO` no Moodle e NGINX
+## 1. Habilitação de `slasharguments`, `PATH_INFO` e `X-Accel-Redirect` (`^~`) no Moodle e NGINX
 
-O Moodle entrega folhas de estilo, pacotes JavaScript/AMD, fontes e imagens de tema por meio de scripts PHP versionados (`/theme/styles.php`, `/theme/image.php`, `/theme/font.php`, `/theme/javascript.php`, `/lib/javascript.php`, `/lib/requirejs.php`).
+O Moodle entrega folhas de estilo, pacotes JavaScript/AMD, combos YUI, fontes e imagens de tema por meio de scripts PHP versionados (`/theme/styles.php`, `/theme/image.php`, `/theme/font.php`, `/theme/javascript.php`, `/theme/yui_combo.php`, `/lib/javascript.php`, `/lib/requirejs.php`).
 
 1. Em `4-moodle-image-builder/config.php.template`, a diretiva `$CFG->slasharguments = true;` instrui o Moodle a gerar URLs baseadas em caminho com o identificador de revisão embutido (ex.: `/theme/styles.php/boost/1730800000/all`).
 2. Em `4-moodle-image-builder/base/etc/nginx/nginx.conf-template`, todos os blocos FastCGI executam `fastcgi_split_path_info ^(.+\.php)(/.+)$;` e injetam explicitamente `fastcgi_param PATH_INFO $fastcgi_path_info;` e `fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;`, requisito obrigatório no NGINX sobre Alpine para que o Moodle processe `slasharguments` e pacotes SCORM.
+3. **Proteção de `X-Accel-Redirect` com `location ^~`**: Quando `$CFG->xsendfile = "X-Accel-Redirect"` está ativo em `config.php.template`, o PHP-FPM grava fontes, ícones e bundles JS em `/tmp/moodle/localcache/` e retorna `X-Accel-Redirect: /localcachedir/...`. No NGINX, os blocos internos utilizam o modificador `^~` (`location ^~ /localcachedir/` e `location ^~ /dataroot/`) para impedir que a regex de extensões estáticas (`location ~* \.(jpg|...|woff2|...)$`) intercepte o redirecionamento interno e cause `404 Not Found`.
 
 ## 2. Regras de Cache do NGINX para o Cloud CDN
 
@@ -67,7 +67,7 @@ O Google Cloud CDN **não armazena em cache respostas HTTP que contenham o cabe�
 
 Por isso, `4-moodle-image-builder/base/etc/nginx/nginx.conf-template` separa os endpoints PHP do Moodle em três blocos distintos:
 
-1. **Loaders Públicos Versionados do Moodle (`/theme/(styles|image|font|javascript)\.php` e `/lib/(javascript|requirejs)\.php`)**:
+1. **Loaders Públicos Versionados do Moodle (`/theme/(styles|image|font|javascript|yui_combo)\.php` e `/lib/(javascript|requirejs)\.php`)**:
    - Remove `Set-Cookie`, `Pragma` e `Cache-Control` emitidos pelo PHP-FPM (`fastcgi_hide_header Set-Cookie; fastcgi_hide_header Pragma; fastcgi_hide_header Cache-Control;`).
    - Adiciona `add_header Cache-Control "public, max-age=31536000, immutable";`, permitindo que o Cloud CDN armazene os recursos na borda por até 1 ano (com invalidação automática sempre que o Moodle incrementar a revisão do tema/JS).
 2. **Endpoints Autenticados de Arquivos e Login (`/pluginfile.php`, `/draftfile.php`, `/tokenpluginfile.php`, `/webservice/pluginfile.php`, `/repository/`, `/login/`)**:
@@ -78,15 +78,15 @@ Por isso, `4-moodle-image-builder/base/etc/nginx/nginx.conf-template` separa os 
 ## 3. Configuração dos `BackendConfig` (`USE_ORIGIN_HEADERS` vs. `uploads`)
 
 - **`6-backendconfig/ingress-backendconfig-nginx.yaml` (`ingress-backendconfig`)**:
-  - Habilita o Cloud CDN (`cdn.enabled: true`) com `cacheMode: USE_ORIGIN_HEADERS`, `negativeCaching: false`, `serveWhileStale: 86400` e `cachePolicy` com `includeHost: true`, `includeProtocol: true` e `includeQueryString: true`.
-  - Com `USE_ORIGIN_HEADERS`, o Cloud CDN respeita estritamente os cabeçalhos `Cache-Control` emitidos pelo NGINX.
+  - Habilita o Cloud CDN (`cdn.enabled: true`) com `cacheMode: USE_ORIGIN_HEADERS`, `negativeCaching: false`, `serveWhileStale: 86400` e `cachePolicy` com `includeHost: true`, `includeProtocol: true` e `includeQueryString: true` (essencial para diferenciar chamadas CSS e JS em `/theme/yui_combo.php?...`).
+  - Injeta os cabeçalhos de diagnóstico `X-Cache-Status: {cdn_cache_status}` e `X-Cache-Pop: {cdn_cache_id}` via `customResponseHeaders`.
 - **`6-backendconfig/ingress-backendconfig-nginx-uploads.yaml` (`ingress-backendconfig-uploads`)**:
   - Desabilita o Cloud CDN (`cdn.enabled: false`) e eleva `timeoutSec: 3600` e `drainingTimeoutSec: 60` para suportar uploads longos sem timeout de 30s/300s no Load Balancer.
 
 ## 4. Tuning de NGINX e PHP-FPM 8.3 e Roteamento no Ingress
 
 - **NGINX (`4-moodle-image-builder/base/etc/nginx/nginx.conf-template`)**:
-  - `worker_processes auto;`, `server_tokens off;`, `keepalive_timeout 65;`, `fastcgi_buffers 16 16k;`, `fastcgi_buffer_size 32k;`, `client_max_body_size 50M;` (sobrescrito para `512M` nos pods de upload) e `gzip_disable "msie6";`.
+  - `worker_processes auto;`, `server_tokens off;`, `keepalive_timeout 65;`, `fastcgi_buffers 16 16k;`, `fastcgi_buffer_size 32k;`, `client_max_body_size 50M;` (sobrescrito para `512M` nos pods de upload), bloqueio de arquivos `.bak` e restrição de `/fpm-status` e `/fpm-ping` a `127.0.0.1`.
 - **PHP-FPM 8.3 (`4-moodle-image-builder/base/etc/php83/php-fpm.d/moodle.conf` e `php.ini-template`)**:
   - `pm = ondemand`, `pm.max_children = 8`, `pm.process_idle_timeout = 10s`, `pm.max_requests = 500`, `request_terminate_timeout = 3600`, `memory_limit = 256M` (nos pods web gerais) e `expose_php = Off`.
 - **Roteamento de Ingress (`8-ingress/gce-ingress-external.yaml` e `8-ingress/nginx-ingress-external-this-is-optional.yaml`)**:

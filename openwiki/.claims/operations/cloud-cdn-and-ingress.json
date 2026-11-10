@@ -1,28 +1,28 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:f8fedf1051e6b3b972392f0ff379750b6fb906796e981b13d5b1d93474aa4706",
+  "pageVersion": "sha256:5c2fd233b7dd0b7d9e8ee244420ae23384b57374ff528a09a2461076bd97aa5c",
   "claims": [
     {
       "id": "claim_e16278952a984bf58d8c8e9a1a697e2b",
       "statement": "O arquivo config.php.template habilita $CFG->slasharguments = true e o nginx.conf-template propaga fastcgi_param PATH_INFO $fastcgi_path_info para que o PHP-FPM processe URLs versionadas do Moodle.",
       "evidence": [
         {
-          "resource": "repo://4-moodle-image-builder/base/etc/nginx/nginx.conf-template#L95-L135",
-          "version": "repo-lines-v1:sha256:cfc4c411394daa5ad4fd2d52c866f64203fba2c2db857d188e4521badd93acfe:eyJzZWxlY3RlZExpbmVDb3VudCI6NDEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhhZjVhN2RjZDMwMTVjYmMxNGI5ZmFhYTkzZDU0NTQ3NzBjMzdiYTM1YTNjZTEyODg3MWY1MWUyOTVhMmM4OWMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImMyMGUzNjA2MjNkNzVlZmEyMDVlZGE1YjM3ZGUyY2Y2Y2MyOWI2NTFmMWJmZTYzYjcxMGU0NGI5Yjk2MzQ0YmMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQ5YTM4NTRkMzk1N2Q0NGY4Mzk0MGU0Yjc2NjA5MjNmZjZjNGU4MmU5NGE3NDI1NTMzYzkzMmEzYjczYzQ3MWMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjRiZmVjYTgzY2Y0ZWJkODdhNTVmNmJhYjJlMWI5ZWM0MDdiZDBiMjRmOGRjNTM1NmJkZTkxNTYxZGU4MjZjMjUifQ"
+          "resource": "repo://4-moodle-image-builder/base/etc/nginx/nginx.conf-template#L101-L137",
+          "version": "repo-lines-v1:sha256:d780f6dad0047630c51bf0d20230d5507ffcae278ad708d4f0554dc09561f056:eyJzZWxlY3RlZExpbmVDb3VudCI6MzcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjliYmJmODY0NmJjOTYyODI3YmUwMjNhN2FkYTY4MjcwOWJjOTNhNWU1ZGJkYmMwNWIwMDJmNjU3OWYzYzgzMzQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ4OTNmNDBlMzc4MWViODk2YzgyZDA0NmEwODA2N2ExMWUzNWNkZjJmMWRmYWYyNmZlYTkwYjhkYjY2NzY0MTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjNmYzc3NzZmNTUzZmYzNDUzZDFkNWZhNzE1NDBjZDE3MTM2NzQ5N2ViNDg2MWQwNmI1ZWM3Njg0YTExZmExNzAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImMyMjFjNThhYTBiMjU5ZDc5N2EyMjc5YzFlY2QzODQ4YTQ3ZTNlNDNiNTE3MGZmMzhiN2RiYmI0MzIyM2IyMjkifQ"
         },
         {
           "resource": "repo://4-moodle-image-builder/config.php.template#L6-L6",
-          "version": "repo-lines-v1:sha256:cce476d8c8a55e01281b059d857bcb3a4e46d2470d88143ca2af768e9e5f7794:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiY2NlNDc2ZDhjOGE1NWUwMTI4MWIwNTlkODU3YmNiM2E0ZTQ2ZDI0NzBkODgxNDNjYTJhZjc2OGU5ZTVmNzc5NCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiY2NlNDc2ZDhjOGE1NWUwMTI4MWIwNTlkODU3YmNiM2E0ZTQ2ZDI0NzBkODgxNDNjYTJhZjc2OGU5ZTVmNzc5NCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiODhlOTZlMDY3M2FlM2U4MGEyYTUwMDM0MDJiZDJiYTkwZTQ5ZjRmYzAzZjk1ODdhMDI0YzIyYmI5YzM0ZmU5NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMzY5ZDhiMTYyYzg3N2E4MzlmOGNlMmM0YWEzZjBkNmEzMzY5NDljNWU5NmEyZjIwNWE4MTJjYTg2ZmNlNWFkMiJ9"
+          "version": "repo-lines-v1:sha256:cce476d8c8a55e01281b059d857bcb3a4e46d2470d88143ca2af768e9e5f7794:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiY2NlNDc2ZDhjOGE1NWUwMTI4MWIwNTlkODU3YmNiM2E0ZTQ2ZDI0NzBkODgxNDNjYTJhZjc2OGU5ZTVmNzc5NCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiY2NlNDc2ZDhjOGE1NWUwMTI4MWIwNTlkODU3YmNiM2E0ZTQ2ZDI0NzBkODgxNDNjYTJhZjc2OGU5ZTVmNzc5NCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiODhlOTZlMDY3M2FlM2U4MGEyYTUwMDM0MDJiZDJiYTkwZTQ5ZjRmYzAzZjk1ODdhMDI0YzIyYmI5YzM0ZmU5NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZDBhOTM1ZDU0MDBkYjliZjQ2MmNkYWRlNWViM2RkN2JjMjhkNTJjNmJmNzAyNzdlNzZmZTNkZjY3YzJhYzVjMSJ9"
         }
       ]
     },
     {
       "id": "claim_41815cb39c4b45719d0630591f0a7be9",
-      "statement": "O nginx.conf-template remove o cabeçalho Set-Cookie e define Cache-Control public immutable nos loaders públicos (/theme/styles.php, /theme/image.php, /lib/javascript.php, /lib/requirejs.php), enquanto força Cache-Control private no-store em /pluginfile.php, /draftfile.php, /tokenpluginfile.php, /repository/ e /login/.",
+      "statement": "O nginx.conf-template protege os redirecionamentos internos X-Accel-Redirect com location ^~ /localcachedir/ e location ^~ /dataroot/, remove Set-Cookie e Pragma com Cache-Control public immutable nos loaders públicos (/theme/styles.php, /theme/image.php, /theme/font.php, /theme/javascript.php, /theme/yui_combo.php, /lib/javascript.php, /lib/requirejs.php), e força Cache-Control private no-store em /pluginfile.php, /draftfile.php, /tokenpluginfile.php, /repository/ e /login/.",
       "evidence": [
         {
-          "resource": "repo://4-moodle-image-builder/base/etc/nginx/nginx.conf-template#L95-L124",
-          "version": "repo-lines-v1:sha256:7b0f2b831e438f27029943506b810e3ee1c8f4cf2dcdb4300e24ba25c366dd1b:eyJzZWxlY3RlZExpbmVDb3VudCI6MzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhhZjVhN2RjZDMwMTVjYmMxNGI5ZmFhYTkzZDU0NTQ3NzBjMzdiYTM1YTNjZTEyODg3MWY1MWUyOTVhMmM4OWMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk0MzhlZGEwM2VmNjA1NGIxMDE1NWQzNjAwZjlmYjMzNDNhZDc2MTcwNGY2YmQ3NmUwZTM1ZGI0YWQwYTk0NDQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQ5YTM4NTRkMzk1N2Q0NGY4Mzk0MGU0Yjc2NjA5MjNmZjZjNGU4MmU5NGE3NDI1NTMzYzkzMmEzYjczYzQ3MWMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjE5MWQzNzM4NjcwODVkOGNiNjNhNDExZjBjYjJiOTU4ZGFhOWRhYjNlN2ZkN2E3YzdiYmIwNmVkYjZlZmM4MWEifQ"
+          "resource": "repo://4-moodle-image-builder/base/etc/nginx/nginx.conf-template#L89-L126",
+          "version": "repo-lines-v1:sha256:c4ac78d5cec62355447ca3e84307fe5071d4a29e887b1b064850f922ecfc2f41:eyJzZWxlY3RlZExpbmVDb3VudCI6MzgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjEwMjJiZGU5MjRmNThlM2JjMzY0YzMxMTBmYTA1NmNhOWNlZjBlYzJhNTViYmVkNzcxZmQ0Zjg0ZDg4YzEyYWIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ4OTNmNDBlMzc4MWViODk2YzgyZDA0NmEwODA2N2ExMWUzNWNkZjJmMWRmYWYyNmZlYTkwYjhkYjY2NzY0MTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQzZjljMDczY2ExZTI5Nzc1MmE2ZDBjMzMzZDRkZGRhYzI0NmE5MjU4M2E1Y2VmZGU2YWJlYmU2Y2ExYWYyNzMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijc3NDNiODQxMDQ4ODA1NWIzZDJmOTg1YTUwZDQ4OGE0NjAzZmJiMTllYjY0OWYwMGFjYmYxYzQxNzY1NmI2YTAifQ"
         }
       ]
     },
@@ -57,6 +57,6 @@
   ],
   "verification": {
     "by": "openwiki/0.5.1",
-    "at": "2026-11-05T11:15:21.468Z"
+    "at": "2026-11-10T22:49:21.552Z"
   }
 }
