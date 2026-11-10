@@ -1,11 +1,11 @@
 ---
 type: runtime
 title: Imagem Container NGINX + PHP 8.3, GNU libiconv e Bootstrap do Moodle 5.2+
-description: Construção multi-stage em Alpine 3.21 + PHP 8.3, compilação de preloadable_libiconv.so, suporte ao diretório /public do Moodle 5.1+, Composer e Moosh 1.51.
-tags: [docker, alpine, php83, libiconv, moodle-5-2, moosh, composer]
+description: Construção multi-stage em Alpine 3.21 + PHP 8.3, compilação de preloadable_libiconv.so, suporte ao diretório /public do Moodle 5.1+, Composer, Moosh 1.51 e detecção pré-autoloader do local_redislock.
+tags: [docker, alpine, php83, libiconv, moodle-5-2, moosh, composer, redislock]
 verified:
   - by: openwiki/0.5.1
-    at: 2026-11-06T21:11:38.409Z
+    at: 2026-11-10T22:49:21.552Z
 sources:
   - id: openwiki-source-9668b922e15526bcb075e159
     resource: repo://4-moodle-image-builder/base/opt/entrypoint.sh
@@ -17,7 +17,7 @@ sources:
     resource: repo://4-moodle-image-builder/Dockerfile.nginx
   - id: openwiki-source-264fd3f40ce4ca69414ec2b9
     resource: repo://4-moodle-image-builder/scripts/build-gnu-libiconv.sh
-generated: { by: "antigravity", at: "2026-11-06T21:11:38.409Z" }
+generated: { by: "antigravity", at: "2026-11-10T22:49:21.552Z" }
 ---
 
 # Imagem Container NGINX + PHP 8.3, GNU libiconv e Bootstrap do Moodle 5.2+
@@ -54,13 +54,13 @@ O script `4-moodle-image-builder/base/opt/setup_moodle.sh` orquestra a inicializ
    - Renderiza `/etc/nginx/nginx.conf` e `/etc/php83/php.ini` via `envsubst` e aplica imediatamente as variáveis de ambiente opcionais (`PHP_MEMORY_LIMIT`, `PHP_UPLOAD_MAX_FILESIZE`/`UPLOAD_MAX_FILESIZE`, `PHP_POST_MAX_SIZE`/`POST_MAX_SIZE`, `PHP_MAX_EXECUTION_TIME`, `PHP_MAX_INPUT_TIME`, `NGINX_CLIENT_MAX_BODY_SIZE`/`CLIENT_MAX_BODY_SIZE`).
 2. **Verificação de Integridade SHA-256 (`MOODLE_SHA256` e `MOOSH_SHA256`) e Dependências Composer do Moodle 5.1+**:
    - Antes de extrair `/tmp/moodle.tar.gz` e `/tmp/moosh.tar.gz`, `setup_moodle.sh` valida opcionalmente o hash SHA-256 via `sha256sum -c -` quando `MOODLE_SHA256` ou `MOOSH_SHA256` está preenchido no `ConfigMap`.
-   - A partir do Moodle 5.1, o diretório `vendor/` não é mais versionado no tarball do GitHub. `setup_moodle.sh` detecta `composer.json` e executa `sudo -u www composer install --no-dev --classmap-authoritative --no-interaction --working-dir="$MOODLE_PATH"` tanto na instalação inicial quanto em atualizações (`.moodle-autoupgrade`).
+   - A partir do Moodle 5.1, o diretório `vendor/` não é mais versionado no tarball do GitHub. `setup_moodle.sh` detecta `composer.json` e executa `sudo -u www composer install --no-dev --classmap-authoritative --no-interaction --working-dir="$MOODLE_PATH"` tanto na instalação inicial quanto em atualizações (`.moodle-autoupgrade`), além de instalar as dependências Composer do próprio Moosh em `/opt/moosh`.
    - As permissões de diretório e arquivo são restritas pelo princípio do menor privilégio usando execução em lote (`+`): `0755`/`0644` em `$MOODLE_PATH` e `0750`/`0640` em `$MOODLE_DATAROOT_PATH`.
 3. **Isolamento de Credenciais (`getenv()`) e `set_config()` em Lote**:
-   - A configuração de réplica de leitura (`$CFG->dboptions['readonly']`) lê `DB_READ_REPLICA_HOST`, `DB_READ_REPLICA_PORT`, `DB_READ_REPLICA_USER` e `DB_READ_REPLICA_PASSWORD` dinamicamente via `getenv()` no PHP em vez de interpolar a senha em texto claro via `sed -i`.
+   - A configuração de réplica de leitura (`$CFG->dboptions['readonly']`) lê `DB_READ_REPLICA_HOST`, `DB_READ_REPLICA_PORT`, `DB_READ_REPLICA_USER` e `DB_READ_REPLICA_PASSWORD` dinamicamente via `getenv()` no PHP em vez de interpolar a senha em texto claro via `sed -i`, removendo o arquivo temporário `config.php.bak` logo após a substituição.
    - As 13 configurações de caminhos de binários e SMTP são aplicadas em uma única invocação `php83 -r` com `set_config()`, lendo `SMTP_PASSWORD` via `getenv('SMTP_PASSWORD')` sem expor a senha na lista de processos (`ps`).
 4. **Detecção Automática do Diretório `/public` (`MDL-83424`) e Check `publicpaths.php` na Porta `8080`**:
    - No Moodle 5.1+, todos os pontos de entrada web foram movidos para `$MOODLE_PATH/public`. `setup_moodle.sh` verifica `if [ -d "$MOODLE_PATH/public" ]` e atualiza automaticamente a diretiva `root` em `/etc/nginx/nginx.conf` para `root ${MOODLE_ROOT_PATH}/moodle/public;`, além de ajustar `publicpaths.php` para apontar para `http://localhost:8080` nos self-checks internos do container.
 5. **Moosh 1.51 (`master`) e Plugins (`report_benchmark`, `tool_opcache`, `local_redislock`)**:
-   - Utiliza o branch `master` do Moosh (v1.51+, que suporta a estrutura `/public` do Moodle 5.1/5.2) para instalar `report_benchmark`, `tool_opcache` e, quando `REDIS_LOCK_HOST_AND_PORT` está definido, `local_redislock`.
-   - Em `4-moodle-image-builder/config.php.template`, a configuração de lock no Redis verifica `class_exists('\\local_redislock\\lock\\redis_lock_factory')` antes de ativar `$CFG->lock_factory`, prevenindo falhas fatais durante o bootstrap antes da instalação do plugin pelo Moosh.
+   - Utiliza o branch `master` do Moosh (v1.51+, que suporta a estrutura `/public` do Moodle 5.1/5.2) para instalar `report_benchmark`, `tool_opcache` e, quando `REDIS_LOCK_HOST_AND_PORT` está definido, `local_redislock` (com fallback de extração direta em `$MOODLE_PATH/public/local/redislock` no Moodle 5.1+).
+   - Em `4-moodle-image-builder/config.php.template`, a configuração de lock no Redis verifica `is_readable(__DIR__ . '/public/local/redislock/classes/lock/redis_lock_factory.php') || is_readable(__DIR__ . '/local/redislock/classes/lock/redis_lock_factory.php') || class_exists('\\local_redislock\\lock\\redis_lock_factory')` antes de ativar `$CFG->lock_factory`, garantindo que a classe seja detectada mesmo antes da inicialização do autoloader do Moodle (`lib/setup.php`) e prevenindo falhas fatais caso o plugin ainda não esteja instalado.

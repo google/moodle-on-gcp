@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:86540e640818d20b2371877a742f2dbf4ba69cd9349ecbd615390aca34eb9639",
+  "pageVersion": "sha256:6887f103bd1e318bfd834f442fd9b9abce12f8611a44251cc381df9c8e343f24",
   "claims": [
     {
       "id": "claim_03fe0ac01f6b4eb4a676bd753e952267",
@@ -46,21 +46,21 @@
     },
     {
       "id": "claim_c150732cd9024abf9ce14a67c2c2fc4c",
-      "statement": "O arquivo config.php.template protege a configuração de $CFG->lock_factory com class_exists('\\\\local_redislock\\\\lock\\\\redis_lock_factory') e o setup_moodle.sh instala automaticamente o plugin local_redislock via Moosh quando REDIS_LOCK_HOST_AND_PORT está configurado.",
+      "statement": "O arquivo config.php.template protege a configuração de $CFG->lock_factory verificando is_readable() nos caminhos /public/local/redislock e /local/redislock além de class_exists('\\\\\\\\local_redislock\\\\\\\\lock\\\\\\\\redis_lock_factory'), e o setup_moodle.sh instala automaticamente o plugin local_redislock quando REDIS_LOCK_HOST_AND_PORT está configurado.",
       "evidence": [
         {
-          "resource": "repo://4-moodle-image-builder/base/opt/setup_moodle.sh#L315-L324",
-          "version": "repo-lines-v1:sha256:59d6656f01c6822c618b5a51fde3eafc839edf9272374e32d10645e739e0a0c4:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdjMjdlMTJhYzJlMDhjNjJhNjc3M2FmNzUxODYzNWZkNzNlZDExZDhjMDAxYzNiMzg2NDExNjQ0MzdjZWMwODAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg0MGI5MmNlMTMwODczMDk2MmY5MzAyZGJlZjBkNzgzOTBkYzc3ZWVjMjY0YWZiY2ZjMGFiMjkwMWFkM2M3ODEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijc5ZjBmMjBmN2I5OTZkYmEyNmQ1MjhhYzZkMjJlMGZhY2M5OWMxYjFjYTIwODRlN2NlZTdhNGYyYzdiZDhiYzMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImM2ZTRiYjEzYzZjM2Q3ODU0NmJjY2QzZWMyYjZjNjgyN2EyMDJmMmM4MDBiYmM5MWYyNTNmMzFkNWZjNDc3ZWQifQ"
+          "resource": "repo://4-moodle-image-builder/base/opt/setup_moodle.sh#L384-L404",
+          "version": "repo-lines-v1:sha256:1633ff0a6ceb1b35be74845fe2ee4ca9b640a65e0c5668d4a4bbc49595cbe8df:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU5NTgzN2I3MGNlNjA4N2I2Yjc1YmRjMjI1ZDBjNmE3Njc1MmMxMjBjYjc3MWM2NWM1ZDRkNjUzMWJmYWM3NTIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA5NTE0ZmU4NGFkY2Q1ODQxZjk5M2ExNmQwM2ZkMGUzOTcxYTU5YmYyODNlMGFlZTNiZTk2ZWM0NGFlYzhmMDgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQ1ODA2MDdhOGVhYTM2ODJhMTFiZDY3YWM5NjQ4Njk2NzMyYjMzZTRhNTNmOTRjYWMzYTY3ZjA2ZTYxYTZmZTQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjFlZTVjOGNjZTdmNWQ2MDZkNTIwZDcwM2JlZmYyZWJiNDgxOTQxNjBjZmJhYzQ0YWQ4MTMxNzhiMDFiOGNiNWUifQ"
         },
         {
           "resource": "repo://4-moodle-image-builder/config.php.template#L8-L13",
-          "version": "repo-lines-v1:sha256:6b87baebf7b30075db96f75abc3aab2a1f9960967b593fe2016e28c9f076801c:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZTZjYWRhNzExYzI4NDQ1N2I2ODUwZmNiMWVhOTM1MzJjOGY4NzQ4OWFlNDNjY2NjYzc1MTIxYTAzNTgzODJiMyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDQ1OWI5NjJkZGRkZDNhMmNlZmYwNzNlZjRmMjkwYjUwODIyYzRiOTVlMWZjYmZmMzEzNWM0ODM1ZTRkMzUwNyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiODFlNWY5YWQ3Y2QxOTA5ZWNhNzYwNDIwM2YxYzYyYjViOWVlMGExMmJjMjg3MzIyMTFlYWY2NzUyYzhmMTNmZSJ9"
+          "version": "repo-lines-v1:sha256:da308ad996e02cbe20c7654ae6a696dc16ce50bfb93967ce9e64d1c44e1051a5:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiY2Q3ZDg3YzIzYzc5MWVmYTEwNmQ2N2QzMDM2NmM2YTJlY2FlNWVmMzFhY2RkYjcxODhkZGVlNzRlZGQ5MDM1OCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDQ1OWI5NjJkZGRkZDNhMmNlZmYwNzNlZjRmMjkwYjUwODIyYzRiOTVlMWZjYmZmMzEzNWM0ODM1ZTRkMzUwNyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiODFlNWY5YWQ3Y2QxOTA5ZWNhNzYwNDIwM2YxYzYyYjViOWVlMGExMmJjMjg3MzIyMTFlYWY2NzUyYzhmMTNmZSJ9"
         }
       ]
     }
   ],
   "verification": {
     "by": "openwiki/0.5.1",
-    "at": "2026-11-06T21:11:38.409Z"
+    "at": "2026-11-10T22:49:21.552Z"
   }
 }

@@ -2,46 +2,46 @@
   "schemaVersion": 1,
   "pages": {
     "/openwiki/architecture/infrastructure-and-networking.md": {
-      "pageVersion": "sha256:6171239c30d2bb025d36f7af9fa470cc92e0c9a6b9fb4c2f104cbd2e54d9183f",
+      "pageVersion": "sha256:3b2ae676f44bc54a73117cfffeb43547c78e3b8f63b46752c5a90e19939813f6",
       "completedBy": "antigravity",
-      "completedRunId": "d8c64fb6-829d-42bd-bb7a-69dff1554089",
-      "gitHead": "be14d7f28100bb58a667e530677e9f1560724b11",
-      "sourceFingerprint": "sha256:49880f662fd8aea4bd3147073dc1231179693d31d3894e0e4964f31f2f0a362e"
+      "completedRunId": "664f6662-fe2b-485b-b172-7c91fb6e160c",
+      "gitHead": "d88475c4642e06a781ec8d31ce683cfe3e4ab2d5",
+      "sourceFingerprint": "sha256:2e2cee46d53c988f1ce388d7181b0498d4e7ceb046f9229dda0b0d1d5d683f37"
     },
     "/openwiki/architecture/storage-modalities.md": {
       "pageVersion": "sha256:65870a9be7821606d4990d056a28039c5ace98e1ec3eadc1fc2b3c65c01cbc57",
       "completedBy": "antigravity",
       "completedRunId": "6f692c81-c8a4-41e2-9b4b-0daeeaa8f4c7",
-      "gitHead": "be14d7f28100bb58a667e530677e9f1560724b11",
-      "sourceFingerprint": "sha256:49880f662fd8aea4bd3147073dc1231179693d31d3894e0e4964f31f2f0a362e"
+      "gitHead": "d88475c4642e06a781ec8d31ce683cfe3e4ab2d5",
+      "sourceFingerprint": "sha256:2e2cee46d53c988f1ce388d7181b0498d4e7ceb046f9229dda0b0d1d5d683f37"
     },
     "/openwiki/operations/cloud-cdn-and-ingress.md": {
-      "pageVersion": "sha256:f8fedf1051e6b3b972392f0ff379750b6fb906796e981b13d5b1d93474aa4706",
+      "pageVersion": "sha256:5c2fd233b7dd0b7d9e8ee244420ae23384b57374ff528a09a2461076bd97aa5c",
       "completedBy": "antigravity",
-      "completedRunId": "6f692c81-c8a4-41e2-9b4b-0daeeaa8f4c7",
-      "gitHead": "be14d7f28100bb58a667e530677e9f1560724b11",
-      "sourceFingerprint": "sha256:49880f662fd8aea4bd3147073dc1231179693d31d3894e0e4964f31f2f0a362e"
+      "completedRunId": "664f6662-fe2b-485b-b172-7c91fb6e160c",
+      "gitHead": "d88475c4642e06a781ec8d31ce683cfe3e4ab2d5",
+      "sourceFingerprint": "sha256:2e2cee46d53c988f1ce388d7181b0498d4e7ceb046f9229dda0b0d1d5d683f37"
     },
     "/openwiki/operations/gke-deployments-and-uploads-isolation.md": {
       "pageVersion": "sha256:66e3594da1c695d38e7e3009b2429cffd2ee9eb6177fc06745875088a0b61c04",
       "completedBy": "antigravity",
       "completedRunId": "6f692c81-c8a4-41e2-9b4b-0daeeaa8f4c7",
-      "gitHead": "be14d7f28100bb58a667e530677e9f1560724b11",
-      "sourceFingerprint": "sha256:49880f662fd8aea4bd3147073dc1231179693d31d3894e0e4964f31f2f0a362e"
+      "gitHead": "d88475c4642e06a781ec8d31ce683cfe3e4ab2d5",
+      "sourceFingerprint": "sha256:2e2cee46d53c988f1ce388d7181b0498d4e7ceb046f9229dda0b0d1d5d683f37"
     },
     "/openwiki/quickstart.md": {
       "pageVersion": "sha256:c2645fb7ae7d1b13fe935f639653490ea77a82f33ef66940ccc3754c460d9fb4",
       "completedBy": "antigravity",
       "completedRunId": "269064d2-2b8c-43de-8bda-499f4d234bc2",
-      "gitHead": "be14d7f28100bb58a667e530677e9f1560724b11",
-      "sourceFingerprint": "sha256:49880f662fd8aea4bd3147073dc1231179693d31d3894e0e4964f31f2f0a362e"
+      "gitHead": "d88475c4642e06a781ec8d31ce683cfe3e4ab2d5",
+      "sourceFingerprint": "sha256:2e2cee46d53c988f1ce388d7181b0498d4e7ceb046f9229dda0b0d1d5d683f37"
     },
     "/openwiki/runtime/container-image-moodle52-php83.md": {
-      "pageVersion": "sha256:86540e640818d20b2371877a742f2dbf4ba69cd9349ecbd615390aca34eb9639",
+      "pageVersion": "sha256:6887f103bd1e318bfd834f442fd9b9abce12f8611a44251cc381df9c8e343f24",
       "completedBy": "antigravity",
-      "completedRunId": "a707f30f-28d2-465c-b44b-7a49606e3c32",
-      "gitHead": "be14d7f28100bb58a667e530677e9f1560724b11",
-      "sourceFingerprint": "sha256:49880f662fd8aea4bd3147073dc1231179693d31d3894e0e4964f31f2f0a362e"
+      "completedRunId": "664f6662-fe2b-485b-b172-7c91fb6e160c",
+      "gitHead": "d88475c4642e06a781ec8d31ce683cfe3e4ab2d5",
+      "sourceFingerprint": "sha256:2e2cee46d53c988f1ce388d7181b0498d4e7ceb046f9229dda0b0d1d5d683f37"
     }
   }
 }
