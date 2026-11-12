@@ -19,7 +19,8 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
     nginx.ingress.kubernetes.io/client-body-buffer-size: 512k
-    nginx.ingress.kubernetes.io/proxy-body-size: 512m
+    nginx.ingress.kubernetes.io/proxy-body-size: 10g
+    nginx.ingress.kubernetes.io/proxy-request-buffering: "off"
     nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
     nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
     nginx.ingress.kubernetes.io/configuration-snippet: |
@@ -44,6 +45,13 @@ spec:
             port:
               number: 80
       - path: /repository/draftfiles_ajax.php
+        pathType: Exact
+        backend:
+          service:
+            name: moodle-service-uploads
+            port:
+              number: 80
+      - path: /webservice/upload.php
         pathType: Exact
         backend:
           service:
