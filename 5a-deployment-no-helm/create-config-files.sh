@@ -70,9 +70,11 @@ fi
 
 cd "$SCRIPT_DIR"
 
-# generate the ConfigMap manifests (primary and uploads)
+# generate the ConfigMap and optional Secret manifests (primary and uploads)
 envsubst '$MOODLE_ROOT_PATH_NO_SLASH' < ./deployment-templates/moodle-configmap-nginx-template.yaml > ./moodle-configmap-nginx.yaml
 envsubst '$MOODLE_ROOT_PATH_NO_SLASH' < ./deployment-templates/moodle-configmap-nginx-uploads-template.yaml > ./moodle-configmap-nginx-uploads.yaml
+cp ./deployment-templates/moodle-optional-secrets-template.yaml ./moodle-optional-secrets.yaml
+chmod 0600 ./moodle-optional-secrets.yaml
 
 # generate the Deployment manifests (primary and uploads)
 envsubst '$MOODLE_ROOT_PATH_NO_SLASH $PVC_CLAIM_NAME' < ./deployment-templates/moodle-deployment-nginx-template.yaml > ./moodle-deployment-nginx.yaml
@@ -87,6 +89,9 @@ envsubst '$PD_DISK_SIZE $PD_ACCESS_MODE' < ./deployment-templates/pvc-regional-p
 
 if [ -n "${SMTP_PASSWORD:-}" ]; then
   ESCAPED_SMTP_PASSWORD=$(printf '%s\n' "$SMTP_PASSWORD" | sed -e 's/[\/&]/\\&/g')
+  sed -i "s/<REPLACE_WITH_YOUR_SMTP_PASSWORD>/$ESCAPED_SMTP_PASSWORD/g" ./moodle-optional-secrets.yaml
   sed -i "s/<REPLACE_WITH_YOUR_SMTP_PASSWORD>/$ESCAPED_SMTP_PASSWORD/g" ./moodle-configmap-nginx.yaml
   sed -i "s/<REPLACE_WITH_YOUR_SMTP_PASSWORD>/$ESCAPED_SMTP_PASSWORD/g" ./moodle-configmap-nginx-uploads.yaml
+else
+  sed -i "s/<REPLACE_WITH_YOUR_SMTP_PASSWORD>//g" ./moodle-optional-secrets.yaml
 fi

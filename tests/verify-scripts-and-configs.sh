@@ -242,4 +242,7 @@ grep -q 'topology.kubernetes.io/zone' 5a-deployment-no-helm/moodle-deployment-ng
 grep -q "MOODLE_LANGUAGE: 'pt_BR'" 5a-deployment-no-helm/moodle-configmap-nginx-sample.yaml
 grep -q 'etc/nginx-uploads' 5a-deployment-no-helm/moodle-deployment-nginx-uploads.yaml
 grep -q 'etc/php83-uploads' 5a-deployment-no-helm/moodle-deployment-nginx-uploads.yaml
+test -f 5a-deployment-no-helm/moodle-optional-secrets.yaml
+grep -q 'name: moodle-optional-secrets' 5a-deployment-no-helm/moodle-deployment-nginx.yaml
+grep -q 'name: moodle-optional-secrets' 5a-deployment-no-helm/moodle-deployment-nginx-uploads.yaml
 echo "PASS: All repository guardrails verified."
