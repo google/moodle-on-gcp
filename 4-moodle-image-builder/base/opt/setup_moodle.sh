@@ -230,6 +230,9 @@ if [ ! -f "$MOODLE_DATAROOT_PATH/.moodle-installed" ] ; then
     echo "Done installing database ..."
 
     echo "Adding read replica settings if needed ..."
+    if [ "${DB_PERSIST:-false}" = "true" ]; then
+      sed -i "s/'dbpersist' => 0,/'dbpersist' => true,/" "$MOODLE_PATH/config.php"
+    fi
     if [ -n "$DB_READ_REPLICA_HOST" ]; then
       if [ -n "$DB_READ_REPLICA_USER" ] && [ -n "$DB_READ_REPLICA_PASSWORD" ] && [ -n "$DB_READ_REPLICA_PORT" ]; then
         sed -i '/\$CFG->dboptions/a \ \ '\''readonly'\'' => [ '\''instance'\'' => [ '\''dbhost'\'' => getenv('\''DB_READ_REPLICA_HOST'\''), '\''dbport'\'' => getenv('\''DB_READ_REPLICA_PORT'\''), '\''dbuser'\'' => getenv('\''DB_READ_REPLICA_USER'\''), '\''dbpass'\'' => getenv('\''DB_READ_REPLICA_PASSWORD'\'') ] ],' "$MOODLE_PATH/config.php"

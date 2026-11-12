@@ -296,11 +296,11 @@ spec:
         #   timeoutSeconds: 3
         resources:
           limits:
-            cpu: 250m
-            memory: 1Gi
+            cpu: 1000m
+            memory: 2Gi
           requests:
-            cpu: 250m
-            memory: 1Gi
+            cpu: 1000m
+            memory: 2Gi
         volumeMounts:
         - name: moodleroot-vol
           mountPath: /moodleroot-instance1/moodle
