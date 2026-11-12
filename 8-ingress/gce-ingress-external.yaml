@@ -41,6 +41,13 @@ spec:
             name: moodle-service-uploads
             port:
               number: 80
+      - path: /webservice/upload.php
+        pathType: Exact
+        backend:
+          service:
+            name: moodle-service-uploads
+            port:
+              number: 80
       - path: /*
         pathType: ImplementationSpecific
         backend:

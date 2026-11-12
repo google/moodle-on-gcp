@@ -245,4 +245,9 @@ grep -q 'etc/php83-uploads' 5a-deployment-no-helm/moodle-deployment-nginx-upload
 test -f 5a-deployment-no-helm/moodle-optional-secrets.yaml
 grep -q 'name: moodle-optional-secrets' 5a-deployment-no-helm/moodle-deployment-nginx.yaml
 grep -q 'name: moodle-optional-secrets' 5a-deployment-no-helm/moodle-deployment-nginx-uploads.yaml
+grep -q 'fastcgi_request_buffering off;' 4-moodle-image-builder/base/etc/nginx/nginx.conf-template
+grep -q 'PHP_FPM_MAX_CHILDREN: "1"' 5a-deployment-no-helm/moodle-configmap-nginx-uploads.yaml
+grep -q 'CLIENT_MAX_BODY_SIZE: "10G"' 5a-deployment-no-helm/moodle-configmap-nginx-uploads.yaml
+grep -q 'sizeLimit: 15Gi' 5a-deployment-no-helm/moodle-deployment-nginx-uploads.yaml
+grep -q '/webservice/upload.php' 8-ingress/gce-ingress-external.yaml
 echo "PASS: All repository guardrails verified."

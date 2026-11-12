@@ -298,13 +298,21 @@ spec:
             configMapKeyRef:
               name: moodle-configmap-uploads
               key: PHP_MEMORY_LIMIT
+        - name: PHP_FPM_MAX_CHILDREN
+          valueFrom:
+            configMapKeyRef:
+              name: moodle-configmap-uploads
+              key: PHP_FPM_MAX_CHILDREN
+              optional: true
         resources:
           limits:
-            cpu: 500m
+            cpu: 1000m
             memory: 2Gi
+            ephemeral-storage: 15Gi
           requests:
-            cpu: 250m
-            memory: 1Gi
+            cpu: 1000m
+            memory: 2Gi
+            ephemeral-storage: 15Gi
         volumeMounts:
         - name: moodleroot-vol
           mountPath: /moodleroot-instance1/moodle
@@ -326,4 +334,4 @@ spec:
           claimName: pvc-filestore
       - name: tmp-vol
         emptyDir:
-          medium: Memory
+          sizeLimit: 15Gi
