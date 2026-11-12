@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:996df6befadfd2e0e83fc17e935adf36b71f78de80a28350592ac49d122cade3",
+  "pageVersion": "sha256:f0aa6dc7bec180126a971a46f6d80a1c76f97d2da3398c4d2a1458c68b77c111",
   "claims": [
     {
       "id": "claim_fcb82d9ef5b0414aaad7f3e1667a7917",
-      "statement": "create-config-files.sh renders the primary and uploads ConfigMaps and Deployments as well as the PV, PVC, and StorageClass manifests via envsubst, and supports an optional interactive prompt for SMTP_PASSWORD.",
+      "statement": "create-config-files.sh renders the primary and uploads ConfigMaps and Deployments, the moodle-optional-secrets Secret (chmod 0600), and the PV, PVC, and StorageClass manifests via envsubst, supporting an optional interactive prompt for SMTP_PASSWORD.",
       "evidence": [
         {
-          "resource": "repo://5a-deployment-no-helm/create-config-files.sh#L33-L92",
-          "version": "repo-lines-v1:sha256:1e1d5d8c5fa57db5825da00fc6f3ff6ec4f79ab61108e20d96fb6128565b7e54:eyJzZWxlY3RlZExpbmVDb3VudCI6NjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM3N2YxYjExYjc1NWMyNTk3MDJiMDg2MDE2ZjA1MjU2ZTZkMTBjZjg5NDUxMWE2N2VmMzBhNTMyY2Q0NTBhN2QiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM3NjlkMjM3Y2Q0MjBiOWQzOGI5ODFhMGE0ZjY3NzAxOTBhNGE4M2RjYTFmZTU2YzRmNWJhMWUyY2JjMGVmNzYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU0NmNjMzNlMzdjNGQ0NmIyZTBmZDc5NjM1YjM5Y2IzNzI4ZGFjNjA5MzJkMjA0OGExMDg4MTQwM2E4ZGU4OTkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+          "resource": "repo://5a-deployment-no-helm/create-config-files.sh#L33-L97",
+          "version": "repo-lines-v1:sha256:3ba8b8d61e6ba8b7dc4ddb4662264d2789c14059c25624fd6f7040569be28d42:eyJzZWxlY3RlZExpbmVDb3VudCI6NjUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM3N2YxYjExYjc1NWMyNTk3MDJiMDg2MDE2ZjA1MjU2ZTZkMTBjZjg5NDUxMWE2N2VmMzBhNTMyY2Q0NTBhN2QiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM3NjlkMjM3Y2Q0MjBiOWQzOGI5ODFhMGE0ZjY3NzAxOTBhNGE4M2RjYTFmZTU2YzRmNWJhMWUyY2JjMGVmNzYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU0NmNjMzNlMzdjNGQ0NmIyZTBmZDc5NjM1YjM5Y2IzNzI4ZGFjNjA5MzJkMjA0OGExMDg4MTQwM2E4ZGU4OTkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
         }
       ]
     },
@@ -28,15 +28,15 @@
     },
     {
       "id": "claim_1528670178f943e98ced25a1199913e0",
-      "statement": "Upload pods receive dedicated runtime variables (CLIENT_MAX_BODY_SIZE=512M, UPLOAD_MAX_FILESIZE=512M, POST_MAX_SIZE=512M, PHP_MAX_EXECUTION_TIME=3600, PHP_MEMORY_LIMIT=512M) and resource limits of 500m CPU and 2Gi memory.",
+      "statement": "Upload pods receive dedicated runtime variables (CLIENT_MAX_BODY_SIZE=10G, UPLOAD_MAX_FILESIZE=10G, POST_MAX_SIZE=10G, PHP_MAX_EXECUTION_TIME=3600, PHP_MEMORY_LIMIT=1024M, PHP_FPM_MAX_CHILDREN=1), disk-backed /tmp (15Gi), and Guaranteed QoS resources (1000m CPU, 2Gi memory).",
       "evidence": [
         {
-          "resource": "repo://5a-deployment-no-helm/moodle-configmap-nginx-uploads.yaml#L62-L67",
-          "version": "repo-lines-v1:sha256:d4d6f895da6425aaf40bca7634a75e641f27871e479ad796ac257af6be17b8dd:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjQwZWYyMzFhNTg4Y2I2NjRhMGFjOTU1ZjdlOTYxNmYyMGJkZDgxMGY3NGUwZjNlNDRlZmVhZWYyMjA2MDU4MiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYTI3N2MzYTE1OTk2NDRhMzc1ZTdkZDcxNmIwMGY0ZDBhZjJkYmNlM2Y3NWQ1NjQ1YjUxMjA5MGU1Yzg1MTI4NiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYTcxM2U5Y2Q3NDM0NTg1MDFlOGE0MmYyNGQxZTBiYWYxYjcwYzFmYTY5MzhiZGJjNTMyMjY3Yzg0NjBjMDFjNiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+          "resource": "repo://5a-deployment-no-helm/moodle-configmap-nginx-uploads.yaml#L62-L68",
+          "version": "repo-lines-v1:sha256:f4cf9c5fd3553700e21b20ed43613b2bf6e6dbac990408034e283bfd1b4ba506:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjdjZjE0YzA4MTIxMTNlNGUxYTVjMjRkYmEzODY1MWU0YjE0MmY2ODViNDA3Njg2MjY3YWE1MmY3YzI5ZjY5OSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYzEwNTU3Zjk4MmM4MTIwZDM5MzRlMjNmZmRlZmE2ODMwYWM1Yjg2YzI2ODRlYzA0NTE3M2Y2OGQ4ZjkwYzgwOSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYTcxM2U5Y2Q3NDM0NTg1MDFlOGE0MmYyNGQxZTBiYWYxYjcwYzFmYTY5MzhiZGJjNTMyMjY3Yzg0NjBjMDFjNiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
         },
         {
-          "resource": "repo://5a-deployment-no-helm/moodle-deployment-nginx-uploads.yaml#L265-L302",
-          "version": "repo-lines-v1:sha256:4c20ee29819445191b78e0923caf2b395b33952cc84c8ad013f69384669fc464:eyJzZWxlY3RlZExpbmVDb3VudCI6MzgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFkODE5OTUwMDNjNzFmMzY3MDRhMGY2NDhlZTQ1ZTJkM2VjNjFjM2RlYWU1ZDYyNTQyOWYzYTYwMTdlY2I0ZDYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImM2NDA0MzBiM2FjMWVkZjhkMWM5NWI5NmExNzYwMzAyNGE2Y2ZmNmQ0NzdkNjkzYTQyOTViMWQwMTUzOTM0YjMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjMwMjI1MjJiYzI2MDBmM2E1NDA5NTI4ZjZiNTIwYmUxZjRiN2RkMGRjZDM0ZjNkMjNkYmQxNzIyMjAwZjQ0MmQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQ4NDAxYmRlNWMxYzc0NjAyYjk3ODk1ZjQxZjQ4ZjZlMzgzZWZlM2RjZWE1ZmRiMmY0ZDQ5YTViYWY1M2EyYjEifQ"
+          "resource": "repo://5a-deployment-no-helm/moodle-deployment-nginx-uploads.yaml#L270-L337",
+          "version": "repo-lines-v1:sha256:e304d43b0fef8dfb085ebd1bc4e6710f8f82d8c75adb683a887e21cab64e1c5a:eyJzZWxlY3RlZExpbmVDb3VudCI6NjgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhhNzBjMGM0NWU5NmVmNGY2MmZiNzgzYzk4NmYxMTZjNGM3NjhjNDlkYjNjNmRkN2E3ZDNmOWMyNDNlMDM2MzYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImIzMjJiNWM4MjQwNjYxOTcxNTJmOTQ4MjMxYzA2YjRkNjU5ZWI0YmRjYTg3MzhlYWUxMmU4YzNiMTZiNTc1MTkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImVmMTBiM2Y1NjJkMzJhYTEwODVjNWU2NjVhMGUzNjQyMjg0Njc3YTU4MDYzNWY4NjFlNDA2NGZhZDBmM2U1YmMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
         }
       ]
     },
@@ -57,6 +57,6 @@
   ],
   "verification": {
     "by": "openwiki/0.5.1",
-    "at": "2026-11-10T23:28:03.423Z"
+    "at": "2026-11-12T05:39:27.513Z"
   }
 }

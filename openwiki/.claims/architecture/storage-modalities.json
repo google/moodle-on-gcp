@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:8d768f1cb4dc86a0b5dd26985e34a5da79f9a5b9d5dd28e7633c8feaa1a7d24b",
+  "pageVersion": "sha256:fbb511b5e102f5a8364f01bef1ef18ec6726236b5073d1c9def5f87f87559b38",
   "claims": [
     {
       "id": "claim_f9a79b95b3fe457c8fcbf0e6b08c261a",
@@ -45,14 +45,14 @@
       "statement": "5a-deployment-no-helm/create-config-files.sh automatically selects PVC_CLAIM_NAME (pvc-filestore or pvc-regional-pd) based on STORAGE_TYPE and renders the PV, PVC, and StorageClass manifests with the sizes configured in 0-infra/envs.sh.",
       "evidence": [
         {
-          "resource": "repo://5a-deployment-no-helm/create-config-files.sh#L33-L86",
-          "version": "repo-lines-v1:sha256:ccaa5e5791eb539e507f01ae7a90443c93d75731082c28d915d93fcbeeb55667:eyJzZWxlY3RlZExpbmVDb3VudCI6NTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM3N2YxYjExYjc1NWMyNTk3MDJiMDg2MDE2ZjA1MjU2ZTZkMTBjZjg5NDUxMWE2N2VmMzBhNTMyY2Q0NTBhN2QiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFkYzllZTRlM2ZmYmFmYTExYzEzMzkwYTY0MWIwNmNkYzc1NTlmODY2M2YzMTdkNzFiMmNhZTI3OGUxOTUwMGUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU0NmNjMzNlMzdjNGQ0NmIyZTBmZDc5NjM1YjM5Y2IzNzI4ZGFjNjA5MzJkMjA0OGExMDg4MTQwM2E4ZGU4OTkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY5MzVhYzYyMzBlYWYyMzhhOWNlM2U5MjRhMzcwMGYyZGU2NzFjMjc5Y2YxMTVhZGE0YjdmYzgyZDliYzQ5ODgifQ"
+          "resource": "repo://5a-deployment-no-helm/create-config-files.sh#L33-L88",
+          "version": "repo-lines-v1:sha256:830282dd1bc8a6fb9c1a0266f17eba81ffbd7d823ebc3d0b8225df981e4a9cc8:eyJzZWxlY3RlZExpbmVDb3VudCI6NTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM3N2YxYjExYjc1NWMyNTk3MDJiMDg2MDE2ZjA1MjU2ZTZkMTBjZjg5NDUxMWE2N2VmMzBhNTMyY2Q0NTBhN2QiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFkYzllZTRlM2ZmYmFmYTExYzEzMzkwYTY0MWIwNmNkYzc1NTlmODY2M2YzMTdkNzFiMmNhZTI3OGUxOTUwMGUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU0NmNjMzNlMzdjNGQ0NmIyZTBmZDc5NjM1YjM5Y2IzNzI4ZGFjNjA5MzJkMjA0OGExMDg4MTQwM2E4ZGU4OTkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY5MzVhYzYyMzBlYWYyMzhhOWNlM2U5MjRhMzcwMGYyZGU2NzFjMjc5Y2YxMTVhZGE0YjdmYzgyZDliYzQ5ODgifQ"
         }
       ]
     }
   ],
   "verification": {
     "by": "openwiki/0.5.1",
-    "at": "2026-11-10T23:28:03.423Z"
+    "at": "2026-11-12T05:39:27.513Z"
   }
 }

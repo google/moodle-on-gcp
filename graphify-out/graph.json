@@ -391,7 +391,7 @@
       },
       "norm_label": "create_cloud_sql",
       "source_file": "0-infra/envs.sh",
-      "source_location": "L83"
+      "source_location": "L86"
     },
     {
       "id": "0_infra_envs_create_jumpbox",
@@ -406,7 +406,7 @@
       },
       "norm_label": "create_jumpbox",
       "source_file": "0-infra/envs.sh",
-      "source_location": "L88"
+      "source_location": "L91"
     },
     {
       "id": "0_infra_envs_create_redis",
@@ -421,7 +421,7 @@
       },
       "norm_label": "create_redis",
       "source_file": "0-infra/envs.sh",
-      "source_location": "L84"
+      "source_location": "L87"
     },
     {
       "id": "0_infra_envs_create_redis_cluster",
@@ -436,7 +436,22 @@
       },
       "norm_label": "create_redis_cluster",
       "source_file": "0-infra/envs.sh",
-      "source_location": "L87"
+      "source_location": "L90"
+    },
+    {
+      "id": "0_infra_envs_db_type",
+      "label": "DB_TYPE",
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "envs.sh",
+      "file_type": "code",
+      "metadata": {
+        "language": "bash",
+        "kind": "code"
+      },
+      "norm_label": "db_type",
+      "source_file": "0-infra/envs.sh",
+      "source_location": "L57"
     },
     {
       "id": "0_infra_envs_filestore_capacity",
@@ -451,7 +466,7 @@
       },
       "norm_label": "filestore_capacity",
       "source_file": "0-infra/envs.sh",
-      "source_location": "L112"
+      "source_location": "L115"
     },
     {
       "id": "0_infra_envs_filestore_ip_address",
@@ -466,7 +481,7 @@
       },
       "norm_label": "filestore_ip_address",
       "source_file": "0-infra/envs.sh",
-      "source_location": "L103"
+      "source_location": "L106"
     },
     {
       "id": "0_infra_envs_filestore_mount",
@@ -481,7 +496,7 @@
       },
       "norm_label": "filestore_mount",
       "source_file": "0-infra/envs.sh",
-      "source_location": "L113"
+      "source_location": "L116"
     },
     {
       "id": "0_infra_envs_filestore_name",
@@ -496,7 +511,7 @@
       },
       "norm_label": "filestore_name",
       "source_file": "0-infra/envs.sh",
-      "source_location": "L102"
+      "source_location": "L105"
     },
     {
       "id": "0_infra_envs_filestore_share_name",
@@ -511,7 +526,7 @@
       },
       "norm_label": "filestore_share_name",
       "source_file": "0-infra/envs.sh",
-      "source_location": "L111"
+      "source_location": "L114"
     },
     {
       "id": "0_infra_envs_filestore_tier",
@@ -526,7 +541,7 @@
       },
       "norm_label": "filestore_tier",
       "source_file": "0-infra/envs.sh",
-      "source_location": "L110"
+      "source_location": "L113"
     },
     {
       "id": "0_infra_envs_gke_master_ipv4_range",
@@ -691,7 +706,7 @@
       },
       "norm_label": "moodle_root_in_filestore",
       "source_file": "0-infra/envs.sh",
-      "source_location": "L142"
+      "source_location": "L145"
     },
     {
       "id": "0_infra_envs_moodle_root_path",
@@ -706,7 +721,7 @@
       },
       "norm_label": "moodle_root_path",
       "source_file": "0-infra/envs.sh",
-      "source_location": "L140"
+      "source_location": "L143"
     },
     {
       "id": "0_infra_envs_moodle_root_path_no_slash",
@@ -721,7 +736,7 @@
       },
       "norm_label": "moodle_root_path_no_slash",
       "source_file": "0-infra/envs.sh",
-      "source_location": "L141"
+      "source_location": "L144"
     },
     {
       "id": "0_infra_envs_mysql_database_version",
@@ -736,7 +751,7 @@
       },
       "norm_label": "mysql_database_version",
       "source_file": "0-infra/envs.sh",
-      "source_location": "L58"
+      "source_location": "L60"
     },
     {
       "id": "0_infra_envs_mysql_db",
@@ -751,7 +766,7 @@
       },
       "norm_label": "mysql_db",
       "source_file": "0-infra/envs.sh",
-      "source_location": "L61"
+      "source_location": "L64"
     },
     {
       "id": "0_infra_envs_mysql_instance_name",
@@ -766,7 +781,7 @@
       },
       "norm_label": "mysql_instance_name",
       "source_file": "0-infra/envs.sh",
-      "source_location": "L56"
+      "source_location": "L58"
     },
     {
       "id": "0_infra_envs_mysql_moodle_db_charset",
@@ -781,7 +796,7 @@
       },
       "norm_label": "mysql_moodle_db_charset",
       "source_file": "0-infra/envs.sh",
-      "source_location": "L62"
+      "source_location": "L65"
     },
     {
       "id": "0_infra_envs_mysql_moodle_db_collation",
@@ -796,7 +811,7 @@
       },
       "norm_label": "mysql_moodle_db_collation",
       "source_file": "0-infra/envs.sh",
-      "source_location": "L63"
+      "source_location": "L66"
     },
     {
       "id": "0_infra_envs_nat_config",
@@ -856,7 +871,7 @@
       },
       "norm_label": "pd_access_mode",
       "source_file": "0-infra/envs.sh",
-      "source_location": "L121"
+      "source_location": "L124"
     },
     {
       "id": "0_infra_envs_pd_disk_name",
@@ -871,7 +886,7 @@
       },
       "norm_label": "pd_disk_name",
       "source_file": "0-infra/envs.sh",
-      "source_location": "L116"
+      "source_location": "L119"
     },
     {
       "id": "0_infra_envs_pd_disk_size",
@@ -886,7 +901,7 @@
       },
       "norm_label": "pd_disk_size",
       "source_file": "0-infra/envs.sh",
-      "source_location": "L119"
+      "source_location": "L122"
     },
     {
       "id": "0_infra_envs_pd_disk_type",
@@ -901,7 +916,22 @@
       },
       "norm_label": "pd_disk_type",
       "source_file": "0-infra/envs.sh",
-      "source_location": "L118"
+      "source_location": "L121"
+    },
+    {
+      "id": "0_infra_envs_postgres_database_version",
+      "label": "POSTGRES_DATABASE_VERSION",
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "envs.sh",
+      "file_type": "code",
+      "metadata": {
+        "language": "bash",
+        "kind": "code"
+      },
+      "norm_label": "postgres_database_version",
+      "source_file": "0-infra/envs.sh",
+      "source_location": "L61"
     },
     {
       "id": "0_infra_envs_project_id",
@@ -946,7 +976,7 @@
       },
       "norm_label": "redis_cluster_name",
       "source_file": "0-infra/envs.sh",
-      "source_location": "L67"
+      "source_location": "L70"
     },
     {
       "id": "0_infra_envs_redis_cluster_node_type",
@@ -961,7 +991,7 @@
       },
       "norm_label": "redis_cluster_node_type",
       "source_file": "0-infra/envs.sh",
-      "source_location": "L70"
+      "source_location": "L73"
     },
     {
       "id": "0_infra_envs_redis_cluster_replica_count",
@@ -976,7 +1006,7 @@
       },
       "norm_label": "redis_cluster_replica_count",
       "source_file": "0-infra/envs.sh",
-      "source_location": "L69"
+      "source_location": "L72"
     },
     {
       "id": "0_infra_envs_redis_cluster_shard_count",
@@ -991,7 +1021,7 @@
       },
       "norm_label": "redis_cluster_shard_count",
       "source_file": "0-infra/envs.sh",
-      "source_location": "L68"
+      "source_location": "L71"
     },
     {
       "id": "0_infra_envs_redis_name",
@@ -1006,7 +1036,7 @@
       },
       "norm_label": "redis_name",
       "source_file": "0-infra/envs.sh",
-      "source_location": "L66"
+      "source_location": "L69"
     },
     {
       "id": "0_infra_envs_region",
@@ -1066,7 +1096,7 @@
       },
       "norm_label": "storage_type",
       "source_file": "0-infra/envs.sh",
-      "source_location": "L80"
+      "source_location": "L83"
     },
     {
       "id": "0_infra_envs_subnet_name",
@@ -1451,6 +1481,18 @@
       "norm_label": "deploying moodle in gke with the nginx + php 8.3 image",
       "source_file": "docs/install-moodle-nginx.md",
       "source_location": "L1"
+    },
+    {
+      "id": "docs_install_moodle_nginx_high_concurrency_scaling_100k_300k_concurrent_users",
+      "label": "High-Concurrency Scaling (100k\u2013300k+ Concurrent Users)",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "README.md",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "high-concurrency scaling (100k\u2013300k+ concurrent users)",
+      "source_file": "docs/install-moodle-nginx.md",
+      "source_location": "L25"
     },
     {
       "id": "docs_migration_recommendations",
@@ -2342,6 +2384,18 @@
       "source_location": "L96"
     },
     {
+      "id": "jules_sentinel_2026_11_12_optional_credentials_isolation_into_kubernetes_secret_moodle_optional_secrets_jules_8_12_15",
+      "label": "2026-11-12 \u2014 Optional Credentials Isolation into Kubernetes Secret (`moodle-optional-secrets`, Jules `#8, #12, #15`)",
+      "_origin": "ast",
+      "community": 17,
+      "community_name": "Sentinel's Journal \u2014 Security, Hardening & Review Guardrails (`google/moodle-on-gcp`)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "2026-11-12 \u2014 optional credentials isolation into kubernetes secret (`moodle-optional-secrets`, jules `#8, #12, #15`)",
+      "source_file": ".jules/sentinel.md",
+      "source_location": "L112"
+    },
+    {
       "id": "jules_sentinel_chronological_security_hardening_learnings",
       "label": "Chronological Security & Hardening Learnings",
       "_origin": "ast",
@@ -2387,7 +2441,7 @@
       "node_kind": "heading",
       "norm_label": "1. how cloud cdn caching works with moodle 5.2+",
       "source_file": "docs/configuring-cloud-cdn.md",
-      "source_location": "L15"
+      "source_location": "L19"
     },
     {
       "id": "docs_configuring_cloud_cdn_2_applying_the_backendconfig_and_dedicated_upload_manifests",
@@ -2399,7 +2453,7 @@
       "node_kind": "heading",
       "norm_label": "2. applying the backendconfig and dedicated upload manifests",
       "source_file": "docs/configuring-cloud-cdn.md",
-      "source_location": "L28"
+      "source_location": "L32"
     },
     {
       "id": "docs_configuring_cloud_cdn_3_verifying_cloud_cdn_cache_hits",
@@ -2411,7 +2465,7 @@
       "node_kind": "heading",
       "norm_label": "3. verifying cloud cdn cache hits",
       "source_file": "docs/configuring-cloud-cdn.md",
-      "source_location": "L58"
+      "source_location": "L62"
     },
     {
       "id": "docs_configuring_cloud_cdn_configuring_cloud_cdn_and_dedicated_upload_pods_with_functional_moodle",
@@ -3697,7 +3751,7 @@
       },
       "norm_label": "validate_moodle_envs()",
       "source_file": "0-infra/envs.sh",
-      "source_location": "L144"
+      "source_location": "L147"
     },
     {
       "id": "4_moodle_image_builder_build_nginx_based_image",
@@ -4359,7 +4413,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/configuring-cloud-cdn.md",
-      "source_location": "L15",
+      "source_location": "L19",
       "weight": 1.0
     },
     {
@@ -4370,7 +4424,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/configuring-cloud-cdn.md",
-      "source_location": "L28",
+      "source_location": "L32",
       "weight": 1.0
     },
     {
@@ -4381,7 +4435,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/configuring-cloud-cdn.md",
-      "source_location": "L58",
+      "source_location": "L62",
       "weight": 1.0
     },
     {
@@ -4646,6 +4700,17 @@
       "confidence_score": 1.0,
       "source_file": "docs/install-moodle-nginx.md",
       "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_install_moodle_nginx_deploying_moodle_in_gke_with_the_nginx_php_8_3_image",
+      "target": "docs_install_moodle_nginx_high_concurrency_scaling_100k_300k_concurrent_users",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/install-moodle-nginx.md",
+      "source_location": "L25",
       "weight": 1.0
     },
     {
@@ -4943,6 +5008,17 @@
       "confidence_score": 1.0,
       "source_file": ".jules/sentinel.md",
       "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "jules_sentinel_sentinel_s_journal_security_hardening_review_guardrails_google_moodle_on_gcp",
+      "target": "jules_sentinel_2026_11_12_optional_credentials_isolation_into_kubernetes_secret_moodle_optional_secrets_jules_8_12_15",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".jules/sentinel.md",
+      "source_location": "L112",
       "weight": 1.0
     },
     {
@@ -5437,7 +5513,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "0-infra/envs.sh",
-      "source_location": "L102",
+      "source_location": "L105",
       "weight": 1.0
     },
     {
@@ -5448,7 +5524,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "0-infra/envs.sh",
-      "source_location": "L103",
+      "source_location": "L106",
       "weight": 1.0
     },
     {
@@ -5459,7 +5535,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "0-infra/envs.sh",
-      "source_location": "L110",
+      "source_location": "L113",
       "weight": 1.0
     },
     {
@@ -5470,7 +5546,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "0-infra/envs.sh",
-      "source_location": "L111",
+      "source_location": "L114",
       "weight": 1.0
     },
     {
@@ -5481,7 +5557,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "0-infra/envs.sh",
-      "source_location": "L112",
+      "source_location": "L115",
       "weight": 1.0
     },
     {
@@ -5492,7 +5568,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "0-infra/envs.sh",
-      "source_location": "L113",
+      "source_location": "L116",
       "weight": 1.0
     },
     {
@@ -5503,7 +5579,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "0-infra/envs.sh",
-      "source_location": "L116",
+      "source_location": "L119",
       "weight": 1.0
     },
     {
@@ -5514,7 +5590,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "0-infra/envs.sh",
-      "source_location": "L118",
+      "source_location": "L121",
       "weight": 1.0
     },
     {
@@ -5525,7 +5601,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "0-infra/envs.sh",
-      "source_location": "L119",
+      "source_location": "L122",
       "weight": 1.0
     },
     {
@@ -5536,7 +5612,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "0-infra/envs.sh",
-      "source_location": "L121",
+      "source_location": "L124",
       "weight": 1.0
     },
     {
@@ -5547,7 +5623,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "0-infra/envs.sh",
-      "source_location": "L140",
+      "source_location": "L143",
       "weight": 1.0
     },
     {
@@ -5558,7 +5634,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "0-infra/envs.sh",
-      "source_location": "L141",
+      "source_location": "L144",
       "weight": 1.0
     },
     {
@@ -5569,7 +5645,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "0-infra/envs.sh",
-      "source_location": "L142",
+      "source_location": "L145",
       "weight": 1.0
     },
     {
@@ -5580,7 +5656,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "0-infra/envs.sh",
-      "source_location": "L144",
+      "source_location": "L147",
       "weight": 1.0
     },
     {
@@ -5838,18 +5914,18 @@
     },
     {
       "source": "0_infra_envs",
-      "target": "0_infra_envs_mysql_instance_name",
+      "target": "0_infra_envs_db_type",
       "relation": "defines",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "0-infra/envs.sh",
-      "source_location": "L56",
+      "source_location": "L57",
       "weight": 1.0
     },
     {
       "source": "0_infra_envs",
-      "target": "0_infra_envs_mysql_database_version",
+      "target": "0_infra_envs_mysql_instance_name",
       "relation": "defines",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -5860,7 +5936,18 @@
     },
     {
       "source": "0_infra_envs",
-      "target": "0_infra_envs_mysql_db",
+      "target": "0_infra_envs_mysql_database_version",
+      "relation": "defines",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "0-infra/envs.sh",
+      "source_location": "L60",
+      "weight": 1.0
+    },
+    {
+      "source": "0_infra_envs",
+      "target": "0_infra_envs_postgres_database_version",
       "relation": "defines",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -5871,13 +5958,24 @@
     },
     {
       "source": "0_infra_envs",
+      "target": "0_infra_envs_mysql_db",
+      "relation": "defines",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "0-infra/envs.sh",
+      "source_location": "L64",
+      "weight": 1.0
+    },
+    {
+      "source": "0_infra_envs",
       "target": "0_infra_envs_mysql_moodle_db_charset",
       "relation": "defines",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "0-infra/envs.sh",
-      "source_location": "L62",
+      "source_location": "L65",
       "weight": 1.0
     },
     {
@@ -5888,7 +5986,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "0-infra/envs.sh",
-      "source_location": "L63",
+      "source_location": "L66",
       "weight": 1.0
     },
     {
@@ -5899,7 +5997,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "0-infra/envs.sh",
-      "source_location": "L66",
+      "source_location": "L69",
       "weight": 1.0
     },
     {
@@ -5910,7 +6008,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "0-infra/envs.sh",
-      "source_location": "L67",
+      "source_location": "L70",
       "weight": 1.0
     },
     {
@@ -5921,7 +6019,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "0-infra/envs.sh",
-      "source_location": "L68",
+      "source_location": "L71",
       "weight": 1.0
     },
     {
@@ -5932,7 +6030,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "0-infra/envs.sh",
-      "source_location": "L69",
+      "source_location": "L72",
       "weight": 1.0
     },
     {
@@ -5943,7 +6041,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "0-infra/envs.sh",
-      "source_location": "L70",
+      "source_location": "L73",
       "weight": 1.0
     },
     {
@@ -5954,7 +6052,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "0-infra/envs.sh",
-      "source_location": "L80",
+      "source_location": "L83",
       "weight": 1.0
     },
     {
@@ -5965,7 +6063,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "0-infra/envs.sh",
-      "source_location": "L83",
+      "source_location": "L86",
       "weight": 1.0
     },
     {
@@ -5976,7 +6074,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "0-infra/envs.sh",
-      "source_location": "L84",
+      "source_location": "L87",
       "weight": 1.0
     },
     {
@@ -5987,7 +6085,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "0-infra/envs.sh",
-      "source_location": "L87",
+      "source_location": "L90",
       "weight": 1.0
     },
     {
@@ -5998,7 +6096,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "0-infra/envs.sh",
-      "source_location": "L88",
+      "source_location": "L91",
       "weight": 1.0
     },
     {
@@ -6713,7 +6811,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/install-moodle-nginx.md",
-      "source_location": "L23",
+      "source_location": "L38",
       "weight": 1.0
     },
     {
@@ -7172,5 +7270,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "f79aa2206acedd74fca00bfcf641b95664dd20e3"
+  "built_at_commit": "0e3aa594c6f270635a32043c2d2b32bb6dbab8fd"
 }
