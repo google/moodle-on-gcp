@@ -177,9 +177,10 @@ spec:
               key: DB_READ_REPLICA_USER
         - name: DB_READ_REPLICA_PASSWORD
           valueFrom:
-            configMapKeyRef:
-              name: moodle-configmap
-              key: DB_READ_REPLICA_PASSWORD
+            secretKeyRef:
+              name: moodle-optional-secrets
+              key: db-read-replica-password
+              optional: true
         - name: REDIS_SESSION_ID_HOST
           valueFrom:
             configMapKeyRef:
@@ -192,9 +193,10 @@ spec:
               key: REDIS_SESSION_ID_PORT
         - name: REDIS_SESSION_ID_AUTH_STRING
           valueFrom:
-            configMapKeyRef:
-              name: moodle-configmap
-              key: REDIS_SESSION_ID_AUTH_STRING
+            secretKeyRef:
+              name: moodle-optional-secrets
+              key: redis-session-id-auth-string
+              optional: true
         - name: REDIS_APP_IP_AND_PORT
           valueFrom:
             configMapKeyRef:
@@ -202,9 +204,10 @@ spec:
               key: REDIS_APP_IP_AND_PORT
         - name: REDIS_APP_AUTH_STRING
           valueFrom:
-            configMapKeyRef:
-              name: moodle-configmap
-              key: REDIS_APP_AUTH_STRING
+            secretKeyRef:
+              name: moodle-optional-secrets
+              key: redis-app-auth-string
+              optional: true
         - name: REDIS_SESSION_IP_AND_PORT
           valueFrom:
             configMapKeyRef:
@@ -212,9 +215,10 @@ spec:
               key: REDIS_SESSION_IP_AND_PORT
         - name: REDIS_SESSION_AUTH_STRING
           valueFrom:
-            configMapKeyRef:
-              name: moodle-configmap
-              key: REDIS_SESSION_AUTH_STRING
+            secretKeyRef:
+              name: moodle-optional-secrets
+              key: redis-session-auth-string
+              optional: true
         - name: REDIS_LOCK_HOST_AND_PORT
           valueFrom:
             configMapKeyRef:
@@ -222,9 +226,10 @@ spec:
               key: REDIS_LOCK_HOST_AND_PORT
         - name: REDIS_LOCK_AUTH_STRING
           valueFrom:
-            configMapKeyRef:
-              name: moodle-configmap
-              key: REDIS_LOCK_AUTH_STRING
+            secretKeyRef:
+              name: moodle-optional-secrets
+              key: redis-lock-auth-string
+              optional: true
         - name: SSLPROXY
           valueFrom:
             configMapKeyRef:
@@ -252,9 +257,10 @@ spec:
               key: SMTP_USER
         - name: SMTP_PASSWORD
           valueFrom:
-            configMapKeyRef:
-              name: moodle-configmap
-              key: SMTP_PASSWORD
+            secretKeyRef:
+              name: moodle-optional-secrets
+              key: smtp-password
+              optional: true
         - name: SMTP_PROTOCOL
           valueFrom:
             configMapKeyRef:

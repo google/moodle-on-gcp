@@ -106,3 +106,15 @@ This journal records all security vulnerabilities, architectural invariants, and
 - Updated `4-moodle-image-builder/base/opt/setup_moodle.sh` to extract `local_redislock` directly into `$MOODLE_PATH/public/local/redislock` on Moodle 5.1+ (`[ -d "$MOODLE_PATH/public/local" ]`) and copy to `$MOODLE_PATH/local/redislock` as regular files.
 - Expanded `tests/verify-scripts-and-configs.sh` with `[5/6]` mocked-CLI behavioral tests covering all remaining Jules proactive test suggestions.
 - Fixed NGINX `X-Accel-Redirect` prefix precedence (`location ^~ /localcachedir/` and `location ^~ /dataroot/`) so the static extension regex (`location ~* \.(jpg|...|woff2|...)$`) never hijacks internal `/localcachedir/...` redirects from `image.php` and `font.php` (which previously caused `404 Not Found` under `$DOCUMENT_ROOT/localcachedir/...`), added `yui_combo.php` to the Cloud CDN static asset location block, and added `X-Cache-Status: {cdn_cache_status}` / `X-Cache-Pop: {cdn_cache_id}` response headers in `6-backendconfig/ingress-backendconfig-nginx.yaml`.
+
+---
+
+## 2026-11-12 — Optional Credentials Isolation into Kubernetes Secret (`moodle-optional-secrets`, Jules `#8, #12, #15`)
+
+**Context:**
+While `DB_PASS` and `MOODLE_PASSWORD` were mounted via Kubernetes `Secret` (`secretKeyRef`), optional credentials (`DB_READ_REPLICA_PASSWORD`, `REDIS_SESSION_ID_AUTH_STRING`, `REDIS_APP_AUTH_STRING`, `REDIS_SESSION_AUTH_STRING`, `REDIS_LOCK_AUTH_STRING`, and `SMTP_PASSWORD`) were still sourced from `ConfigMap` (`configMapKeyRef`) in `5a-deployment-no-helm/moodle-deployment-nginx*.yaml`.
+
+**Resolution (Included in `PR #50`):**
+- Created `5a-deployment-no-helm/moodle-optional-secrets.yaml` and `5a-deployment-no-helm/deployment-templates/moodle-optional-secrets-template.yaml`.
+- Updated `moodle-deployment-nginx.yaml`, `moodle-deployment-nginx-uploads.yaml`, and their templates to mount `DB_READ_REPLICA_PASSWORD`, `REDIS_*_AUTH_STRING`, and `SMTP_PASSWORD` via `secretKeyRef` (`name: moodle-optional-secrets`, `optional: true`).
+- Updated `5a-deployment-no-helm/create-config-files.sh` to generate `moodle-optional-secrets.yaml` (`chmod 0600`) and populate `smtp-password` interactively.
