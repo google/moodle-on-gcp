@@ -116,6 +116,11 @@ if [ -n "$EFFECTIVE_CLIENT_MAX_BODY_SIZE" ]; then
   sed -i "s/^[[:space:]#]*client_max_body_size .*/    client_max_body_size $EFFECTIVE_CLIENT_MAX_BODY_SIZE;/" /etc/nginx/nginx.conf
 fi
 
+if [ -n "$PHP_FPM_MAX_CHILDREN" ]; then
+  echo "Adjusting PHP-FPM pm.max_children to $PHP_FPM_MAX_CHILDREN..."
+  sed -i "s/^pm\.max_children = .*/pm.max_children = $PHP_FPM_MAX_CHILDREN/" /etc/php83/php-fpm.d/moodle.conf
+fi
+
 echo "Checking if Moodle is already setup ..."
 if [ ! -f "$MOODLE_DATAROOT_PATH/.moodle-installed" ] ; then
 

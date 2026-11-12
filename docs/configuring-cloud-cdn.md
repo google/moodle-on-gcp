@@ -8,7 +8,11 @@ Enabling Google Cloud CDN in front of Moodle requires coordinated configuration 
    - Must force `Cache-Control: "private, no-store, no-cache, must-revalidate"` on authenticated endpoints (`/pluginfile.php`, `/draftfile.php`, `/tokenpluginfile.php`, `/webservice/pluginfile.php`, `/repository/`, `/login/`) so private student submissions, course files, and login sessions are never cached at the CDN edge.
 3. **GKE `BackendConfig` (`6-backendconfig/ingress-backendconfig-nginx.yaml` and `6-backendconfig/ingress-backendconfig-nginx-uploads.yaml`)**:
    - The main `ingress-backendconfig` uses `cacheMode: USE_ORIGIN_HEADERS` (with `includeHost: true`, `includeProtocol: true`, `includeQueryString: true`, `negativeCaching: false`, and `serveWhileStale: 86400`), ensuring Cloud CDN strictly honors the `Cache-Control` headers emitted by NGINX rather than blindly caching `.pdf` or image URLs served through `/pluginfile.php`.
-   - The dedicated uploads backend (`ingress-backendconfig-uploads`) disables Cloud CDN (`cdn.enabled: false`) and extends `timeoutSec: 3600` to support large file uploads (`/repository/repository_ajax.php` and `/repository/draftfiles_ajax.php`).
+   - The dedicated uploads backend (`ingress-backendconfig-uploads`) disables Cloud CDN (`cdn.enabled: false`) and extends `timeoutSec: 3600` to support large file uploads (`/repository/repository_ajax.php`, `/repository/draftfiles_ajax.php`, and `/webservice/upload.php`).
+4. **Streaming 10 GB+ File Uploads without RAM Overhead (`5a-deployment-no-helm/moodle-deployment-nginx-uploads.yaml`)**:
+   - **Disk-Backed `/tmp` (`emptyDir: { sizeLimit: 15Gi }`)**: Standard web pods mount `/tmp` with `medium: Memory` (`tmpfs`) for ultra-fast local caching of `X-Accel-Redirect` static assets. On `moodle-deployment-uploads`, `/tmp` uses node SSD ephemeral storage instead of `medium: Memory` so 10 GB multipart temporary files (`/tmp/phpXXXXXX`) never consume container RAM or trigger `OOMKilled`.
+   - **Zero Duplicate Buffering (`fastcgi_request_buffering off;`)**: NGINX streams upload chunks directly to PHP-FPM over the Unix domain socket without writing a duplicate 10 GB copy to `/tmp/nginx/client_temp`.
+   - **Single-Upload Concurrency & Queueing (`PHP_FPM_MAX_CHILDREN: "1"` + `listen.backlog = 128`)**: Each upload pod processes 1 heavy upload at a time at full disk/network throughput while queueing additional concurrent uploads in the socket backlog (or scaling out via `moodle-uploads-hpa`).
 
 ---
 
