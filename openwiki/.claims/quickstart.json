@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:b8d28c8c2b5e011bc97b6912102d5b03045dcedd8ff63406b904ca9af621cf61",
+  "pageVersion": "sha256:813459500c0df44137c9b56b42c1836bc53b7e2d0027b9512dfe7de1f97074c0",
   "claims": [
     {
       "id": "claim_ea9a44aaccb9487482727af03a2a0dcc",
@@ -18,17 +18,17 @@
     },
     {
       "id": "claim_257118bfa1c24195b8f0995f372e27fc",
-      "statement": "5a-deployment-no-helm/create-config-files.sh renders the ConfigMap, Deployment (web and uploads), PersistentVolume, PersistentVolumeClaim, and StorageClass manifests from templates before applying them via kubectl.",
+      "statement": "5a-deployment-no-helm/create-config-files.sh renders the ConfigMap, Secret (moodle-optional-secrets.yaml), Deployment (web and uploads), PersistentVolume, PersistentVolumeClaim, and StorageClass manifests from templates before applying them via kubectl.",
       "evidence": [
         {
-          "resource": "repo://5a-deployment-no-helm/create-config-files.sh#L71-L87",
-          "version": "repo-lines-v1:sha256:ee742f4b6bb915a270389687b5731ad4d41c23a82207a73881ae0de7a9fb6277:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhjZTAzZDdhOTA5M2NjZjE2NGE4ZTc2NTZlMzFkYzYyYzFkOGJjNjA3ODYzM2Y1ODVhMzQwNGIzZDIzZTNiZGMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImM4ZDA2ZTEyOGM0MjcwNjFlYmJmZjUyYjhkOThiMzFmYjQ0ZjE3M2M0Mzc1OWQ2N2RhMmYxZDJlMmEwNjA5NjEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjA0MmU3NmFjNmNiOTY3YjdjYzFhMGE4Y2MwNzI3ZDVjNjRmZGFiZDlmZDNlNDUzNTlmMzRlZjdlNTBjYTA3ZWMifQ"
+          "resource": "repo://5a-deployment-no-helm/create-config-files.sh#L71-L89",
+          "version": "repo-lines-v1:sha256:30c897850bbccd52c98033b271ebdbfd988289807ee90bad22719726dd8ac74a:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhjZTAzZDdhOTA5M2NjZjE2NGE4ZTc2NTZlMzFkYzYyYzFkOGJjNjA3ODYzM2Y1ODVhMzQwNGIzZDIzZTNiZGMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImM4ZDA2ZTEyOGM0MjcwNjFlYmJmZjUyYjhkOThiMzFmYjQ0ZjE3M2M0Mzc1OWQ2N2RhMmYxZDJlMmEwNjA5NjEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijc0NTc4M2Q1YjZkODIyMTNmYmMyMDU5MThmMzU0OWEyNDZlZjA1MzY3Y2ZmNTM5MjZmNTZjYmJlMjBmN2ZlMzgifQ"
         }
       ]
     }
   ],
   "verification": {
     "by": "openwiki/0.5.1",
-    "at": "2026-11-10T23:28:03.423Z"
+    "at": "2026-11-12T05:39:27.513Z"
   }
 }

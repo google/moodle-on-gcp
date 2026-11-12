@@ -1,0 +1,211 @@
+# Copyright 2026 Google LLC
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+---
+# Optional High-Concurrency ProxySQL Connection Multiplexer for Moodle on GKE
+# Protects Cloud SQL for MySQL against max_connections exhaustion during 100k-300k+ student load tests
+# by multiplexing thousands of PHP-FPM connections over a warm backend connection pool (hostgroup 10 writer, hostgroup 20 reader).
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: moodle-proxysql-config
+  namespace: moodle
+data:
+  proxysql.cnf.tmpl: |
+    datadir="/var/lib/proxysql"
+    errorlog="/var/lib/proxysql/proxysql.log"
+
+    admin_variables=
+    {
+      admin_credentials="admin:admin"
+      mysql_ifaces="127.0.0.1:6032"
+    }
+
+    mysql_variables=
+    {
+      threads=4
+      max_connections=4096
+      default_query_delay=0
+      default_query_timeout=36000000
+      have_compress=true
+      poll_timeout=2000
+      interfaces="0.0.0.0:6033"
+      default_schema="information_schema"
+      stacksize=1048576
+      server_version="8.4.0"
+      connect_timeout_server=3000
+      monitor_username="${DB_USER}"
+      monitor_password="${DB_PASS}"
+      monitor_history=600000
+      monitor_connect_interval=60000
+      monitor_ping_interval=10000
+      monitor_read_only_interval=1500
+      monitor_read_only_timeout=500
+      ping_interval_server_msec=120000
+      ping_timeout_server=500
+      commands_stats=true
+      sessions_sort=true
+      connect_retries_on_failure=10
+      multiplexing=true
+    }
+
+    mysql_servers=
+    (
+      {
+        address="${DB_HOST}"
+        port=${DB_HOST_PORT}
+        hostgroup=10
+        max_connections=200
+        max_replication_lag=0
+        comment="Cloud SQL Primary Writer"
+      }
+    )
+
+    mysql_users=
+    (
+      {
+        username="${DB_USER}"
+        password="${DB_PASS}"
+        default_hostgroup=10
+        max_connections=4096
+        default_schema="${DB_NAME}"
+        transaction_persistent=1
+        fast_forward=0
+        active=1
+      }
+    )
+
+    mysql_query_rules=
+    (
+      {
+        rule_id=10
+        active=1
+        match_digest="^SELECT .* FOR UPDATE$"
+        destination_hostgroup=10
+        apply=1
+      },
+      {
+        rule_id=20
+        active=1
+        match_digest="^SELECT "
+        destination_hostgroup=10
+        apply=1
+      }
+    )
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: moodle-proxysql
+  namespace: moodle
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: moodle-proxysql
+      app.kubernetes.io/name: moodle-proxysql
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/instance: moodle-proxysql
+        app.kubernetes.io/name: moodle-proxysql
+    spec:
+      topologySpreadConstraints:
+      - maxSkew: 1
+        topologyKey: topology.kubernetes.io/zone
+        whenUnsatisfiable: ScheduleAnyway
+        labelSelector:
+          matchLabels:
+            app.kubernetes.io/instance: moodle-proxysql
+            app.kubernetes.io/name: moodle-proxysql
+      containers:
+      - name: proxysql
+        image: proxysql/proxysql:2.7.1
+        imagePullPolicy: IfNotPresent
+        command: ["/bin/sh", "-c"]
+        args:
+        - |
+          set -e
+          sed \
+            -e "s|\${DB_HOST}|${DB_HOST}|g" \
+            -e "s|\${DB_HOST_PORT}|${DB_HOST_PORT:-3306}|g" \
+            -e "s|\${DB_NAME}|${DB_NAME}|g" \
+            -e "s|\${DB_USER}|${DB_USER}|g" \
+            -e "s|\${DB_PASS}|${DB_PASS}|g" \
+            /etc/proxysql-tmpl/proxysql.cnf.tmpl > /tmp/proxysql.cnf
+          exec proxysql -f --idle-threads -c /tmp/proxysql.cnf
+        ports:
+        - name: mysql
+          containerPort: 6033
+        - name: admin
+          containerPort: 6032
+        env:
+        - name: DB_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: moodle-configmap
+              key: DB_HOST
+        - name: DB_HOST_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: moodle-configmap
+              key: DB_HOST_PORT
+        - name: DB_NAME
+          valueFrom:
+            configMapKeyRef:
+              name: moodle-configmap
+              key: DB_NAME
+        - name: DB_USER
+          valueFrom:
+            configMapKeyRef:
+              name: moodle-configmap
+              key: DB_USER
+        - name: DB_PASS
+          valueFrom:
+            secretKeyRef:
+              name: moodle-externaldb
+              key: mysql-password
+        resources:
+          limits:
+            cpu: 500m
+            memory: 512Mi
+          requests:
+            cpu: 500m
+            memory: 512Mi
+        volumeMounts:
+        - name: proxysql-config
+          mountPath: /etc/proxysql-tmpl
+          readOnly: true
+        - name: proxysql-data
+          mountPath: /var/lib/proxysql
+      volumes:
+      - name: proxysql-config
+        configMap:
+          name: moodle-proxysql-config
+      - name: proxysql-data
+        emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: moodle-proxysql
+  namespace: moodle
+spec:
+  type: ClusterIP
+  selector:
+    app.kubernetes.io/instance: moodle-proxysql
+    app.kubernetes.io/name: moodle-proxysql
+  ports:
+  - name: mysql
+    port: 6033
+    targetPort: 6033
+    protocol: TCP

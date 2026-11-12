@@ -5,7 +5,7 @@ description: Comparative architecture, configurable PV/PVC sizing, and static vs
 tags: [storage, filestore, regional-pd, csi, persistent-volume, gke]
 verified:
   - by: openwiki/0.5.1
-    at: 2026-11-10T23:28:03.423Z
+    at: 2026-11-12T05:39:27.513Z
 sources:
   - id: openwiki-source-75467caa28be1defc4942cd3
     resource: repo://0-infra/envs.sh

@@ -2,46 +2,46 @@
   "schemaVersion": 1,
   "pages": {
     "/openwiki/architecture/infrastructure-and-networking.md": {
-      "pageVersion": "sha256:ac1a238677ccb8ea2404e7d1f230af6e6466a21203d026ad026f0961fbd912fb",
+      "pageVersion": "sha256:4b65a20ef4d4792c2c899e7292aca42613e9f72973baa048db4f10ddd8361b0d",
       "completedBy": "antigravity",
-      "completedRunId": "dfe5be4e-e34e-4ad1-a21f-ca0d5b9e4d4b",
-      "gitHead": "f79aa2206acedd74fca00bfcf641b95664dd20e3",
-      "sourceFingerprint": "sha256:5818baca495187edaf792400ae6d5df42eb6c6721667e7826b359f3119da7deb"
+      "completedRunId": "cc80c484-ff8f-4665-85e9-b046f930898d",
+      "gitHead": "0e3aa594c6f270635a32043c2d2b32bb6dbab8fd",
+      "sourceFingerprint": "sha256:48d7581f78a2508dcccc14580048f5e6df91e9ebde7194789990701088f2548f"
     },
     "/openwiki/architecture/storage-modalities.md": {
-      "pageVersion": "sha256:8d768f1cb4dc86a0b5dd26985e34a5da79f9a5b9d5dd28e7633c8feaa1a7d24b",
+      "pageVersion": "sha256:fbb511b5e102f5a8364f01bef1ef18ec6726236b5073d1c9def5f87f87559b38",
       "completedBy": "antigravity",
-      "completedRunId": "dfe5be4e-e34e-4ad1-a21f-ca0d5b9e4d4b",
-      "gitHead": "f79aa2206acedd74fca00bfcf641b95664dd20e3",
-      "sourceFingerprint": "sha256:5818baca495187edaf792400ae6d5df42eb6c6721667e7826b359f3119da7deb"
+      "completedRunId": "cc80c484-ff8f-4665-85e9-b046f930898d",
+      "gitHead": "0e3aa594c6f270635a32043c2d2b32bb6dbab8fd",
+      "sourceFingerprint": "sha256:48d7581f78a2508dcccc14580048f5e6df91e9ebde7194789990701088f2548f"
     },
     "/openwiki/operations/cloud-cdn-and-ingress.md": {
-      "pageVersion": "sha256:fc6873568f92dba83eb2edb9e24149449ee592da7549a9b93db513f8bd31f653",
+      "pageVersion": "sha256:a4c32632bd38f518413a67af54ebe91109dcf1ef42d60fe3b4bb734eec74ee07",
       "completedBy": "antigravity",
-      "completedRunId": "dfe5be4e-e34e-4ad1-a21f-ca0d5b9e4d4b",
-      "gitHead": "f79aa2206acedd74fca00bfcf641b95664dd20e3",
-      "sourceFingerprint": "sha256:5818baca495187edaf792400ae6d5df42eb6c6721667e7826b359f3119da7deb"
+      "completedRunId": "cc80c484-ff8f-4665-85e9-b046f930898d",
+      "gitHead": "0e3aa594c6f270635a32043c2d2b32bb6dbab8fd",
+      "sourceFingerprint": "sha256:48d7581f78a2508dcccc14580048f5e6df91e9ebde7194789990701088f2548f"
     },
     "/openwiki/operations/gke-deployments-and-uploads-isolation.md": {
-      "pageVersion": "sha256:996df6befadfd2e0e83fc17e935adf36b71f78de80a28350592ac49d122cade3",
+      "pageVersion": "sha256:f0aa6dc7bec180126a971a46f6d80a1c76f97d2da3398c4d2a1458c68b77c111",
       "completedBy": "antigravity",
-      "completedRunId": "dfe5be4e-e34e-4ad1-a21f-ca0d5b9e4d4b",
-      "gitHead": "f79aa2206acedd74fca00bfcf641b95664dd20e3",
-      "sourceFingerprint": "sha256:5818baca495187edaf792400ae6d5df42eb6c6721667e7826b359f3119da7deb"
+      "completedRunId": "cc80c484-ff8f-4665-85e9-b046f930898d",
+      "gitHead": "0e3aa594c6f270635a32043c2d2b32bb6dbab8fd",
+      "sourceFingerprint": "sha256:48d7581f78a2508dcccc14580048f5e6df91e9ebde7194789990701088f2548f"
     },
     "/openwiki/quickstart.md": {
-      "pageVersion": "sha256:b8d28c8c2b5e011bc97b6912102d5b03045dcedd8ff63406b904ca9af621cf61",
+      "pageVersion": "sha256:813459500c0df44137c9b56b42c1836bc53b7e2d0027b9512dfe7de1f97074c0",
       "completedBy": "antigravity",
-      "completedRunId": "dfe5be4e-e34e-4ad1-a21f-ca0d5b9e4d4b",
-      "gitHead": "f79aa2206acedd74fca00bfcf641b95664dd20e3",
-      "sourceFingerprint": "sha256:5818baca495187edaf792400ae6d5df42eb6c6721667e7826b359f3119da7deb"
+      "completedRunId": "cc80c484-ff8f-4665-85e9-b046f930898d",
+      "gitHead": "0e3aa594c6f270635a32043c2d2b32bb6dbab8fd",
+      "sourceFingerprint": "sha256:48d7581f78a2508dcccc14580048f5e6df91e9ebde7194789990701088f2548f"
     },
     "/openwiki/runtime/container-image-moodle52-php83.md": {
-      "pageVersion": "sha256:a03824e960ecb38691b2d3cbbcd6eeaea4defa396f06fd42cc552bbaaaa53b30",
+      "pageVersion": "sha256:3ac92ad95dcf3b12f729a2b982b490c9f5b8681aad2fd93b43083baee5da6ed4",
       "completedBy": "antigravity",
-      "completedRunId": "dfe5be4e-e34e-4ad1-a21f-ca0d5b9e4d4b",
-      "gitHead": "f79aa2206acedd74fca00bfcf641b95664dd20e3",
-      "sourceFingerprint": "sha256:5818baca495187edaf792400ae6d5df42eb6c6721667e7826b359f3119da7deb"
+      "completedRunId": "cc80c484-ff8f-4665-85e9-b046f930898d",
+      "gitHead": "0e3aa594c6f270635a32043c2d2b32bb6dbab8fd",
+      "sourceFingerprint": "sha256:48d7581f78a2508dcccc14580048f5e6df91e9ebde7194789990701088f2548f"
     }
   }
 }

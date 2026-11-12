@@ -253,4 +253,8 @@ grep -q '/webservice/upload.php' 8-ingress/gce-ingress-external.yaml
 grep -q 'php83-pgsql php83-pdo_pgsql' 4-moodle-image-builder/Dockerfile.nginx
 grep -q '02_pgsql.ini' 4-moodle-image-builder/base/opt/setup_moodle.sh
 grep -q 'POSTGRES_DATABASE_VERSION' 0-infra/envs.sh
+grep -q 'session_redis_serializer_use_igbinary = true' 4-moodle-image-builder/config.php.template
+grep -q "session_redis_compressor = 'zstd'" 4-moodle-image-builder/config.php.template
+test -f 5a-deployment-no-helm/moodle-proxysql.yaml
+grep -q 'multiplexing=true' 5a-deployment-no-helm/moodle-proxysql.yaml
 echo "PASS: All repository guardrails verified."

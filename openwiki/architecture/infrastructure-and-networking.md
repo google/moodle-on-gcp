@@ -1,20 +1,20 @@
 ---
 type: architecture
-title: GCP Infrastructure, Selective Adoption, and Cloud SQL MySQL 8.4
-description: Automated provisioning architecture for custom VPC, private GKE (Standard or Autopilot) with CSI drivers, Cloud SQL MySQL 8.4, Memorystore Redis, and lifecycle scripts in 0-infra.
-tags: [gcp, gke, autopilot, cloud-sql, mysql-8-4, redis, vpc, selective-adoption]
+title: GCP Infrastructure, Selective Adoption, and Cloud SQL MySQL 8.4 / PostgreSQL 16
+description: Automated provisioning architecture for custom VPC, private GKE (Standard or Autopilot) with CSI drivers, Cloud SQL MySQL 8.4 or PostgreSQL 16 (DB_TYPE), Memorystore Redis, and lifecycle scripts in 0-infra.
+tags: [gcp, gke, autopilot, cloud-sql, mysql-8-4, postgresql-16, redis, vpc, selective-adoption]
 verified:
   - by: openwiki/0.5.1
-    at: 2026-11-10T23:28:03.423Z
+    at: 2026-11-12T05:39:27.513Z
 sources:
   - id: openwiki-source-75467caa28be1defc4942cd3
     resource: repo://0-infra/envs.sh
   - id: openwiki-source-c545e73e5570dc88f600931f
     resource: repo://0-infra/infra-creation.sh
-generated: { by: "antigravity", at: "2026-11-10T23:28:03.423Z" }
+generated: { by: "antigravity", at: "2026-11-12T05:39:27.513Z" }
 ---
 
-# GCP Infrastructure, Selective Adoption, and Cloud SQL MySQL 8.4
+# GCP Infrastructure, Selective Adoption, and Cloud SQL MySQL 8.4 / PostgreSQL 16
 
 The `0-infra/` directory centralizes environment configuration (`0-infra/envs.sh`), automated provisioning (`0-infra/infra-creation.sh`), and lifecycle management (`0-infra/cleanup-moodle-install.sh`, `0-infra/infra-pause.sh`, `0-infra/infra-resume.sh`, and `0-infra/infra-destroy.sh`) for the Moodle topology on Google Cloud Platform (GCP).
 
@@ -23,7 +23,7 @@ flowchart TD
     Envs["0-infra/envs.sh - Variables + validate_moodle_envs()"] --> Infra["0-infra/infra-creation.sh"]
     Infra --> VPC["Custom VPC + Subnet + Cloud NAT + Global IP moodle-ingress-ip"]
     Infra --> GKE["Private GKE (Standard or Autopilot) - Filestore CSI + PD CSI"]
-    Infra -->|CREATE_CLOUD_SQL=true| SQL["Cloud SQL MySQL 8.4 - VPC Peering + utf8mb4_unicode_ci"]
+    Infra -->|CREATE_CLOUD_SQL=true| SQL["Cloud SQL MySQL 8.4 or PostgreSQL 16 (DB_TYPE)"]
     Infra -->|CREATE_REDIS=true| Redis["Memorystore Redis 6.x - AUTH enabled + allkeys-lru"]
     Infra -->|CREATE_REDIS_CLUSTER=true| MRC["Memorystore for Redis Cluster - Discovery Endpoint (MDL-59196)"]
     Infra -->|STORAGE_TYPE=filestore| FS["Cloud Filestore NFS - Configurable Tier and Capacity"]
@@ -40,11 +40,12 @@ flowchart TD
 
 ## Selective Infrastructure Adoption
 
-To allow organizations to reuse existing managed services (such as corporate Cloud SQL instances, Memorystore Redis, or pre-provisioned storage topologies), `0-infra/envs.sh` and `0-infra/infra-creation.sh` expose independent selective adoption toggles:
+To allow organizations to reuse existing managed services (such as corporate Cloud SQL or AlloyDB instances, Memorystore Redis, or pre-provisioned storage topologies), `0-infra/envs.sh` and `0-infra/infra-creation.sh` expose independent selective adoption toggles:
 
 | Variable | Default Value | Behavior in `0-infra/infra-creation.sh` |
 | :--- | :--- | :--- |
-| `GKE_MODE` | `standard` | Selects between GKE `standard` (Dataplane V2 + explicit CSI drivers) and `autopilot` (`gcloud container clusters create-auto`, scaling compute cost to zero when pods are scaled down). |
+| `GKE_MODE` | `autopilot` | Selects between GKE `autopilot` (`gcloud container clusters create-auto`, scaling compute cost to zero when pods are scaled down) and `standard` (Dataplane V2 + explicit CSI drivers). |
+| `DB_TYPE` | `mysqli` | Selects between Cloud SQL for MySQL (`mysqli`, default `MYSQL_8_4`) and Cloud SQL for PostgreSQL / AlloyDB (`pgsql`, default `POSTGRES_16`). |
 | `STORAGE_TYPE` | `filestore` | Selects the storage modality (`filestore`, `regional-pd`, or `none`) and automatically adjusts defaults for `CREATE_FILESTORE` and `CREATE_REGIONAL_PD`. |
 | `CREATE_CLOUD_SQL` | `true` | When `true`, interactively prompts for `MYSQL_ROOT_PASSWORD` (with double confirmation if unset), allocates the `moodle-managed-range-mysql` VPC Peering range, and provisions the Cloud SQL instance and `$MYSQL_DB` schema. |
 | `CREATE_REDIS` | `true` | When `true`, provisions a Memorystore for Redis (`redis_6_x`) instance with authentication (`--enable-auth`) and `allkeys-lru` eviction policy. |
@@ -58,20 +59,20 @@ To allow organizations to reuse existing managed services (such as corporate Clo
 `0-infra/infra-creation.sh` builds a custom-mode VPC (`--mtu=1460`) with a primary subnet (`SUBNET_RANGE`, default `10.10.0.0/24`) and two GKE secondary ranges (`pod-range-gke-1` at `10.168.0.0/14` and `svc-range-gke-1` at `10.172.0.0/19`), along with Cloud Router and Cloud NAT for outbound internet access from private nodes.
 
 The GKE cluster (`$GKE_NAME`) is provisioned with:
-- **Standard Mode (`GKE_MODE=standard`)**: Dataplane V2 (`--enable-dataplane-v2`), private nodes (`--enable-private-nodes`), optional private endpoint, and `HttpLoadBalancing`, `HorizontalPodAutoscaling`, `GcpFilestoreCsiDriver`, and `GcePersistentDiskCsiDriver` addons.
 - **Autopilot Mode (`GKE_MODE=autopilot`)**: Provisioned via `gcloud container clusters create-auto` with `--enable-private-nodes` and dedicated secondary ranges, where CSI drivers and elastic node scaling are managed natively by GKE Autopilot.
+- **Standard Mode (`GKE_MODE=standard`)**: Dataplane V2 (`--enable-dataplane-v2`), private nodes (`--enable-private-nodes`), optional private endpoint, and `HttpLoadBalancing`, `HorizontalPodAutoscaling`, `GcpFilestoreCsiDriver`, and `GcePersistentDiskCsiDriver` addons.
 
-## Cloud SQL MySQL 8.4 for Moodle 5.0+
+## Cloud SQL MySQL 8.4 and PostgreSQL 16 for Moodle 5.0+
 
-Starting with Moodle 5.0 (including Moodle 5.1, 5.2.4, and 5.3), Moodle's environment check requires at least **MySQL 8.4** (`MYSQL_8_4`).
+Starting with Moodle 5.0 (including Moodle 5.1, 5.2.4, and 5.3), Moodle's environment check requires at least **MySQL 8.4** (`MYSQL_8_4`) or **PostgreSQL 15+** (`POSTGRES_16`).
 
-- `0-infra/envs.sh` sets `MYSQL_DATABASE_VERSION="${MYSQL_DATABASE_VERSION:-MYSQL_8_4}"` (which can be overridden to `MYSQL_8_0` if deploying Moodle 4.x).
-- `0-infra/infra-creation.sh` provisions the Cloud SQL instance with `--database-version="${MYSQL_DATABASE_VERSION:-MYSQL_8_4}"`, `--storage-type=SSD`, `--storage-auto-increase`, `--enable-bin-log`, and creates the `$MYSQL_DB` database with `utf8mb4` charset and `utf8mb4_unicode_ci` collation.
+- `0-infra/envs.sh` defines `DB_TYPE="${DB_TYPE:-mysqli}"`, `MYSQL_DATABASE_VERSION="${MYSQL_DATABASE_VERSION:-MYSQL_8_4}"`, and `POSTGRES_DATABASE_VERSION="${POSTGRES_DATABASE_VERSION:-POSTGRES_16}"`.
+- When `DB_TYPE=mysqli`, `0-infra/infra-creation.sh` provisions Cloud SQL for MySQL (`MYSQL_8_4`) and creates the `$MYSQL_DB` database with `utf8mb4` charset and `utf8mb4_unicode_ci` collation. When `DB_TYPE=pgsql`, it provisions Cloud SQL for PostgreSQL (`POSTGRES_16`) with `UTF8` encoding.
 - If `MYSQL_ROOT_PASSWORD` is not exported in the environment and `CREATE_CLOUD_SQL=true`, `0-infra/infra-creation.sh` prompts silently (`read -rsp`) with confirmation validation and disables `set -x` (`{ set +x; } 2>/dev/null`) before instance creation to prevent credential leakage in logs.
 
 ## Infrastructure Cleanup and Lifecycle Scripts (`cleanup-moodle-install.sh`, `infra-destroy.sh`, `infra-pause.sh`, `infra-resume.sh`)
 
 `0-infra/` includes full lifecycle and cost-control scripts:
-- **`0-infra/cleanup-moodle-install.sh`**: Recreates the `$MYSQL_DB` schema in Cloud SQL (when `CREATE_CLOUD_SQL=true`) and resets the storage volumes (`filestore` or `regional-pd`) without destroying the base infrastructure.
+- **`0-infra/cleanup-moodle-install.sh`**: Recreates the `$MYSQL_DB` schema in Cloud SQL (when `CREATE_CLOUD_SQL=true`, honoring `DB_TYPE`) and resets the storage volumes (`filestore` or `regional-pd`) without destroying the base infrastructure.
 - **`0-infra/infra-destroy.sh`**: Selective teardown counterpart to `0-infra/infra-creation.sh`. Deletes only the Moodle resources (`$GKE_NAME`, `$FILESTORE_NAME`, `$PD_DISK_NAME`, `$REDIS_NAME` / `$REDIS_CLUSTER_NAME`, `$MYSQL_INSTANCE_NAME`, and `$ARTIFACT_REGISTRY_NAME`), preserving shared VPCs and subnets unless `--destroy-network` is explicitly passed.
 - **`0-infra/infra-pause.sh` and `0-infra/infra-resume.sh`**: Hibernate the environment without data loss by scaling GKE Deployments to `0` replicas (eliminating GKE Autopilot compute charges), stopping the Cloud SQL instance (`--activation-policy=NEVER`), and optionally deleting/recreating the Memorystore Redis instance (`--delete-redis` / `--recreate-redis`), automatically patching the new `REDIS_HOST` IP in Kubernetes `ConfigMaps` upon resume.
