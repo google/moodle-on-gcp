@@ -191,36 +191,60 @@ if [ "${CREATE_CLOUD_SQL:-true}" = "true" ]; then
   # list vpc peering connections
   gcloud services vpc-peerings list --network="$VPC_NAME"
 
-  # creates cloud sql instance (managed)
+  # creates cloud sql instance (managed MySQL or PostgreSQL depending on DB_TYPE)
   { set +x; } 2>/dev/null
-  gcloud sql instances create "$MYSQL_INSTANCE_NAME" \
-    --database-version="${MYSQL_DATABASE_VERSION:-MYSQL_8_4}" \
-    --cpu 1 \
-    --memory 3840MB \
-    --zone "$ZONE" \
-    --network="$VPC_NAME" \
-    --retained-backups-count=7 \
-    --enable-bin-log \
-    --retained-transaction-log-days=7 \
-    --maintenance-release-channel=production \
-    --maintenance-window-day=SUN \
-    --maintenance-window-hour=08 \
-    --availability-type=zonal \
-    --storage-type=SSD \
-    --storage-auto-increase \
-    --storage-size=10GB \
-    --backup-start-time=03:00 \
-    --database-flags=character_set_server=utf8mb4,default_time_zone=-03:00 \
-    --root-password="$MYSQL_ROOT_PASSWORD"
+  if [ "${DB_TYPE:-mysqli}" = "pgsql" ]; then
+    gcloud sql instances create "$MYSQL_INSTANCE_NAME" \
+      --database-version="${POSTGRES_DATABASE_VERSION:-POSTGRES_16}" \
+      --cpu 1 \
+      --memory 3840MB \
+      --zone "$ZONE" \
+      --network="$VPC_NAME" \
+      --retained-backups-count=7 \
+      --maintenance-window-day=SUN \
+      --maintenance-window-hour=08 \
+      --availability-type=zonal \
+      --storage-type=SSD \
+      --storage-auto-increase \
+      --storage-size=10GB \
+      --backup-start-time=03:00 \
+      --root-password="$MYSQL_ROOT_PASSWORD"
 
-  # list cloud sql instances created
-  gcloud sql instances list
+    gcloud sql instances list
 
-  # creates cloud sql database with proper charset for moodle
-  gcloud sql databases create "$MYSQL_DB" \
-    --instance "$MYSQL_INSTANCE_NAME" \
-    --charset "$MYSQL_MOODLE_DB_CHARSET" \
-    --collation "$MYSQL_MOODLE_DB_COLLATION"
+    gcloud sql databases create "$MYSQL_DB" \
+      --instance "$MYSQL_INSTANCE_NAME" \
+      --charset "UTF8"
+  else
+    gcloud sql instances create "$MYSQL_INSTANCE_NAME" \
+      --database-version="${MYSQL_DATABASE_VERSION:-MYSQL_8_4}" \
+      --cpu 1 \
+      --memory 3840MB \
+      --zone "$ZONE" \
+      --network="$VPC_NAME" \
+      --retained-backups-count=7 \
+      --enable-bin-log \
+      --retained-transaction-log-days=7 \
+      --maintenance-release-channel=production \
+      --maintenance-window-day=SUN \
+      --maintenance-window-hour=08 \
+      --availability-type=zonal \
+      --storage-type=SSD \
+      --storage-auto-increase \
+      --storage-size=10GB \
+      --backup-start-time=03:00 \
+      --database-flags=character_set_server=utf8mb4,default_time_zone=-03:00 \
+      --root-password="$MYSQL_ROOT_PASSWORD"
+
+    # list cloud sql instances created
+    gcloud sql instances list
+
+    # creates cloud sql database with proper charset for moodle
+    gcloud sql databases create "$MYSQL_DB" \
+      --instance "$MYSQL_INSTANCE_NAME" \
+      --charset "$MYSQL_MOODLE_DB_CHARSET" \
+      --collation "$MYSQL_MOODLE_DB_COLLATION"
+  fi
 
   # list cloud sql databases created
   gcloud sql databases list --instance "$MYSQL_INSTANCE_NAME"
