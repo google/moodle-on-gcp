@@ -121,6 +121,33 @@ if [ -n "$PHP_FPM_MAX_CHILDREN" ]; then
   sed -i "s/^pm\.max_children = .*/pm.max_children = $PHP_FPM_MAX_CHILDREN/" /etc/php83/php-fpm.d/moodle.conf
 fi
 
+# Conditionally enable and verify the PHP database driver matching DB_TYPE ("mysqli" or "pgsql")
+DB_TYPE="${DB_TYPE:-mysqli}"
+if [ "$DB_TYPE" = "pgsql" ]; then
+  echo "Configuring PHP 8.3 database extensions for PostgreSQL / AlloyDB (DB_TYPE=pgsql)..."
+  export DB_HOST_PORT="${DB_HOST_PORT:-5432}"
+  echo "extension=pdo.so" > /etc/php83/conf.d/00_pdo.ini
+  echo "extension=pgsql.so" > /etc/php83/conf.d/02_pgsql.ini
+  echo "extension=pdo_pgsql.so" > /etc/php83/conf.d/02_pdo_pgsql.ini
+  rm -fv /etc/php83/conf.d/01_mysqlnd.ini /etc/php83/conf.d/02_mysqli.ini /etc/php83/conf.d/02_pdo_mysql.ini
+  if ! php83 -m | grep -qx "pgsql"; then
+    echo "ERROR: DB_TYPE is set to 'pgsql', but the PHP 'pgsql' extension is not loaded!" >&2
+    exit 1
+  fi
+else
+  echo "Configuring PHP 8.3 database extensions for MySQL / Cloud SQL (DB_TYPE=$DB_TYPE)..."
+  export DB_HOST_PORT="${DB_HOST_PORT:-3306}"
+  echo "extension=pdo.so" > /etc/php83/conf.d/00_pdo.ini
+  echo "extension=mysqlnd.so" > /etc/php83/conf.d/01_mysqlnd.ini
+  echo "extension=mysqli.so" > /etc/php83/conf.d/02_mysqli.ini
+  echo "extension=pdo_mysql.so" > /etc/php83/conf.d/02_pdo_mysql.ini
+  rm -fv /etc/php83/conf.d/02_pgsql.ini /etc/php83/conf.d/02_pdo_pgsql.ini
+  if ! php83 -m | grep -qx "mysqli"; then
+    echo "ERROR: DB_TYPE is set to '$DB_TYPE', but the PHP 'mysqli' extension is not loaded!" >&2
+    exit 1
+  fi
+fi
+
 echo "Checking if Moodle is already setup ..."
 if [ ! -f "$MOODLE_DATAROOT_PATH/.moodle-installed" ] ; then
 

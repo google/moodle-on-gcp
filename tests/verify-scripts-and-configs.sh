@@ -250,4 +250,7 @@ grep -q 'PHP_FPM_MAX_CHILDREN: "1"' 5a-deployment-no-helm/moodle-configmap-nginx
 grep -q 'CLIENT_MAX_BODY_SIZE: "10G"' 5a-deployment-no-helm/moodle-configmap-nginx-uploads.yaml
 grep -q 'sizeLimit: 15Gi' 5a-deployment-no-helm/moodle-deployment-nginx-uploads.yaml
 grep -q '/webservice/upload.php' 8-ingress/gce-ingress-external.yaml
+grep -q 'php83-pgsql php83-pdo_pgsql' 4-moodle-image-builder/Dockerfile.nginx
+grep -q '02_pgsql.ini' 4-moodle-image-builder/base/opt/setup_moodle.sh
+grep -q 'POSTGRES_DATABASE_VERSION' 0-infra/envs.sh
 echo "PASS: All repository guardrails verified."
