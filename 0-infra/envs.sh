@@ -53,9 +53,12 @@ export GKE_MODE="${GKE_MODE:-autopilot}"
 export MOODLE_REPLICAS="${MOODLE_REPLICAS:-3}"
 export ARTIFACT_REGISTRY_NAME="${ARTIFACT_REGISTRY_NAME:-moodle-filestore}"
 export JUMPBOX_VM_NAME="${JUMPBOX_VM_NAME:-vm-jumpbox-moodle}"
+# DB_TYPE selects the Moodle database engine ("mysqli" for Cloud SQL MySQL 8.4, or "pgsql" for Cloud SQL PostgreSQL / AlloyDB):
+export DB_TYPE="${DB_TYPE:-mysqli}"
 export MYSQL_INSTANCE_NAME="<YOUR-MYSQL-INSTANCE-NAME>"
-# Moodle 5.0+ requires MySQL 8.4 (MYSQL_8_4). Use MYSQL_8_0 only if deploying Moodle 4.x.
+# Moodle 5.0+ requires MySQL 8.4 (MYSQL_8_4) or PostgreSQL 15+ (POSTGRES_16). Use MYSQL_8_0 only if deploying Moodle 4.x.
 export MYSQL_DATABASE_VERSION="${MYSQL_DATABASE_VERSION:-MYSQL_8_4}"
+export POSTGRES_DATABASE_VERSION="${POSTGRES_DATABASE_VERSION:-POSTGRES_16}"
 # MYSQL_ROOT_PASSWORD is not set here to avoid hardcoding secrets.
 # It will be prompted for during infra-creation.sh if not already set.
 export MYSQL_DB="<YOUR-MOODLE-DB-NAME>"

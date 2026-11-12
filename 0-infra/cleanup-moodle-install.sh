@@ -52,10 +52,16 @@ then
     echo "Done deleting $MYSQL_DB database ..."
 
     echo "Re-creating $MYSQL_DB database, please wait ..."
-    gcloud sql databases create "$MYSQL_DB" \
-      --instance "$MYSQL_INSTANCE_NAME" \
-      --charset "$MYSQL_MOODLE_DB_CHARSET" \
-      --collation "$MYSQL_MOODLE_DB_COLLATION"
+    if [ "${DB_TYPE:-mysqli}" = "pgsql" ]; then
+      gcloud sql databases create "$MYSQL_DB" \
+        --instance "$MYSQL_INSTANCE_NAME" \
+        --charset "UTF8"
+    else
+      gcloud sql databases create "$MYSQL_DB" \
+        --instance "$MYSQL_INSTANCE_NAME" \
+        --charset "$MYSQL_MOODLE_DB_CHARSET" \
+        --collation "$MYSQL_MOODLE_DB_COLLATION"
+    fi
     echo "Done re-creating $MYSQL_DB database ..."
   fi
 
