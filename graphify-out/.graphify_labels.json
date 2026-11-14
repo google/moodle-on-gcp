@@ -1,7 +1,7 @@
 {
   "0": "envs.sh",
   "1": "README.md",
-  "2": "GCP Infrastructure, Selective Adoption, and Cloud SQL MySQL 8.4",
+  "2": "GCP Infrastructure, Selective Adoption, and Cloud SQL MySQL 8.4 / PostgreSQL 16",
   "3": "Deployment moodle-deployment (Primary Web Pod, PHP 8.3 & NGINX Mounts, tmpfs /tmp)",
   "4": "Cloud CDN for Moodle, NGINX/PHP-FPM Tuning, and Ingress Routing",
   "5": "validate_moodle_envs",

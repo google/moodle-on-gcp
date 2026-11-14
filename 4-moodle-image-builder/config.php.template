@@ -5,6 +5,10 @@ $CFG->localcachedir = '/tmp/moodle/localcache';
 
 $CFG->slasharguments = true;
 
+// Moodle 5.0+ Routing Engine (r.php): indicates that NGINX routes fallback and shimmed requests to /r.php.
+// Verified via: php admin/cli/checks.php --filter=router -v (6/6 OK).
+$CFG->routerconfigured = true;
+
 if (!empty('$REDIS_LOCK_HOST_AND_PORT') && (is_readable(__DIR__ . '/public/local/redislock/classes/lock/redis_lock_factory.php') || is_readable(__DIR__ . '/local/redislock/classes/lock/redis_lock_factory.php') || class_exists('\\local_redislock\\lock\\redis_lock_factory'))) {
     $CFG->lock_factory = '\\local_redislock\\lock\\redis_lock_factory';
     $CFG->local_redislock_redis_server = '$REDIS_LOCK_HOST_AND_PORT';

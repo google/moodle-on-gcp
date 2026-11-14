@@ -1742,7 +1742,7 @@
         "verified": [
           {
             "by": "openwiki/0.5.1",
-            "at": "2026-11-10 23:28:03.423000+00:00"
+            "at": "2026-11-12 05:39:27.513000+00:00"
           }
         ],
         "sources": [
@@ -1761,7 +1761,7 @@
         ],
         "generated": {
           "by": "antigravity",
-          "at": "2026-11-10T23:28:03.423Z"
+          "at": "2026-11-12T05:39:27.513Z"
         }
       },
       "node_kind": "page",
@@ -1854,7 +1854,7 @@
       "frontmatter": {
         "type": "runtime",
         "title": "NGINX + PHP 8.3 Container Image, GNU libiconv, and Moodle 5.2+ Bootstrap",
-        "description": "Multi-stage Alpine 3.21 + PHP 8.3 container build, preloadable_libiconv.so compilation, Moodle 5.1+ /public webroot support, Composer, Moosh 1.51, and pre-autoloader local_redislock detection.",
+        "description": "Multi-stage Alpine 3.21 + PHP 8.3 container build, preloadable_libiconv.so compilation, conditional mysqli vs. pgsql driver activation, Redis igbinary/zstd tuning, Moodle 5.1+ /public webroot, Composer, Moosh 1.51, and local_redislock detection.",
         "tags": [
           "docker",
           "alpine",
@@ -1863,12 +1863,15 @@
           "moodle-5-2",
           "moosh",
           "composer",
-          "redislock"
+          "redislock",
+          "pgsql",
+          "igbinary",
+          "zstd"
         ],
         "verified": [
           {
             "by": "openwiki/0.5.1",
-            "at": "2026-11-10 23:28:03.423000+00:00"
+            "at": "2026-11-12 05:39:27.513000+00:00"
           }
         ],
         "sources": [
@@ -1895,7 +1898,7 @@
         ],
         "generated": {
           "by": "antigravity",
-          "at": "2026-11-10T23:28:03.423Z"
+          "at": "2026-11-12T05:39:27.513Z"
         }
       },
       "node_kind": "page",
@@ -1916,14 +1919,14 @@
       "source_location": "L36"
     },
     {
-      "id": "openwiki_runtime_container_image_moodle52_php83_2_php_8_3_and_dynamic_composer_checksum_verification",
-      "label": "2. PHP 8.3 and Dynamic Composer Checksum Verification",
+      "id": "openwiki_runtime_container_image_moodle52_php83_2_php_8_3_conditional_mysqli_vs_pgsql_drivers_and_dynamic_composer_verification",
+      "label": "2. PHP 8.3, Conditional `mysqli` vs. `pgsql` Drivers, and Dynamic Composer Verification",
       "_origin": "ast",
       "community": 13,
       "community_name": "NGINX + PHP 8.3 Container Image, GNU libiconv, and Moodle 5.2+ Bootstrap",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "2. php 8.3 and dynamic composer checksum verification",
+      "norm_label": "2. php 8.3, conditional `mysqli` vs. `pgsql` drivers, and dynamic composer verification",
       "source_file": "openwiki/runtime/container-image-moodle52-php83.md",
       "source_location": "L43"
     },
@@ -1937,7 +1940,7 @@
       "node_kind": "heading",
       "norm_label": "3. moodle 5.2.4 bootstrap, composer dependencies, and `/public` webroot (`setup_moodle.sh`)",
       "source_file": "openwiki/runtime/container-image-moodle52-php83.md",
-      "source_location": "L49"
+      "source_location": "L51"
     },
     {
       "id": "openwiki_runtime_container_image_moodle52_php83_nginx_php_8_3_container_image_gnu_libiconv_and_moodle_5_2_bootstrap",
@@ -2532,18 +2535,19 @@
       "label": "infrastructure-and-networking.md",
       "_origin": "ast",
       "community": 2,
-      "community_name": "GCP Infrastructure, Selective Adoption, and Cloud SQL MySQL 8.4",
+      "community_name": "GCP Infrastructure, Selective Adoption, and Cloud SQL MySQL 8.4 / PostgreSQL 16",
       "file_type": "document",
       "frontmatter": {
         "type": "architecture",
-        "title": "GCP Infrastructure, Selective Adoption, and Cloud SQL MySQL 8.4",
-        "description": "Automated provisioning architecture for custom VPC, private GKE (Standard or Autopilot) with CSI drivers, Cloud SQL MySQL 8.4, Memorystore Redis, and lifecycle scripts in 0-infra.",
+        "title": "GCP Infrastructure, Selective Adoption, and Cloud SQL MySQL 8.4 / PostgreSQL 16",
+        "description": "Automated provisioning architecture for custom VPC, private GKE (Standard or Autopilot) with CSI drivers, Cloud SQL MySQL 8.4 or PostgreSQL 16 (DB_TYPE), Memorystore Redis, and lifecycle scripts in 0-infra.",
         "tags": [
           "gcp",
           "gke",
           "autopilot",
           "cloud-sql",
           "mysql-8-4",
+          "postgresql-16",
           "redis",
           "vpc",
           "selective-adoption"
@@ -2551,7 +2555,7 @@
         "verified": [
           {
             "by": "openwiki/0.5.1",
-            "at": "2026-11-10 23:28:03.423000+00:00"
+            "at": "2026-11-12 05:39:27.513000+00:00"
           }
         ],
         "sources": [
@@ -2566,7 +2570,7 @@
         ],
         "generated": {
           "by": "antigravity",
-          "at": "2026-11-10T23:28:03.423Z"
+          "at": "2026-11-12T05:39:27.513Z"
         }
       },
       "node_kind": "page",
@@ -2579,7 +2583,7 @@
       "label": "storage-modalities.md",
       "_origin": "ast",
       "community": 2,
-      "community_name": "GCP Infrastructure, Selective Adoption, and Cloud SQL MySQL 8.4",
+      "community_name": "GCP Infrastructure, Selective Adoption, and Cloud SQL MySQL 8.4 / PostgreSQL 16",
       "file_type": "document",
       "frontmatter": {
         "type": "architecture",
@@ -2640,7 +2644,7 @@
       "label": "architecture/index.md",
       "_origin": "ast",
       "community": 2,
-      "community_name": "GCP Infrastructure, Selective Adoption, and Cloud SQL MySQL 8.4",
+      "community_name": "GCP Infrastructure, Selective Adoption, and Cloud SQL MySQL 8.4 / PostgreSQL 16",
       "file_type": "document",
       "node_kind": "page",
       "norm_label": "architecture/index.md",
@@ -2652,7 +2656,7 @@
       "label": "Files",
       "_origin": "ast",
       "community": 2,
-      "community_name": "GCP Infrastructure, Selective Adoption, and Cloud SQL MySQL 8.4",
+      "community_name": "GCP Infrastructure, Selective Adoption, and Cloud SQL MySQL 8.4 / PostgreSQL 16",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "files",
@@ -2664,7 +2668,7 @@
       "label": "Centralized Configuration and Pre-Flight Validation (`0-infra/envs.sh`)",
       "_origin": "ast",
       "community": 2,
-      "community_name": "GCP Infrastructure, Selective Adoption, and Cloud SQL MySQL 8.4",
+      "community_name": "GCP Infrastructure, Selective Adoption, and Cloud SQL MySQL 8.4 / PostgreSQL 16",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "centralized configuration and pre-flight validation (`0-infra/envs.sh`)",
@@ -2672,26 +2676,26 @@
       "source_location": "L34"
     },
     {
-      "id": "openwiki_architecture_infrastructure_and_networking_cloud_sql_mysql_8_4_for_moodle_5_0",
-      "label": "Cloud SQL MySQL 8.4 for Moodle 5.0+",
+      "id": "openwiki_architecture_infrastructure_and_networking_cloud_sql_mysql_8_4_and_postgresql_16_for_moodle_5_0",
+      "label": "Cloud SQL MySQL 8.4 and PostgreSQL 16 for Moodle 5.0+",
       "_origin": "ast",
       "community": 2,
-      "community_name": "GCP Infrastructure, Selective Adoption, and Cloud SQL MySQL 8.4",
+      "community_name": "GCP Infrastructure, Selective Adoption, and Cloud SQL MySQL 8.4 / PostgreSQL 16",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "cloud sql mysql 8.4 for moodle 5.0+",
+      "norm_label": "cloud sql mysql 8.4 and postgresql 16 for moodle 5.0+",
       "source_file": "openwiki/architecture/infrastructure-and-networking.md",
-      "source_location": "L64"
+      "source_location": "L65"
     },
     {
-      "id": "openwiki_architecture_infrastructure_and_networking_gcp_infrastructure_selective_adoption_and_cloud_sql_mysql_8_4",
-      "label": "GCP Infrastructure, Selective Adoption, and Cloud SQL MySQL 8.4",
+      "id": "openwiki_architecture_infrastructure_and_networking_gcp_infrastructure_selective_adoption_and_cloud_sql_mysql_8_4_postgresql_16",
+      "label": "GCP Infrastructure, Selective Adoption, and Cloud SQL MySQL 8.4 / PostgreSQL 16",
       "_origin": "ast",
       "community": 2,
-      "community_name": "GCP Infrastructure, Selective Adoption, and Cloud SQL MySQL 8.4",
+      "community_name": "GCP Infrastructure, Selective Adoption, and Cloud SQL MySQL 8.4 / PostgreSQL 16",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "gcp infrastructure, selective adoption, and cloud sql mysql 8.4",
+      "norm_label": "gcp infrastructure, selective adoption, and cloud sql mysql 8.4 / postgresql 16",
       "source_file": "openwiki/architecture/infrastructure-and-networking.md",
       "source_location": "L17"
     },
@@ -2700,19 +2704,19 @@
       "label": "Infrastructure Cleanup and Lifecycle Scripts (`cleanup-moodle-install.sh`, `infra-destroy.sh`, `infra-pause.sh`, `infra-resume.sh`)",
       "_origin": "ast",
       "community": 2,
-      "community_name": "GCP Infrastructure, Selective Adoption, and Cloud SQL MySQL 8.4",
+      "community_name": "GCP Infrastructure, Selective Adoption, and Cloud SQL MySQL 8.4 / PostgreSQL 16",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "infrastructure cleanup and lifecycle scripts (`cleanup-moodle-install.sh`, `infra-destroy.sh`, `infra-pause.sh`, `infra-resume.sh`)",
       "source_file": "openwiki/architecture/infrastructure-and-networking.md",
-      "source_location": "L72"
+      "source_location": "L73"
     },
     {
       "id": "openwiki_architecture_infrastructure_and_networking_selective_infrastructure_adoption",
       "label": "Selective Infrastructure Adoption",
       "_origin": "ast",
       "community": 2,
-      "community_name": "GCP Infrastructure, Selective Adoption, and Cloud SQL MySQL 8.4",
+      "community_name": "GCP Infrastructure, Selective Adoption, and Cloud SQL MySQL 8.4 / PostgreSQL 16",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "selective infrastructure adoption",
@@ -2724,19 +2728,19 @@
       "label": "VPC Network, Private GKE Cluster, and CSI Drivers",
       "_origin": "ast",
       "community": 2,
-      "community_name": "GCP Infrastructure, Selective Adoption, and Cloud SQL MySQL 8.4",
+      "community_name": "GCP Infrastructure, Selective Adoption, and Cloud SQL MySQL 8.4 / PostgreSQL 16",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "vpc network, private gke cluster, and csi drivers",
       "source_file": "openwiki/architecture/infrastructure-and-networking.md",
-      "source_location": "L56"
+      "source_location": "L57"
     },
     {
       "id": "openwiki_architecture_storage_modalities_comparison_cloud_filestore_vs_regional_replicated_pd",
       "label": "Comparison: Cloud Filestore vs. Regional Replicated PD",
       "_origin": "ast",
       "community": 2,
-      "community_name": "GCP Infrastructure, Selective Adoption, and Cloud SQL MySQL 8.4",
+      "community_name": "GCP Infrastructure, Selective Adoption, and Cloud SQL MySQL 8.4 / PostgreSQL 16",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "comparison: cloud filestore vs. regional replicated pd",
@@ -2748,7 +2752,7 @@
       "label": "Configurable Sizes and Capacities (`0-infra/envs.sh` and `create-config-files.sh`)",
       "_origin": "ast",
       "community": 2,
-      "community_name": "GCP Infrastructure, Selective Adoption, and Cloud SQL MySQL 8.4",
+      "community_name": "GCP Infrastructure, Selective Adoption, and Cloud SQL MySQL 8.4 / PostgreSQL 16",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "configurable sizes and capacities (`0-infra/envs.sh` and `create-config-files.sh`)",
@@ -2760,7 +2764,7 @@
       "label": "Static vs. Dynamic Provisioning for Regional Replicated PD",
       "_origin": "ast",
       "community": 2,
-      "community_name": "GCP Infrastructure, Selective Adoption, and Cloud SQL MySQL 8.4",
+      "community_name": "GCP Infrastructure, Selective Adoption, and Cloud SQL MySQL 8.4 / PostgreSQL 16",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "static vs. dynamic provisioning for regional replicated pd",
@@ -2772,7 +2776,7 @@
       "label": "Storage Modalities: Filestore vs. Regional Replicated Persistent Disk",
       "_origin": "ast",
       "community": 2,
-      "community_name": "GCP Infrastructure, Selective Adoption, and Cloud SQL MySQL 8.4",
+      "community_name": "GCP Infrastructure, Selective Adoption, and Cloud SQL MySQL 8.4 / PostgreSQL 16",
       "file_type": "document",
       "node_kind": "heading",
       "norm_label": "storage modalities: filestore vs. regional replicated persistent disk",
@@ -3461,7 +3465,7 @@
       "frontmatter": {
         "type": "operations",
         "title": "Cloud CDN for Moodle, NGINX/PHP-FPM Tuning, and Ingress Routing",
-        "description": "Integration between Google Cloud CDN (USE_ORIGIN_HEADERS), NGINX X-Accel-Redirect (^~ prefix protection), Moodle slasharguments, Set-Cookie stripping on public assets (including yui_combo.php), private file protection, and Ingress routing.",
+        "description": "Integration between Google Cloud CDN (USE_ORIGIN_HEADERS), NGINX X-Accel-Redirect (^~ prefix protection), fastcgi_request_buffering off for 10GB+ streaming uploads, Moodle slasharguments, Set-Cookie stripping on public assets, private file protection, and Ingress routing.",
         "tags": [
           "cloud-cdn",
           "nginx",
@@ -3475,7 +3479,7 @@
         "verified": [
           {
             "by": "openwiki/0.5.1",
-            "at": "2026-11-10 23:28:03.423000+00:00"
+            "at": "2026-11-12 05:39:27.513000+00:00"
           }
         ],
         "sources": [
@@ -3506,7 +3510,7 @@
         ],
         "generated": {
           "by": "antigravity",
-          "at": "2026-11-10T23:28:03.423Z"
+          "at": "2026-11-12T05:39:27.513Z"
         }
       },
       "node_kind": "page",
@@ -3523,21 +3527,23 @@
       "file_type": "document",
       "frontmatter": {
         "type": "operations",
-        "title": "GKE Deployments, Upload Pod Isolation, and Horizontal Pod Autoscaling",
-        "description": "Kubernetes Deployment architecture for Moodle 5.2.4, isolated subPaths and resource limits for dedicated heavy file-upload pods, manifest rendering via create-config-files.sh, and HPA policies.",
+        "title": "GKE Deployments, 10GB Upload Pod Isolation, ProxySQL, and Horizontal Pod Autoscaling",
+        "description": "Kubernetes Deployment architecture for Moodle 5.2.4, Guaranteed QoS rightsizing, isolated 10GB+ upload pods (disk-backed /tmp, PHP_FPM_MAX_CHILDREN=1), optional Secrets, ProxySQL connection multiplexing, and HPA policies.",
         "tags": [
           "gke",
           "kubernetes",
           "deployments",
           "uploads",
+          "proxysql",
           "hpa",
           "configmap",
+          "secret",
           "envsubst"
         ],
         "verified": [
           {
             "by": "openwiki/0.5.1",
-            "at": "2026-11-10 23:28:03.423000+00:00"
+            "at": "2026-11-12 05:39:27.513000+00:00"
           }
         ],
         "sources": [
@@ -3568,7 +3574,7 @@
         ],
         "generated": {
           "by": "antigravity",
-          "at": "2026-11-10T23:28:03.423Z"
+          "at": "2026-11-12T05:39:27.513Z"
         }
       },
       "node_kind": "page",
@@ -3589,14 +3595,14 @@
       "source_location": "L56"
     },
     {
-      "id": "openwiki_operations_cloud_cdn_and_ingress_2_nginx_cache_control_rules_for_cloud_cdn",
-      "label": "2. NGINX Cache Control Rules for Cloud CDN",
+      "id": "openwiki_operations_cloud_cdn_and_ingress_2_nginx_cache_control_rules_and_streaming_uploads",
+      "label": "2. NGINX Cache Control Rules and Streaming Uploads",
       "_origin": "ast",
       "community": 4,
       "community_name": "Cloud CDN for Moodle, NGINX/PHP-FPM Tuning, and Ingress Routing",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "2. nginx cache control rules for cloud cdn",
+      "norm_label": "2. nginx cache control rules and streaming uploads",
       "source_file": "openwiki/operations/cloud-cdn-and-ingress.md",
       "source_location": "L64"
     },
@@ -3610,7 +3616,7 @@
       "node_kind": "heading",
       "norm_label": "3. `backendconfig` configuration (`use_origin_headers` vs. `uploads`)",
       "source_file": "openwiki/operations/cloud-cdn-and-ingress.md",
-      "source_location": "L78"
+      "source_location": "L79"
     },
     {
       "id": "openwiki_operations_cloud_cdn_and_ingress_4_nginx_php_fpm_8_3_tuning_and_ingress_routing",
@@ -3622,7 +3628,7 @@
       "node_kind": "heading",
       "norm_label": "4. nginx & php-fpm 8.3 tuning and ingress routing",
       "source_file": "openwiki/operations/cloud-cdn-and-ingress.md",
-      "source_location": "L86"
+      "source_location": "L87"
     },
     {
       "id": "openwiki_operations_cloud_cdn_and_ingress_cloud_cdn_for_moodle_nginx_php_fpm_tuning_and_ingress_routing",
@@ -3637,50 +3643,50 @@
       "source_location": "L25"
     },
     {
-      "id": "openwiki_operations_gke_deployments_and_uploads_isolation_1_automated_manifest_rendering_create_config_files_sh",
-      "label": "1. Automated Manifest Rendering (`create-config-files.sh`)",
+      "id": "openwiki_operations_gke_deployments_and_uploads_isolation_1_automated_manifest_rendering_and_secret_isolation_create_config_files_sh",
+      "label": "1. Automated Manifest Rendering and Secret Isolation (`create-config-files.sh`)",
       "_origin": "ast",
       "community": 4,
       "community_name": "Cloud CDN for Moodle, NGINX/PHP-FPM Tuning, and Ingress Routing",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "1. automated manifest rendering (`create-config-files.sh`)",
+      "norm_label": "1. automated manifest rendering and secret isolation (`create-config-files.sh`)",
       "source_file": "openwiki/operations/gke-deployments-and-uploads-isolation.md",
-      "source_location": "L41"
+      "source_location": "L42"
     },
     {
-      "id": "openwiki_operations_gke_deployments_and_uploads_isolation_2_configuration_and_resource_isolation_on_upload_pods",
-      "label": "2. Configuration and Resource Isolation on Upload Pods",
+      "id": "openwiki_operations_gke_deployments_and_uploads_isolation_2_10gb_streaming_uploads_and_subpath_isolation_moodle_deployment_uploads",
+      "label": "2. 10GB+ Streaming Uploads and SubPath Isolation (`moodle-deployment-uploads`)",
       "_origin": "ast",
       "community": 4,
       "community_name": "Cloud CDN for Moodle, NGINX/PHP-FPM Tuning, and Ingress Routing",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "2. configuration and resource isolation on upload pods",
+      "norm_label": "2. 10gb+ streaming uploads and subpath isolation (`moodle-deployment-uploads`)",
       "source_file": "openwiki/operations/gke-deployments-and-uploads-isolation.md",
       "source_location": "L50"
     },
     {
-      "id": "openwiki_operations_gke_deployments_and_uploads_isolation_3_independent_horizontal_pod_autoscaling_9_hpa",
-      "label": "3. Independent Horizontal Pod Autoscaling (`9-hpa/`)",
+      "id": "openwiki_operations_gke_deployments_and_uploads_isolation_3_pod_rightsizing_guaranteed_qos_proxysql_and_hpa_9_hpa",
+      "label": "3. Pod Rightsizing (`Guaranteed` QoS), ProxySQL, and HPA (`9-hpa/`)",
       "_origin": "ast",
       "community": 4,
       "community_name": "Cloud CDN for Moodle, NGINX/PHP-FPM Tuning, and Ingress Routing",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "3. independent horizontal pod autoscaling (`9-hpa/`)",
+      "norm_label": "3. pod rightsizing (`guaranteed` qos), proxysql, and hpa (`9-hpa/`)",
       "source_file": "openwiki/operations/gke-deployments-and-uploads-isolation.md",
-      "source_location": "L66"
+      "source_location": "L61"
     },
     {
-      "id": "openwiki_operations_gke_deployments_and_uploads_isolation_gke_deployments_upload_pod_isolation_and_horizontal_pod_autoscaling",
-      "label": "GKE Deployments, Upload Pod Isolation, and Horizontal Pod Autoscaling",
+      "id": "openwiki_operations_gke_deployments_and_uploads_isolation_gke_deployments_10gb_upload_pod_isolation_proxysql_and_horizontal_pod_autoscaling",
+      "label": "GKE Deployments, 10GB Upload Pod Isolation, ProxySQL, and Horizontal Pod Autoscaling",
       "_origin": "ast",
       "community": 4,
       "community_name": "Cloud CDN for Moodle, NGINX/PHP-FPM Tuning, and Ingress Routing",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "gke deployments, upload pod isolation, and horizontal pod autoscaling",
+      "norm_label": "gke deployments, 10gb upload pod isolation, proxysql, and horizontal pod autoscaling",
       "source_file": "openwiki/operations/gke-deployments-and-uploads-isolation.md",
       "source_location": "L25"
     },
@@ -5122,7 +5128,7 @@
     },
     {
       "source": "openwiki_architecture_infrastructure_and_networking",
-      "target": "openwiki_architecture_infrastructure_and_networking_gcp_infrastructure_selective_adoption_and_cloud_sql_mysql_8_4",
+      "target": "openwiki_architecture_infrastructure_and_networking_gcp_infrastructure_selective_adoption_and_cloud_sql_mysql_8_4_postgresql_16",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -5132,7 +5138,7 @@
       "weight": 1.0
     },
     {
-      "source": "openwiki_architecture_infrastructure_and_networking_gcp_infrastructure_selective_adoption_and_cloud_sql_mysql_8_4",
+      "source": "openwiki_architecture_infrastructure_and_networking_gcp_infrastructure_selective_adoption_and_cloud_sql_mysql_8_4_postgresql_16",
       "target": "openwiki_architecture_infrastructure_and_networking_centralized_configuration_and_pre_flight_validation_0_infra_envs_sh",
       "relation": "contains",
       "_origin": "ast",
@@ -5143,7 +5149,7 @@
       "weight": 1.0
     },
     {
-      "source": "openwiki_architecture_infrastructure_and_networking_gcp_infrastructure_selective_adoption_and_cloud_sql_mysql_8_4",
+      "source": "openwiki_architecture_infrastructure_and_networking_gcp_infrastructure_selective_adoption_and_cloud_sql_mysql_8_4_postgresql_16",
       "target": "openwiki_architecture_infrastructure_and_networking_selective_infrastructure_adoption",
       "relation": "contains",
       "_origin": "ast",
@@ -5154,36 +5160,36 @@
       "weight": 1.0
     },
     {
-      "source": "openwiki_architecture_infrastructure_and_networking_gcp_infrastructure_selective_adoption_and_cloud_sql_mysql_8_4",
+      "source": "openwiki_architecture_infrastructure_and_networking_gcp_infrastructure_selective_adoption_and_cloud_sql_mysql_8_4_postgresql_16",
       "target": "openwiki_architecture_infrastructure_and_networking_vpc_network_private_gke_cluster_and_csi_drivers",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "openwiki/architecture/infrastructure-and-networking.md",
-      "source_location": "L56",
+      "source_location": "L57",
       "weight": 1.0
     },
     {
-      "source": "openwiki_architecture_infrastructure_and_networking_gcp_infrastructure_selective_adoption_and_cloud_sql_mysql_8_4",
-      "target": "openwiki_architecture_infrastructure_and_networking_cloud_sql_mysql_8_4_for_moodle_5_0",
+      "source": "openwiki_architecture_infrastructure_and_networking_gcp_infrastructure_selective_adoption_and_cloud_sql_mysql_8_4_postgresql_16",
+      "target": "openwiki_architecture_infrastructure_and_networking_cloud_sql_mysql_8_4_and_postgresql_16_for_moodle_5_0",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "openwiki/architecture/infrastructure-and-networking.md",
-      "source_location": "L64",
+      "source_location": "L65",
       "weight": 1.0
     },
     {
-      "source": "openwiki_architecture_infrastructure_and_networking_gcp_infrastructure_selective_adoption_and_cloud_sql_mysql_8_4",
+      "source": "openwiki_architecture_infrastructure_and_networking_gcp_infrastructure_selective_adoption_and_cloud_sql_mysql_8_4_postgresql_16",
       "target": "openwiki_architecture_infrastructure_and_networking_infrastructure_cleanup_and_lifecycle_scripts_cleanup_moodle_install_sh_infra_destroy_sh_infra_pause_sh_infra_resume_sh",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "openwiki/architecture/infrastructure-and-networking.md",
-      "source_location": "L72",
+      "source_location": "L73",
       "weight": 1.0
     },
     {
@@ -5276,7 +5282,7 @@
     },
     {
       "source": "openwiki_operations_cloud_cdn_and_ingress_cloud_cdn_for_moodle_nginx_php_fpm_tuning_and_ingress_routing",
-      "target": "openwiki_operations_cloud_cdn_and_ingress_2_nginx_cache_control_rules_for_cloud_cdn",
+      "target": "openwiki_operations_cloud_cdn_and_ingress_2_nginx_cache_control_rules_and_streaming_uploads",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -5293,7 +5299,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "openwiki/operations/cloud-cdn-and-ingress.md",
-      "source_location": "L78",
+      "source_location": "L79",
       "weight": 1.0
     },
     {
@@ -5304,12 +5310,12 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "openwiki/operations/cloud-cdn-and-ingress.md",
-      "source_location": "L86",
+      "source_location": "L87",
       "weight": 1.0
     },
     {
       "source": "openwiki_operations_gke_deployments_and_uploads_isolation",
-      "target": "openwiki_operations_gke_deployments_and_uploads_isolation_gke_deployments_upload_pod_isolation_and_horizontal_pod_autoscaling",
+      "target": "openwiki_operations_gke_deployments_and_uploads_isolation_gke_deployments_10gb_upload_pod_isolation_proxysql_and_horizontal_pod_autoscaling",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -5319,19 +5325,19 @@
       "weight": 1.0
     },
     {
-      "source": "openwiki_operations_gke_deployments_and_uploads_isolation_gke_deployments_upload_pod_isolation_and_horizontal_pod_autoscaling",
-      "target": "openwiki_operations_gke_deployments_and_uploads_isolation_1_automated_manifest_rendering_create_config_files_sh",
+      "source": "openwiki_operations_gke_deployments_and_uploads_isolation_gke_deployments_10gb_upload_pod_isolation_proxysql_and_horizontal_pod_autoscaling",
+      "target": "openwiki_operations_gke_deployments_and_uploads_isolation_1_automated_manifest_rendering_and_secret_isolation_create_config_files_sh",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "openwiki/operations/gke-deployments-and-uploads-isolation.md",
-      "source_location": "L41",
+      "source_location": "L42",
       "weight": 1.0
     },
     {
-      "source": "openwiki_operations_gke_deployments_and_uploads_isolation_gke_deployments_upload_pod_isolation_and_horizontal_pod_autoscaling",
-      "target": "openwiki_operations_gke_deployments_and_uploads_isolation_2_configuration_and_resource_isolation_on_upload_pods",
+      "source": "openwiki_operations_gke_deployments_and_uploads_isolation_gke_deployments_10gb_upload_pod_isolation_proxysql_and_horizontal_pod_autoscaling",
+      "target": "openwiki_operations_gke_deployments_and_uploads_isolation_2_10gb_streaming_uploads_and_subpath_isolation_moodle_deployment_uploads",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -5341,14 +5347,14 @@
       "weight": 1.0
     },
     {
-      "source": "openwiki_operations_gke_deployments_and_uploads_isolation_gke_deployments_upload_pod_isolation_and_horizontal_pod_autoscaling",
-      "target": "openwiki_operations_gke_deployments_and_uploads_isolation_3_independent_horizontal_pod_autoscaling_9_hpa",
+      "source": "openwiki_operations_gke_deployments_and_uploads_isolation_gke_deployments_10gb_upload_pod_isolation_proxysql_and_horizontal_pod_autoscaling",
+      "target": "openwiki_operations_gke_deployments_and_uploads_isolation_3_pod_rightsizing_guaranteed_qos_proxysql_and_hpa_9_hpa",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "openwiki/operations/gke-deployments-and-uploads-isolation.md",
-      "source_location": "L66",
+      "source_location": "L61",
       "weight": 1.0
     },
     {
@@ -5419,7 +5425,7 @@
     },
     {
       "source": "openwiki_runtime_container_image_moodle52_php83_nginx_php_8_3_container_image_gnu_libiconv_and_moodle_5_2_bootstrap",
-      "target": "openwiki_runtime_container_image_moodle52_php83_2_php_8_3_and_dynamic_composer_checksum_verification",
+      "target": "openwiki_runtime_container_image_moodle52_php83_2_php_8_3_conditional_mysqli_vs_pgsql_drivers_and_dynamic_composer_verification",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -5436,7 +5442,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "openwiki/runtime/container-image-moodle52-php83.md",
-      "source_location": "L49",
+      "source_location": "L51",
       "weight": 1.0
     },
     {
@@ -7270,5 +7276,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "0e3aa594c6f270635a32043c2d2b32bb6dbab8fd"
+  "built_at_commit": "6ee9cc2e52130278961df91569ae33cb42dc7bf2"
 }
