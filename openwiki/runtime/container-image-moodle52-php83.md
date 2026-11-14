@@ -1,11 +1,11 @@
 ---
 type: runtime
 title: NGINX + PHP 8.3 Container Image, GNU libiconv, and Moodle 5.2+ Bootstrap
-description: Multi-stage Alpine 3.21 + PHP 8.3 container build, preloadable_libiconv.so compilation, conditional mysqli vs. pgsql driver activation, Redis igbinary/zstd tuning, Moodle 5.1+ /public webroot, Composer, Moosh 1.51, and local_redislock detection.
-tags: [docker, alpine, php83, libiconv, moodle-5-2, moosh, composer, redislock, pgsql, igbinary, zstd]
+description: Multi-stage Alpine 3.21 + PHP 8.3 container build, preloadable_libiconv.so compilation, conditional mysqli vs. pgsql driver activation, Redis igbinary/zstd tuning, Moodle 5.0+ Routing Engine ($CFG->routerconfigured = true), Moodle 5.1+ /public webroot, Composer, Moosh 1.51, and local_redislock detection.
+tags: [docker, alpine, php83, libiconv, moodle-5-2, moosh, composer, redislock, pgsql, igbinary, zstd, router]
 verified:
   - by: openwiki/0.5.1
-    at: 2026-11-12T05:39:27.513Z
+    at: 2026-11-14T09:31:55.630Z
 sources:
   - id: openwiki-source-9668b922e15526bcb075e159
     resource: repo://4-moodle-image-builder/base/opt/entrypoint.sh
@@ -17,7 +17,7 @@ sources:
     resource: repo://4-moodle-image-builder/Dockerfile.nginx
   - id: openwiki-source-264fd3f40ce4ca69414ec2b9
     resource: repo://4-moodle-image-builder/scripts/build-gnu-libiconv.sh
-generated: { by: "antigravity", at: "2026-11-12T05:39:27.513Z" }
+generated: { by: "antigravity", at: "2026-11-14T09:31:55.630Z" }
 ---
 
 # NGINX + PHP 8.3 Container Image, GNU libiconv, and Moodle 5.2+ Bootstrap
@@ -63,5 +63,5 @@ At container startup, `4-moodle-image-builder/base/opt/setup_moodle.sh` inspects
    - All 13 binary-path and SMTP settings are applied in a single `php83 -r` call using `set_config()`, reading `SMTP_PASSWORD` via `getenv('SMTP_PASSWORD')` without exposing the secret in process listings (`ps`).
 4. **Automatic `/public` Webroot Detection (`MDL-83424`) and Port `8080` `publicpaths.php` Check**:
    - In Moodle 5.1+, all web entrypoints moved under `$MOODLE_PATH/public`. `setup_moodle.sh` checks `if [ -d "$MOODLE_PATH/public" ]` and automatically updates the NGINX `root` directive in `/etc/nginx/nginx.conf` to `root ${MOODLE_ROOT_PATH}/moodle/public;`, while rewriting `publicpaths.php` to target `http://localhost:8080` for internal container self-checks.
-5. **Redis `igbinary` + `zstd` High-Concurrency Tuning, Moosh 1.51 (`master`), and `local_redislock`**:
-   - `4-moodle-image-builder/config.php.template` enables `$CFG->session_redis_serializer_use_igbinary = true` and `$CFG->session_redis_compressor = 'zstd'` (~55% smaller session payloads and 4x faster serialization), and checks `is_readable(__DIR__ . '/public/local/redislock/classes/lock/redis_lock_factory.php') || is_readable(__DIR__ . '/local/redislock/classes/lock/redis_lock_factory.php') || class_exists('\\local_redislock\\lock\\redis_lock_factory')` before activating `$CFG->lock_factory`.
+5. **Moodle 5.0+ Routing Engine (`$CFG->routerconfigured = true`), Redis `igbinary` + `zstd` High-Concurrency Tuning, Moosh 1.51 (`master`), and `local_redislock`**:
+   - `4-moodle-image-builder/config.php.template` sets `$CFG->routerconfigured = true;` to enable Moodle's SlimPHP routing engine (`/r.php` for REST API v2 and shimmed controllers), enables `$CFG->session_redis_serializer_use_igbinary = true` and `$CFG->session_redis_compressor = 'zstd'` (~55% smaller session payloads and 4x faster serialization), and checks `is_readable(__DIR__ . '/public/local/redislock/classes/lock/redis_lock_factory.php') || is_readable(__DIR__ . '/local/redislock/classes/lock/redis_lock_factory.php') || class_exists('\\local_redislock\\lock\\redis_lock_factory')` before activating `$CFG->lock_factory`.

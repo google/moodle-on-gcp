@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:3ac92ad95dcf3b12f729a2b982b490c9f5b8681aad2fd93b43083baee5da6ed4",
+  "pageVersion": "sha256:cd91a3322b4f609bfa4ca6683f005e51fa50fe816e99d9852997f75aa6d29150",
   "claims": [
     {
       "id": "claim_03fe0ac01f6b4eb4a676bd753e952267",
@@ -57,10 +57,20 @@
           "version": "repo-lines-v1:sha256:da308ad996e02cbe20c7654ae6a696dc16ce50bfb93967ce9e64d1c44e1051a5:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiY2Q3ZDg3YzIzYzc5MWVmYTEwNmQ2N2QzMDM2NmM2YTJlY2FlNWVmMzFhY2RkYjcxODhkZGVlNzRlZGQ5MDM1OCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDQ1OWI5NjJkZGRkZDNhMmNlZmYwNzNlZjRmMjkwYjUwODIyYzRiOTVlMWZjYmZmMzEzNWM0ODM1ZTRkMzUwNyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiODFlNWY5YWQ3Y2QxOTA5ZWNhNzYwNDIwM2YxYzYyYjViOWVlMGExMmJjMjg3MzIyMTFlYWY2NzUyYzhmMTNmZSJ9"
         }
       ]
+    },
+    {
+      "id": "claim_88db57312e8f4cedacb18f4f5ffda46b",
+      "statement": "4-moodle-image-builder/config.php.template sets $CFG->routerconfigured = true to declare that the web server forwards fallback and shimmed routes to Moodle's Routing Engine (/r.php).",
+      "evidence": [
+        {
+          "resource": "repo://4-moodle-image-builder/config.php.template#L8-L10",
+          "version": "repo-lines-v1:sha256:8c34c06ae199ea0bacf37d2dfb5d7ba2fe245985f1971f01a0c888a70d904773:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNTQ1ZjNhYTA1ZDExNDIyZDg3MzhjYzljYzgyODIwMGUzNDE4NDI3YjM3ZDMwNDMwODJlN2VmZTlhY2U4YjE3OSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiN2FlMjllMTVlZjM3ZmUzMGE3MGNhMDZiYjYyODllNThiOTBlNzdkNzE3NWFkNTgxYWMyOWIyZWJkYTk5NTY3NCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDQ1OWI5NjJkZGRkZDNhMmNlZmYwNzNlZjRmMjkwYjUwODIyYzRiOTVlMWZjYmZmMzEzNWM0ODM1ZTRkMzUwNyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZDBhOTM1ZDU0MDBkYjliZjQ2MmNkYWRlNWViM2RkN2JjMjhkNTJjNmJmNzAyNzdlNzZmZTNkZjY3YzJhYzVjMSJ9"
+        }
+      ]
     }
   ],
   "verification": {
     "by": "openwiki/0.5.1",
-    "at": "2026-11-12T05:39:27.513Z"
+    "at": "2026-11-14T09:31:55.630Z"
   }
 }

@@ -1,18 +1,18 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:a4c32632bd38f518413a67af54ebe91109dcf1ef42d60fe3b4bb734eec74ee07",
+  "pageVersion": "sha256:a40dd8311c99c4f363d490f3d1b88920004c72b8270ca65f96fa739bd8c2e644",
   "claims": [
     {
       "id": "claim_e16278952a984bf58d8c8e9a1a697e2b",
       "statement": "config.php.template enables $CFG->slasharguments = true and nginx.conf-template propagates fastcgi_param PATH_INFO $fastcgi_path_info so PHP-FPM resolves versioned Moodle asset URLs.",
       "evidence": [
         {
-          "resource": "repo://4-moodle-image-builder/base/etc/nginx/nginx.conf-template#L101-L139",
-          "version": "repo-lines-v1:sha256:59fa08b2644ea729bb8d166443508f1a33552e84d364ccbff6b72a43b3f45d68:eyJzZWxlY3RlZExpbmVDb3VudCI6MzksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjliYmJmODY0NmJjOTYyODI3YmUwMjNhN2FkYTY4MjcwOWJjOTNhNWU1ZGJkYmMwNWIwMDJmNjU3OWYzYzgzMzQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ4OTNmNDBlMzc4MWViODk2YzgyZDA0NmEwODA2N2ExMWUzNWNkZjJmMWRmYWYyNmZlYTkwYjhkYjY2NzY0MTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjNmYzc3NzZmNTUzZmYzNDUzZDFkNWZhNzE1NDBjZDE3MTM2NzQ5N2ViNDg2MWQwNmI1ZWM3Njg0YTExZmExNzAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImMyMjFjNThhYTBiMjU5ZDc5N2EyMjc5YzFlY2QzODQ4YTQ3ZTNlNDNiNTE3MGZmMzhiN2RiYmI0MzIyM2IyMjkifQ"
+          "resource": "repo://4-moodle-image-builder/base/etc/nginx/nginx.conf-template#L101-L141",
+          "version": "repo-lines-v1:sha256:f0670f8e19c4feee3395b88c62f3fc23680175c9c92fbcc36c5999983b3a3833:eyJzZWxlY3RlZExpbmVDb3VudCI6NDEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjliYmJmODY0NmJjOTYyODI3YmUwMjNhN2FkYTY4MjcwOWJjOTNhNWU1ZGJkYmMwNWIwMDJmNjU3OWYzYzgzMzQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ4OTNmNDBlMzc4MWViODk2YzgyZDA0NmEwODA2N2ExMWUzNWNkZjJmMWRmYWYyNmZlYTkwYjhkYjY2NzY0MTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjNmYzc3NzZmNTUzZmYzNDUzZDFkNWZhNzE1NDBjZDE3MTM2NzQ5N2ViNDg2MWQwNmI1ZWM3Njg0YTExZmExNzAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImMyMjFjNThhYTBiMjU5ZDc5N2EyMjc5YzFlY2QzODQ4YTQ3ZTNlNDNiNTE3MGZmMzhiN2RiYmI0MzIyM2IyMjkifQ"
         },
         {
           "resource": "repo://4-moodle-image-builder/config.php.template#L6-L6",
-          "version": "repo-lines-v1:sha256:cce476d8c8a55e01281b059d857bcb3a4e46d2470d88143ca2af768e9e5f7794:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiY2NlNDc2ZDhjOGE1NWUwMTI4MWIwNTlkODU3YmNiM2E0ZTQ2ZDI0NzBkODgxNDNjYTJhZjc2OGU5ZTVmNzc5NCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiY2NlNDc2ZDhjOGE1NWUwMTI4MWIwNTlkODU3YmNiM2E0ZTQ2ZDI0NzBkODgxNDNjYTJhZjc2OGU5ZTVmNzc5NCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiODhlOTZlMDY3M2FlM2U4MGEyYTUwMDM0MDJiZDJiYTkwZTQ5ZjRmYzAzZjk1ODdhMDI0YzIyYmI5YzM0ZmU5NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZDBhOTM1ZDU0MDBkYjliZjQ2MmNkYWRlNWViM2RkN2JjMjhkNTJjNmJmNzAyNzdlNzZmZTNkZjY3YzJhYzVjMSJ9"
+          "version": "repo-lines-v1:sha256:cce476d8c8a55e01281b059d857bcb3a4e46d2470d88143ca2af768e9e5f7794:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiY2NlNDc2ZDhjOGE1NWUwMTI4MWIwNTlkODU3YmNiM2E0ZTQ2ZDI0NzBkODgxNDNjYTJhZjc2OGU5ZTVmNzc5NCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiY2NlNDc2ZDhjOGE1NWUwMTI4MWIwNTlkODU3YmNiM2E0ZTQ2ZDI0NzBkODgxNDNjYTJhZjc2OGU5ZTVmNzc5NCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiODhlOTZlMDY3M2FlM2U4MGEyYTUwMDM0MDJiZDJiYTkwZTQ5ZjRmYzAzZjk1ODdhMDI0YzIyYmI5YzM0ZmU5NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNDBmNjBkYzdjZWU5MGQwOTM4NGNkMDVlNGI5MmU4ZDQ4ZjBkMDdhMDhlMDQyZDMyZWRmZGMwNzc1NzI2NDhmMSJ9"
         }
       ]
     },
@@ -53,10 +53,28 @@
           "version": "repo-lines-v1:sha256:8f3f0d87fb864a155b8d452b076b6372382a36ae4ce70e77685c8ed5ae878987:eyJzZWxlY3RlZExpbmVDb3VudCI6MzEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBhNDcxNTJlMjFkYzEwOTIwNTBiZDc5YzRlN2U4Y2FmZjNlZWRhOGI4ZTVmZmQxYjdjMzcyNzU2MTg2NDQ0ZjIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA5ZTE2N2VhMmQ1NjhhZDM5Y2RmMmM5NGY2N2M3M2VjZjVmMDgwMDc4YmZiMGRlMzc5M2QxZTU4Y2NmYWZkNWQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjBlMmM0ZjVlODVjZjAxZmVkOWZkMmIxYTU2N2FiYjMwYTU2ZjJjM2I0Yjc1OGEwMTJlZTEwYmU2ZjVlNDdiN2UiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImNkNzAyZjczYTFkNmY3ZmVhYTdlN2U2ZDc4YWM3YzM1YjZmY2RhOWRkY2ZjOWEwMTEzZmU4ZGJlNmIxMmY5YjIifQ"
         }
       ]
+    },
+    {
+      "id": "claim_32f26089b13b49c18fc8013dd0894fd4",
+      "statement": "config.php.template sets $CFG->routerconfigured = true and nginx.conf-template configures try_files $uri $uri/ /r.php in location / and try_files $fastcgi_script_name /r.php in location ~ [^/]\\.php(/|$) so both extensionless REST API v2 routes and removed .php shim routes (nofile_shim) are handled by Moodle's Routing Engine (/r.php).",
+      "evidence": [
+        {
+          "resource": "repo://4-moodle-image-builder/base/etc/nginx/nginx.conf-template#L130-L141",
+          "version": "repo-lines-v1:sha256:21f84694dd0644f6cf52522ebd546c3c369673f3392bfc08eea4c39b09b54a7f:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU3MjgzMzg2M2RiMTRhZGFjZGQxZDk5ZmQxZTY0Zjk3N2M1NjY1NDNhMTM2YjQwZTliYWZiNDJhNGZmNGI2NjciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ4OTNmNDBlMzc4MWViODk2YzgyZDA0NmEwODA2N2ExMWUzNWNkZjJmMWRmYWYyNmZlYTkwYjhkYjY2NzY0MTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjE5MWQzNzM4NjcwODVkOGNiNjNhNDExZjBjYjJiOTU4ZGFhOWRhYjNlN2ZkN2E3YzdiYmIwNmVkYjZlZmM4MWEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImMyMjFjNThhYTBiMjU5ZDc5N2EyMjc5YzFlY2QzODQ4YTQ3ZTNlNDNiNTE3MGZmMzhiN2RiYmI0MzIyM2IyMjkifQ"
+        },
+        {
+          "resource": "repo://4-moodle-image-builder/base/etc/nginx/nginx.conf-template#L76-L80",
+          "version": "repo-lines-v1:sha256:f0d1c948d54ba6e057fbb3acf9cc3a7e22ab730fb9d6c87dc6c52b6c6e9003db:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYWJiYmFhNGY2MzlmNjFiM2VlMzIyZWJhOTRlM2VkNTg1YjYyNDdiZDU3ZmJiNjQyOTdiOTY3MGJmYWEwMmUxYiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDg5M2Y0MGUzNzgxZWI4OTZjODJkMDQ2YTA4MDY3YTExZTM1Y2RmMmYxZGZhZjI2ZmVhOTBiOGRiNjY3NjQxMyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZWM2ZTA4NzIxODRhOTE3OTU0NzYxNGQ5ZjdmMDIxMWE0Y2EzNzE5NmUyYTFiOTAxNDc3MzU1MDgxZTI3ZmFkZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYTBmNjVlZmU0ZWY0ZjljODE5M2FjY2ZmYmQwNWUyYzc5OTVmMzljZmQzYzk2NzZiZDNiNmFlNjk5ZWRkZjIyZCJ9"
+        },
+        {
+          "resource": "repo://4-moodle-image-builder/config.php.template#L8-L10",
+          "version": "repo-lines-v1:sha256:8c34c06ae199ea0bacf37d2dfb5d7ba2fe245985f1971f01a0c888a70d904773:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNTQ1ZjNhYTA1ZDExNDIyZDg3MzhjYzljYzgyODIwMGUzNDE4NDI3YjM3ZDMwNDMwODJlN2VmZTlhY2U4YjE3OSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiN2FlMjllMTVlZjM3ZmUzMGE3MGNhMDZiYjYyODllNThiOTBlNzdkNzE3NWFkNTgxYWMyOWIyZWJkYTk5NTY3NCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDQ1OWI5NjJkZGRkZDNhMmNlZmYwNzNlZjRmMjkwYjUwODIyYzRiOTVlMWZjYmZmMzEzNWM0ODM1ZTRkMzUwNyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZDBhOTM1ZDU0MDBkYjliZjQ2MmNkYWRlNWViM2RkN2JjMjhkNTJjNmJmNzAyNzdlNzZmZTNkZjY3YzJhYzVjMSJ9"
+        }
+      ]
     }
   ],
   "verification": {
     "by": "openwiki/0.5.1",
-    "at": "2026-11-12T05:39:27.513Z"
+    "at": "2026-11-14T09:31:55.630Z"
   }
 }

@@ -1,7 +1,7 @@
-# Graph Report - modern-moodle-correction  (2026-11-12)
+# Graph Report - modern-moodle-correction  (2026-11-14)
 
 ## Corpus Check
-- 63 files · ~116,036 words
+- 63 files · ~116,618 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 41 file(s) not represented in the graph (top: .ini 30, .conf 4, (none) 2)
 
@@ -11,14 +11,14 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `0e3aa594`
+- Built from commit: `6ee9cc2e`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
 - envs.sh
 - README.md
-- GCP Infrastructure, Selective Adoption, and Cloud SQL MySQL 8.4
+- GCP Infrastructure, Selective Adoption, and Cloud SQL MySQL 8.4 / PostgreSQL 16
 - Deployment moodle-deployment (Primary Web Pod, PHP 8.3 & NGINX Mounts, tmpfs /tmp)
 - Cloud CDN for Moodle, NGINX/PHP-FPM Tuning, and Ingress Routing
 - validate_moodle_envs
@@ -56,7 +56,7 @@
 2. `Pre-requisites` - 7 edges
 3. `Deployment moodle-deployment (Primary Web Pod, PHP 8.3 & NGINX Mounts, tmpfs /tmp)` - 7 edges
 4. `Agent & Jules Configuration Guide (`google/moodle-on-gcp`)` - 6 edges
-5. `GCP Infrastructure, Selective Adoption, and Cloud SQL MySQL 8.4` - 6 edges
+5. `GCP Infrastructure, Selective Adoption, and Cloud SQL MySQL 8.4 / PostgreSQL 16` - 6 edges
 6. `Namespace moodle` - 6 edges
 7. `Deployment moodle-deployment-uploads (Dedicated Large Upload Pod, 512M/3600s)` - 6 edges
 8. `Configuring Redis Cache with Moodle` - 5 edges
@@ -88,9 +88,9 @@ Nodes (54): ARTIFACT_REGISTRY_NAME, CLOUD_BUILD_SA_EMAIL, CREATE_CLOUD_SQL, CREA
 Cohesion: 0.09
 Nodes (14): Building Moodle's container image, Deploying Backend Configuration (`BackendConfig`), Deploying infrastructure, Infrastructure information needed for Moodle image configuration, Deploying Ingress - Cloud Load Balancer, Deploying Ingress, Deploying Ingress - NGINX, Deploying Moodle's namespace (+6 more)
 
-### Community 2 - "GCP Infrastructure, Selective Adoption, and Cloud SQL MySQL 8.4"
+### Community 2 - "GCP Infrastructure, Selective Adoption, and Cloud SQL MySQL 8.4 / PostgreSQL 16"
 Cohesion: 0.14
-Nodes (11): Files, Centralized Configuration and Pre-Flight Validation (`0-infra/envs.sh`), Cloud SQL MySQL 8.4 for Moodle 5.0+, GCP Infrastructure, Selective Adoption, and Cloud SQL MySQL 8.4, Infrastructure Cleanup and Lifecycle Scripts (`cleanup-moodle-install.sh`, `infra-destroy.sh`, `infra-pause.sh`, `infra-resume.sh`), Selective Infrastructure Adoption, VPC Network, Private GKE Cluster, and CSI Drivers, Comparison: Cloud Filestore vs. Regional Replicated PD (+3 more)
+Nodes (11): Files, Centralized Configuration and Pre-Flight Validation (`0-infra/envs.sh`), Cloud SQL MySQL 8.4 and PostgreSQL 16 for Moodle 5.0+, GCP Infrastructure, Selective Adoption, and Cloud SQL MySQL 8.4 / PostgreSQL 16, Infrastructure Cleanup and Lifecycle Scripts (`cleanup-moodle-install.sh`, `infra-destroy.sh`, `infra-pause.sh`, `infra-resume.sh`), Selective Infrastructure Adoption, VPC Network, Private GKE Cluster, and CSI Drivers, Comparison: Cloud Filestore vs. Regional Replicated PD (+3 more)
 
 ### Community 3 - "Deployment moodle-deployment (Primary Web Pod, PHP 8.3 & NGINX Mounts, tmpfs /tmp)"
 Cohesion: 0.13
@@ -98,7 +98,7 @@ Nodes (22): PersistentVolume pv-filestore (2.5Ti ReadWriteMany NFS /moodleshare)
 
 ### Community 4 - "Cloud CDN for Moodle, NGINX/PHP-FPM Tuning, and Ingress Routing"
 Cohesion: 0.15
-Nodes (10): 1. Enabling `slasharguments`, `PATH_INFO`, and `X-Accel-Redirect` (`^~`) in Moodle and NGINX, 2. NGINX Cache Control Rules for Cloud CDN, 3. `BackendConfig` Configuration (`USE_ORIGIN_HEADERS` vs. `uploads`), 4. NGINX & PHP-FPM 8.3 Tuning and Ingress Routing, Cloud CDN for Moodle, NGINX/PHP-FPM Tuning, and Ingress Routing, 1. Automated Manifest Rendering (`create-config-files.sh`), 2. Configuration and Resource Isolation on Upload Pods, 3. Independent Horizontal Pod Autoscaling (`9-hpa/`) (+2 more)
+Nodes (10): 1. Enabling `slasharguments`, `PATH_INFO`, and `X-Accel-Redirect` (`^~`) in Moodle and NGINX, 2. NGINX Cache Control Rules and Streaming Uploads, 3. `BackendConfig` Configuration (`USE_ORIGIN_HEADERS` vs. `uploads`), 4. NGINX & PHP-FPM 8.3 Tuning and Ingress Routing, Cloud CDN for Moodle, NGINX/PHP-FPM Tuning, and Ingress Routing, 1. Automated Manifest Rendering and Secret Isolation (`create-config-files.sh`), 2. 10GB+ Streaming Uploads and SubPath Isolation (`moodle-deployment-uploads`), 3. Pod Rightsizing (`Guaranteed` QoS), ProxySQL, and HPA (`9-hpa/`) (+2 more)
 
 ### Community 5 - "validate_moodle_envs"
 Cohesion: 0.40
@@ -114,7 +114,7 @@ Nodes (5): Directories, Files, End-to-End Deployment Quickstart (Step by Step), 
 
 ### Community 13 - "NGINX + PHP 8.3 Container Image, GNU libiconv, and Moodle 5.2+ Bootstrap"
 Cohesion: 0.29
-Nodes (5): 1. Multi-Stage `preloadable_libiconv.so` Compilation (MDL-80440), 2. PHP 8.3 and Dynamic Composer Checksum Verification, 3. Moodle 5.2.4 Bootstrap, Composer Dependencies, and `/public` Webroot (`setup_moodle.sh`), NGINX + PHP 8.3 Container Image, GNU libiconv, and Moodle 5.2+ Bootstrap, Files
+Nodes (5): 1. Multi-Stage `preloadable_libiconv.so` Compilation (MDL-80440), 2. PHP 8.3, Conditional `mysqli` vs. `pgsql` Drivers, and Dynamic Composer Verification, 3. Moodle 5.2.4 Bootstrap, Composer Dependencies, and `/public` Webroot (`setup_moodle.sh`), NGINX + PHP 8.3 Container Image, GNU libiconv, and Moodle 5.2+ Bootstrap, Files
 
 ### Community 14 - "Choosing and Configuring Storage (`Filestore` vs. `Regional Replicated Persistent Disk`)"
 Cohesion: 0.33
@@ -204,5 +204,5 @@ _Questions this graph is uniquely positioned to answer:_
   _Cohesion score 0.03636363636363636 - nodes in this community are weakly interconnected._
 - **Should `README.md` be split into smaller, more focused modules?**
   _Cohesion score 0.08906882591093117 - nodes in this community are weakly interconnected._
-- **Should `GCP Infrastructure, Selective Adoption, and Cloud SQL MySQL 8.4` be split into smaller, more focused modules?**
+- **Should `GCP Infrastructure, Selective Adoption, and Cloud SQL MySQL 8.4 / PostgreSQL 16` be split into smaller, more focused modules?**
   _Cohesion score 0.14285714285714285 - nodes in this community are weakly interconnected._

@@ -1,11 +1,11 @@
 ---
 type: operations
 title: Cloud CDN for Moodle, NGINX/PHP-FPM Tuning, and Ingress Routing
-description: Integration between Google Cloud CDN (USE_ORIGIN_HEADERS), NGINX X-Accel-Redirect (^~ prefix protection), fastcgi_request_buffering off for 10GB+ streaming uploads, Moodle slasharguments, Set-Cookie stripping on public assets, private file protection, and Ingress routing.
-tags: [cloud-cdn, nginx, php-fpm, ingress, backendconfig, caching, moodle, x-accel-redirect]
+description: Integration between Google Cloud CDN (USE_ORIGIN_HEADERS), NGINX X-Accel-Redirect (^~ prefix protection), Moodle 5.0+ Routing Engine (r.php) with nofile_shim support, fastcgi_request_buffering off for 10GB+ streaming uploads, Moodle slasharguments, Set-Cookie stripping on public assets, private file protection, and Ingress routing.
+tags: [cloud-cdn, nginx, php-fpm, ingress, backendconfig, caching, moodle, x-accel-redirect, router]
 verified:
   - by: openwiki/0.5.1
-    at: 2026-11-12T05:39:27.513Z
+    at: 2026-11-14T09:31:55.630Z
 sources:
   - id: openwiki-source-f1819a6d2572649fd572f139
     resource: repo://4-moodle-image-builder/base/etc/nginx/nginx.conf-template
@@ -19,7 +19,7 @@ sources:
     resource: repo://6-backendconfig/ingress-backendconfig-nginx.yaml
   - id: openwiki-source-93c77b17f1a30ce2778ab508
     resource: repo://8-ingress/gce-ingress-external.yaml
-generated: { by: "antigravity", at: "2026-11-12T05:39:27.513Z" }
+generated: { by: "antigravity", at: "2026-11-14T09:31:55.630Z" }
 ---
 
 # Cloud CDN for Moodle, NGINX/PHP-FPM Tuning, and Ingress Routing
@@ -60,6 +60,10 @@ Moodle serves stylesheets, JavaScript/AMD bundles, YUI combos, web fonts, and th
 1. In `4-moodle-image-builder/config.php.template`, `$CFG->slasharguments = true;` instructs Moodle to generate path-based URLs containing the embedded theme/JS revision timestamp (e.g., `/theme/styles.php/boost/1730800000/all`).
 2. In `4-moodle-image-builder/base/etc/nginx/nginx.conf-template`, all FastCGI blocks execute `fastcgi_split_path_info ^(.+\.php)(/.+)$;` and pass `fastcgi_param PATH_INFO $fastcgi_path_info;` and `fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;`, which is required on Alpine NGINX for Moodle `slasharguments` and SCORM packages.
 3. **Protecting `X-Accel-Redirect` with `location ^~`**: When `$CFG->xsendfile = "X-Accel-Redirect"` is active in `config.php.template`, PHP-FPM writes compiled fonts, icons, and JS bundles into `/tmp/moodle/localcache/` and returns `X-Accel-Redirect: /localcachedir/...`. In NGINX, the internal blocks use the `^~` prefix modifier (`location ^~ /localcachedir/` and `location ^~ /dataroot/`) to prevent the static file extension regex (`location ~* \.(jpg|...|woff2|...)$`) from hijacking internal redirects and returning `404 Not Found`.
+4. **Moodle 5.0+ Routing Engine (`r.php`) and `nofile_shim` Support**:
+   - `4-moodle-image-builder/config.php.template` sets `$CFG->routerconfigured = true;` to signal that NGINX forwards fallback routes to Moodle's SlimPHP routing engine (`/r.php`, required for REST API v2 `/api/rest/v2/openapi.json` and shimmed core controllers).
+   - In `4-moodle-image-builder/base/etc/nginx/nginx.conf-template`, `location /` uses `try_files $uri $uri/ /r.php;` to route extensionless controller and REST API v2 paths to `/r.php`.
+   - Because NGINX evaluates regex location blocks (`location ~ [^/]\.php(/|$)`) before prefix blocks (`location /`), legacy `.php` paths that have been removed from disk and migrated to Moodle Route Shims (`nofile_shim`, such as `/lib/exampleshimroute2.php`) match `location ~ [^/]\.php(/|$)`. Placing `try_files $fastcgi_script_name /r.php;` immediately after `fastcgi_split_path_info ^(.+\.php)(/.+)$;` ensures that non-existent `.php` scripts fall back to `/r.php` while preserving `$_SERVER['REQUEST_URI']`, passing all 6 checks of `php admin/cli/checks.php --filter=router -v`.
 
 ## 2. NGINX Cache Control Rules and Streaming Uploads
 
