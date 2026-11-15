@@ -18,7 +18,9 @@ Very fist step to perform. Set of shell scripts that groups an initial set of ac
 <h2>1-pv</h2>
 
 Once Google Kubernetes Engine (GKE) is deployed, we first deploy a persistent volume (pv).
-  * *[pv-filestore.yaml](../1-pv/pv-filestore.yaml)*: YAML file that creates a persistent volume object with GKE.
+* *[pv-filestore.yaml](../1-pv/pv-filestore.yaml)*: YAML file that creates a PersistentVolume backed by Cloud Filestore (NFS `ReadWriteMany`).
+  * *[pv-regional-pd.yaml](../1-pv/pv-regional-pd.yaml)*: YAML file that creates a PersistentVolume backed by a Compute Engine Regional Replicated Persistent Disk (`pd.csi.storage.gke.io`).
+  * *[storageclass-regional-pd.yaml](../1-pv/storageclass-regional-pd.yaml)*: StorageClass for dynamic provisioning of Regional Replicated Persistent Disks (`replication-type: regional-pd`).
 ---
 <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/folder.svg" width="50" height="50">
 <h2>2-namespace</h2>
@@ -29,8 +31,9 @@ Next, we need to create a new namespace to group Moodle's objects. That's what t
 <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/folder.svg" width="50" height="50">
 <h2>3-pvc</h2>
 
-Once the file store (PV) exists we can go ahead and claim access to it. This is accomplished by the task executed under step 3.
-* *[pvc-filestore.yaml](../3-pvc/pvc-filestore.yaml)*: Does create a Persistent Volume Claim (PVC) object with Kubernetes cluster.
+Once the PersistentVolume (PV) exists we can go ahead and claim access to it. This is accomplished by the task executed under step 3.
+* *[pvc-filestore.yaml](../3-pvc/pvc-filestore.yaml)*: PersistentVolumeClaim for Cloud Filestore (`STORAGE_TYPE="filestore"`).
+* *[pvc-regional-pd.yaml](../3-pvc/pvc-regional-pd.yaml)*: PersistentVolumeClaim for Regional Replicated Persistent Disk (`STORAGE_TYPE="regional-pd"`).
 ---
 <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/solid/folder.svg" width="50" height="50">
 <h2>4-moodle-image-builder</h2>

@@ -1,0 +1,75 @@
+# Copyright 2026 Google LLC
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+name: Moodle SemVer Auto-Updater
+
+on:
+  schedule:
+    - cron: "0 6 * * 1"
+  workflow_dispatch:
+    inputs:
+      semver_scope:
+        description: "SemVer update policy: patch (v5.2.x), minor (v5.y.z), or major (vX.Y.Z)"
+        required: false
+        default: "patch"
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+      custom_series:
+        description: "Optional explicit target minor/version series (e.g. '5.3' or '5.2.5')"
+        required: false
+        default: ""
+        type: string
+
+permissions: {}
+
+jobs:
+  check-and-update-moodle:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+
+      - name: Check and apply Moodle SemVer update
+        id: semver
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SEMVER_SCOPE: ${{ inputs.semver_scope || 'patch' }}
+          CUSTOM_SERIES: ${{ inputs.custom_series || '' }}
+        run: python3 4-moodle-image-builder/scripts/update-moodle-semver.py
+
+      - name: Run repository verification suite
+        if: steps.semver.outputs.updated == 'true'
+        run: ./tests/verify-scripts-and-configs.sh
+
+      - name: Create Pull Request for Moodle SemVer update
+        if: steps.semver.outputs.updated == 'true'
+        uses: peter-evans/create-pull-request@22a9089034f40e5a961c8808d113e2c98fb63676 # v7.0.8
+        with:
+          branch: chore/moodle-semver-update
+          delete-branch: true
+          commit-message: "chore(moodle): update Moodle to ${{ steps.semver.outputs.new_version }}"
+          title: "chore(moodle): Update Moodle from ${{ steps.semver.outputs.old_version }} to ${{ steps.semver.outputs.new_version }}"
+          body: |
+            ## Summary
+            Automated SemVer update of Moodle from `${{ steps.semver.outputs.old_version }}` to `${{ steps.semver.outputs.new_version }}`.
+
+            - **Tarball SHA-256 (`MOODLE_SHA256`)**: `${{ steps.semver.outputs.sha256 }}`
+            - **Verification**: `./tests/verify-scripts-and-configs.sh` passed.

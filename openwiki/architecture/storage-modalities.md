@@ -5,7 +5,7 @@ description: Comparative architecture, configurable PV/PVC sizing, and static vs
 tags: [storage, filestore, regional-pd, csi, persistent-volume, gke]
 verified:
   - by: openwiki/0.5.1
-    at: 2026-11-12T05:39:27.513Z
+    at: 2026-11-15T21:21:21.950Z
 sources:
   - id: openwiki-source-75467caa28be1defc4942cd3
     resource: repo://0-infra/envs.sh
@@ -19,7 +19,7 @@ sources:
     resource: repo://3-pvc/pvc-regional-pd.yaml
   - id: openwiki-source-b23bb47d51c7c03a516ab733
     resource: repo://5a-deployment-no-helm/create-config-files.sh
-generated: { by: "antigravity", at: "2026-11-10T23:28:03.423Z" }
+generated: { by: "antigravity", at: "2026-11-15T21:21:21.950Z" }
 ---
 
 # Storage Modalities: Filestore vs. Regional Replicated Persistent Disk
@@ -30,7 +30,7 @@ Via the `STORAGE_TYPE` variable in `0-infra/envs.sh`, the repository supports th
 
 1. **`STORAGE_TYPE="filestore"` (Default)**: Managed Cloud Filestore over NFS (`ReadWriteMany`).
 2. **`STORAGE_TYPE="regional-pd"`**: Compute Engine Regional Replicated Persistent Disk synchronously replicated across two zones (`$ZONE` and `$REPLICA_ZONE`) via the `pd.csi.storage.gke.io` CSI driver.
-3. **`STORAGE_TYPE="none"`**: Skips storage provisioning in `0-infra/infra-creation.sh` to allow integrating pre-existing external volumes or sidecar replication layers.
+3. **`STORAGE_TYPE="none"`**: Skips storage provisioning in `0-infra/infra-creation.sh` to allow integrating pre-existing external PersistentVolumes or custom storage classes.
 
 ```mermaid
 flowchart LR

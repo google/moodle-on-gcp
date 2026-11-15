@@ -3,10 +3,13 @@ type: operations
 title: GKE Deployments, 10GB Upload Pod Isolation, ProxySQL, and Horizontal Pod Autoscaling
 description: Kubernetes Deployment architecture for Moodle 5.2.4, Guaranteed QoS rightsizing, isolated 10GB+ upload pods (disk-backed /tmp, PHP_FPM_MAX_CHILDREN=1), optional Secrets, ProxySQL connection multiplexing, and HPA policies.
 tags: [gke, kubernetes, deployments, uploads, proxysql, hpa, configmap, secret, envsubst]
-verified:
-  - by: openwiki/0.5.1
-    at: 2026-11-12T05:39:27.513Z
 sources:
+  - id: openwiki-source-79b37831c9c81206da1d88ec
+    resource: repo://.github/dependabot.yml
+  - id: openwiki-source-d90971da646b0fe193b31839
+    resource: repo://.github/workflows/moodle-semver-updater.yml
+  - id: openwiki-source-987a83de3394b5c94a465016
+    resource: repo://4-moodle-image-builder/scripts/update-moodle-semver.py
   - id: openwiki-source-b23bb47d51c7c03a516ab733
     resource: repo://5a-deployment-no-helm/create-config-files.sh
   - id: openwiki-source-53006dbc93bd922d7c60cef7
@@ -19,7 +22,12 @@ sources:
     resource: repo://9-hpa/moodle-hpa.yaml
   - id: openwiki-source-d5cb738866bc0951047c9d59
     resource: repo://9-hpa/moodle-uploads-hpa.yaml
-generated: { by: "antigravity", at: "2026-11-12T05:39:27.513Z" }
+  - id: openwiki-source-8b405ff0d1ec68bd339f2b74
+    resource: repo://docs/install-moodle-nginx.md
+generated: { by: "antigravity", at: "2026-11-15T21:21:21.950Z" }
+verified:
+  - by: openwiki/0.5.1
+    at: 2026-11-15T21:21:21.950Z
 ---
 
 # GKE Deployments, 10GB Upload Pod Isolation, ProxySQL, and Horizontal Pod Autoscaling
@@ -63,3 +71,23 @@ To prevent `setup_moodle.sh`'s dynamic `sed -i` overrides on upload pods from ov
 - **Guaranteed QoS Rightsizing (`requests == limits`)**: Both `moodle-deployment` and `moodle-deployment-uploads` set `requests` equal to `limits` (`cpu: 1000m`, `memory: 2Gi`), preventing CFS CPU throttling across PHP-FPM workers and ensuring accurate HPA scaling on GKE Autopilot.
 - **Optional ProxySQL Tier (`5a-deployment-no-helm/moodle-proxysql.yaml`)**: Deploys a 2-replica `proxysql/proxysql:2.7.1` service (`moodle-proxysql:6033`) with `multiplexing=true` and `max_connections=200` to prevent `Too many connections` errors on Cloud SQL during massive load tests.
 - **Independent HPAs (`9-hpa/moodle-hpa.yaml` and `9-hpa/moodle-uploads-hpa.yaml`)**: Scale `moodle-deployment` (`3..9` pods) and `moodle-deployment-uploads` (`1..5` pods) at `75%` CPU and `80%` memory utilization.
+
+## 4. Zero-Downtime Rollout Strategy and Zero-DB-Load Probe Architecture
+
+In `4-moodle-image-builder/base/opt/entrypoint.sh`, `/opt/setup_moodle.sh` executes synchronously before `php-fpm83` and `nginx` start listening on port `8080`. Both `moodle-deployment-nginx.yaml` and `moodle-deployment-nginx-uploads.yaml` enforce a zero-downtime rolling update (`maxSurge: 1`, `maxUnavailable: 0`, `minReadySeconds: 10`) backed by three decoupled probes:
+
+1. **Why Probes Intentionally Avoid Database and Redis Queries (`/login/index.php`)**:
+   - Probing `/login/index.php` every 5 seconds boots the full Moodle PHP framework, acquires Redis locks, and runs multiple SQL queries. At 50–100 pods under HPA load testing, health probes alone would generate 30–40 database/Redis requests per second, and any brief database latency spike would cause all pods to fail `readinessProbe` simultaneously (a cascading thundering-herd outage).
+2. **`startupProbe` (`httpGet /healthz :8080`, `failureThreshold: 120`, `periodSeconds: 5`)**:
+   - Allows up to 10 minutes (`120 × 5s`) for first-run `/opt/setup_moodle.sh` installation or upgrades before `readinessProbe` and `livenessProbe` activate, while releasing normal steady-state pods within ~5 seconds as soon as NGINX starts.
+3. **`readinessProbe` (`test -S /var/run/php8.3-fpm-moodle.sock && curl -fs http://127.0.0.1:8080/healthz >/dev/null`)**:
+   - Verifies both that the PHP-FPM 8.3 Unix domain socket (`/var/run/php8.3-fpm-moodle.sock`) is active and that NGINX responds `200 OK` on `:8080/healthz` with zero database or Redis load, preventing Kubernetes from terminating old pods before replacement pods have finished `setup_moodle.sh`.
+4. **`livenessProbe` (`httpGet /healthz :8080`, `periodSeconds: 15`, `failureThreshold: 4`) & `lifecycle.preStop`**:
+   - Monitors NGINX responsiveness without restarting pods during heavy PHP-FPM or DB load, and runs `sleep 5 && /usr/sbin/nginx -s quit` on termination so GKE Container-Native Load Balancing (NEG) stops sending new traffic before NGINX gracefully drains active connections.
+
+## 5. Automated Moodle SemVer Monitoring (`.github/dependabot.yml` and `moodle-semver-updater.yml`)
+
+- **`.github/dependabot.yml`**: Monitors weekly updates for the `Dockerfile.nginx` base image (`docker`) and GitHub Actions (`github-actions`).
+- **`.github/workflows/moodle-semver-updater.yml` and `4-moodle-image-builder/scripts/update-moodle-semver.py`**:
+  - Polls official `moodle/moodle` GitHub tags weekly (and supports manual `workflow_dispatch` with `semver_scope: patch | minor | major` or `custom_series`).
+  - Downloads the target Moodle release archive, computes `MOODLE_SHA256`, updates `MOODLE_URL`, `MOODLE_SHA256`, and `MOODLE_SITENAME` across all `ConfigMap` manifests and templates, runs `./tests/verify-scripts-and-configs.sh`, and opens an automated Pull Request.

@@ -18,6 +18,12 @@ metadata:
   namespace: moodle
 spec:
   replicas: 3
+  minReadySeconds: 10
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
   selector:
     matchLabels:
       app.kubernetes.io/instance: moodle
@@ -28,6 +34,7 @@ spec:
         app.kubernetes.io/instance: moodle
         app.kubernetes.io/name: moodle
     spec:
+      terminationGracePeriodSeconds: 60
       nodeSelector:
         kubernetes.io/os: linux
         # cloud.google.com/compute-class: "Balanced"
@@ -276,24 +283,47 @@ spec:
             configMapKeyRef:
               name: moodle-configmap
               key: MOODLE_MAIL_PREFIX
-        # livenessProbe:
-        #   failureThreshold: 60
-        #   httpGet:
-        #     path: /login/index.php
-        #     port: 8080
-        #   initialDelaySeconds: 600
-        #   periodSeconds: 10
-        #   successThreshold: 1
-        #   timeoutSeconds: 5
-        # readinessProbe:
-        #   failureThreshold: 6
-        #   httpGet:
-        #     path: /login/index.php
-        #     port: 8080
-        #   initialDelaySeconds: 30
-        #   periodSeconds: 5
-        #   successThreshold: 1
-        #   timeoutSeconds: 3
+        # Zero-DB-load probes:
+        # 1. startupProbe waits up to 10 minutes (120 * 5s) while /opt/setup_moodle.sh completes first-install or upgrade
+        #    before nginx starts listening on port 8080, releasing normal steady-state pods within ~5s.
+        # 2. readinessProbe verifies BOTH that the PHP-FPM 8.3 Unix socket (/var/run/php8.3-fpm-moodle.sock) is active
+        #    AND that NGINX responds 200 on :8080/healthz without executing Moodle DB/Redis queries (preventing database
+        #    connection exhaustion and cascading thundering-herd outages when scaling to 50-100+ pods).
+        # 3. livenessProbe checks NGINX responsiveness on :8080/healthz without restarting pods during DB latency spikes.
+        startupProbe:
+          httpGet:
+            path: /healthz
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          timeoutSeconds: 3
+          successThreshold: 1
+          failureThreshold: 120
+        readinessProbe:
+          exec:
+            command:
+            - /bin/sh
+            - -c
+            - test -S /var/run/php8.3-fpm-moodle.sock && curl -fs http://127.0.0.1:8080/healthz >/dev/null
+          periodSeconds: 5
+          timeoutSeconds: 3
+          successThreshold: 1
+          failureThreshold: 3
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 8080
+          periodSeconds: 15
+          timeoutSeconds: 5
+          successThreshold: 1
+          failureThreshold: 4
+        lifecycle:
+          preStop:
+            exec:
+              command:
+              - /bin/sh
+              - -c
+              - sleep 5 && /usr/sbin/nginx -s quit
         resources:
           limits:
             cpu: 1000m

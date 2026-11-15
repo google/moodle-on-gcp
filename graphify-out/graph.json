@@ -4,6 +4,78 @@
   "graph": {},
   "nodes": [
     {
+      "id": "4_moodle_image_builder_scripts_update_moodle_semver_apply_version_update",
+      "label": "apply_version_update()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 36,
+      "community_name": "update-moodle-semver.py",
+      "file_type": "code",
+      "norm_label": "apply_version_update()",
+      "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
+      "source_location": "L111"
+    },
+    {
+      "id": "4_moodle_image_builder_scripts_update_moodle_semver_compute_tarball_sha256",
+      "label": "compute_tarball_sha256()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 36,
+      "community_name": "update-moodle-semver.py",
+      "file_type": "code",
+      "norm_label": "compute_tarball_sha256()",
+      "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
+      "source_location": "L98"
+    },
+    {
+      "id": "4_moodle_image_builder_scripts_update_moodle_semver_fetch_moodle_tags",
+      "label": "fetch_moodle_tags()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 36,
+      "community_name": "update-moodle-semver.py",
+      "file_type": "code",
+      "norm_label": "fetch_moodle_tags()",
+      "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
+      "source_location": "L51"
+    },
+    {
+      "id": "4_moodle_image_builder_scripts_update_moodle_semver_get_current_version",
+      "label": "get_current_version()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 36,
+      "community_name": "update-moodle-semver.py",
+      "file_type": "code",
+      "norm_label": "get_current_version()",
+      "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
+      "source_location": "L40"
+    },
+    {
+      "id": "4_moodle_image_builder_scripts_update_moodle_semver_main",
+      "label": "main()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 36,
+      "community_name": "update-moodle-semver.py",
+      "file_type": "code",
+      "norm_label": "main()",
+      "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
+      "source_location": "L137"
+    },
+    {
+      "id": "4_moodle_image_builder_scripts_update_moodle_semver_select_target_version",
+      "label": "select_target_version()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 36,
+      "community_name": "update-moodle-semver.py",
+      "file_type": "code",
+      "norm_label": "select_target_version()",
+      "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
+      "source_location": "L71"
+    },
+    {
       "id": "1_pv_pv_filestore_pv_filestore",
       "label": "PersistentVolume pv-filestore (2.5Ti ReadWriteMany NFS /moodleshare)",
       "_origin": "ast",
@@ -1471,30 +1543,6 @@
       "source_location": "L1"
     },
     {
-      "id": "docs_install_moodle_nginx_deploying_moodle_in_gke_with_the_nginx_php_8_3_image",
-      "label": "Deploying Moodle in GKE with the NGINX + PHP 8.3 Image",
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "README.md",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "deploying moodle in gke with the nginx + php 8.3 image",
-      "source_file": "docs/install-moodle-nginx.md",
-      "source_location": "L1"
-    },
-    {
-      "id": "docs_install_moodle_nginx_high_concurrency_scaling_100k_300k_concurrent_users",
-      "label": "High-Concurrency Scaling (100k\u2013300k+ Concurrent Users)",
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "README.md",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "high-concurrency scaling (100k\u2013300k+ concurrent users)",
-      "source_file": "docs/install-moodle-nginx.md",
-      "source_location": "L25"
-    },
-    {
       "id": "docs_migration_recommendations",
       "label": "migration-recommendations.md",
       "_origin": "ast",
@@ -1854,7 +1902,7 @@
       "frontmatter": {
         "type": "runtime",
         "title": "NGINX + PHP 8.3 Container Image, GNU libiconv, and Moodle 5.2+ Bootstrap",
-        "description": "Multi-stage Alpine 3.21 + PHP 8.3 container build, preloadable_libiconv.so compilation, conditional mysqli vs. pgsql driver activation, Redis igbinary/zstd tuning, Moodle 5.1+ /public webroot, Composer, Moosh 1.51, and local_redislock detection.",
+        "description": "Multi-stage Alpine 3.21 + PHP 8.3 container build, preloadable_libiconv.so compilation, conditional mysqli vs. pgsql driver activation, Redis igbinary/zstd tuning, Moodle 5.0+ Routing Engine ($CFG-&gt;routerconfigured = true), Moodle 5.1+ /public webroot, Composer, Moosh 1.51, and local_redislock detection.",
         "tags": [
           "docker",
           "alpine",
@@ -1866,12 +1914,13 @@
           "redislock",
           "pgsql",
           "igbinary",
-          "zstd"
+          "zstd",
+          "router"
         ],
         "verified": [
           {
             "by": "openwiki/0.5.1",
-            "at": "2026-11-12 05:39:27.513000+00:00"
+            "at": "2026-11-14 09:31:55.630000+00:00"
           }
         ],
         "sources": [
@@ -1898,7 +1947,7 @@
         ],
         "generated": {
           "by": "antigravity",
-          "at": "2026-11-12T05:39:27.513Z"
+          "at": "2026-11-14T09:31:55.630Z"
         }
       },
       "node_kind": "page",
@@ -2181,78 +2230,6 @@
       "norm_label": "agents.md",
       "source_file": "AGENTS.md",
       "source_location": "L1"
-    },
-    {
-      "id": "agents_1_repository_architecture_current_stack_main",
-      "label": "1. Repository Architecture & Current Stack (`main`)",
-      "_origin": "ast",
-      "community": 17,
-      "community_name": "Sentinel's Journal \u2014 Security, Hardening & Review Guardrails (`google/moodle-on-gcp`)",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "1. repository architecture & current stack (`main`)",
-      "source_file": "AGENTS.md",
-      "source_location": "L8"
-    },
-    {
-      "id": "agents_2_mandatory_guardrails_preventing_pr_38_regressions",
-      "label": "2. Mandatory Guardrails (Preventing PR #38 Regressions)",
-      "_origin": "ast",
-      "community": 17,
-      "community_name": "Sentinel's Journal \u2014 Security, Hardening & Review Guardrails (`google/moodle-on-gcp`)",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "2. mandatory guardrails (preventing pr #38 regressions)",
-      "source_file": "AGENTS.md",
-      "source_location": "L25"
-    },
-    {
-      "id": "agents_3_verification_test_suite_run_before_every_commit_pr",
-      "label": "3. Verification & Test Suite (Run Before Every Commit / PR)",
-      "_origin": "ast",
-      "community": 17,
-      "community_name": "Sentinel's Journal \u2014 Security, Hardening & Review Guardrails (`google/moodle-on-gcp`)",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "3. verification & test suite (run before every commit / pr)",
-      "source_file": "AGENTS.md",
-      "source_location": "L56"
-    },
-    {
-      "id": "agents_4_using_the_jules_cli_google_jules_with_this_repository",
-      "label": "4. Using the Jules CLI (`@google/jules`) with This Repository",
-      "_origin": "ast",
-      "community": 17,
-      "community_name": "Sentinel's Journal \u2014 Security, Hardening & Review Guardrails (`google/moodle-on-gcp`)",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "4. using the jules cli (`@google/jules`) with this repository",
-      "source_file": "AGENTS.md",
-      "source_location": "L84"
-    },
-    {
-      "id": "agents_agent_jules_configuration_guide_google_moodle_on_gcp",
-      "label": "Agent & Jules Configuration Guide (`google/moodle-on-gcp`)",
-      "_origin": "ast",
-      "community": 17,
-      "community_name": "Sentinel's Journal \u2014 Security, Hardening & Review Guardrails (`google/moodle-on-gcp`)",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "agent & jules configuration guide (`google/moodle-on-gcp`)",
-      "source_file": "AGENTS.md",
-      "source_location": "L1"
-    },
-    {
-      "id": "agents_openwiki",
-      "label": "OpenWiki",
-      "_origin": "ast",
-      "community": 17,
-      "community_name": "Sentinel's Journal \u2014 Security, Hardening & Review Guardrails (`google/moodle-on-gcp`)",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "openwiki",
-      "source_file": "AGENTS.md",
-      "source_location": "L107"
     },
     {
       "id": "claude",
@@ -3456,6 +3433,148 @@
       "source_location": "L1"
     },
     {
+      "id": "4_moodle_image_builder_scripts_update_moodle_semver",
+      "label": "update-moodle-semver.py",
+      "_origin": "ast",
+      "community": 36,
+      "community_name": "update-moodle-semver.py",
+      "file_type": "code",
+      "norm_label": "update-moodle-semver.py",
+      "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "agents_1_repository_architecture_current_stack_main",
+      "label": "1. Repository Architecture & Current Stack (`main`)",
+      "_origin": "ast",
+      "community": 36,
+      "community_name": "update-moodle-semver.py",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "1. repository architecture & current stack (`main`)",
+      "source_file": "AGENTS.md",
+      "source_location": "L8"
+    },
+    {
+      "id": "agents_2_mandatory_guardrails_preventing_pr_38_regressions",
+      "label": "2. Mandatory Guardrails (Preventing PR #38 Regressions)",
+      "_origin": "ast",
+      "community": 36,
+      "community_name": "update-moodle-semver.py",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "2. mandatory guardrails (preventing pr #38 regressions)",
+      "source_file": "AGENTS.md",
+      "source_location": "L25"
+    },
+    {
+      "id": "agents_3_verification_test_suite_run_before_every_commit_pr",
+      "label": "3. Verification & Test Suite (Run Before Every Commit / PR)",
+      "_origin": "ast",
+      "community": 36,
+      "community_name": "update-moodle-semver.py",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "3. verification & test suite (run before every commit / pr)",
+      "source_file": "AGENTS.md",
+      "source_location": "L56"
+    },
+    {
+      "id": "agents_4_using_the_jules_cli_google_jules_with_this_repository",
+      "label": "4. Using the Jules CLI (`@google/jules`) with This Repository",
+      "_origin": "ast",
+      "community": 36,
+      "community_name": "update-moodle-semver.py",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "4. using the jules cli (`@google/jules`) with this repository",
+      "source_file": "AGENTS.md",
+      "source_location": "L84"
+    },
+    {
+      "id": "agents_agent_jules_configuration_guide_google_moodle_on_gcp",
+      "label": "Agent & Jules Configuration Guide (`google/moodle-on-gcp`)",
+      "_origin": "ast",
+      "community": 36,
+      "community_name": "update-moodle-semver.py",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "agent & jules configuration guide (`google/moodle-on-gcp`)",
+      "source_file": "AGENTS.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "agents_openwiki",
+      "label": "OpenWiki",
+      "_origin": "ast",
+      "community": 36,
+      "community_name": "update-moodle-semver.py",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "openwiki",
+      "source_file": "AGENTS.md",
+      "source_location": "L107"
+    },
+    {
+      "id": "4_moodle_image_builder_scripts_update_moodle_semver_rationale_14",
+      "label": "SemVer monitor and updater for Moodle release tags (v5.x.x -> v5.y.z).",
+      "_origin": "ast",
+      "community": 36,
+      "community_name": "update-moodle-semver.py",
+      "file_type": "rationale",
+      "norm_label": "semver monitor and updater for moodle release tags (v5.x.x -> v5.y.z).",
+      "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
+      "source_location": "L14"
+    },
+    {
+      "id": "docs_install_moodle_nginx_automated_moodle_semver_monitoring_github_dependabot_yml_moodle_semver_updater_yml",
+      "label": "Automated Moodle SemVer Monitoring (`.github/dependabot.yml` & `moodle-semver-updater.yml`)",
+      "_origin": "ast",
+      "community": 37,
+      "community_name": "Deploying Moodle in GKE with the NGINX + PHP 8.3 Image",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "automated moodle semver monitoring (`.github/dependabot.yml` & `moodle-semver-updater.yml`)",
+      "source_file": "docs/install-moodle-nginx.md",
+      "source_location": "L55"
+    },
+    {
+      "id": "docs_install_moodle_nginx_deploying_moodle_in_gke_with_the_nginx_php_8_3_image",
+      "label": "Deploying Moodle in GKE with the NGINX + PHP 8.3 Image",
+      "_origin": "ast",
+      "community": 37,
+      "community_name": "Deploying Moodle in GKE with the NGINX + PHP 8.3 Image",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "deploying moodle in gke with the nginx + php 8.3 image",
+      "source_file": "docs/install-moodle-nginx.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "docs_install_moodle_nginx_high_concurrency_scaling_100k_300k_concurrent_users",
+      "label": "High-Concurrency Scaling (100k\u2013300k+ Concurrent Users)",
+      "_origin": "ast",
+      "community": 37,
+      "community_name": "Deploying Moodle in GKE with the NGINX + PHP 8.3 Image",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "high-concurrency scaling (100k\u2013300k+ concurrent users)",
+      "source_file": "docs/install-moodle-nginx.md",
+      "source_location": "L25"
+    },
+    {
+      "id": "docs_install_moodle_nginx_zero_downtime_rollout_probe_design_startupprobe_readinessprobe_livenessprobe",
+      "label": "Zero-Downtime Rollout & Probe Design (`startupProbe`, `readinessProbe`, `livenessProbe`)",
+      "_origin": "ast",
+      "community": 37,
+      "community_name": "Deploying Moodle in GKE with the NGINX + PHP 8.3 Image",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "zero-downtime rollout & probe design (`startupprobe`, `readinessprobe`, `livenessprobe`)",
+      "source_file": "docs/install-moodle-nginx.md",
+      "source_location": "L38"
+    },
+    {
       "id": "openwiki_operations_cloud_cdn_and_ingress",
       "label": "cloud-cdn-and-ingress.md",
       "_origin": "ast",
@@ -3465,7 +3584,7 @@
       "frontmatter": {
         "type": "operations",
         "title": "Cloud CDN for Moodle, NGINX/PHP-FPM Tuning, and Ingress Routing",
-        "description": "Integration between Google Cloud CDN (USE_ORIGIN_HEADERS), NGINX X-Accel-Redirect (^~ prefix protection), fastcgi_request_buffering off for 10GB+ streaming uploads, Moodle slasharguments, Set-Cookie stripping on public assets, private file protection, and Ingress routing.",
+        "description": "Integration between Google Cloud CDN (USE_ORIGIN_HEADERS), NGINX X-Accel-Redirect (^~ prefix protection), Moodle 5.0+ Routing Engine (r.php) with nofile_shim support, fastcgi_request_buffering off for 10GB+ streaming uploads, Moodle slasharguments, Set-Cookie stripping on public assets, private file protection, and Ingress routing.",
         "tags": [
           "cloud-cdn",
           "nginx",
@@ -3474,12 +3593,13 @@
           "backendconfig",
           "caching",
           "moodle",
-          "x-accel-redirect"
+          "x-accel-redirect",
+          "router"
         ],
         "verified": [
           {
             "by": "openwiki/0.5.1",
-            "at": "2026-11-12 05:39:27.513000+00:00"
+            "at": "2026-11-14 09:31:55.630000+00:00"
           }
         ],
         "sources": [
@@ -3510,7 +3630,7 @@
         ],
         "generated": {
           "by": "antigravity",
-          "at": "2026-11-12T05:39:27.513Z"
+          "at": "2026-11-14T09:31:55.630Z"
         }
       },
       "node_kind": "page",
@@ -3604,7 +3724,7 @@
       "node_kind": "heading",
       "norm_label": "2. nginx cache control rules and streaming uploads",
       "source_file": "openwiki/operations/cloud-cdn-and-ingress.md",
-      "source_location": "L64"
+      "source_location": "L68"
     },
     {
       "id": "openwiki_operations_cloud_cdn_and_ingress_3_backendconfig_configuration_use_origin_headers_vs_uploads",
@@ -3616,7 +3736,7 @@
       "node_kind": "heading",
       "norm_label": "3. `backendconfig` configuration (`use_origin_headers` vs. `uploads`)",
       "source_file": "openwiki/operations/cloud-cdn-and-ingress.md",
-      "source_location": "L79"
+      "source_location": "L83"
     },
     {
       "id": "openwiki_operations_cloud_cdn_and_ingress_4_nginx_php_fpm_8_3_tuning_and_ingress_routing",
@@ -3628,7 +3748,7 @@
       "node_kind": "heading",
       "norm_label": "4. nginx & php-fpm 8.3 tuning and ingress routing",
       "source_file": "openwiki/operations/cloud-cdn-and-ingress.md",
-      "source_location": "L87"
+      "source_location": "L91"
     },
     {
       "id": "openwiki_operations_cloud_cdn_and_ingress_cloud_cdn_for_moodle_nginx_php_fpm_tuning_and_ingress_routing",
@@ -3938,6 +4058,94 @@
       "norm_label": "build-gnu-libiconv.sh script",
       "source_file": "4-moodle-image-builder/scripts/build-gnu-libiconv.sh",
       "source_location": "L1"
+    },
+    {
+      "id": "argparse",
+      "label": "argparse",
+      "community": 36,
+      "community_name": "update-moodle-semver.py",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "argparse",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "hashlib",
+      "label": "hashlib",
+      "community": 36,
+      "community_name": "update-moodle-semver.py",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "hashlib",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "json",
+      "label": "json",
+      "community": 36,
+      "community_name": "update-moodle-semver.py",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "json",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "os",
+      "label": "os",
+      "community": 36,
+      "community_name": "update-moodle-semver.py",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "os",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "pathlib",
+      "label": "pathlib",
+      "community": 36,
+      "community_name": "update-moodle-semver.py",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "pathlib",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "re",
+      "label": "re",
+      "community": 36,
+      "community_name": "update-moodle-semver.py",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "re",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "sys",
+      "label": "sys",
+      "community": 36,
+      "community_name": "update-moodle-semver.py",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "sys",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "urllib_request",
+      "label": "urllib_request",
+      "community": 36,
+      "community_name": "update-moodle-semver.py",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "urllib_request",
+      "source_file": "",
+      "type": "external"
     }
   ],
   "links": [
@@ -4014,6 +4222,66 @@
       "weight": 1.0
     },
     {
+      "source": "4_moodle_image_builder_scripts_update_moodle_semver_main",
+      "target": "4_moodle_image_builder_scripts_update_moodle_semver_get_current_version",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
+      "source_location": "L157",
+      "weight": 1.0
+    },
+    {
+      "source": "4_moodle_image_builder_scripts_update_moodle_semver_main",
+      "target": "4_moodle_image_builder_scripts_update_moodle_semver_select_target_version",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
+      "source_location": "L161",
+      "weight": 1.0
+    },
+    {
+      "source": "4_moodle_image_builder_scripts_update_moodle_semver_main",
+      "target": "4_moodle_image_builder_scripts_update_moodle_semver_fetch_moodle_tags",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
+      "source_location": "L168",
+      "weight": 1.0
+    },
+    {
+      "source": "4_moodle_image_builder_scripts_update_moodle_semver_main",
+      "target": "4_moodle_image_builder_scripts_update_moodle_semver_compute_tarball_sha256",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
+      "source_location": "L177",
+      "weight": 1.0
+    },
+    {
+      "source": "4_moodle_image_builder_scripts_update_moodle_semver_main",
+      "target": "4_moodle_image_builder_scripts_update_moodle_semver_apply_version_update",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
+      "source_location": "L178",
+      "weight": 1.0
+    },
+    {
       "source": "tests_verify_scripts_and_configs_sh__entry",
       "target": "tests_verify_scripts_and_configs_create_mock_config",
       "relation": "calls",
@@ -4035,6 +4303,102 @@
       "context": "call",
       "source_file": "tests/verify-scripts-and-configs.sh",
       "source_location": "L119",
+      "weight": 1.0
+    },
+    {
+      "source": "4_moodle_image_builder_scripts_update_moodle_semver",
+      "target": "argparse",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
+      "source_location": "L16",
+      "weight": 1.0
+    },
+    {
+      "source": "4_moodle_image_builder_scripts_update_moodle_semver",
+      "target": "hashlib",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
+      "source_location": "L17",
+      "weight": 1.0
+    },
+    {
+      "source": "4_moodle_image_builder_scripts_update_moodle_semver",
+      "target": "json",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
+      "source_location": "L18",
+      "weight": 1.0
+    },
+    {
+      "source": "4_moodle_image_builder_scripts_update_moodle_semver",
+      "target": "os",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
+      "source_location": "L19",
+      "weight": 1.0
+    },
+    {
+      "source": "4_moodle_image_builder_scripts_update_moodle_semver",
+      "target": "pathlib",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
+      "source_location": "L20",
+      "weight": 1.0
+    },
+    {
+      "source": "4_moodle_image_builder_scripts_update_moodle_semver",
+      "target": "re",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
+      "source_location": "L21",
+      "weight": 1.0
+    },
+    {
+      "source": "4_moodle_image_builder_scripts_update_moodle_semver",
+      "target": "sys",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
+      "source_location": "L22",
+      "weight": 1.0
+    },
+    {
+      "source": "4_moodle_image_builder_scripts_update_moodle_semver",
+      "target": "urllib_request",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
+      "source_location": "L23",
       "weight": 1.0
     },
     {
@@ -4145,6 +4509,72 @@
       "confidence_score": 1.0,
       "source_file": "4-moodle-image-builder/scripts/build-gnu-libiconv.sh",
       "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "4_moodle_image_builder_scripts_update_moodle_semver",
+      "target": "4_moodle_image_builder_scripts_update_moodle_semver_apply_version_update",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
+      "source_location": "L111",
+      "weight": 1.0
+    },
+    {
+      "source": "4_moodle_image_builder_scripts_update_moodle_semver",
+      "target": "4_moodle_image_builder_scripts_update_moodle_semver_main",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
+      "source_location": "L137",
+      "weight": 1.0
+    },
+    {
+      "source": "4_moodle_image_builder_scripts_update_moodle_semver",
+      "target": "4_moodle_image_builder_scripts_update_moodle_semver_get_current_version",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
+      "source_location": "L40",
+      "weight": 1.0
+    },
+    {
+      "source": "4_moodle_image_builder_scripts_update_moodle_semver",
+      "target": "4_moodle_image_builder_scripts_update_moodle_semver_fetch_moodle_tags",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
+      "source_location": "L51",
+      "weight": 1.0
+    },
+    {
+      "source": "4_moodle_image_builder_scripts_update_moodle_semver",
+      "target": "4_moodle_image_builder_scripts_update_moodle_semver_select_target_version",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
+      "source_location": "L71",
+      "weight": 1.0
+    },
+    {
+      "source": "4_moodle_image_builder_scripts_update_moodle_semver",
+      "target": "4_moodle_image_builder_scripts_update_moodle_semver_compute_tarball_sha256",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
+      "source_location": "L98",
       "weight": 1.0
     },
     {
@@ -4720,6 +5150,28 @@
       "weight": 1.0
     },
     {
+      "source": "docs_install_moodle_nginx_deploying_moodle_in_gke_with_the_nginx_php_8_3_image",
+      "target": "docs_install_moodle_nginx_zero_downtime_rollout_probe_design_startupprobe_readinessprobe_livenessprobe",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/install-moodle-nginx.md",
+      "source_location": "L38",
+      "weight": 1.0
+    },
+    {
+      "source": "docs_install_moodle_nginx_deploying_moodle_in_gke_with_the_nginx_php_8_3_image",
+      "target": "docs_install_moodle_nginx_automated_moodle_semver_monitoring_github_dependabot_yml_moodle_semver_updater_yml",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/install-moodle-nginx.md",
+      "source_location": "L55",
+      "weight": 1.0
+    },
+    {
       "source": "docs_migration_recommendations",
       "target": "docs_migration_recommendations_migrating_from_previous_bitnami_image_to_nginx_based_image_recommended",
       "relation": "contains",
@@ -5288,7 +5740,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "openwiki/operations/cloud-cdn-and-ingress.md",
-      "source_location": "L64",
+      "source_location": "L68",
       "weight": 1.0
     },
     {
@@ -5299,7 +5751,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "openwiki/operations/cloud-cdn-and-ingress.md",
-      "source_location": "L79",
+      "source_location": "L83",
       "weight": 1.0
     },
     {
@@ -5310,7 +5762,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "openwiki/operations/cloud-cdn-and-ingress.md",
-      "source_location": "L87",
+      "source_location": "L91",
       "weight": 1.0
     },
     {
@@ -6249,6 +6701,17 @@
       "weight": 1.0
     },
     {
+      "source": "4_moodle_image_builder_scripts_update_moodle_semver_rationale_14",
+      "target": "4_moodle_image_builder_scripts_update_moodle_semver",
+      "relation": "rationale_for",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
       "source": "3_pvc_pvc_filestore_pvc_filestore",
       "target": "2_namespace_namespace_moodle_moodle",
       "relation": "references",
@@ -6817,7 +7280,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "docs/install-moodle-nginx.md",
-      "source_location": "L38",
+      "source_location": "L66",
       "weight": 1.0
     },
     {
@@ -7253,6 +7716,30 @@
       "weight": 1.0
     },
     {
+      "source": "agents_1_repository_architecture_current_stack_main",
+      "target": "4_moodle_image_builder_scripts_update_moodle_semver_main",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "context": "main",
+      "source_file": "AGENTS.md",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "agents_2_mandatory_guardrails_preventing_pr_38_regressions",
+      "target": "4_moodle_image_builder_scripts_update_moodle_semver_main",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "context": "main",
+      "source_file": "AGENTS.md",
+      "source_location": "L49",
+      "weight": 1.0
+    },
+    {
       "source": "1_pv_storageclass_regional_pd_moodle_regional_pd_sc",
       "target": "1_pv_pv_regional_pd_pv_regional_pd",
       "relation": "conceptually_related_to",
@@ -7276,5 +7763,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "6ee9cc2e52130278961df91569ae33cb42dc7bf2"
+  "built_at_commit": "fb3a0b7b017a7afeb6688a728841d8ce5a114d2d"
 }

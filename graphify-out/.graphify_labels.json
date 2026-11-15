@@ -34,5 +34,7 @@
   "32": "infra-pause.sh",
   "33": "infra-resume.sh",
   "34": "infra-destroy.sh",
-  "35": "infra-creation.sh"
+  "35": "infra-creation.sh",
+  "36": "update-moodle-semver.py",
+  "37": "Deploying Moodle in GKE with the NGINX + PHP 8.3 Image"
 }
