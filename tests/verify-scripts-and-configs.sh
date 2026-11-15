@@ -260,4 +260,16 @@ grep -q 'try_files \$uri \$uri/ /r.php;' 4-moodle-image-builder/base/etc/nginx/n
 grep -q 'try_files \$fastcgi_script_name /r.php;' 4-moodle-image-builder/base/etc/nginx/nginx.conf-template
 test -f 5a-deployment-no-helm/moodle-proxysql.yaml
 grep -q 'multiplexing=true' 5a-deployment-no-helm/moodle-proxysql.yaml
+grep -q 'startupProbe:' 5a-deployment-no-helm/moodle-deployment-nginx.yaml
+grep -q 'readinessProbe:' 5a-deployment-no-helm/moodle-deployment-nginx.yaml
+grep -q 'livenessProbe:' 5a-deployment-no-helm/moodle-deployment-nginx.yaml
+grep -q 'maxUnavailable: 0' 5a-deployment-no-helm/moodle-deployment-nginx.yaml
+grep -q 'startupProbe:' 5a-deployment-no-helm/moodle-deployment-nginx-uploads.yaml
+test -f .github/dependabot.yml
+test -f .github/workflows/moodle-semver-updater.yml
+python3 4-moodle-image-builder/scripts/update-moodle-semver.py --dry-run >/dev/null
+if grep -rqi 'eorpc\|sidecar replication' 0-infra/ 1-pv/ 2-namespace/ 3-pvc/ 4-moodle-image-builder/ 5a-deployment-no-helm/ 6-backendconfig/ 8-ingress/ 9-hpa/ docs/ openwiki/ README.md AGENTS.md; then
+  echo "FAIL: Found prohibited eorpc / sidecar replication reference in repository files." >&2
+  exit 1
+fi
 echo "PASS: All repository guardrails verified."

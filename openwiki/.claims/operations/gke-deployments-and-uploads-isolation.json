@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:f0aa6dc7bec180126a971a46f6d80a1c76f97d2da3398c4d2a1458c68b77c111",
+  "pageVersion": "sha256:32b7f4acb7f2dfc103ee0530d88ec314c369adf716d6db47b7b4dbf2b83bc004",
   "claims": [
     {
       "id": "claim_fcb82d9ef5b0414aaad7f3e1667a7917",
@@ -35,8 +35,8 @@
           "version": "repo-lines-v1:sha256:f4cf9c5fd3553700e21b20ed43613b2bf6e6dbac990408034e283bfd1b4ba506:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjdjZjE0YzA4MTIxMTNlNGUxYTVjMjRkYmEzODY1MWU0YjE0MmY2ODViNDA3Njg2MjY3YWE1MmY3YzI5ZjY5OSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYzEwNTU3Zjk4MmM4MTIwZDM5MzRlMjNmZmRlZmE2ODMwYWM1Yjg2YzI2ODRlYzA0NTE3M2Y2OGQ4ZjkwYzgwOSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYTcxM2U5Y2Q3NDM0NTg1MDFlOGE0MmYyNGQxZTBiYWYxYjcwYzFmYTY5MzhiZGJjNTMyMjY3Yzg0NjBjMDFjNiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
         },
         {
-          "resource": "repo://5a-deployment-no-helm/moodle-deployment-nginx-uploads.yaml#L270-L337",
-          "version": "repo-lines-v1:sha256:e304d43b0fef8dfb085ebd1bc4e6710f8f82d8c75adb683a887e21cab64e1c5a:eyJzZWxlY3RlZExpbmVDb3VudCI6NjgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhhNzBjMGM0NWU5NmVmNGY2MmZiNzgzYzk4NmYxMTZjNGM3NjhjNDlkYjNjNmRkN2E3ZDNmOWMyNDNlMDM2MzYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImIzMjJiNWM4MjQwNjYxOTcxNTJmOTQ4MjMxYzA2YjRkNjU5ZWI0YmRjYTg3MzhlYWUxMmU4YzNiMTZiNTc1MTkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImVmMTBiM2Y1NjJkMzJhYTEwODVjNWU2NjVhMGUzNjQyMjg0Njc3YTU4MDYzNWY4NjFlNDA2NGZhZDBmM2U1YmMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+          "resource": "repo://5a-deployment-no-helm/moodle-deployment-nginx-uploads.yaml#L277-L378",
+          "version": "repo-lines-v1:sha256:47e0f3b2716f24184b2cac715c0d19b3f1470f613a76d2cd87cfdd3e9914b427:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAyLCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiI4YTcwYzBjNDVlOTZlZjRmNjJmYjc4M2M5ODZmMTE2YzRjNzY4YzQ5ZGIzYzZkZDdhN2QzZjljMjQzZTAzNjM2IiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiJiMzIyYjVjODI0MDY2MTk3MTUyZjk0ODIzMWMwNmI0ZDY1OWViNGJkY2E4NzM4ZWFlMTJlOGMzYjE2YjU3NTE5IiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiJlZjEwYjNmNTYyZDMyYWExMDg1YzVlNjY1YTBlMzY0MjI4NDY3N2E1ODA2MzVmODYxZTQwNjRmYWQwZjNlNWJjIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MCwiZm9sbG93aW5nQ29udGV4dEhhc2giOiJlM2IwYzQ0Mjk4ZmMxYzE0OWFmYmY0Yzg5OTZmYjkyNDI3YWU0MWU0NjQ5YjkzNGNhNDk1OTkxYjc4NTJiODU1In0"
         }
       ]
     },
@@ -53,10 +53,46 @@
           "version": "repo-lines-v1:sha256:d40958c2aee86c96915ea1b69545c6996ddc33c56668ac2c8418ee5d310658df:eyJzZWxlY3RlZExpbmVDb3VudCI6MjUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImEzYzdjM2JlZmQ5OGQyMjk0ZjQ4ZTI1YzdiZmE1Y2JjZWQ4ZTY5NmI3YTE4ZmUxYjQyYzEyYjBjMWQxZmQwODgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZmYjEwNDM2MGUxMGIyNWVjZTNlN2FhZWEwZjhjZjU4OGQ1MWY1YjM1NjBlZWJhODBkZmM0ODE0YTI4ZDhmODAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImMwZWY5OWFhOGMyODhmMTcxMGU1ODAxN2JmMjRjNjBjYmU0YzgzNDI4NDE3MzQ0N2ZjZDk2NmYxYjNhMmVlZWMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
         }
       ]
+    },
+    {
+      "id": "claim_e4533a7009564f9ca9285e7660d3d3a4",
+      "statement": "moodle-deployment and moodle-deployment-nginx-uploads configure RollingUpdate (maxSurge: 1, maxUnavailable: 0, minReadySeconds: 10), a 10-minute startupProbe on /healthz, a zero-DB-load readinessProbe verifying both /var/run/php8.3-fpm-moodle.sock and :8080/healthz, a livenessProbe on /healthz, and a preStop hook (sleep 5 && /usr/sbin/nginx -s quit) for graceful connection draining.",
+      "evidence": [
+        {
+          "resource": "repo://5a-deployment-no-helm/moodle-deployment-nginx.yaml#L20-L26",
+          "version": "repo-lines-v1:sha256:3f9481f2c62e5c6352d51bdcd7966aec4aed79ac32b4b5dc1a430bf8e32e4d65:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZmJhNjA0YmU4Zjc4ZDQyZGU0YzQ2MTgxMGY0NDQ4MjQxYTQyN2NkMzdkMTdlMTlkODc1MTE0MGQyMWFkNjJkNCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNGZhNmQwNDMzOTFjZmFlYWQyZmYyZmY4OWMyYTNmMmM1ZTc3ZjFmNGFiNTllMDlmMjA5YzdjYTk5M2RhZGQ0YyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYTEyMDllMGUwODQyMjI1N2ViM2U3ODk5MmJjMWI4N2VlNTFkYzRlOWQ3OTBhYzFkZDk4M2RiNmMwZDk4ZWJkOSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMGFiMDQ3MmM1MDFlMmYwMGQ3YzhkNGMzNDUxNzc3MWI1NzBiNGE5ZTM4OTJiMzZjYjFmZTZhYTVhZGMyYjQyZSJ9"
+        },
+        {
+          "resource": "repo://5a-deployment-no-helm/moodle-deployment-nginx.yaml#L293-L333",
+          "version": "repo-lines-v1:sha256:fc5a22a913bfdc38e8f9f652f6c7fd7831d08a2b1ce4aa9eed5a005bd58d9ce4:eyJzZWxlY3RlZExpbmVDb3VudCI6NDEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZiYzgzZWUxNWY2NzEwODQ4NTE4ZTc4NmYzNTRlMzY3MDQzNzRmZmQ4MmM1ZGNlYmVjYWZhNzgxZmIwMGJhOWUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdhZjIxNmYwZTU3NTdmMmM2MTZmNjA4MGM1ODM5ODY3NWY3NzhjZjZhMzZlMDNkNDQzYmU5MTMxYWQ2ZTQ3OGQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjI2YTFhMDAxY2RkYzkzZmNlYTg3YWMyMmZhM2I2ZGEyZGRlZTMwNGQyNGIxOGIwYTQzYjcwYmY1ZWVjNTkwNTMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjIyZWYxODRlMzMyMzUxNDUwYWY4MGMxZDIyYmNiMGM5MzA4MjJhYWU5OWJlZTY2NzAzNjY4NjIwMWMxNDcyM2EifQ"
+        },
+        {
+          "resource": "repo://docs/install-moodle-nginx.md#L38-L55",
+          "version": "repo-lines-v1:sha256:1d4ad5f53f0c25ae03f66607601dfc8668c6fd012097657ec43494ec8f983670:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk5YTNlZDFhZmY2Nzc3OTQ3NWFlYWVjMjAwOTIwM2NiYzNlNTA5MWQwZjQ1ZmQ5MGUyMmNkZGEzYTJkZDQwNTAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE2NTY3MDdjZjlkYjY3MmJkNzI3ZTM1YjczYjUxZTNkNDg2NzU4MjlhYmM5YWRmNjAxYzY5MjA3MDczNThkZjkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzMTlmMDEyNDYxZTQ0MmRlMmVhZDBlODg0ODVlYTQ2NGFlMjUxMDg5NGFlOWIyOWE5NWI0MDI5NDNkNWVkZDAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjgxZTJiOWViYjU0M2ViZTQzMmMyZjU4MDYzMDliOGZhZTEzNjU0NzUxNmQ1YjUwYmE0MzQ3M2VmMTZiMzY3MTEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_bd18f8e8636b402dab54004328a6bcf5",
+      "statement": ".github/workflows/moodle-semver-updater.yml and 4-moodle-image-builder/scripts/update-moodle-semver.py monitor upstream moodle/moodle GitHub tags by SemVer scope (patch, minor, major, or custom series), compute MOODLE_SHA256, update the ConfigMap manifests and templates, and open automated pull requests alongside .github/dependabot.yml.",
+      "evidence": [
+        {
+          "resource": "repo://.github/dependabot.yml#L15-L34",
+          "version": "repo-lines-v1:sha256:122e43e6d9e08b1f702e8d8915cd24f6f7921ffa66551065d0f0f8943569375c:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE2NGFiOWJjYjk4YjU2ZTIwYjRiN2RhN2Y1N2U1NzUzMzYzNTk0NTgzZWUzZGU2ZDNiNWJkYTAyNGY3MmNiZDEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImI4NTAwMWUyYzVkN2E5N2ZhOGYwMzA4YWI0NzdlNGI1NDU4ZjQ1NWVhNzk1OGJhNzQ0ZWI5YTAyYmM3Y2VlNGQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImRjNTU1ODNjZWYwZWFjOTU1NzY3NTJjMGNjOGNlYmYwODgxYTcxZmNiOTc3ZDE1NjdkYWJlZGI1Y2MxYTMwNjkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://.github/workflows/moodle-semver-updater.yml#L15-L75",
+          "version": "repo-lines-v1:sha256:c0ddd8462e87a5591134deba5e316948bb56092b1ce7944295589286aae87737:eyJzZWxlY3RlZExpbmVDb3VudCI6NjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI1MzU1NmZiN2Q1MzdkODA0NDBmODM2NGE0NjQzYTdhMGI2MGFiZDJiYzgwNGE3ODQ0ZjEyZWQzNTIwMjhkNTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImIxMTY2MjUzMzViNjIwYmFmZmMzYzVlMTA5NWNhM2Q4NTZjZTI0MGVmZWE3Yzc3Yzg3ZjU5YzBkZmZmNTVlNjkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://4-moodle-image-builder/scripts/update-moodle-semver.py#L46-L120",
+          "version": "repo-lines-v1:sha256:e9fcacd82bd6f1b10a0e47c5606f9b461d816a7032dfe35d4f4c3a776a6defcb:eyJzZWxlY3RlZExpbmVDb3VudCI6NzUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjYwYzQ2ZmFiNjk2NDFjY2QyMzllNTNjNjY4YzMzNjYyZDUzNGU1OWJlNTBhZmY4ZjY1MjUzZDE0ZDk1ZjE0ODYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRjNWE5ZGY5NTA4Y2U1NjBiZjlmZThjOGUzNzQwMGIyNDAzZWM1ZmEyM2M1OGE3MjE1ZjBlYjZjOGE3MDYxOGMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZmMGM1NjgyZDEzYmIyZGU3Zjg3MGIzMTg0NzE3M2E2YzgxZDE0NzgxOWUyYmZlY2E5MTk3MjQ3MGM4MTczZDgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjM3NWE0YTRiYTViYzY1YmJiNDllN2Q2NjQwNDlmZmVlYjlhNmY3M2JhOGU4MjVjN2VkNTRjODlmODY1MmI5NjcifQ"
+        }
+      ]
     }
   ],
   "verification": {
     "by": "openwiki/0.5.1",
-    "at": "2026-11-12T05:39:27.513Z"
+    "at": "2026-11-15T21:21:21.950Z"
   }
 }
