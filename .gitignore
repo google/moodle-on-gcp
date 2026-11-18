@@ -1,2 +1,8 @@
 # ignore local files for some authors
 *-ernani.*
+
+# ignore local knowledge-graph and wiki indexes
+graphify-out/
+openwiki/
+__pycache__/
+*.pyc

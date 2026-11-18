@@ -70,8 +70,8 @@ MOODLE_TARGET_FILES = [
     "AGENTS.md",
     "docs/repository-organization.md",
 ]
-# Documentation that states the Alpine release of the image (OpenWiki pages are
-# refreshed by OpenWiki runs, and `.jules/sentinel.md` is an append-only journal).
+# Documentation that states the Alpine release of the image (`.jules/sentinel.md`
+# is an append-only journal and is intentionally excluded).
 ALPINE_DOC_FILES = ["AGENTS.md"]
 
 Version = tuple[int, int, int]
