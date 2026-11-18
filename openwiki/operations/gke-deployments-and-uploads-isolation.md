@@ -1,8 +1,8 @@
 ---
 type: operations
 title: GKE Deployments, 10GB Upload Pod Isolation, ProxySQL, and Horizontal Pod Autoscaling
-description: Kubernetes Deployment architecture for Moodle 5.2.4, Guaranteed QoS rightsizing, isolated 10GB+ upload pods (disk-backed /tmp, PHP_FPM_MAX_CHILDREN=1), optional Secrets, ProxySQL connection multiplexing, and HPA policies.
-tags: [gke, kubernetes, deployments, uploads, proxysql, hpa, configmap, secret, envsubst]
+description: Kubernetes Deployment architecture for Moodle 5.2.4, Guaranteed QoS rightsizing, isolated 10GB+ upload pods (disk-backed /tmp, PHP_FPM_MAX_CHILDREN=1), optional Secrets, ProxySQL connection multiplexing, HPA policies, zero-downtime probes, and the coordinated Moodle + Alpine update automation (CLA-compliant pull requests).
+tags: [gke, kubernetes, deployments, uploads, proxysql, hpa, configmap, secret, envsubst, dependabot, github-actions, alpine]
 sources:
   - id: openwiki-source-79b37831c9c81206da1d88ec
     resource: repo://.github/dependabot.yml
@@ -24,10 +24,14 @@ sources:
     resource: repo://9-hpa/moodle-uploads-hpa.yaml
   - id: openwiki-source-8b405ff0d1ec68bd339f2b74
     resource: repo://docs/install-moodle-nginx.md
-generated: { by: "antigravity", at: "2026-11-15T21:21:21.950Z" }
+  - id: openwiki-source-dc929078fccb69a8204d1722
+    resource: repo://tests/smoke-test-container-image.sh
+  - id: openwiki-source-6d8c98d53bdfbb0985562fa8
+    resource: repo://tests/verify-scripts-and-configs.sh
+generated: { by: "antigravity", at: "2026-11-18T12:02:02.964Z" }
 verified:
   - by: openwiki/0.5.1
-    at: 2026-11-15T21:21:21.950Z
+    at: 2026-11-18T12:02:02.964Z
 ---
 
 # GKE Deployments, 10GB Upload Pod Isolation, ProxySQL, and Horizontal Pod Autoscaling
@@ -85,9 +89,24 @@ In `4-moodle-image-builder/base/opt/entrypoint.sh`, `/opt/setup_moodle.sh` execu
 4. **`livenessProbe` (`httpGet /healthz :8080`, `periodSeconds: 15`, `failureThreshold: 4`) & `lifecycle.preStop`**:
    - Monitors NGINX responsiveness without restarting pods during heavy PHP-FPM or DB load, and runs `sleep 5 && /usr/sbin/nginx -s quit` on termination so GKE Container-Native Load Balancing (NEG) stops sending new traffic before NGINX gracefully drains active connections.
 
-## 5. Automated Moodle SemVer Monitoring (`.github/dependabot.yml` and `moodle-semver-updater.yml`)
+## 5. Coordinated Moodle and Alpine Update Automation (`moodle-semver-updater.yml`)
 
-- **`.github/dependabot.yml`**: Monitors weekly updates for the `Dockerfile.nginx` base image (`docker`) and GitHub Actions (`github-actions`).
-- **`.github/workflows/moodle-semver-updater.yml` and `4-moodle-image-builder/scripts/update-moodle-semver.py`**:
-  - Polls official `moodle/moodle` GitHub tags weekly (and supports manual `workflow_dispatch` with `semver_scope: patch | minor | major` or `custom_series`).
-  - Downloads the target Moodle release archive, computes `MOODLE_SHA256`, updates `MOODLE_URL`, `MOODLE_SHA256`, and `MOODLE_SITENAME` across all `ConfigMap` manifests and templates, runs `./tests/verify-scripts-and-configs.sh`, and opens an automated Pull Request.
+Every Monday at 06:00 UTC (and on demand through `workflow_dispatch`), `.github/workflows/moodle-semver-updater.yml` runs `4-moodle-image-builder/scripts/update-moodle-semver.py`, which applies **both** dependency updates to the working tree so that they are proposed in **a single pull request** from the `chore/moodle-semver-update` branch:
+
+```mermaid
+flowchart LR
+    Identity["Resolve PR identity (MOODLE_UPDATER_TOKEN owner or github.actor)"] --> Script["update-moodle-semver.py"]
+    Script --> Moodle["Moodle tags: patch / minor / major / custom_series - MOODLE_URL, MOODLE_SHA256, MOODLE_SITENAME"]
+    Script --> Alpine["Alpine: releases.json + APKINDEX gate - FROM alpine:X.Y"]
+    Moodle --> Verify["tests/verify-scripts-and-configs.sh"]
+    Alpine --> Smoke["tests/smoke-test-container-image.sh (Alpine bumps only)"]
+    Verify --> PR["Single PR: chore/moodle-semver-update"]
+    Smoke --> PR
+```
+
+- **Moodle SemVer policy**: Polls official `moodle/moodle` GitHub tags with `semver_scope: patch | minor | major` or an explicit `custom_series`, downloads the target release archive, computes `MOODLE_SHA256`, and rewrites `MOODLE_URL`, `MOODLE_SHA256`, and `MOODLE_SITENAME` across all `ConfigMap` manifests and templates (plus the version references in `AGENTS.md` and `docs/repository-organization.md`).
+- **Compatibility-gated Alpine bumps (`alpine_policy: latest`, default)**: Reads `https://alpinelinux.org/releases.json`, ignores `edge`, end-of-life branches, and branches without a published release, and walks the newer branches from newest to oldest. A branch is selected only if its `main` and `community` `x86_64` `APKINDEX` files provide every package installed by an `apk add` command in `Dockerfile.nginx` and `scripts/build-gnu-libiconv.sh` (package names or `provides` aliases such as `envsubst`; comment lines are ignored). Branches that dropped a required package (for example, a future release without the `php83-*` series) are skipped, the `FROM alpine:X.Y` lines and the Alpine version in `AGENTS.md` are rewritten only for a compatible branch, and the script emits a warning when the current release is end-of-life without a compatible successor. Network failures while checking Alpine only skip the Alpine part, and `alpine_policy: none` leaves the base image unchanged.
+- **Dependabot division of labor**: `.github/dependabot.yml` keeps weekly `github-actions` updates, ignores the `alpine` dependency in the `docker` ecosystem so Alpine never arrives as a separate pull request, and applies a 7-day `cooldown` to both ecosystems.
+- **Verification before the pull request**: The workflow runs `./tests/verify-scripts-and-configs.sh` (which also executes the updater's offline `--dry-run` self-test) and, when the Alpine base image changed, `./tests/smoke-test-container-image.sh`. The smoke test builds `Dockerfile.nginx` with Docker or Podman and checks the Alpine release, the PHP 8.3 extensions Moodle needs (including `redis`, `igbinary`, `zstd`, `apcu`, and OPcache), the GNU libiconv `//TRANSLIT` preload, `nginx -t` against the rendered repository template, and `php-fpm83 -t`. Because each step must succeed before the pull request step runs, a broken Alpine bump never reaches a pull request.
+- **CLA-compliant pull request identity**: Google's CLA check (`cla/google`) validates the pull request opener and every commit author and committer, so a pull request opened by `github-actions[bot]` with `GITHUB_TOKEN` cannot pass it. When the optional `MOODLE_UPDATER_TOKEN` secret (a short-lived fine-grained personal access token of a CLA-covered maintainer, scoped to the repository with `Contents` and `Pull requests` write access) is configured, the workflow resolves its owner with `gh api user` and uses that token plus the owner's `<id>+<login>@users.noreply.github.com` identity as opener, author, and committer. A configured token that GitHub rejects (expired, revoked, or not yet approved) fails the run with an explicit error instead of silently falling back. Without the secret, it falls back to `GITHUB_TOKEN` and the `github.actor` noreply identity, and the generated pull request body explains how to re-open the pull request as a maintainer.
+- **Generated pull request metadata**: The script derives the commit message, title (for example, `chore(deps): update Moodle v5.2.4 to v5.2.5 and Alpine 3.21 to 3.24` when both change), and Markdown body (component table with `MOODLE_SHA256`, Alpine end-of-life dates, verified package count, and resolved `php83`, `nginx`, and `gnu-libiconv-libs` versions), and exposes `updated`, `moodle_updated`, and `alpine_updated` step outputs that gate the following steps.

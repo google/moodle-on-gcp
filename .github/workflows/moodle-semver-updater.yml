@@ -11,6 +11,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# Coordinated weekly updater: proposes Moodle SemVer releases and Alpine base
+# image bumps in a single pull request (Dependabot ignores `alpine` so the two
+# never arrive as separate pull requests). See docs/install-moodle-nginx.md.
 name: Moodle SemVer Auto-Updater
 
 on:
@@ -32,44 +35,96 @@ on:
         required: false
         default: ""
         type: string
+      alpine_policy:
+        description: "Alpine base image policy: latest (newest supported release that still ships every required apk package) or none"
+        required: false
+        default: "latest"
+        type: choice
+        options:
+          - latest
+          - none
 
 permissions: {}
 
+concurrency:
+  group: moodle-semver-updater
+  cancel-in-progress: false
+
 jobs:
   check-and-update-moodle:
+    name: Check and propose coordinated Moodle and Alpine updates
     runs-on: ubuntu-latest
     permissions:
-      contents: write
-      pull-requests: write
+      contents: write # push chore/moodle-semver-update when MOODLE_UPDATER_TOKEN is not configured
+      pull-requests: write # open or update the pull request when MOODLE_UPDATER_TOKEN is not configured
     steps:
       - name: Check out repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
 
-      - name: Check and apply Moodle SemVer update
+      # Google's CLA check (cla/google) requires the pull request opener and every
+      # commit author/committer to be covered by a CLA, so github-actions[bot]
+      # cannot open a mergeable pull request. When the optional MOODLE_UPDATER_TOKEN
+      # secret (a short-lived, repository-scoped fine-grained PAT of a maintainer)
+      # is configured, the pull request and its commit are attributed to that
+      # maintainer's GitHub noreply identity instead.
+      - name: Resolve pull request identity
+        id: identity
+        env:
+          MAINTAINER_TOKEN: ${{ secrets.MOODLE_UPDATER_TOKEN }}
+        run: |
+          set -euo pipefail
+          if [ -n "${MAINTAINER_TOKEN}" ]; then
+            if ! user_line="$(GH_TOKEN="${MAINTAINER_TOKEN}" gh api user --jq '"\(.login) \(.id)"')"; then
+              echo "::error::MOODLE_UPDATER_TOKEN is set but GitHub rejected it (expired, revoked, or not approved); rotate the token."
+              exit 1
+            fi
+            read -r login user_id <<< "${user_line}"
+            mode="maintainer-token"
+          else
+            login="${GITHUB_ACTOR}"
+            user_id="${GITHUB_ACTOR_ID}"
+            mode="github-token"
+            echo "::notice::MOODLE_UPDATER_TOKEN is not configured; github-actions[bot] will open the pull request and cla/google will flag it."
+          fi
+          if ! [[ "${login}" =~ ^[A-Za-z0-9-]+(\[bot\])?$ && "${user_id}" =~ ^[0-9]+$ ]]; then
+            echo "::error::Unexpected GitHub identity '${login}' (${user_id})."
+            exit 1
+          fi
+          {
+            echo "mode=${mode}"
+            echo "identity=${login} <${user_id}+${login}@users.noreply.github.com>"
+          } >> "${GITHUB_OUTPUT}"
+
+      - name: Check and apply Moodle and Alpine updates
         id: semver
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SEMVER_SCOPE: ${{ inputs.semver_scope || 'patch' }}
           CUSTOM_SERIES: ${{ inputs.custom_series || '' }}
+          ALPINE_POLICY: ${{ inputs.alpine_policy || 'latest' }}
+          PR_IDENTITY_MODE: ${{ steps.identity.outputs.mode }}
+          PR_BODY_PATH: ${{ runner.temp }}/moodle-semver-pr-body.md
         run: python3 4-moodle-image-builder/scripts/update-moodle-semver.py
 
       - name: Run repository verification suite
         if: steps.semver.outputs.updated == 'true'
         run: ./tests/verify-scripts-and-configs.sh
 
-      - name: Create Pull Request for Moodle SemVer update
+      - name: Build and smoke-test the container image on the new Alpine release
+        if: steps.semver.outputs.alpine_updated == 'true'
+        run: ./tests/smoke-test-container-image.sh
+
+      - name: Open or update the coordinated update pull request
         if: steps.semver.outputs.updated == 'true'
         uses: peter-evans/create-pull-request@3ffccacd46053766916f087ce41d627c0b8cf2d1 # v8.1.3
         with:
+          token: ${{ secrets.MOODLE_UPDATER_TOKEN || secrets.GITHUB_TOKEN }}
+          author: ${{ steps.identity.outputs.identity }}
+          committer: ${{ steps.identity.outputs.identity }}
           branch: chore/moodle-semver-update
           delete-branch: true
-          commit-message: "chore(moodle): update Moodle to ${{ steps.semver.outputs.new_version }}"
-          title: "chore(moodle): Update Moodle from ${{ steps.semver.outputs.old_version }} to ${{ steps.semver.outputs.new_version }}"
-          body: |
-            ## Summary
-            Automated SemVer update of Moodle from `${{ steps.semver.outputs.old_version }}` to `${{ steps.semver.outputs.new_version }}`.
-
-            - **Tarball SHA-256 (`MOODLE_SHA256`)**: `${{ steps.semver.outputs.sha256 }}`
-            - **Verification**: `./tests/verify-scripts-and-configs.sh` passed.
+          commit-message: ${{ steps.semver.outputs.commit_message }}
+          title: ${{ steps.semver.outputs.pr_title }}
+          body-path: ${{ runner.temp }}/moodle-semver-pr-body.md
