@@ -77,6 +77,10 @@ print("All YAML manifests valid!")
 
 # 4. Run the automated verification and edge-case test suite
 ./tests/verify-scripts-and-configs.sh
+
+# 5. (Optional, requires Docker or Podman) Build and smoke-test the container image,
+#    mandatory when changing 4-moodle-image-builder/Dockerfile.nginx or its Alpine base image
+CONTAINER_CLI=podman ./tests/smoke-test-container-image.sh
 ```
 
 ---

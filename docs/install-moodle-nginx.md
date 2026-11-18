@@ -52,15 +52,41 @@ In `4-moodle-image-builder/base/opt/entrypoint.sh`, `/opt/setup_moodle.sh` execu
    - `rollingUpdate: { maxSurge: 1, maxUnavailable: 0 }` and `minReadySeconds: 10` guarantee that no existing pod is terminated until the replacement pod has passed `readinessProbe` continuously for 10 seconds.
    - When a pod is terminated, `preStop` executes `sleep 5 && /usr/sbin/nginx -s quit`, giving GKE Container-Native Load Balancing (NEG) and `kube-proxy` time to stop routing new connections before NGINX gracefully drains in-flight PHP requests.
 
-## Automated Moodle SemVer Monitoring (`.github/dependabot.yml` & `moodle-semver-updater.yml`)
+## Coordinated Moodle & Alpine Update Monitoring (`.github/dependabot.yml` & `moodle-semver-updater.yml`)
 
-- **`.github/dependabot.yml`**: Automatically monitors weekly updates for the `Dockerfile.nginx` base image (`docker` ecosystem) and GitHub Actions (`github-actions` ecosystem).
-- **`.github/workflows/moodle-semver-updater.yml` & `4-moodle-image-builder/scripts/update-moodle-semver.py`**:
-  - Because `MOODLE_URL` is parameterized inside Kubernetes `ConfigMap` YAML files (`https://github.com/moodle/moodle/archive/refs/tags/v5.2.4.tar.gz`), the `Moodle SemVer Auto-Updater` workflow polls official `moodle/moodle` GitHub tags every Monday (and supports manual on-demand execution via `workflow_dispatch`).
-  - Supports configurable SemVer policies:
-    - `patch` (default): updates within the current minor release series (e.g., `v5.2.4` $\rightarrow$ `v5.2.5`).
-    - `minor`: updates to newer minor releases within the same major version (e.g., `v5.2.4` $\rightarrow$ `v5.3.0`).
-    - `custom_series`: pins a specific target series (e.g., `5.3`).
-  - Automatically downloads the target release tarball, computes its SHA-256 digest (`MOODLE_SHA256`), updates all `ConfigMap` manifests and templates, runs `./tests/verify-scripts-and-configs.sh`, and opens a Pull Request.
+- **`.github/dependabot.yml`**: Monitors GitHub Actions (`github-actions` ecosystem) weekly with a 7-day `cooldown`. The `docker` ecosystem deliberately **ignores `alpine`**: Alpine base image bumps are coordinated by the SemVer updater below, so a Moodle release and an Alpine release land in the **same** pull request, and only when the new Alpine release still ships every package the image installs.
+- **`.github/workflows/moodle-semver-updater.yml` & `4-moodle-image-builder/scripts/update-moodle-semver.py`** (every Monday at 06:00 UTC, or on demand via `workflow_dispatch`):
+  1. **Moodle (SemVer)**: Because `MOODLE_URL` is parameterized inside Kubernetes `ConfigMap` YAML files (`https://github.com/moodle/moodle/archive/refs/tags/v5.2.4.tar.gz`), the workflow polls official `moodle/moodle` GitHub tags with a configurable policy:
+     - `patch` (default): updates within the current minor release series (e.g., `v5.2.4` $\rightarrow$ `v5.2.5`).
+     - `minor`: updates to newer minor releases within the same major version (e.g., `v5.2.4` $\rightarrow$ `v5.3.0`).
+     - `custom_series`: pins a specific target series (e.g., `5.3`).
+
+     It downloads the target release tarball, computes its SHA-256 digest (`MOODLE_SHA256`), and updates `MOODLE_URL`, `MOODLE_SHA256`, and `MOODLE_SITENAME` in all `ConfigMap` manifests and templates.
+  2. **Alpine base image (`alpine_policy: latest`, default)**: Reads `https://alpinelinux.org/releases.json`, skips end-of-life branches, and selects the newest supported Alpine release whose `main` and `community` repositories (`x86_64` `APKINDEX`) provide **every** package installed by `Dockerfile.nginx` and `scripts/build-gnu-libiconv.sh` (including all `php83-*` extensions). A release that dropped a required package (for example, a future Alpine release without `php83`) is skipped instead of breaking the image, and the workflow emits a warning when the current release is end-of-life without a compatible successor. Set `alpine_policy: none` to keep the base image unchanged.
+  3. **Verification**: Runs `./tests/verify-scripts-and-configs.sh` and, for Alpine bumps, `./tests/smoke-test-container-image.sh` (builds the image and checks the PHP 8.3 extensions, the GNU libiconv `//TRANSLIT` preload, `nginx -t`, and `php-fpm83 -t`) before opening the pull request.
+  4. **Single pull request**: Opens (or updates) one pull request from the `chore/moodle-semver-update` branch that lists every component that changed.
+
+### Opening Update Pull Requests Under a Maintainer Identity (Google CLA)
+
+Repositories in the `google` GitHub organization must pass the **Google CLA check (`cla/google`)** before merging. The check validates the pull request opener **and** every commit author and committer. Pull requests opened with the default `GITHUB_TOKEN` are attributed to `github-actions[bot]`, which is not covered by a CLA, so they cannot pass the check.
+
+To have the workflow open pull requests under a maintainer's identity:
+
+1. As a maintainer whose GitHub account is covered by the Google CLA, create a **fine-grained personal access token** on your own account (do not create a separate bot account):
+   - **Resource owner**: `google`; **Repository access**: *Only select repositories* $\rightarrow$ `google/moodle-on-gcp`.
+   - **Repository permissions**: `Contents: Read and write` and `Pull requests: Read and write` (`Metadata: Read-only` is added automatically).
+   - **Expiration**: Keep it short (for example, 30–90 days) and rotate it before it expires.
+2. Store it as the repository secret `MOODLE_UPDATER_TOKEN`. The command prompts for the value, so the token never appears in your shell history:
+
+   ```bash
+   gh secret set MOODLE_UPDATER_TOKEN --repo google/moodle-on-gcp
+   ```
+
+3. The workflow resolves the token owner (`gh api user`) and uses `<login> <<id>+<login>@users.noreply.github.com>` as the commit author and committer. The pull request opener, author, and committer are therefore all the maintainer's CLA-covered GitHub noreply identity, and no private email address is exposed.
+
+Without `MOODLE_UPDATER_TOKEN`, the workflow still opens the pull request with `GITHUB_TOKEN` and adds a note to its body; a maintainer can close it and re-open it from the same branch with `gh pr create --head chore/moodle-semver-update`.
+
+> [!NOTE]
+> If your organization requires administrator approval for fine-grained tokens, the token works only after it is approved. For long-term, team-owned automation, a GitHub App is the alternative, but pull requests opened by an app's bot account must also satisfy the CLA check.
 
 For migration guidance from legacy deployments, see [Migration Recommendations](migration-recommendations.md).

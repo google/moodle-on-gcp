@@ -20,8 +20,15 @@ updates:
       day: "monday"
       time: "06:00"
     open-pull-requests-limit: 5
+    cooldown:
+      default-days: 7
     commit-message:
       prefix: "chore(deps)"
+    ignore:
+      # The Alpine base image is bumped by .github/workflows/moodle-semver-updater.yml
+      # together with Moodle releases (single pull request), and only to releases
+      # whose repositories still ship every php83-* package the image installs.
+      - dependency-name: "alpine"
 
   - package-ecosystem: "github-actions"
     directory: "/"
@@ -30,5 +37,7 @@ updates:
       day: "monday"
       time: "06:00"
     open-pull-requests-limit: 5
+    cooldown:
+      default-days: 7
     commit-message:
       prefix: "chore(ci)"
