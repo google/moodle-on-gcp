@@ -13,13 +13,13 @@
 
 # Stage 1: Compile preloadable_libiconv.so against current Alpine toolchain
 # Addresses MDL-80440 (musl iconv //TRANSLIT limitation) without relying on legacy Alpine v3.13 repos.
-FROM alpine:3.21 AS libiconv-builder
+FROM alpine:3.24 AS libiconv-builder
 
 COPY ["./scripts/build-gnu-libiconv.sh", "/tmp/build-gnu-libiconv.sh"]
 RUN chmod +x /tmp/build-gnu-libiconv.sh && /tmp/build-gnu-libiconv.sh
 
 # Stage 2: Moodle NGINX + PHP 8.3 Runtime Image
-FROM alpine:3.21
+FROM alpine:3.24
 
 USER root
 
