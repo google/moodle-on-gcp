@@ -66,6 +66,22 @@ In `4-moodle-image-builder/base/opt/entrypoint.sh`, `/opt/setup_moodle.sh` execu
   3. **Verification**: Runs `./tests/verify-scripts-and-configs.sh` and, for Alpine bumps, `./tests/smoke-test-container-image.sh` (builds the image and checks the PHP 8.3 extensions, the GNU libiconv `//TRANSLIT` preload, `nginx -t`, and `php-fpm83 -t`) before opening the pull request.
   4. **Single pull request**: Opens (or updates) one pull request from the `chore/moodle-semver-update` branch that lists every component that changed.
 
+### Declarative Zero-Loop Core Auto-Upgrade (`MOODLE_AUTOUPGRADE`)
+
+By default, `MOODLE_AUTOUPGRADE` is set to `'false'` in `5a-deployment-no-helm/moodle-configmap-nginx.yaml` (and `'false'` in `moodle-configmap-nginx-uploads.yaml`) so third-party plugin compatibility can be validated before upgrading an existing cluster.
+
+When `MOODLE_AUTOUPGRADE: 'true'` is enabled in `moodle-configmap` (`4-moodle-image-builder/base/opt/moodle_autoupgrade_lib.sh`):
+
+1. **Declarative State Reconciliation (`moodledata/.moodle-version-state`)**:
+   - Every boot compares the desired release (`"${MOODLE_URL}|${MOODLE_SHA256}"` from the `ConfigMap`) against `moodledata/.moodle-version-state` (bootstrapped automatically from `version.php` on pre-existing installations).
+   - Once the installed state matches the `ConfigMap`, subsequent pod restarts and HPA scale-out events (`3..9` pods) skip the upgrade check in `< 1 ms` — preventing endless maintenance/upgrade loops even though `MOODLE_AUTOUPGRADE` remains `'true'` in the read-only `ConfigMap`.
+2. **Double-Checked Atomic Directory Lock (`moodledata/.moodle-upgrade.lock`)**:
+   - During a rolling update when `MOODLE_URL` changes (e.g., `v5.2.4` $\rightarrow$ `v5.2.5`), only the first pod that acquires POSIX-atomic `mkdir moodledata/.moodle-upgrade.lock` performs the upgrade.
+   - Follower and upload pods wait for `.moodle-upgrade.lock` to clear (covered by the 10-minute `startupProbe`), re-read `.moodle-version-state`, see that the target version is already installed, and proceed directly to start PHP-FPM and NGINX without re-running `upgrade.php`. Orphaned locks older than 15 minutes (`> 900s`) are automatically cleaned up.
+3. **Same-Mount Staging Swap & Non-Core Plugin Preservation**:
+   - Downloads `MOODLE_URL` and verifies `MOODLE_SHA256` *before* enabling maintenance mode, extracts into a hidden staging directory on the same mount (`$MOODLE_PATH/.moodle-staging.$$`), runs `composer install --no-dev --classmap-authoritative`, copies `config.php` (`0444`) and any non-core plugins (`report_benchmark`, `tool_opcache`, `local_redislock`, custom themes/blocks/mods), performs an `O(1)` rename swap (removing obsolete core files from older releases without `EBUSY` on Kubernetes `subPath` mounts), runs `admin/cli/upgrade.php --non-interactive` and `build_theme_css.php`, disables maintenance mode, and records `.moodle-version-state`.
+   - The legacy one-shot `moodledata/.moodle-autoupgrade` dotfile remains supported and is removed upon completion.
+
 ### Opening Update Pull Requests Under a Maintainer Identity (Google CLA)
 
 Repositories in the `google` GitHub organization must pass the **Google CLA check (`cla/google`)** before merging. The check validates the pull request opener **and** every commit author and committer. Pull requests opened with the default `GITHUB_TOKEN` are attributed to `github-actions[bot]`, which is not covered by a CLA, so they cannot pass the check.

@@ -82,11 +82,29 @@ spec:
             configMapKeyRef:
               name: moodle-configmap
               key: MOODLE_URL
+        - name: MOODLE_SHA256
+          valueFrom:
+            configMapKeyRef:
+              name: moodle-configmap
+              key: MOODLE_SHA256
+              optional: true
+        - name: MOODLE_AUTOUPGRADE
+          valueFrom:
+            configMapKeyRef:
+              name: moodle-configmap
+              key: MOODLE_AUTOUPGRADE
+              optional: true
         - name: MOOSH_URL
           valueFrom:
             configMapKeyRef:
               name: moodle-configmap
               key: MOOSH_URL
+        - name: MOOSH_SHA256
+          valueFrom:
+            configMapKeyRef:
+              name: moodle-configmap
+              key: MOOSH_SHA256
+              optional: true
         - name: LANG
           valueFrom:
             configMapKeyRef:

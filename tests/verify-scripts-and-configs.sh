@@ -137,6 +137,146 @@ if grep -q "p@ss" "$TMP_TEST_DIR/config_full.php"; then
 fi
 echo "PASS: All read-replica edge cases verified."
 
+echo "=== [4b/6] Unit-testing declarative MOODLE_AUTOUPGRADE reconciliation & double-checked locking ==="
+(
+  AUTOUPG_TEST_DIR="$TMP_TEST_DIR/autoupgrade_test"
+  mkdir -p "$AUTOUPG_TEST_DIR/bin" "$AUTOUPG_TEST_DIR/moodle/public/report/customtest" \
+           "$AUTOUPG_TEST_DIR/moodle/public/local/redislock" "$AUTOUPG_TEST_DIR/moodle/admin/cli" \
+           "$AUTOUPG_TEST_DIR/moodledata" "$AUTOUPG_TEST_DIR/fixtures"
+  UPGRADE_LOG="$AUTOUPG_TEST_DIR/upgrade_calls.log"
+  : > "$UPGRADE_LOG"
+
+  # Mock sudo, composer, and php83 so moodle_autoupgrade_lib.sh runs unprivileged
+  cat > "$AUTOUPG_TEST_DIR/bin/sudo" <<'SUDOEOF'
+#!/bin/sh
+if [ "$1" = "-u" ]; then
+  shift 2
+fi
+exec "$@"
+SUDOEOF
+  cat > "$AUTOUPG_TEST_DIR/bin/composer" <<'COMPEOF'
+#!/bin/sh
+for arg in "$@"; do
+  case "$arg" in
+    --working-dir=*)
+      wdir="${arg#--working-dir=}"
+      mkdir -p "$wdir/vendor"
+      echo "<?php // autoload" > "$wdir/vendor/autoload.php"
+      ;;
+  esac
+done
+exit 0
+COMPEOF
+  cat > "$AUTOUPG_TEST_DIR/bin/php83" <<PHPEOF
+#!/bin/sh
+echo "\$*" >> "$UPGRADE_LOG"
+exit 0
+PHPEOF
+  chmod +x "$AUTOUPG_TEST_DIR/bin/sudo" "$AUTOUPG_TEST_DIR/bin/composer" "$AUTOUPG_TEST_DIR/bin/php83"
+  export PATH="$AUTOUPG_TEST_DIR/bin:$PATH"
+
+  export MOODLE_PATH="$AUTOUPG_TEST_DIR/moodle"
+  export MOODLE_DATAROOT_PATH="$AUTOUPG_TEST_DIR/moodledata"
+  export MOODLE_UPGRADE_LOCK_POLL_SECS=1
+
+  # Seed an existing Moodle 5.2.4 installation with a custom plugin and an obsolete 5.2.4 file
+  cat > "$MOODLE_PATH/public/version.php" <<'VEREOF'
+<?php
+$release  = '5.2.4 (Build: 20261001)';
+VEREOF
+  echo "<?php // custom config" > "$MOODLE_PATH/config.php"
+  chmod 0444 "$MOODLE_PATH/config.php"
+  echo "<?php // custom plugin" > "$MOODLE_PATH/public/report/customtest/version.php"
+  echo "<?php // redislock" > "$MOODLE_PATH/public/local/redislock/version.php"
+  echo "obsolete-in-5.2.5" > "$MOODLE_PATH/old_524_only.php"
+  touch "$MOODLE_DATAROOT_PATH/.moodle-installed"
+
+  # Build a realistic Moodle 5.2.5 release tarball fixture
+  PKG_SRC="$AUTOUPG_TEST_DIR/fixtures/moodle-5.2.5"
+  mkdir -p "$PKG_SRC/public/report/log" "$PKG_SRC/public/local" \
+           "$PKG_SRC/public/lib/classes/check/environment" "$PKG_SRC/admin/cli"
+  cat > "$PKG_SRC/public/version.php" <<'VER2EOF'
+<?php
+$release  = '5.2.5 (Build: 20261115)';
+VER2EOF
+  echo '{"name":"moodle/moodle"}' > "$PKG_SRC/composer.json"
+  echo '<?php $url = $CFG->wwwroot;' > "$PKG_SRC/public/lib/classes/check/environment/publicpaths.php"
+  for cli_f in maintenance.php upgrade.php build_theme_css.php; do
+    echo "<?php // $cli_f" > "$PKG_SRC/admin/cli/$cli_f"
+  done
+  TARBALL_525="$AUTOUPG_TEST_DIR/fixtures/v5.2.5.tar.gz"
+  tar -czf "$TARBALL_525" -C "$AUTOUPG_TEST_DIR/fixtures" moodle-5.2.5
+  SHA256_525="$(sha256sum "$TARBALL_525" | awk '{print $1}')"
+
+  . "$REPO_ROOT/4-moodle-image-builder/base/opt/moodle_autoupgrade_lib.sh"
+
+  # 1. Steady-state bootstrap: disk=5.2.4 and MOODLE_URL=v5.2.4.tar.gz -> bootstraps state, 0 upgrades
+  export MOODLE_URL="file://$AUTOUPG_TEST_DIR/fixtures/v5.2.4.tar.gz"
+  export MOODLE_SHA256="deadbeef"
+  export MOODLE_AUTOUPGRADE="true"
+  moodle_reconcile_autoupgrade
+  test -f "$MOODLE_DATAROOT_PATH/.moodle-version-state"
+  if grep -q "upgrade.php" "$UPGRADE_LOG"; then
+    echo "FAIL: upgrade.php should not run when disk version already matches MOODLE_URL." >&2
+    exit 1
+  fi
+
+  # 2. Default opt-out (MOODLE_AUTOUPGRADE=false): changing MOODLE_URL to 5.2.5 must NOT upgrade
+  export MOODLE_URL="file://$TARBALL_525"
+  export MOODLE_SHA256="$SHA256_525"
+  export MOODLE_AUTOUPGRADE="false"
+  moodle_reconcile_autoupgrade
+  grep -q "5.2.4" "$MOODLE_PATH/public/version.php"
+
+  # 3. Declarative upgrade (MOODLE_AUTOUPGRADE=true): upgrades 5.2.4 -> 5.2.5, preserves config.php & custom plugins, prunes old file
+  export MOODLE_AUTOUPGRADE="true"
+  moodle_reconcile_autoupgrade
+  grep -q "5.2.5" "$MOODLE_PATH/public/version.php"
+  test -f "$MOODLE_PATH/vendor/autoload.php"
+  test -f "$MOODLE_PATH/public/report/customtest/version.php"
+  test -f "$MOODLE_PATH/public/local/redislock/version.php"
+  grep -q "custom config" "$MOODLE_PATH/config.php"
+  grep -q 'http://localhost:8080' "$MOODLE_PATH/public/lib/classes/check/environment/publicpaths.php"
+  if [ -e "$MOODLE_PATH/old_524_only.php" ]; then
+    echo "FAIL: Obsolete file from 5.2.4 was not removed during staging swap." >&2
+    exit 1
+  fi
+  if [ -d "$MOODLE_DATAROOT_PATH/.moodle-upgrade.lock" ]; then
+    echo "FAIL: .moodle-upgrade.lock was not cleaned up after successful upgrade." >&2
+    exit 1
+  fi
+  UPGRADE_COUNT_AFTER_FIRST="$(grep -c 'upgrade.php' "$UPGRADE_LOG")"
+  [ "$UPGRADE_COUNT_AFTER_FIRST" -eq 1 ]
+
+  # 4. Subsequent boot with MOODLE_AUTOUPGRADE=true still set -> 0 extra upgrades (no infinite loop!)
+  moodle_reconcile_autoupgrade
+  [ "$(grep -c 'upgrade.php' "$UPGRADE_LOG")" -eq 1 ]
+
+  # 5. Follower pod waiting on active .moodle-upgrade.lock skips duplicate upgrade once leader updates state
+  echo "old-state" > "$MOODLE_DATAROOT_PATH/.moodle-version-state"
+  mkdir -p "$MOODLE_DATAROOT_PATH/.moodle-upgrade.lock"
+  date +%s > "$MOODLE_DATAROOT_PATH/.moodle-upgrade.lock/started_at"
+  (
+    sleep 1
+    printf '%s|%s\n' "$MOODLE_URL" "$MOODLE_SHA256" > "$MOODLE_DATAROOT_PATH/.moodle-version-state"
+    rm -rfv "$MOODLE_DATAROOT_PATH/.moodle-upgrade.lock" >/dev/null
+  ) &
+  BG_LEADER_PID=$!
+  moodle_reconcile_autoupgrade
+  wait "$BG_LEADER_PID"
+  [ "$(grep -c 'upgrade.php' "$UPGRADE_LOG")" -eq 1 ]
+
+  # 6. Stale lock (> max age) is automatically cleaned up
+  mkdir -p "$MOODLE_DATAROOT_PATH/.moodle-upgrade.lock"
+  echo $(( $(date +%s) - 2000 )) > "$MOODLE_DATAROOT_PATH/.moodle-upgrade.lock/started_at"
+  MOODLE_UPGRADE_LOCK_MAX_AGE=900 moodle_clean_stale_lock
+  if [ -d "$MOODLE_DATAROOT_PATH/.moodle-upgrade.lock" ]; then
+    echo "FAIL: Stale .moodle-upgrade.lock was not cleaned up." >&2
+    exit 1
+  fi
+)
+echo "PASS: Declarative MOODLE_AUTOUPGRADE reconciliation & locking verified."
+
 echo "=== [5/6] Unit-testing build-nginx-based-image.sh, cleanup-moodle-install.sh, and infra scripts with mocked CLIs ==="
 MOCK_ROOT="$TMP_TEST_DIR/mock_repo"
 mkdir -p "$MOCK_ROOT/0-infra" "$MOCK_ROOT/4-moodle-image-builder" "$MOCK_ROOT/bin"
@@ -274,4 +414,9 @@ grep -q 'dependency-name: "alpine"' .github/dependabot.yml
 grep -q 'MOODLE_UPDATER_TOKEN' .github/workflows/moodle-semver-updater.yml
 grep -q './tests/smoke-test-container-image.sh' .github/workflows/moodle-semver-updater.yml
 bash -n tests/smoke-test-container-image.sh
+grep -q "MOODLE_AUTOUPGRADE: 'false'" 5a-deployment-no-helm/moodle-configmap-nginx.yaml
+grep -q "MOODLE_AUTOUPGRADE: 'false'" 5a-deployment-no-helm/moodle-configmap-nginx-uploads.yaml
+grep -q 'key: MOODLE_AUTOUPGRADE' 5a-deployment-no-helm/moodle-deployment-nginx.yaml
+grep -q 'key: MOODLE_SHA256' 5a-deployment-no-helm/moodle-deployment-nginx.yaml
+test -f 4-moodle-image-builder/base/opt/moodle_autoupgrade_lib.sh
 echo "PASS: All repository guardrails verified."

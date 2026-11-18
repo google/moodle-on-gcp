@@ -13,6 +13,9 @@
 ## See the License for the specific language governing permissions and
 ## limitations under the License.
 
+SCRIPT_DIR="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)"
+. "$SCRIPT_DIR/moodle_autoupgrade_lib.sh"
+
 setupPath() {
   echo "Checking if $1 exists ..."
   if [ ! -d "$1" ] ; then
@@ -323,25 +326,15 @@ if [ ! -f "$MOODLE_DATAROOT_PATH/.moodle-installed" ] ; then
   echo "Precompiling boost's css theme ..."
   sudo -u www php83 -d max_input_vars=10000 "$MOODLE_PATH/admin/cli/build_theme_css.php" --themes=boost
 
-  # persist setup
+  # persist setup and declarative version state
   sudo -u www touch "$MOODLE_DATAROOT_PATH/.moodle-installed"
+  moodle_write_version_state
   echo -e "Done with setting up Moodle ...\n"
 
 else
 
   echo "Yes! All set Moodle setup ..."
-
-  if [ -f "$MOODLE_DATAROOT_PATH/.moodle-autoupgrade" ]; then
-    echo "Upgrading moodle..."
-    if [ -f "$MOODLE_PATH/composer.json" ] && [ ! -f "$MOODLE_PATH/vendor/autoload.php" ]; then
-      sudo -u www composer install --no-dev --classmap-authoritative --no-interaction --working-dir="$MOODLE_PATH"
-    fi
-    sudo -u www php83 -d max_input_vars=10000 "$MOODLE_PATH/admin/cli/maintenance.php" --enable
-    sudo -u www php83 -d max_input_vars=10000 "$MOODLE_PATH/admin/cli/upgrade.php" --non-interactive --allow-unstable
-    sudo -u www php83 -d max_input_vars=10000 "$MOODLE_PATH/admin/cli/maintenance.php" --disable
-  else
-    echo "Skipped auto update of Moodle"
-  fi
+  moodle_reconcile_autoupgrade || exit 1
 fi
 
 # Moodle 5.1+ serves web-accessible files from $MOODLE_PATH/public (MDL-83424).

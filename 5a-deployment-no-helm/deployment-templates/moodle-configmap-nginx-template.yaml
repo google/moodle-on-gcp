@@ -19,6 +19,7 @@ metadata:
 data:
   MOODLE_URL: 'https://github.com/moodle/moodle/archive/refs/tags/v5.2.5.tar.gz'
   MOODLE_SHA256: '6713676b07827d935b387b439ce63df51f2533cf50efdff9128859e5135f085b'
+  MOODLE_AUTOUPGRADE: 'false'
   MOOSH_URL: 'https://github.com/tmuras/moosh/archive/refs/heads/master.tar.gz'
   MOOSH_SHA256: ''
   LANG: 'pt_BR.UTF-8'
