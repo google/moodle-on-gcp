@@ -1,7 +1,7 @@
 # Graph Report - modern-moodle-correction  (2026-11-18)
 
 ## Corpus Check
-- 65 files · ~124,126 words
+- 65 files · ~124,208 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 41 file(s) not represented in the graph (top: .ini 30, .conf 4, (none) 2)
 
@@ -11,7 +11,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `94fbc7d5`
+- Built from commit: `5b0e7919`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 

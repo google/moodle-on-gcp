@@ -54,51 +54,51 @@
     "semantic_hash": ""
   },
   "openwiki/.claims/architecture/infrastructure-and-networking.json": {
-    "mtime": 1795003733.387225,
-    "seen": 1795003750.4345713,
+    "mtime": 1795021200.482342,
+    "seen": 1795021230.9528768,
     "ast_hash": "71528dac827cb594ae4023b5101d1b87",
     "semantic_hash": ""
   },
   "openwiki/.claims/architecture/storage-modalities.json": {
-    "mtime": 1795003733.3952255,
-    "seen": 1795003750.4345737,
+    "mtime": 1795021200.4924192,
+    "seen": 1795021230.9528785,
     "ast_hash": "849b2064ed842824659adbd6f1505074",
     "semantic_hash": ""
   },
   "openwiki/.claims/operations/cloud-cdn-and-ingress.json": {
-    "mtime": 1795003733.4032264,
-    "seen": 1795003750.4345753,
+    "mtime": 1795021200.4983435,
+    "seen": 1795021230.9528804,
     "ast_hash": "1eb303dca620a65eb6b248fe881d4807",
     "semantic_hash": ""
   },
   "openwiki/.claims/operations/gke-deployments-and-uploads-isolation.json": {
-    "mtime": 1795003733.414239,
-    "seen": 1795003750.4345772,
-    "ast_hash": "f661e4643c38735a38470bf8cd2d6d50",
+    "mtime": 1795021200.506344,
+    "seen": 1795021230.9528823,
+    "ast_hash": "0f2e1938ca47854511344b64828f80b7",
     "semantic_hash": ""
   },
   "openwiki/.claims/quickstart.json": {
-    "mtime": 1795003733.4168077,
-    "seen": 1795003750.4345787,
+    "mtime": 1795021200.5103445,
+    "seen": 1795021230.9528837,
     "ast_hash": "de9584d1babf287dc2bf1d2732ac234c",
     "semantic_hash": ""
   },
   "openwiki/.claims/runtime/container-image-moodle52-php83.json": {
-    "mtime": 1795003733.4214106,
-    "seen": 1795003750.4345803,
+    "mtime": 1795021200.518345,
+    "seen": 1795021230.9528852,
     "ast_hash": "c480796b1b85bfb4cf0f7e39505a734c",
     "semantic_hash": ""
   },
   "openwiki/.last-update.json": {
-    "mtime": 1795003733.7872605,
-    "seen": 1795003750.4345818,
-    "ast_hash": "f5c7255c46d96f9f088234685a796783",
+    "mtime": 1795021201.0023885,
+    "seen": 1795021230.9528868,
+    "ast_hash": "fbbe6f09ec2208685f5f0d838afaa68a",
     "semantic_hash": ""
   },
   "openwiki/.page-manifest.json": {
-    "mtime": 1795003733.4832335,
-    "seen": 1795003750.4345832,
-    "ast_hash": "9fe606b9010bb1fbfa9a8c2dcb17841c",
+    "mtime": 1795021200.594352,
+    "seen": 1795021230.952888,
+    "ast_hash": "a76023dc08d80cfa18773b3b5b73c7df",
     "semantic_hash": ""
   },
   "1-pv/pv-filestore.yaml": {
@@ -144,14 +144,14 @@
     "semantic_hash": "ce832e7d4353f3fbb72ed6f52158bdc2"
   },
   "5a-deployment-no-helm/moodle-configmap-nginx-uploads.yaml": {
-    "mtime": 1795003527.0237477,
-    "seen": 1795003750.4346359,
+    "mtime": 1795003926.4497616,
+    "seen": 1795021230.952934,
     "ast_hash": "200c52ed17d3af672218f9fcfb7b1e64",
     "semantic_hash": ""
   },
   "5a-deployment-no-helm/moodle-configmap-nginx.yaml": {
-    "mtime": 1795003527.0237477,
-    "seen": 1795003750.4346373,
+    "mtime": 1795003926.4497616,
+    "seen": 1795021230.9529357,
     "ast_hash": "b5849bb93ebb98006487c23abf623964",
     "semantic_hash": ""
   },
@@ -330,8 +330,8 @@
     "semantic_hash": "c8e7313453a6e45892cef33580e11183"
   },
   "docs/install-moodle-nginx.md": {
-    "mtime": 1795002826.9861503,
-    "seen": 1795002881.869603,
+    "mtime": 1795003926.4497616,
+    "seen": 1795021230.9529984,
     "ast_hash": "65543f979dfd17edbe16940a73e07277",
     "semantic_hash": ""
   },
@@ -372,8 +372,8 @@
     "semantic_hash": ""
   },
   "docs/repository-organization.md": {
-    "mtime": 1795003527.0237477,
-    "seen": 1795003750.4347703,
+    "mtime": 1795003926.4497616,
+    "seen": 1795021230.9530094,
     "ast_hash": "4b72cb073bb76b5c9a88895e354c16b7",
     "semantic_hash": ""
   },
@@ -384,8 +384,8 @@
     "semantic_hash": "5e3f3174b88ad0300641448daff5986c"
   },
   "openwiki/architecture/infrastructure-and-networking.md": {
-    "mtime": 1795003733.33122,
-    "seen": 1795003750.4347785,
+    "mtime": 1795003926.4685,
+    "seen": 1795021230.9530144,
     "ast_hash": "a4075159863c7d8921491d01be77d1b1",
     "semantic_hash": ""
   },
@@ -402,32 +402,32 @@
     "semantic_hash": ""
   },
   "openwiki/operations/gke-deployments-and-uploads-isolation.md": {
-    "mtime": 1795003623.0213506,
-    "seen": 1795003750.4347856,
-    "ast_hash": "8b9e19388338ed44ffc00e9a17fc4f4d",
+    "mtime": 1795021200.4183364,
+    "seen": 1795021230.9530203,
+    "ast_hash": "1e41527fa328332d21d45f9745b2180b",
     "semantic_hash": ""
   },
   "openwiki/quickstart.md": {
-    "mtime": 1795003733.3536816,
-    "seen": 1795003750.4347887,
+    "mtime": 1795003926.4685,
+    "seen": 1795021230.9530234,
     "ast_hash": "00c45082d42ee4e692b2c11a70927671",
     "semantic_hash": ""
   },
   "openwiki/runtime/container-image-moodle52-php83.md": {
-    "mtime": 1795003733.3610222,
-    "seen": 1795003750.4347901,
+    "mtime": 1795003926.4685,
+    "seen": 1795021230.953025,
     "ast_hash": "c5f7a6d7cc040175c503ee5632d932ef",
     "semantic_hash": ""
   },
   "5a-deployment-no-helm/deployment-templates/moodle-configmap-nginx-template.yaml": {
-    "mtime": 1795003527.0237477,
-    "seen": 1795003750.434616,
+    "mtime": 1795003926.4491107,
+    "seen": 1795021230.9529138,
     "ast_hash": "782c5727165b8e37358696442831e3a4",
     "semantic_hash": ""
   },
   "5a-deployment-no-helm/deployment-templates/moodle-configmap-nginx-uploads-template.yaml": {
-    "mtime": 1795003527.0237477,
-    "seen": 1795003750.4346178,
+    "mtime": 1795003926.4497616,
+    "seen": 1795021230.9529157,
     "ast_hash": "7b826b5cded6f1d757688bebad0fee13",
     "semantic_hash": ""
   },
@@ -474,14 +474,14 @@
     "semantic_hash": ""
   },
   "5a-deployment-no-helm/moodle-configmap-nginx-sample.yaml": {
-    "mtime": 1795003527.0237477,
-    "seen": 1795003750.434634,
+    "mtime": 1795003926.4497616,
+    "seen": 1795021230.9529328,
     "ast_hash": "b0e2d4c99942ff7e94d4826482f88f5d",
     "semantic_hash": ""
   },
   "AGENTS.md": {
-    "mtime": 1795003538.1217551,
-    "seen": 1795003750.4346611,
+    "mtime": 1795021045.2244687,
+    "seen": 1795021230.95296,
     "ast_hash": "c7385fcd8ecc186af632f65cc1f6bbe1",
     "semantic_hash": ""
   },
@@ -492,8 +492,8 @@
     "semantic_hash": ""
   },
   "CLAUDE.md": {
-    "mtime": 1795003538.1217551,
-    "seen": 1795003750.4346645,
+    "mtime": 1795021045.2244687,
+    "seen": 1795021230.952963,
     "ast_hash": "1983163bf708d0b6be1d42f4bd321cb5",
     "semantic_hash": ""
   },
@@ -522,20 +522,20 @@
     "semantic_hash": ""
   },
   "openwiki/index.md": {
-    "mtime": 1795003733.287216,
-    "seen": 1795003750.434782,
+    "mtime": 1795003926.4685,
+    "seen": 1795021230.9530172,
     "ast_hash": "b5665e6b07dc966981e5f27b41b7012a",
     "semantic_hash": ""
   },
   "openwiki/operations/index.md": {
-    "mtime": 1795003733.2712145,
-    "seen": 1795003750.4347873,
+    "mtime": 1795003926.4685,
+    "seen": 1795021230.9530222,
     "ast_hash": "f541024c905439d3f690d28bee7f8a75",
     "semantic_hash": ""
   },
   "openwiki/runtime/index.md": {
-    "mtime": 1795003733.279215,
-    "seen": 1795003750.434792,
+    "mtime": 1795003926.4685,
+    "seen": 1795021230.9530265,
     "ast_hash": "d1ea4bb4af73c336a7d8303f256cad9b",
     "semantic_hash": ""
   },
@@ -672,14 +672,14 @@
     "semantic_hash": ""
   },
   ".jules/sentinel.md": {
-    "mtime": 1795002855.4406943,
-    "seen": 1795002881.8695061,
+    "mtime": 1795003926.4444978,
+    "seen": 1795021230.9528978,
     "ast_hash": "0cf166cd5819a8b7ec25dd94b5391502",
     "semantic_hash": ""
   },
   "tests/verify-scripts-and-configs.sh": {
-    "mtime": 1795002839.4592655,
-    "seen": 1795002881.8695,
+    "mtime": 1795003926.4685,
+    "seen": 1795021230.952892,
     "ast_hash": "232d0fabc1762bddec307d4accb2a8c2",
     "semantic_hash": ""
   },
@@ -714,26 +714,26 @@
     "semantic_hash": ""
   },
   "4-moodle-image-builder/scripts/update-moodle-semver.py": {
-    "mtime": 1795003293.9639134,
-    "seen": 1795003434.247293,
+    "mtime": 1795003926.4491107,
+    "seen": 1795021230.9528723,
     "ast_hash": "5cda0f8a3b7f1da06a272ad432a8a764",
     "semantic_hash": ""
   },
   ".github/dependabot.yml": {
-    "mtime": 1795002770.9723303,
-    "seen": 1795002881.8695023,
+    "mtime": 1795003926.4444978,
+    "seen": 1795021230.952894,
     "ast_hash": "8c85c1be6e61d5bddc570ee72ad1356a",
     "semantic_hash": ""
   },
   ".github/workflows/moodle-semver-updater.yml": {
-    "mtime": 1795003292.9287944,
-    "seen": 1795003434.2473671,
-    "ast_hash": "0816318c3718b8246c3c0b8cc8843b8a",
+    "mtime": 1795020961.8610075,
+    "seen": 1795021230.952896,
+    "ast_hash": "3832e0d464ab72c395daad288363a283",
     "semantic_hash": ""
   },
   "tests/smoke-test-container-image.sh": {
-    "mtime": 1795002734.8059094,
-    "seen": 1795002881.8694975,
+    "mtime": 1795003926.4685,
+    "seen": 1795021230.9528904,
     "ast_hash": "45c7ad44024fde3e643159bfed34ee3d",
     "semantic_hash": ""
   }

@@ -75,13 +75,23 @@ jobs:
           MAINTAINER_TOKEN: ${{ secrets.MOODLE_UPDATER_TOKEN }}
         run: |
           set -euo pipefail
+          use_maintainer_token="false"
           if [ -n "${MAINTAINER_TOKEN}" ]; then
             if ! user_line="$(GH_TOKEN="${MAINTAINER_TOKEN}" gh api user --jq '"\(.login) \(.id)"')"; then
-              echo "::error::MOODLE_UPDATER_TOKEN is set but GitHub rejected it (expired, revoked, or not approved); rotate the token."
+              echo "::error::MOODLE_UPDATER_TOKEN is set but GitHub rejected it (expired or revoked); rotate the token."
               exit 1
             fi
             read -r login user_id <<< "${user_line}"
-            mode="maintainer-token"
+            if repo_push="$(GH_TOKEN="${MAINTAINER_TOKEN}" gh api "repos/${GITHUB_REPOSITORY}" --jq '.permissions.push // false' 2>/dev/null)" && [ "${repo_push}" = "true" ]; then
+              mode="maintainer-token"
+              use_maintainer_token="true"
+              echo "::notice::MOODLE_UPDATER_TOKEN is active and approved for ${GITHUB_REPOSITORY} (@${login})."
+            else
+              login="${GITHUB_ACTOR}"
+              user_id="${GITHUB_ACTOR_ID}"
+              mode="github-token"
+              echo "::warning::MOODLE_UPDATER_TOKEN is valid for @${login}, but write access to ${GITHUB_REPOSITORY} is not active yet (pending organization admin approval); falling back to GITHUB_TOKEN until approved."
+            fi
           else
             login="${GITHUB_ACTOR}"
             user_id="${GITHUB_ACTOR_ID}"
@@ -94,6 +104,7 @@ jobs:
           fi
           {
             echo "mode=${mode}"
+            echo "use_maintainer_token=${use_maintainer_token}"
             echo "identity=${login} <${user_id}+${login}@users.noreply.github.com>"
           } >> "${GITHUB_OUTPUT}"
 
@@ -120,7 +131,7 @@ jobs:
         if: steps.semver.outputs.updated == 'true'
         uses: peter-evans/create-pull-request@3ffccacd46053766916f087ce41d627c0b8cf2d1 # v8.1.3
         with:
-          token: ${{ secrets.MOODLE_UPDATER_TOKEN || secrets.GITHUB_TOKEN }}
+          token: ${{ steps.identity.outputs.use_maintainer_token == 'true' && secrets.MOODLE_UPDATER_TOKEN || secrets.GITHUB_TOKEN }}
           author: ${{ steps.identity.outputs.identity }}
           committer: ${{ steps.identity.outputs.identity }}
           branch: chore/moodle-semver-update
