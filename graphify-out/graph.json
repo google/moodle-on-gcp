@@ -1399,6 +1399,42 @@
       "source_location": "L22"
     },
     {
+      "id": "docs_architecture",
+      "label": "architecture.md",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "README.md",
+      "file_type": "document",
+      "node_kind": "page",
+      "norm_label": "architecture.md",
+      "source_file": "docs/architecture.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "docs_architecture_architecture",
+      "label": "Architecture",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "README.md",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "architecture",
+      "source_file": "docs/architecture.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "docs_architecture_modern_moodle_s_architecture_in_gcp",
+      "label": "Modern Moodle's architecture in GCP",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "README.md",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "modern moodle's architecture in gcp",
+      "source_file": "docs/architecture.md",
+      "source_location": "L14"
+    },
+    {
       "id": "docs_building_moodle_image",
       "label": "building-moodle-image.md",
       "_origin": "ast",
@@ -1420,18 +1456,6 @@
       "node_kind": "heading",
       "norm_label": "building moodle's container image",
       "source_file": "docs/building-moodle-image.md",
-      "source_location": "L1"
-    },
-    {
-      "id": "docs_choosing_and_configuring_storage",
-      "label": "choosing-and-configuring-storage.md",
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "README.md",
-      "file_type": "document",
-      "node_kind": "page",
-      "norm_label": "choosing-and-configuring-storage.md",
-      "source_file": "docs/choosing-and-configuring-storage.md",
       "source_location": "L1"
     },
     {
@@ -1615,18 +1639,6 @@
       "source_location": "L1"
     },
     {
-      "id": "docs_deploying_persistent_volume",
-      "label": "deploying-persistent-volume.md",
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "README.md",
-      "file_type": "document",
-      "node_kind": "page",
-      "norm_label": "deploying-persistent-volume.md",
-      "source_file": "docs/deploying-persistent-volume.md",
-      "source_location": "L1"
-    },
-    {
       "id": "docs_deploying_persistent_volume_claim",
       "label": "deploying-persistent-volume-claim.md",
       "_origin": "ast",
@@ -1639,78 +1651,6 @@
       "source_location": "L1"
     },
     {
-      "id": "docs_deploying_persistent_volume_claim_deploying_persistent_volume_claim_pvc",
-      "label": "Deploying Persistent Volume Claim (PVC)",
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "README.md",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "deploying persistent volume claim (pvc)",
-      "source_file": "docs/deploying-persistent-volume-claim.md",
-      "source_location": "L1"
-    },
-    {
-      "id": "docs_deploying_persistent_volume_claim_option_a_cloud_filestore_storage_type_filestore",
-      "label": "Option A: Cloud Filestore (`STORAGE_TYPE=\"filestore\"`)",
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "README.md",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "option a: cloud filestore (`storage_type=\"filestore\"`)",
-      "source_file": "docs/deploying-persistent-volume-claim.md",
-      "source_location": "L15"
-    },
-    {
-      "id": "docs_deploying_persistent_volume_claim_option_b_regional_replicated_persistent_disk_storage_type_regional_pd",
-      "label": "Option B: Regional Replicated Persistent Disk (`STORAGE_TYPE=\"regional-pd\"`)",
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "README.md",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "option b: regional replicated persistent disk (`storage_type=\"regional-pd\"`)",
-      "source_file": "docs/deploying-persistent-volume-claim.md",
-      "source_location": "L21"
-    },
-    {
-      "id": "docs_deploying_persistent_volume_deploying_persistent_volume_pv",
-      "label": "Deploying Persistent Volume (PV)",
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "README.md",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "deploying persistent volume (pv)",
-      "source_file": "docs/deploying-persistent-volume.md",
-      "source_location": "L1"
-    },
-    {
-      "id": "docs_deploying_persistent_volume_option_a_cloud_filestore_storage_type_filestore",
-      "label": "Option A: Cloud Filestore (`STORAGE_TYPE=\"filestore\"`)",
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "README.md",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "option a: cloud filestore (`storage_type=\"filestore\"`)",
-      "source_file": "docs/deploying-persistent-volume.md",
-      "source_location": "L15"
-    },
-    {
-      "id": "docs_deploying_persistent_volume_option_b_regional_replicated_persistent_disk_storage_type_regional_pd",
-      "label": "Option B: Regional Replicated Persistent Disk (`STORAGE_TYPE=\"regional-pd\"`)",
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "README.md",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "option b: regional replicated persistent disk (`storage_type=\"regional-pd\"`)",
-      "source_file": "docs/deploying-persistent-volume.md",
-      "source_location": "L31"
-    },
-    {
       "id": "docs_deployment",
       "label": "deployment.md",
       "_origin": "ast",
@@ -1721,6 +1661,42 @@
       "norm_label": "deployment.md",
       "source_file": "docs/deployment.md",
       "source_location": "L1"
+    },
+    {
+      "id": "docs_deployment_basic_installation",
+      "label": "Basic installation",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "README.md",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "basic installation",
+      "source_file": "docs/deployment.md",
+      "source_location": "L7"
+    },
+    {
+      "id": "docs_deployment_deployment",
+      "label": "Deployment",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "README.md",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "deployment",
+      "source_file": "docs/deployment.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "docs_deployment_post_installation",
+      "label": "Post-installation",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "README.md",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "post-installation",
+      "source_file": "docs/deployment.md",
+      "source_location": "L26"
     },
     {
       "id": "docs_enabling_hpa",
@@ -1843,6 +1819,42 @@
       "source_location": "L1"
     },
     {
+      "id": "docs_moodle_report_benchmark_1_installing_the_plugin",
+      "label": "1. Installing the plugin",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "README.md",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "1. installing the plugin",
+      "source_file": "docs/moodle-report-benchmark.md",
+      "source_location": "L21"
+    },
+    {
+      "id": "docs_moodle_report_benchmark_2_running_moodle_benchmark",
+      "label": "2. Running Moodle Benchmark",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "README.md",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "2. running moodle benchmark",
+      "source_file": "docs/moodle-report-benchmark.md",
+      "source_location": "L37"
+    },
+    {
+      "id": "docs_moodle_report_benchmark_running_a_benchmark_to_check_the_performance",
+      "label": "Running a benchmark to check the performance",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "README.md",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "running a benchmark to check the performance",
+      "source_file": "docs/moodle-report-benchmark.md",
+      "source_location": "L1"
+    },
+    {
       "id": "docs_post_installation_values_update",
       "label": "post-installation-values-update.md",
       "_origin": "ast",
@@ -1851,6 +1863,42 @@
       "file_type": "document",
       "node_kind": "page",
       "norm_label": "post-installation-values-update.md",
+      "source_file": "docs/post-installation-values-update.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "docs_post_installation_values_update_1_updating_configmap_values_5a_deployment_no_helm",
+      "label": "1. Updating ConfigMap Values (`5a-deployment-no-helm`)",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "README.md",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "1. updating configmap values (`5a-deployment-no-helm`)",
+      "source_file": "docs/post-installation-values-update.md",
+      "source_location": "L7"
+    },
+    {
+      "id": "docs_post_installation_values_update_2_restarting_pods_to_pick_up_updated_configuration",
+      "label": "2. Restarting Pods to Pick Up Updated Configuration",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "README.md",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "2. restarting pods to pick up updated configuration",
+      "source_file": "docs/post-installation-values-update.md",
+      "source_location": "L19"
+    },
+    {
+      "id": "docs_post_installation_values_update_updating_environment_variables_and_upgrading_pods",
+      "label": "Updating Environment Variables and Upgrading Pods",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "README.md",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "updating environment variables and upgrading pods",
       "source_file": "docs/post-installation-values-update.md",
       "source_location": "L1"
     },
@@ -1889,42 +1937,6 @@
       "norm_label": "provisioning-certificate-forcing-https.md",
       "source_file": "docs/provisioning-certificate-forcing-https.md",
       "source_location": "L1"
-    },
-    {
-      "id": "docs_provisioning_certificate_forcing_https_configuring_ssl_and_forcing_https_redirect",
-      "label": "Configuring SSL and forcing HTTPS redirect",
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "README.md",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "configuring ssl and forcing https redirect",
-      "source_file": "docs/provisioning-certificate-forcing-https.md",
-      "source_location": "L1"
-    },
-    {
-      "id": "docs_provisioning_certificate_forcing_https_forcing_https_for_incoming_requests",
-      "label": "Forcing HTTPS for incoming requests",
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "README.md",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "forcing https for incoming requests",
-      "source_file": "docs/provisioning-certificate-forcing-https.md",
-      "source_location": "L67"
-    },
-    {
-      "id": "docs_provisioning_certificate_forcing_https_provisioning_a_new_certificate_managed_by_google_cloud",
-      "label": "Provisioning a new certificate managed by Google Cloud",
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "README.md",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "provisioning a new certificate managed by google cloud",
-      "source_file": "docs/provisioning-certificate-forcing-https.md",
-      "source_location": "L7"
     },
     {
       "id": "docs_repository_organization",
@@ -2091,7 +2103,7 @@
       "frontmatter": {
         "type": "quickstart",
         "title": "Moodle on GCP Quickstart &amp; Architectural Map",
-        "description": "Entrypoint, end-to-end deployment quickstart (0-infra to 9-hpa), and architectural task-routing map for Moodle 5.2.4 on Google Kubernetes Engine (GKE).",
+        "description": "Entrypoint, end-to-end deployment quickstart (0-infra to 9-hpa), and architectural task-routing map for Moodle 5.2.5 on Google Kubernetes Engine (GKE).",
         "tags": [
           "quickstart",
           "moodle",
@@ -2102,7 +2114,7 @@
         "verified": [
           {
             "by": "openwiki/0.5.1",
-            "at": "2026-11-12 05:39:27.513000+00:00"
+            "at": "2026-11-18 12:05:03.622000+00:00"
           }
         ],
         "sources": [
@@ -2121,7 +2133,7 @@
         ],
         "generated": {
           "by": "antigravity",
-          "at": "2026-11-12T05:39:27.513Z"
+          "at": "2026-11-18T12:05:03.622Z"
         }
       },
       "node_kind": "page",
@@ -2214,7 +2226,7 @@
       "frontmatter": {
         "type": "runtime",
         "title": "NGINX + PHP 8.3 Container Image, GNU libiconv, and Moodle 5.2+ Bootstrap",
-        "description": "Multi-stage Alpine 3.21 + PHP 8.3 container build, preloadable_libiconv.so compilation, conditional mysqli vs. pgsql driver activation, Redis igbinary/zstd tuning, Moodle 5.0+ Routing Engine ($CFG-&gt;routerconfigured = true), Moodle 5.1+ /public webroot, Composer, Moosh 1.51, and local_redislock detection.",
+        "description": "Multi-stage Alpine 3.24 + PHP 8.3 container build, preloadable_libiconv.so compilation, conditional mysqli vs. pgsql driver activation, Redis igbinary/zstd tuning, Moodle 5.0+ Routing Engine ($CFG-&gt;routerconfigured = true), Moodle 5.1+ /public webroot, Composer, Moosh 1.51, local_redislock detection, and the container smoke test that gates coordinated Alpine upgrades.",
         "tags": [
           "docker",
           "alpine",
@@ -2227,15 +2239,14 @@
           "pgsql",
           "igbinary",
           "zstd",
-          "router"
-        ],
-        "verified": [
-          {
-            "by": "openwiki/0.5.1",
-            "at": "2026-11-14 09:31:55.630000+00:00"
-          }
+          "router",
+          "smoke-test"
         ],
         "sources": [
+          {
+            "id": "openwiki-source-79b37831c9c81206da1d88ec",
+            "resource": "repo://.github/dependabot.yml"
+          },
           {
             "id": "openwiki-source-9668b922e15526bcb075e159",
             "resource": "repo://4-moodle-image-builder/base/opt/entrypoint.sh"
@@ -2255,12 +2266,30 @@
           {
             "id": "openwiki-source-264fd3f40ce4ca69414ec2b9",
             "resource": "repo://4-moodle-image-builder/scripts/build-gnu-libiconv.sh"
+          },
+          {
+            "id": "openwiki-source-987a83de3394b5c94a465016",
+            "resource": "repo://4-moodle-image-builder/scripts/update-moodle-semver.py"
+          },
+          {
+            "id": "openwiki-source-ffcc8c9a9f260d17d45de843",
+            "resource": "repo://5a-deployment-no-helm/moodle-configmap-nginx.yaml"
+          },
+          {
+            "id": "openwiki-source-dc929078fccb69a8204d1722",
+            "resource": "repo://tests/smoke-test-container-image.sh"
           }
         ],
         "generated": {
           "by": "antigravity",
-          "at": "2026-11-14T09:31:55.630Z"
-        }
+          "at": "2026-11-18T12:05:03.622Z"
+        },
+        "verified": [
+          {
+            "by": "openwiki/0.5.1",
+            "at": "2026-11-18 12:05:03.622000+00:00"
+          }
+        ]
       },
       "node_kind": "page",
       "norm_label": "container-image-moodle52-php83.md",
@@ -2277,7 +2306,7 @@
       "node_kind": "heading",
       "norm_label": "1. multi-stage `preloadable_libiconv.so` compilation (mdl-80440)",
       "source_file": "openwiki/runtime/container-image-moodle52-php83.md",
-      "source_location": "L36"
+      "source_location": "L44"
     },
     {
       "id": "openwiki_runtime_container_image_moodle52_php83_2_php_8_3_conditional_mysqli_vs_pgsql_drivers_and_dynamic_composer_verification",
@@ -2289,19 +2318,31 @@
       "node_kind": "heading",
       "norm_label": "2. php 8.3, conditional `mysqli` vs. `pgsql` drivers, and dynamic composer verification",
       "source_file": "openwiki/runtime/container-image-moodle52-php83.md",
-      "source_location": "L43"
+      "source_location": "L51"
     },
     {
-      "id": "openwiki_runtime_container_image_moodle52_php83_3_moodle_5_2_4_bootstrap_composer_dependencies_and_public_webroot_setup_moodle_sh",
-      "label": "3. Moodle 5.2.4 Bootstrap, Composer Dependencies, and `/public` Webroot (`setup_moodle.sh`)",
+      "id": "openwiki_runtime_container_image_moodle52_php83_3_moodle_5_2_5_bootstrap_composer_dependencies_and_public_webroot_setup_moodle_sh",
+      "label": "3. Moodle 5.2.5 Bootstrap, Composer Dependencies, and `/public` Webroot (`setup_moodle.sh`)",
       "_origin": "ast",
       "community": 13,
       "community_name": "NGINX + PHP 8.3 Container Image, GNU libiconv, and Moodle 5.2+ Bootstrap",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "3. moodle 5.2.4 bootstrap, composer dependencies, and `/public` webroot (`setup_moodle.sh`)",
+      "norm_label": "3. moodle 5.2.5 bootstrap, composer dependencies, and `/public` webroot (`setup_moodle.sh`)",
       "source_file": "openwiki/runtime/container-image-moodle52-php83.md",
-      "source_location": "L51"
+      "source_location": "L59"
+    },
+    {
+      "id": "openwiki_runtime_container_image_moodle52_php83_4_container_smoke_test_and_compatibility_gated_alpine_upgrades",
+      "label": "4. Container Smoke Test and Compatibility-Gated Alpine Upgrades",
+      "_origin": "ast",
+      "community": 13,
+      "community_name": "NGINX + PHP 8.3 Container Image, GNU libiconv, and Moodle 5.2+ Bootstrap",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "4. container smoke test and compatibility-gated alpine upgrades",
+      "source_file": "openwiki/runtime/container-image-moodle52-php83.md",
+      "source_location": "L77"
     },
     {
       "id": "openwiki_runtime_container_image_moodle52_php83_nginx_php_8_3_container_image_gnu_libiconv_and_moodle_5_2_bootstrap",
@@ -2313,7 +2354,7 @@
       "node_kind": "heading",
       "norm_label": "nginx + php 8.3 container image, gnu libiconv, and moodle 5.2+ bootstrap",
       "source_file": "openwiki/runtime/container-image-moodle52-php83.md",
-      "source_location": "L23"
+      "source_location": "L31"
     },
     {
       "id": "openwiki_runtime_index",
@@ -2337,6 +2378,18 @@
       "node_kind": "heading",
       "norm_label": "files",
       "source_file": "openwiki/runtime/index.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "docs_choosing_and_configuring_storage",
+      "label": "choosing-and-configuring-storage.md",
+      "_origin": "ast",
+      "community": 14,
+      "community_name": "Choosing and Configuring Storage (`Filestore` vs. `Regional Replicated Persistent Disk`)",
+      "file_type": "document",
+      "node_kind": "page",
+      "norm_label": "choosing-and-configuring-storage.md",
+      "source_file": "docs/choosing-and-configuring-storage.md",
       "source_location": "L1"
     },
     {
@@ -2410,6 +2463,54 @@
       "norm_label": "option b: dynamic provisioning (via gke csi `storageclass`)",
       "source_file": "docs/choosing-and-configuring-storage.md",
       "source_location": "L95"
+    },
+    {
+      "id": "docs_deploying_persistent_volume",
+      "label": "deploying-persistent-volume.md",
+      "_origin": "ast",
+      "community": 14,
+      "community_name": "Choosing and Configuring Storage (`Filestore` vs. `Regional Replicated Persistent Disk`)",
+      "file_type": "document",
+      "node_kind": "page",
+      "norm_label": "deploying-persistent-volume.md",
+      "source_file": "docs/deploying-persistent-volume.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "docs_deploying_persistent_volume_deploying_persistent_volume_pv",
+      "label": "Deploying Persistent Volume (PV)",
+      "_origin": "ast",
+      "community": 14,
+      "community_name": "Choosing and Configuring Storage (`Filestore` vs. `Regional Replicated Persistent Disk`)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "deploying persistent volume (pv)",
+      "source_file": "docs/deploying-persistent-volume.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "docs_deploying_persistent_volume_option_a_cloud_filestore_storage_type_filestore",
+      "label": "Option A: Cloud Filestore (`STORAGE_TYPE=\"filestore\"`)",
+      "_origin": "ast",
+      "community": 14,
+      "community_name": "Choosing and Configuring Storage (`Filestore` vs. `Regional Replicated Persistent Disk`)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "option a: cloud filestore (`storage_type=\"filestore\"`)",
+      "source_file": "docs/deploying-persistent-volume.md",
+      "source_location": "L15"
+    },
+    {
+      "id": "docs_deploying_persistent_volume_option_b_regional_replicated_persistent_disk_storage_type_regional_pd",
+      "label": "Option B: Regional Replicated Persistent Disk (`STORAGE_TYPE=\"regional-pd\"`)",
+      "_origin": "ast",
+      "community": 14,
+      "community_name": "Choosing and Configuring Storage (`Filestore` vs. `Regional Replicated Persistent Disk`)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "option b: regional replicated persistent disk (`storage_type=\"regional-pd\"`)",
+      "source_file": "docs/deploying-persistent-volume.md",
+      "source_location": "L31"
     },
     {
       "id": "contributing",
@@ -2928,7 +3029,7 @@
         "verified": [
           {
             "by": "openwiki/0.5.1",
-            "at": "2026-11-12 05:39:27.513000+00:00"
+            "at": "2026-11-18 12:05:03.622000+00:00"
           }
         ],
         "sources": [
@@ -2943,7 +3044,7 @@
         ],
         "generated": {
           "by": "antigravity",
-          "at": "2026-11-12T05:39:27.513Z"
+          "at": "2026-11-18T12:05:03.622Z"
         }
       },
       "node_kind": "page",
@@ -3205,40 +3306,40 @@
       "source_location": "L40"
     },
     {
-      "id": "docs_architecture",
-      "label": "architecture.md",
+      "id": "docs_deploying_persistent_volume_claim_deploying_persistent_volume_claim_pvc",
+      "label": "Deploying Persistent Volume Claim (PVC)",
       "_origin": "ast",
       "community": 21,
-      "community_name": "architecture.md",
+      "community_name": "Deploying Persistent Volume Claim (PVC)",
       "file_type": "document",
-      "node_kind": "page",
-      "norm_label": "architecture.md",
-      "source_file": "docs/architecture.md",
+      "node_kind": "heading",
+      "norm_label": "deploying persistent volume claim (pvc)",
+      "source_file": "docs/deploying-persistent-volume-claim.md",
       "source_location": "L1"
     },
     {
-      "id": "docs_architecture_architecture",
-      "label": "Architecture",
+      "id": "docs_deploying_persistent_volume_claim_option_a_cloud_filestore_storage_type_filestore",
+      "label": "Option A: Cloud Filestore (`STORAGE_TYPE=\"filestore\"`)",
       "_origin": "ast",
       "community": 21,
-      "community_name": "architecture.md",
+      "community_name": "Deploying Persistent Volume Claim (PVC)",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "architecture",
-      "source_file": "docs/architecture.md",
-      "source_location": "L1"
+      "norm_label": "option a: cloud filestore (`storage_type=\"filestore\"`)",
+      "source_file": "docs/deploying-persistent-volume-claim.md",
+      "source_location": "L15"
     },
     {
-      "id": "docs_architecture_modern_moodle_s_architecture_in_gcp",
-      "label": "Modern Moodle's architecture in GCP",
+      "id": "docs_deploying_persistent_volume_claim_option_b_regional_replicated_persistent_disk_storage_type_regional_pd",
+      "label": "Option B: Regional Replicated Persistent Disk (`STORAGE_TYPE=\"regional-pd\"`)",
       "_origin": "ast",
       "community": 21,
-      "community_name": "architecture.md",
+      "community_name": "Deploying Persistent Volume Claim (PVC)",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "modern moodle's architecture in gcp",
-      "source_file": "docs/architecture.md",
-      "source_location": "L14"
+      "norm_label": "option b: regional replicated persistent disk (`storage_type=\"regional-pd\"`)",
+      "source_file": "docs/deploying-persistent-volume-claim.md",
+      "source_location": "L21"
     },
     {
       "id": "tests_smoke_test_container_image",
@@ -3271,112 +3372,40 @@
       "source_location": "L1"
     },
     {
-      "id": "docs_moodle_report_benchmark_1_installing_the_plugin",
-      "label": "1. Installing the plugin",
+      "id": "docs_provisioning_certificate_forcing_https_configuring_ssl_and_forcing_https_redirect",
+      "label": "Configuring SSL and forcing HTTPS redirect",
       "_origin": "ast",
       "community": 23,
-      "community_name": "Running a benchmark to check the performance",
+      "community_name": "Configuring SSL and forcing HTTPS redirect",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "1. installing the plugin",
-      "source_file": "docs/moodle-report-benchmark.md",
-      "source_location": "L21"
-    },
-    {
-      "id": "docs_moodle_report_benchmark_2_running_moodle_benchmark",
-      "label": "2. Running Moodle Benchmark",
-      "_origin": "ast",
-      "community": 23,
-      "community_name": "Running a benchmark to check the performance",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "2. running moodle benchmark",
-      "source_file": "docs/moodle-report-benchmark.md",
-      "source_location": "L37"
-    },
-    {
-      "id": "docs_moodle_report_benchmark_running_a_benchmark_to_check_the_performance",
-      "label": "Running a benchmark to check the performance",
-      "_origin": "ast",
-      "community": 23,
-      "community_name": "Running a benchmark to check the performance",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "running a benchmark to check the performance",
-      "source_file": "docs/moodle-report-benchmark.md",
+      "norm_label": "configuring ssl and forcing https redirect",
+      "source_file": "docs/provisioning-certificate-forcing-https.md",
       "source_location": "L1"
     },
     {
-      "id": "docs_deployment_basic_installation",
-      "label": "Basic installation",
+      "id": "docs_provisioning_certificate_forcing_https_forcing_https_for_incoming_requests",
+      "label": "Forcing HTTPS for incoming requests",
       "_origin": "ast",
-      "community": 24,
-      "community_name": "Deployment",
+      "community": 23,
+      "community_name": "Configuring SSL and forcing HTTPS redirect",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "basic installation",
-      "source_file": "docs/deployment.md",
+      "norm_label": "forcing https for incoming requests",
+      "source_file": "docs/provisioning-certificate-forcing-https.md",
+      "source_location": "L67"
+    },
+    {
+      "id": "docs_provisioning_certificate_forcing_https_provisioning_a_new_certificate_managed_by_google_cloud",
+      "label": "Provisioning a new certificate managed by Google Cloud",
+      "_origin": "ast",
+      "community": 23,
+      "community_name": "Configuring SSL and forcing HTTPS redirect",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "provisioning a new certificate managed by google cloud",
+      "source_file": "docs/provisioning-certificate-forcing-https.md",
       "source_location": "L7"
-    },
-    {
-      "id": "docs_deployment_deployment",
-      "label": "Deployment",
-      "_origin": "ast",
-      "community": 24,
-      "community_name": "Deployment",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "deployment",
-      "source_file": "docs/deployment.md",
-      "source_location": "L1"
-    },
-    {
-      "id": "docs_deployment_post_installation",
-      "label": "Post-installation",
-      "_origin": "ast",
-      "community": 24,
-      "community_name": "Deployment",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "post-installation",
-      "source_file": "docs/deployment.md",
-      "source_location": "L26"
-    },
-    {
-      "id": "docs_post_installation_values_update_1_updating_configmap_values_5a_deployment_no_helm",
-      "label": "1. Updating ConfigMap Values (`5a-deployment-no-helm`)",
-      "_origin": "ast",
-      "community": 25,
-      "community_name": "Updating Environment Variables and Upgrading Pods",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "1. updating configmap values (`5a-deployment-no-helm`)",
-      "source_file": "docs/post-installation-values-update.md",
-      "source_location": "L7"
-    },
-    {
-      "id": "docs_post_installation_values_update_2_restarting_pods_to_pick_up_updated_configuration",
-      "label": "2. Restarting Pods to Pick Up Updated Configuration",
-      "_origin": "ast",
-      "community": 25,
-      "community_name": "Updating Environment Variables and Upgrading Pods",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "2. restarting pods to pick up updated configuration",
-      "source_file": "docs/post-installation-values-update.md",
-      "source_location": "L19"
-    },
-    {
-      "id": "docs_post_installation_values_update_updating_environment_variables_and_upgrading_pods",
-      "label": "Updating Environment Variables and Upgrading Pods",
-      "_origin": "ast",
-      "community": 25,
-      "community_name": "Updating Environment Variables and Upgrading Pods",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "updating environment variables and upgrading pods",
-      "source_file": "docs/post-installation-values-update.md",
-      "source_location": "L1"
     },
     {
       "id": "contributors",
@@ -6955,7 +6984,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "openwiki/runtime/container-image-moodle52-php83.md",
-      "source_location": "L23",
+      "source_location": "L31",
       "weight": 1.0
     },
     {
@@ -6966,7 +6995,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "openwiki/runtime/container-image-moodle52-php83.md",
-      "source_location": "L36",
+      "source_location": "L44",
       "weight": 1.0
     },
     {
@@ -6977,18 +7006,29 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "openwiki/runtime/container-image-moodle52-php83.md",
-      "source_location": "L43",
+      "source_location": "L51",
       "weight": 1.0
     },
     {
       "source": "openwiki_runtime_container_image_moodle52_php83_nginx_php_8_3_container_image_gnu_libiconv_and_moodle_5_2_bootstrap",
-      "target": "openwiki_runtime_container_image_moodle52_php83_3_moodle_5_2_4_bootstrap_composer_dependencies_and_public_webroot_setup_moodle_sh",
+      "target": "openwiki_runtime_container_image_moodle52_php83_3_moodle_5_2_5_bootstrap_composer_dependencies_and_public_webroot_setup_moodle_sh",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "openwiki/runtime/container-image-moodle52-php83.md",
-      "source_location": "L51",
+      "source_location": "L59",
+      "weight": 1.0
+    },
+    {
+      "source": "openwiki_runtime_container_image_moodle52_php83_nginx_php_8_3_container_image_gnu_libiconv_and_moodle_5_2_bootstrap",
+      "target": "openwiki_runtime_container_image_moodle52_php83_4_container_smoke_test_and_compatibility_gated_alpine_upgrades",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "openwiki/runtime/container-image-moodle52-php83.md",
+      "source_location": "L77",
       "weight": 1.0
     },
     {
@@ -8959,6 +8999,18 @@
       "weight": 1.0
     },
     {
+      "source": "openwiki_runtime_container_image_moodle52_php83_4_container_smoke_test_and_compatibility_gated_alpine_upgrades",
+      "target": "4_moodle_image_builder_scripts_update_moodle_semver_main",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "context": "main",
+      "source_file": "openwiki/runtime/container-image-moodle52-php83.md",
+      "source_location": "L81",
+      "weight": 1.0
+    },
+    {
       "source": "1_pv_storageclass_regional_pd_moodle_regional_pd_sc",
       "target": "1_pv_pv_regional_pd_pv_regional_pd",
       "relation": "conceptually_related_to",
@@ -8982,5 +9034,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "17ae105337f1bf93e5ee589bc5ebec7ff38c384a"
+  "built_at_commit": "94fbc7d5e1e656d830bc01710c7b16d102543b71"
 }

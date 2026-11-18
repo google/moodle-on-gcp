@@ -1,7 +1,7 @@
 ---
 type: operations
 title: GKE Deployments, 10GB Upload Pod Isolation, ProxySQL, and Horizontal Pod Autoscaling
-description: Kubernetes Deployment architecture for Moodle 5.2.4, Guaranteed QoS rightsizing, isolated 10GB+ upload pods (disk-backed /tmp, PHP_FPM_MAX_CHILDREN=1), optional Secrets, ProxySQL connection multiplexing, HPA policies, zero-downtime probes, and the coordinated Moodle + Alpine update automation (CLA-compliant pull requests).
+description: Kubernetes Deployment architecture for Moodle 5.2.5, Guaranteed QoS rightsizing, isolated 10GB+ upload pods (disk-backed /tmp, PHP_FPM_MAX_CHILDREN=1), optional Secrets, ProxySQL connection multiplexing, HPA policies, zero-downtime probes, and the coordinated Moodle + Alpine update automation (CLA-compliant pull requests).
 tags: [gke, kubernetes, deployments, uploads, proxysql, hpa, configmap, secret, envsubst, dependabot, github-actions, alpine]
 sources:
   - id: openwiki-source-79b37831c9c81206da1d88ec
@@ -31,7 +31,7 @@ sources:
 generated: { by: "antigravity", at: "2026-11-18T12:02:02.964Z" }
 verified:
   - by: openwiki/0.5.1
-    at: 2026-11-18T12:02:02.964Z
+    at: 2026-11-18T12:05:03.622Z
 ---
 
 # GKE Deployments, 10GB Upload Pod Isolation, ProxySQL, and Horizontal Pod Autoscaling

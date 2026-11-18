@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:cd91a3322b4f609bfa4ca6683f005e51fa50fe816e99d9852997f75aa6d29150",
+  "pageVersion": "sha256:39362d8938961121834b958cfba63b3a89234bf0f0f716abe8d67791f2a95e2b",
   "claims": [
     {
       "id": "claim_03fe0ac01f6b4eb4a676bd753e952267",
@@ -8,7 +8,7 @@
       "evidence": [
         {
           "resource": "repo://4-moodle-image-builder/Dockerfile.nginx#L16-L45",
-          "version": "repo-lines-v1:sha256:f1caa659d5981ce810cf53808f94aa8ab0dc0d46a468b6da559e320461467dec:eyJzZWxlY3RlZExpbmVDb3VudCI6MzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM3ZTNmOGNlMzA1Zjg2NWJjNjgwMDcxNGU5Yzg2YTg4OTQ3YTM0OGQzNjk4NzQzYTRkNTlhYzE1YTE5NWE0MmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQyMWI4YmI4OTJjNmVmNzI5MWJkMzJjZTMxMmJlNmY2MDI5NGQzMWIxMmY1NGQ4ZWNiNmVjMjQ5NWYwZWQxYWEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQwOGRiMmIwZDBhZjM2YmI0NDgzYzcxMjE0NmE0OGNjMGQ5YWQ3MTA3NmFjZjNiMTdhYWU4NWY2ZTQ5ZmZmMjkifQ"
+          "version": "repo-lines-v1:sha256:a8e193358a69a07e5ec26402e523cd4d5f060905421fef4c9164997dfbd88852:eyJzZWxlY3RlZExpbmVDb3VudCI6MzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImMxZjM4NDhmYmZmM2JhMjU0MWQxY2VjNzU0M2U1NGJiZGJmZDUyMzRhMWQ4M2RiMjAxOWRlMjY0NDY3M2ExZTUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQyMWI4YmI4OTJjNmVmNzI5MWJkMzJjZTMxMmJlNmY2MDI5NGQzMWIxMmY1NGQ4ZWNiNmVjMjQ5NWYwZWQxYWEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQwOGRiMmIwZDBhZjM2YmI0NDgzYzcxMjE0NmE0OGNjMGQ5YWQ3MTA3NmFjZjNiMTdhYWU4NWY2ZTQ5ZmZmMjkifQ"
         },
         {
           "resource": "repo://4-moodle-image-builder/scripts/build-gnu-libiconv.sh#L32-L77",
@@ -67,10 +67,58 @@
           "version": "repo-lines-v1:sha256:8c34c06ae199ea0bacf37d2dfb5d7ba2fe245985f1971f01a0c888a70d904773:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNTQ1ZjNhYTA1ZDExNDIyZDg3MzhjYzljYzgyODIwMGUzNDE4NDI3YjM3ZDMwNDMwODJlN2VmZTlhY2U4YjE3OSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiN2FlMjllMTVlZjM3ZmUzMGE3MGNhMDZiYjYyODllNThiOTBlNzdkNzE3NWFkNTgxYWMyOWIyZWJkYTk5NTY3NCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDQ1OWI5NjJkZGRkZDNhMmNlZmYwNzNlZjRmMjkwYjUwODIyYzRiOTVlMWZjYmZmMzEzNWM0ODM1ZTRkMzUwNyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZDBhOTM1ZDU0MDBkYjliZjQ2MmNkYWRlNWViM2RkN2JjMjhkNTJjNmJmNzAyNzdlNzZmZTNkZjY3YzJhYzVjMSJ9"
         }
       ]
+    },
+    {
+      "id": "claim_14bc25c30fd745929622a7b0409a6fff",
+      "statement": "Both Dockerfile.nginx stages (libiconv-builder and the runtime image) are based on alpine:3.24, and the runtime stage installs NGINX, gnu-libiconv-libs, and the php83 package series (including php83-pecl-redis, igbinary, apcu, and zstd) from the Alpine repositories.",
+      "evidence": [
+        {
+          "resource": "repo://4-moodle-image-builder/Dockerfile.nginx#L14-L39",
+          "version": "repo-lines-v1:sha256:254d3b82a587263a4d6e6c46651240981a9cb75e57af12d8efb9839e2128d5b1:eyJzZWxlY3RlZExpbmVDb3VudCI6MjYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE1NjY2NzJlNGFiMGNlMzkzMjc2MzMxYmM0MTc1NDMyMjY1MjY3ODZhODM3NTc4YzRkZWMwODA3MmRjZGU3YmYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjkxMWQ2MzI5ZTc3OGQ0NmEwYzU1NDVmMDgwNzQ1MzM1YTI1NTA5YWNkNjc3ZmYwMGQwMTUzYTJlNDZhZDNhMDMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzNTMwMjA5YTMyOTg5NTIxODdmMzAwMWZhYjAxMDAyN2E4YjEzMWEzNTljNTM5NmY0NjQ0MDdkZGExNDJjZWMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjdiOGM0YzI0NTc5YTRkYzUwZWI1ODczMzBjYzNiNWE4YTFkYmU2ZjNkZjg5MjhmNDg5ZDI0NThjZGMwOGY4M2MifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_3ac28f3effd44a3892185b3240d96dae",
+      "statement": "tests/smoke-test-container-image.sh builds Dockerfile.nginx with Docker or Podman and, without a database, verifies the Alpine release, every required PHP extension, the GNU libiconv //TRANSLIT preload, nginx -t on the envsubst-rendered repository template (re-testing with user root only when a rootless chown fails with EINVAL), and php-fpm83 -t.",
+      "evidence": [
+        {
+          "resource": "repo://tests/smoke-test-container-image.sh#L28-L80",
+          "version": "repo-lines-v1:sha256:5fd1587f08ab4523f8977a12402f9bdaa53aa12d5c2a32fef4ab50c5af263eef:eyJzZWxlY3RlZExpbmVDb3VudCI6NTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRlN2JjYTA1ZjdlZDM2NDJkZDNhODU3NjlhOTk5ZGM4Njg5YjUyZGM2NjExY2MzOTVmYjlhZjdlYzg4ZWM5MWUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAyMjE3NmE1ZTZhZmViMGEzOWEzNDRiNmRkMzc2MzFjY2FiOThiYjQ5ZTAwMDRhYzk1NTFiNDg2YzJlZjQwNWIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZkOTc3NGEwNGUzZmU0ODgxNzg1YWM3ZGM2ZTk5ODk4MjQwMWE1ODUyNDZhOWE5NDlmNWM5NzhiNjk2YmMzMzYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImU2YWIyNTNjNWY5NjAxN2VhNmU1ODhkYjUxMWMyM2Q2MTAyNDhhZTdhNDExZDI1MzJiYWNiMjIwMGNiYTU3MjkifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_dcb072711f7b490285651804bf186046",
+      "statement": "Alpine base image upgrades are proposed only by update-moodle-semver.py, which rewrites both FROM alpine:X.Y lines together and only to a supported Alpine release whose main and community APKINDEX provide every apk add package of Dockerfile.nginx and build-gnu-libiconv.sh, while Dependabot ignores the alpine dependency.",
+      "evidence": [
+        {
+          "resource": "repo://.github/dependabot.yml#L16-L31",
+          "version": "repo-lines-v1:sha256:9cb384eebefb1d2822b9a4e033e2ad78c44d2b9de3fb8cf467a062fbe54a8e5b:eyJzZWxlY3RlZExpbmVDb3VudCI6MTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhiNTVlODk1MzM4NDA4NWRlYTlmZTBiZjcyZmQzYmJkYWU4NzVkZjM5YTdjZjlkZDg0ODY2YWUyMGI2ODM4MTgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIwNGM3NjJhMDQ3ZTIxNWNiNGM3MjZiYmQ0MmQzOTMzNDA4NTAzZmY5ZTMyNTUzMWI2MTQ4ZDdkNGJjNWEzODEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM1MGVmOTczY2E5Njc0YWFlMDk0OGVjNjhhYjZhNjczNTc0NjM1MmE2YzQ3NWI1MTZlNmZhZjYxOGNlMDM5OTciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijc0ODVhY2QyMzg0OGRhY2Q4YmE2MjQ3NDI0ODNjMDJiOWRjMTA1MGM3MWE4ZDIwOWM2NzdlOGI2YzQ0ZTM0MzYifQ"
+        },
+        {
+          "resource": "repo://4-moodle-image-builder/scripts/update-moodle-semver.py#L185-L327",
+          "version": "repo-lines-v1:sha256:94ce5359bd543ad35ce91905ce3f4fe3b8dc5d22a580795dadb758b08dbc739e:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQzLCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiJlZDU3OWRkNDhkMzI5Mzg5YWIzY2MwODM4MGIzZmYyODgyZGViNzM0MzgwNmE5OGE0YzkzYWZiZDVlNWI3MjY1IiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiJmYTBjMjFhZWMyOGU2NjIwZmVjMjI0NTg5ZTlhMDI0Njk5ZWYzYmU4ZWZjYWRkYWExNmI0MzUzYmVhYjJlNTVlIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiI5NDViOTg5NWJhNjY0NWY1NzYxZWJlMjI5OWQwYjI0NTA5OWIwODFkZWIwYzUwZjJjNTExNjAzZTFkOGM1NWU0IiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiI5YTNjMGRjMjNlMzBlN2IxY2ZkNDJlZWNiNWRjNmQ5YWFiMGFiOGMzNWI2ZTEzZjYxNTBlNzVmNDQzODkwYTYwIn0"
+        }
+      ]
+    },
+    {
+      "id": "claim_be1333b0fa2a43d196b023e1b416d571",
+      "statement": "The Moodle release is not baked into the image: setup_moodle.sh downloads MOODLE_URL (v5.2.5 in the ConfigMaps) at container startup and verifies it with sha256sum against MOODLE_SHA256 when the checksum is set, so Moodle-only updates change ConfigMaps rather than the image.",
+      "evidence": [
+        {
+          "resource": "repo://4-moodle-image-builder/base/opt/setup_moodle.sh#L155-L171",
+          "version": "repo-lines-v1:sha256:dfd577e64c2b331c860626d5efaa5c7f30ba8dd9c9661a9da84406f601c9638e:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc2NWYzMDI4Mzk1NWRiNGRkYzRkOTdlNGZkNWUxZjc0MDdiNjYwMWJkMmYxYjZjNDBmNjBkYWEyY2RmMTJjNDUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg0ZTc2MDQyNmE4ZTNhODYwZGQxNTBlNmMxMTc4YmFhNmJmMTgyNGM1N2ZlODI3M2IwMmI0YTVjZTQ1M2FhNzEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjZkOTNmODU0NTdjOGJmODY4MDM5ZTBmMjJkNTA3MDBlMjcxZjhjY2E3MTU5YWU0MmIwNTRmZTM2Y2U5OTZlZGEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImNjZmNiODI4ZjAyMjg0ZDBiNDRiNTcxMTljY2IzYWVkNzhjYTVkYjhiZWM1ZTExZTRjN2ZlMmM0MzhkNTEzMzcifQ"
+        },
+        {
+          "resource": "repo://5a-deployment-no-helm/moodle-configmap-nginx.yaml#L20-L21",
+          "version": "repo-lines-v1:sha256:0ed5a17cbf927127e2498b8fabdedc650099a34498c786a559b5ee582933e63d:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjM2YzFhNTRlODRhNGNjZTU1ZjYxNDE2M2U1ZDQyOWNjMWIzZTY4NDg1NDliYTRmMWY5YzdjMjU1ZDM3YWMwOSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiM2QxY2JkYTQ3ODgxMzU1YjAxYTczY2NlNWM0YTYyMjZkNmFlZTNjZTQyMmUyNDgwOTAzMzhhZTM4MTQ2Y2M0MyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNjBjM2U1MTA1OTJlOWZlMzFkNGJmZWIyYWRiNWVjZDgzNTljYWRiNmVkNzljODg4ZDA2M2ZlMmYwZDVjMzA1NyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNzkxNmYzODIwZDMzZDAyM2Y0Zjg1YjJjNTdiNDYwZmUxNTNhZjJhY2MzNGZjZjJiYzdkNTRiNTc0YTNkMzhkOSJ9"
+        }
+      ]
     }
   ],
   "verification": {
     "by": "openwiki/0.5.1",
-    "at": "2026-11-14T09:31:55.630Z"
+    "at": "2026-11-18T12:05:03.622Z"
   }
 }
