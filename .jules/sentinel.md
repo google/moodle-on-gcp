@@ -134,3 +134,18 @@ While `DB_PASS` and `MOODLE_PASSWORD` were mounted via Kubernetes `Secret` (`sec
 - `.github/workflows/moodle-semver-updater.yml` resolves an optional `MOODLE_UPDATER_TOKEN` secret (short-lived, repository-scoped fine-grained PAT of a CLA-covered maintainer; never a personal bot account) to the owner's noreply identity and uses it as pull request opener, commit author, and committer; without it, the workflow falls back to `GITHUB_TOKEN` and documents the CLA limitation in the pull request body. Tokens are passed only through `secrets`/`env` (never interpolated into `run:` scripts).
 - `4-moodle-image-builder/scripts/update-moodle-semver.py` now bumps the Alpine base image together with Moodle (single pull request), only to supported (non-EOL) releases whose `main`/`community` `APKINDEX` provides every `apk add` package of `Dockerfile.nginx` and `scripts/build-gnu-libiconv.sh`; `.github/dependabot.yml` ignores `alpine` and sets a 7-day `cooldown` (zizmor `dependabot-cooldown`).
 - Added `tests/smoke-test-container-image.sh` (PHP extensions, GNU libiconv `//TRANSLIT`, `nginx -t`, `php-fpm83 -t`), run by the workflow before any Alpine bump is proposed.
+
+---
+
+## 2026-11-18 — Declarative `ConfigMap`-Driven Core Auto-Upgrade (`MOODLE_AUTOUPGRADE`) and SubPath-Safe Staging Swap
+
+**Findings:**
+1. **Legacy `.moodle-autoupgrade` Never Downloaded `MOODLE_URL` on Existing Volumes**:
+   - Once `moodledata/.moodle-installed` existed, `setup_moodle.sh` only invoked `admin/cli/upgrade.php` against whatever old Moodle tree was already on the shared PVC, ignoring updates to `MOODLE_URL` / `MOODLE_SHA256` in `moodle-configmap`.
+   - Furthermore, `MOODLE_SHA256` and `MOOSH_SHA256` were defined in `moodle-configmap` but were not wired into the explicit `env:` list of `moodle-deployment-nginx*.yaml`.
+2. **Read-Only `ConfigMap` Loop & Kubernetes `subPath` `EBUSY` Risks**:
+   - A naive `MOODLE_AUTOUPGRADE=true` flag in a read-only `ConfigMap` would re-run `maintenance.php` and `upgrade.php` on every pod restart or HPA scale-out, and renaming `$MOODLE_PATH` (`/moodleroot-instance1/moodle`) directly fails with `EBUSY` because it is a Kubernetes `subPath` mountpoint.
+
+**Resolution:**
+- Added `4-moodle-image-builder/base/opt/moodle_autoupgrade_lib.sh` (sourced by `setup_moodle.sh`), defaulting `MOODLE_AUTOUPGRADE: 'false'` across all `ConfigMap` manifests/templates to prevent unintended plugin conflicts, and wired `MOODLE_SHA256`, `MOOSH_SHA256`, and `MOODLE_AUTOUPGRADE` (`optional: true`) into all `Deployment` manifests/templates.
+- Implemented declarative state reconciliation (`moodledata/.moodle-version-state` tracking `"${MOODLE_URL}|${MOODLE_SHA256}"`), double-checked POSIX-atomic locking (`mkdir moodledata/.moodle-upgrade.lock` with 15-minute stale-lock recovery), and pre-maintenance staging inside `$MOODLE_PATH/.moodle-staging.$$` with `O(1)` top-level rename swap, `config.php` (`0444`) and non-core plugin preservation, and behavioral unit tests in `tests/verify-scripts-and-configs.sh`.

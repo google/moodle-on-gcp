@@ -55,6 +55,7 @@ Also, please find here the explanation of all the values:
 
   - `MOODLE_URL:` The Moodle archive URL, as initial, you can leave it as default **which will deploy the 5.2.5 version**.
   - `MOODLE_SHA256:` Optional SHA-256 checksum for verifying the downloaded Moodle archive before extraction.
+  - `MOODLE_AUTOUPGRADE:` Declarative core auto-upgrade toggle (**defaults to `'false'`** to avoid unexpected plugin conflicts). When set to `'true'`, updating `MOODLE_URL` (and `MOODLE_SHA256`) in `moodle-configmap` causes a single leader pod to download, stage, preserve `config.php` and non-core plugins, atomically swap the Moodle tree, run `admin/cli/upgrade.php`, and record the reconciled state in `moodledata/.moodle-version-state` without entering a boot loop.
   - `MOOSH_URL:` The Moosh archive URL, as initial, you can leave it as default **which will deploy the latest version (`1.51+`)**.
   - `MOOSH_SHA256:` Optional SHA-256 checksum for verifying the downloaded Moosh archive before extraction.
   - `LANG:` The LANG in Unix format, **defaults it to: en_US.UTF-8**.
