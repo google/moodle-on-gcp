@@ -5,13 +5,13 @@ description: Automated provisioning architecture for custom VPC, private GKE (St
 tags: [gcp, gke, autopilot, cloud-sql, mysql-8-4, postgresql-16, redis, vpc, selective-adoption]
 verified:
   - by: openwiki/0.5.1
-    at: 2026-11-12T05:39:27.513Z
+    at: 2026-11-18T12:05:03.622Z
 sources:
   - id: openwiki-source-75467caa28be1defc4942cd3
     resource: repo://0-infra/envs.sh
   - id: openwiki-source-c545e73e5570dc88f600931f
     resource: repo://0-infra/infra-creation.sh
-generated: { by: "antigravity", at: "2026-11-12T05:39:27.513Z" }
+generated: { by: "antigravity", at: "2026-11-18T12:05:03.622Z" }
 ---
 
 # GCP Infrastructure, Selective Adoption, and Cloud SQL MySQL 8.4 / PostgreSQL 16
@@ -64,7 +64,7 @@ The GKE cluster (`$GKE_NAME`) is provisioned with:
 
 ## Cloud SQL MySQL 8.4 and PostgreSQL 16 for Moodle 5.0+
 
-Starting with Moodle 5.0 (including Moodle 5.1, 5.2.4, and 5.3), Moodle's environment check requires at least **MySQL 8.4** (`MYSQL_8_4`) or **PostgreSQL 15+** (`POSTGRES_16`).
+Starting with Moodle 5.0 (including Moodle 5.1, 5.2.5, and 5.3), Moodle's environment check requires at least **MySQL 8.4** (`MYSQL_8_4`) or **PostgreSQL 15+** (`POSTGRES_16`).
 
 - `0-infra/envs.sh` defines `DB_TYPE="${DB_TYPE:-mysqli}"`, `MYSQL_DATABASE_VERSION="${MYSQL_DATABASE_VERSION:-MYSQL_8_4}"`, and `POSTGRES_DATABASE_VERSION="${POSTGRES_DATABASE_VERSION:-POSTGRES_16}"`.
 - When `DB_TYPE=mysqli`, `0-infra/infra-creation.sh` provisions Cloud SQL for MySQL (`MYSQL_8_4`) and creates the `$MYSQL_DB` database with `utf8mb4` charset and `utf8mb4_unicode_ci` collation. When `DB_TYPE=pgsql`, it provisions Cloud SQL for PostgreSQL (`POSTGRES_16`) with `UTF8` encoding.

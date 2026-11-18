@@ -1,17 +1,17 @@
 # Graph Report - modern-moodle-correction  (2026-11-18)
 
 ## Corpus Check
-- 65 files · ~122,492 words
+- 65 files · ~123,518 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 41 file(s) not represented in the graph (top: .ini 30, .conf 4, (none) 2)
 
 ## Summary
-- 330 nodes · 391 edges · 33 communities (22 shown, 11 thin omitted)
-- Extraction: 97% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 10 edges (avg confidence: 0.8)
+- 330 nodes · 392 edges · 35 communities (24 shown, 11 thin omitted)
+- Extraction: 97% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 11 edges (avg confidence: 0.82)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `b0b3fc69`
+- Built from commit: `17ae1053`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -38,7 +38,9 @@
 - Documentation
 - architecture.md
 - smoke-test-container-image.sh
+- Running a benchmark to check the performance
 - Deployment
+- Updating Environment Variables and Upgrading Pods
 - CONTRIBUTORS.md
 - verify-scripts-and-configs.sh
 - infra-pause.sh
@@ -49,7 +51,7 @@
 - Deploying Moodle in GKE with the NGINX + PHP 8.3 Image
 
 ## God Nodes (most connected - your core abstractions)
-1. `main()` - 20 edges
+1. `main()` - 21 edges
 2. `Sentinel's Journal — Security, Hardening & Review Guardrails (`google/moodle-on-gcp`)` - 12 edges
 3. `run_self_test()` - 10 edges
 4. `Pre-requisites` - 7 edges
@@ -67,15 +69,15 @@
   AGENTS.md → 4-moodle-image-builder/scripts/update-moodle-semver.py
 - `2026-11-18 — CLA-Compliant Update Pull Requests and Compatibility-Gated Alpine Bumps (`moodle-semver-updater.yml`)` --references--> `main()`  [INFERRED]
   .jules/sentinel.md → 4-moodle-image-builder/scripts/update-moodle-semver.py
+- `5. Coordinated Moodle and Alpine Update Automation (`moodle-semver-updater.yml`)` --references--> `main()`  [INFERRED]
+  openwiki/operations/gke-deployments-and-uploads-isolation.md → 4-moodle-image-builder/scripts/update-moodle-semver.py
 - `Coordinated Moodle & Alpine Update Monitoring (`.github/dependabot.yml` & `moodle-semver-updater.yml`)` --references--> `main()`  [INFERRED]
   docs/install-moodle-nginx.md → 4-moodle-image-builder/scripts/update-moodle-semver.py
-- `Deployment moodle-deployment (Primary Web Pod, PHP 8.3 & NGINX Mounts, tmpfs /tmp)` --conceptually_related_to--> `Cloud Build Pipeline moodle-nginx Image Builder (Dockerfile.nginx)`  [INFERRED]
-  5a-deployment-no-helm/moodle-deployment-nginx.yaml → 4-moodle-image-builder/cloudbuild-nginx.yaml
 
 ## Import Cycles
 - None detected.
 
-## Communities (33 total, 11 thin omitted)
+## Communities (35 total, 11 thin omitted)
 
 ### Community 0 - "envs.sh"
 Cohesion: 0.04
@@ -83,7 +85,7 @@ Nodes (54): ARTIFACT_REGISTRY_NAME, CLOUD_BUILD_SA_EMAIL, CREATE_CLOUD_SQL, CREA
 
 ### Community 1 - "README.md"
 Cohesion: 0.06
-Nodes (27): Building Moodle's container image, Deploying Backend Configuration (`BackendConfig`), Deploying infrastructure, Infrastructure information needed for Moodle image configuration, Deploying Ingress - Cloud Load Balancer, Deploying Ingress, Deploying Ingress - NGINX, Deploying Moodle's namespace (+19 more)
+Nodes (24): Building Moodle's container image, Deploying Backend Configuration (`BackendConfig`), Deploying infrastructure, Infrastructure information needed for Moodle image configuration, Deploying Ingress - Cloud Load Balancer, Deploying Ingress, Deploying Ingress - NGINX, Deploying Moodle's namespace (+16 more)
 
 ### Community 2 - "GCP Infrastructure, Selective Adoption, and Cloud SQL MySQL 8.4 / PostgreSQL 16"
 Cohesion: 0.14
@@ -114,8 +116,8 @@ Cohesion: 0.29
 Nodes (5): 1. Multi-Stage `preloadable_libiconv.so` Compilation (MDL-80440), 2. PHP 8.3, Conditional `mysqli` vs. `pgsql` Drivers, and Dynamic Composer Verification, 3. Moodle 5.2.4 Bootstrap, Composer Dependencies, and `/public` Webroot (`setup_moodle.sh`), NGINX + PHP 8.3 Container Image, GNU libiconv, and Moodle 5.2+ Bootstrap, Files
 
 ### Community 14 - "Choosing and Configuring Storage (`Filestore` vs. `Regional Replicated Persistent Disk`)"
-Cohesion: 0.18
-Nodes (9): 1. Selective Infrastructure Adoption in `0-infra/envs.sh`, 2. Configuring Storage Sizes, 3. Deploying Regional Replicated Persistent Disk (`regional-pd`) in GKE, Choosing and Configuring Storage (`Filestore` vs. `Regional Replicated Persistent Disk`), Option A: Static Provisioning (Pre-created Disk via `0-infra/infra-creation.sh`), Option B: Dynamic Provisioning (via GKE CSI `StorageClass`), Deploying Persistent Volume (PV), Option A: Cloud Filestore (`STORAGE_TYPE="filestore"`) (+1 more)
+Cohesion: 0.33
+Nodes (6): 1. Selective Infrastructure Adoption in `0-infra/envs.sh`, 2. Configuring Storage Sizes, 3. Deploying Regional Replicated Persistent Disk (`regional-pd`) in GKE, Choosing and Configuring Storage (`Filestore` vs. `Regional Replicated Persistent Disk`), Option A: Static Provisioning (Pre-created Disk via `0-infra/infra-creation.sh`), Option B: Dynamic Provisioning (via GKE CSI `StorageClass`)
 
 ### Community 15 - "How to Contribute"
 Cohesion: 0.40
@@ -141,9 +143,17 @@ Nodes (4): Benefits, Cost view, How it works?, Project overview
 Cohesion: 0.50
 Nodes (4): Basic installation, Documentation, Modern Moodle on Google Cloud Platform (GCP), Post-installation
 
+### Community 23 - "Running a benchmark to check the performance"
+Cohesion: 0.67
+Nodes (3): 1. Installing the plugin, 2. Running Moodle Benchmark, Running a benchmark to check the performance
+
 ### Community 24 - "Deployment"
 Cohesion: 0.67
 Nodes (3): Basic installation, Deployment, Post-installation
+
+### Community 25 - "Updating Environment Variables and Upgrading Pods"
+Cohesion: 0.67
+Nodes (3): 1. Updating ConfigMap Values (`5a-deployment-no-helm`), 2. Restarting Pods to Pick Up Updated Configuration, Updating Environment Variables and Upgrading Pods
 
 ### Community 31 - "verify-scripts-and-configs.sh"
 Cohesion: 0.38
@@ -166,24 +176,24 @@ Cohesion: 0.40
 Nodes (5): Coordinated Moodle & Alpine Update Monitoring (`.github/dependabot.yml` & `moodle-semver-updater.yml`), Deploying Moodle in GKE with the NGINX + PHP 8.3 Image, High-Concurrency Scaling (100k–300k+ Concurrent Users), Opening Update Pull Requests Under a Maintainer Identity (Google CLA), Zero-Downtime Rollout & Probe Design (`startupProbe`, `readinessProbe`, `livenessProbe`)
 
 ## Knowledge Gaps
-- **169 isolated node(s):** `envs.sh script`, `PROJECT_NUMBER`, `PROJECT_ID`, `REGION`, `ZONE` (+164 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 199 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **168 isolated node(s):** `envs.sh script`, `PROJECT_NUMBER`, `PROJECT_ID`, `REGION`, `ZONE` (+163 more)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 198 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
 - **11 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `main()` connect `update-moodle-semver.py` to `Sentinel's Journal — Security, Hardening & Review Guardrails (`google/moodle-on-gcp`)`, `Deploying Moodle in GKE with the NGINX + PHP 8.3 Image`?**
-  _High betweenness centrality (0.140) - this node is a cross-community bridge._
+- **Why does `main()` connect `update-moodle-semver.py` to `Sentinel's Journal — Security, Hardening & Review Guardrails (`google/moodle-on-gcp`)`, `GKE Deployments, 10GB Upload Pod Isolation, ProxySQL, and Horizontal Pod Autoscaling`, `Deploying Moodle in GKE with the NGINX + PHP 8.3 Image`?**
+  _High betweenness centrality (0.186) - this node is a cross-community bridge._
 - **Why does `Deploying Moodle in GKE with the NGINX + PHP 8.3 Image` connect `Deploying Moodle in GKE with the NGINX + PHP 8.3 Image` to `README.md`?**
-  _High betweenness centrality (0.124) - this node is a cross-community bridge._
+  _High betweenness centrality (0.150) - this node is a cross-community bridge._
 - **Why does `Coordinated Moodle & Alpine Update Monitoring (`.github/dependabot.yml` & `moodle-semver-updater.yml`)` connect `Deploying Moodle in GKE with the NGINX + PHP 8.3 Image` to `update-moodle-semver.py`?**
-  _High betweenness centrality (0.121) - this node is a cross-community bridge._
-- **Are the 5 inferred relationships involving `main()` (e.g. with `fetch_alpine_index()` and `1. Repository Architecture & Current Stack (`main`)`) actually correct?**
-  _`main()` has 5 INFERRED edges - model-reasoned connections that need verification._
+  _High betweenness centrality (0.148) - this node is a cross-community bridge._
+- **Are the 6 inferred relationships involving `main()` (e.g. with `fetch_alpine_index()` and `1. Repository Architecture & Current Stack (`main`)`) actually correct?**
+  _`main()` has 6 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `envs.sh script`, `PROJECT_NUMBER`, `PROJECT_ID` to the rest of the system?**
-  _169 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _168 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `envs.sh` be split into smaller, more focused modules?**
   _Cohesion score 0.03636363636363636 - nodes in this community are weakly interconnected._
 - **Should `README.md` be split into smaller, more focused modules?**
-  _Cohesion score 0.061224489795918366 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.06462585034013606 - nodes in this community are weakly interconnected._

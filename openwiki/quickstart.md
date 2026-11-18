@@ -1,11 +1,11 @@
 ---
 type: quickstart
 title: Moodle on GCP Quickstart & Architectural Map
-description: Entrypoint, end-to-end deployment quickstart (0-infra to 9-hpa), and architectural task-routing map for Moodle 5.2.4 on Google Kubernetes Engine (GKE).
+description: Entrypoint, end-to-end deployment quickstart (0-infra to 9-hpa), and architectural task-routing map for Moodle 5.2.5 on Google Kubernetes Engine (GKE).
 tags: [quickstart, moodle, gcp, gke, architecture-map]
 verified:
   - by: openwiki/0.5.1
-    at: 2026-11-12T05:39:27.513Z
+    at: 2026-11-18T12:05:03.622Z
 sources:
   - id: openwiki-source-75467caa28be1defc4942cd3
     resource: repo://0-infra/envs.sh
@@ -13,12 +13,12 @@ sources:
     resource: repo://5a-deployment-no-helm/create-config-files.sh
   - id: openwiki-source-23775c3de52f3ab95a13cb8b
     resource: repo://README.md
-generated: { by: "antigravity", at: "2026-11-12T05:39:27.513Z" }
+generated: { by: "antigravity", at: "2026-11-18T12:05:03.622Z" }
 ---
 
 # Moodle on GCP Quickstart & Architectural Map
 
-This repository provides a cloud-native architecture for running **Moodle 5.2.4** (also compatible with Moodle 5.3 and 4.x) on **Google Kubernetes Engine (GKE)** with **Alpine 3.21 + NGINX + PHP 8.3**, **Cloud SQL for MySQL 8.4 or PostgreSQL 16 / AlloyDB**, **Memorystore for Redis / Redis Cluster**, selectable storage modalities (**Cloud Filestore** or **Regional Replicated Persistent Disk**), **dedicated 10GB+ streaming upload pods**, **optional ProxySQL connection multiplexing**, and **Google Cloud CDN**.
+This repository provides a cloud-native architecture for running **Moodle 5.2.5** (also compatible with Moodle 5.3 and 4.x) on **Google Kubernetes Engine (GKE)** with **Alpine 3.24 + NGINX + PHP 8.3**, **Cloud SQL for MySQL 8.4 or PostgreSQL 16 / AlloyDB**, **Memorystore for Redis / Redis Cluster**, selectable storage modalities (**Cloud Filestore** or **Regional Replicated Persistent Disk**), **dedicated 10GB+ streaming upload pods**, **optional ProxySQL connection multiplexing**, and **Google Cloud CDN**.
 
 ```mermaid
 flowchart LR
@@ -53,6 +53,6 @@ flowchart LR
 | :--- | :--- | :--- |
 | **GCP Provisioning, Selective Adoption, and Cloud SQL MySQL 8.4 / PostgreSQL 16** | [GCP Infrastructure, Selective Adoption, and Cloud SQL MySQL 8.4 / PostgreSQL 16](/openwiki/architecture/infrastructure-and-networking.md) | `0-infra/envs.sh`, `0-infra/infra-creation.sh`, `0-infra/cleanup-moodle-install.sh`, `0-infra/infra-pause.sh`, `0-infra/infra-resume.sh`, `0-infra/infra-destroy.sh` |
 | **Choosing Between Cloud Filestore and Regional Replicated PD (`regional-pd`)** | [Storage Modalities: Filestore vs. Regional Replicated Persistent Disk](/openwiki/architecture/storage-modalities.md) | `1-pv/pv-filestore.yaml`, `1-pv/pv-regional-pd.yaml`, `1-pv/storageclass-regional-pd.yaml`, `3-pvc/pvc-filestore.yaml`, `3-pvc/pvc-regional-pd.yaml` |
-| **Alpine 3.21 + PHP 8.3 Container Image, `preloadable_libiconv.so`, `mysqli`/`pgsql`, and Moodle 5.2+ `/public`** | [NGINX + PHP 8.3 Container Image, GNU libiconv, and Moodle 5.2+ Bootstrap](/openwiki/runtime/container-image-moodle52-php83.md) | `4-moodle-image-builder/Dockerfile.nginx`, `4-moodle-image-builder/scripts/build-gnu-libiconv.sh`, `4-moodle-image-builder/base/opt/setup_moodle.sh`, `4-moodle-image-builder/config.php.template` |
+| **Alpine 3.24 + PHP 8.3 Container Image, `preloadable_libiconv.so`, `mysqli`/`pgsql`, and Moodle 5.2+ `/public`** | [NGINX + PHP 8.3 Container Image, GNU libiconv, and Moodle 5.2+ Bootstrap](/openwiki/runtime/container-image-moodle52-php83.md) | `4-moodle-image-builder/Dockerfile.nginx`, `4-moodle-image-builder/scripts/build-gnu-libiconv.sh`, `4-moodle-image-builder/base/opt/setup_moodle.sh`, `4-moodle-image-builder/config.php.template` |
 | **GKE Deployments, 10GB Upload Pod Isolation, ProxySQL, and HPA** | [GKE Deployments, 10GB Upload Pod Isolation, ProxySQL, and Horizontal Pod Autoscaling](/openwiki/operations/gke-deployments-and-uploads-isolation.md) | `5a-deployment-no-helm/create-config-files.sh`, `5a-deployment-no-helm/moodle-deployment-nginx.yaml`, `5a-deployment-no-helm/moodle-deployment-nginx-uploads.yaml`, `5a-deployment-no-helm/moodle-optional-secrets.yaml`, `5a-deployment-no-helm/moodle-proxysql.yaml`, `9-hpa/` |
 | **Cloud CDN for Moodle, NGINX/PHP-FPM Tuning, and Ingress Routing** | [Cloud CDN for Moodle, NGINX/PHP-FPM Tuning, and Ingress Routing](/openwiki/operations/cloud-cdn-and-ingress.md) | `4-moodle-image-builder/base/etc/nginx/nginx.conf-template`, `6-backendconfig/ingress-backendconfig-nginx.yaml`, `8-ingress/gce-ingress-external.yaml` |

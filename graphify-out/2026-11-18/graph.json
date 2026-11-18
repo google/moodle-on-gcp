@@ -13,7 +13,7 @@
       "file_type": "code",
       "norm_label": "apply_alpine_update()",
       "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
-      "source_location": "L311"
+      "source_location": "L314"
     },
     {
       "id": "4_moodle_image_builder_scripts_update_moodle_semver_apply_moodle_update",
@@ -37,7 +37,7 @@
       "file_type": "code",
       "norm_label": "build_pr_metadata()",
       "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
-      "source_location": "L327"
+      "source_location": "L330"
     },
     {
       "id": "4_moodle_image_builder_scripts_update_moodle_semver_collect_required_packages",
@@ -49,7 +49,7 @@
       "file_type": "code",
       "norm_label": "collect_required_packages()",
       "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
-      "source_location": "L215"
+      "source_location": "L216"
     },
     {
       "id": "4_moodle_image_builder_scripts_update_moodle_semver_compute_tarball_sha256",
@@ -73,7 +73,7 @@
       "file_type": "code",
       "norm_label": "fetch_alpine_branches()",
       "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
-      "source_location": "L254"
+      "source_location": "L255"
     },
     {
       "id": "4_moodle_image_builder_scripts_update_moodle_semver_fetch_alpine_index",
@@ -85,7 +85,7 @@
       "file_type": "code",
       "norm_label": "fetch_alpine_index()",
       "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
-      "source_location": "L244"
+      "source_location": "L245"
     },
     {
       "id": "4_moodle_image_builder_scripts_update_moodle_semver_fetch_moodle_tags",
@@ -145,7 +145,7 @@
       "file_type": "code",
       "norm_label": "main()",
       "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
-      "source_location": "L460"
+      "source_location": "L471"
     },
     {
       "id": "4_moodle_image_builder_scripts_update_moodle_semver_parse_apk_packages",
@@ -169,7 +169,7 @@
       "file_type": "code",
       "norm_label": "parse_apkindex()",
       "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
-      "source_location": "L224"
+      "source_location": "L225"
     },
     {
       "id": "4_moodle_image_builder_scripts_update_moodle_semver_replace_alpine_references",
@@ -181,7 +181,7 @@
       "file_type": "code",
       "norm_label": "replace_alpine_references()",
       "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
-      "source_location": "L301"
+      "source_location": "L302"
     },
     {
       "id": "4_moodle_image_builder_scripts_update_moodle_semver_run_self_test",
@@ -193,7 +193,7 @@
       "file_type": "code",
       "norm_label": "run_self_test()",
       "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
-      "source_location": "L408"
+      "source_location": "L411"
     },
     {
       "id": "4_moodle_image_builder_scripts_update_moodle_semver_select_alpine_target",
@@ -205,7 +205,7 @@
       "file_type": "code",
       "norm_label": "select_alpine_target()",
       "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
-      "source_location": "L271"
+      "source_location": "L272"
     },
     {
       "id": "4_moodle_image_builder_scripts_update_moodle_semver_select_target_version",
@@ -241,7 +241,7 @@
       "file_type": "code",
       "norm_label": "write_github_outputs()",
       "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
-      "source_location": "L392"
+      "source_location": "L395"
     },
     {
       "id": "1_pv_pv_filestore_pv_filestore",
@@ -1423,6 +1423,18 @@
       "source_location": "L1"
     },
     {
+      "id": "docs_choosing_and_configuring_storage",
+      "label": "choosing-and-configuring-storage.md",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "README.md",
+      "file_type": "document",
+      "node_kind": "page",
+      "norm_label": "choosing-and-configuring-storage.md",
+      "source_file": "docs/choosing-and-configuring-storage.md",
+      "source_location": "L1"
+    },
+    {
       "id": "docs_configuring_cloud_cdn",
       "label": "configuring-cloud-cdn.md",
       "_origin": "ast",
@@ -1603,6 +1615,18 @@
       "source_location": "L1"
     },
     {
+      "id": "docs_deploying_persistent_volume",
+      "label": "deploying-persistent-volume.md",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "README.md",
+      "file_type": "document",
+      "node_kind": "page",
+      "norm_label": "deploying-persistent-volume.md",
+      "source_file": "docs/deploying-persistent-volume.md",
+      "source_location": "L1"
+    },
+    {
       "id": "docs_deploying_persistent_volume_claim",
       "label": "deploying-persistent-volume-claim.md",
       "_origin": "ast",
@@ -1649,6 +1673,42 @@
       "norm_label": "option b: regional replicated persistent disk (`storage_type=\"regional-pd\"`)",
       "source_file": "docs/deploying-persistent-volume-claim.md",
       "source_location": "L21"
+    },
+    {
+      "id": "docs_deploying_persistent_volume_deploying_persistent_volume_pv",
+      "label": "Deploying Persistent Volume (PV)",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "README.md",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "deploying persistent volume (pv)",
+      "source_file": "docs/deploying-persistent-volume.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "docs_deploying_persistent_volume_option_a_cloud_filestore_storage_type_filestore",
+      "label": "Option A: Cloud Filestore (`STORAGE_TYPE=\"filestore\"`)",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "README.md",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "option a: cloud filestore (`storage_type=\"filestore\"`)",
+      "source_file": "docs/deploying-persistent-volume.md",
+      "source_location": "L15"
+    },
+    {
+      "id": "docs_deploying_persistent_volume_option_b_regional_replicated_persistent_disk_storage_type_regional_pd",
+      "label": "Option B: Regional Replicated Persistent Disk (`STORAGE_TYPE=\"regional-pd\"`)",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "README.md",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "option b: regional replicated persistent disk (`storage_type=\"regional-pd\"`)",
+      "source_file": "docs/deploying-persistent-volume.md",
+      "source_location": "L31"
     },
     {
       "id": "docs_deployment",
@@ -1783,42 +1843,6 @@
       "source_location": "L1"
     },
     {
-      "id": "docs_moodle_report_benchmark_1_installing_the_plugin",
-      "label": "1. Installing the plugin",
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "README.md",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "1. installing the plugin",
-      "source_file": "docs/moodle-report-benchmark.md",
-      "source_location": "L21"
-    },
-    {
-      "id": "docs_moodle_report_benchmark_2_running_moodle_benchmark",
-      "label": "2. Running Moodle Benchmark",
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "README.md",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "2. running moodle benchmark",
-      "source_file": "docs/moodle-report-benchmark.md",
-      "source_location": "L37"
-    },
-    {
-      "id": "docs_moodle_report_benchmark_running_a_benchmark_to_check_the_performance",
-      "label": "Running a benchmark to check the performance",
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "README.md",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "running a benchmark to check the performance",
-      "source_file": "docs/moodle-report-benchmark.md",
-      "source_location": "L1"
-    },
-    {
       "id": "docs_post_installation_values_update",
       "label": "post-installation-values-update.md",
       "_origin": "ast",
@@ -1827,42 +1851,6 @@
       "file_type": "document",
       "node_kind": "page",
       "norm_label": "post-installation-values-update.md",
-      "source_file": "docs/post-installation-values-update.md",
-      "source_location": "L1"
-    },
-    {
-      "id": "docs_post_installation_values_update_1_updating_configmap_values_5a_deployment_no_helm",
-      "label": "1. Updating ConfigMap Values (`5a-deployment-no-helm`)",
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "README.md",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "1. updating configmap values (`5a-deployment-no-helm`)",
-      "source_file": "docs/post-installation-values-update.md",
-      "source_location": "L7"
-    },
-    {
-      "id": "docs_post_installation_values_update_2_restarting_pods_to_pick_up_updated_configuration",
-      "label": "2. Restarting Pods to Pick Up Updated Configuration",
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "README.md",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "2. restarting pods to pick up updated configuration",
-      "source_file": "docs/post-installation-values-update.md",
-      "source_location": "L19"
-    },
-    {
-      "id": "docs_post_installation_values_update_updating_environment_variables_and_upgrading_pods",
-      "label": "Updating Environment Variables and Upgrading Pods",
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "README.md",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "updating environment variables and upgrading pods",
       "source_file": "docs/post-installation-values-update.md",
       "source_location": "L1"
     },
@@ -2352,18 +2340,6 @@
       "source_location": "L1"
     },
     {
-      "id": "docs_choosing_and_configuring_storage",
-      "label": "choosing-and-configuring-storage.md",
-      "_origin": "ast",
-      "community": 14,
-      "community_name": "Choosing and Configuring Storage (`Filestore` vs. `Regional Replicated Persistent Disk`)",
-      "file_type": "document",
-      "node_kind": "page",
-      "norm_label": "choosing-and-configuring-storage.md",
-      "source_file": "docs/choosing-and-configuring-storage.md",
-      "source_location": "L1"
-    },
-    {
       "id": "docs_choosing_and_configuring_storage_1_selective_infrastructure_adoption_in_0_infra_envs_sh",
       "label": "1. Selective Infrastructure Adoption in `0-infra/envs.sh`",
       "_origin": "ast",
@@ -2434,54 +2410,6 @@
       "norm_label": "option b: dynamic provisioning (via gke csi `storageclass`)",
       "source_file": "docs/choosing-and-configuring-storage.md",
       "source_location": "L95"
-    },
-    {
-      "id": "docs_deploying_persistent_volume",
-      "label": "deploying-persistent-volume.md",
-      "_origin": "ast",
-      "community": 14,
-      "community_name": "Choosing and Configuring Storage (`Filestore` vs. `Regional Replicated Persistent Disk`)",
-      "file_type": "document",
-      "node_kind": "page",
-      "norm_label": "deploying-persistent-volume.md",
-      "source_file": "docs/deploying-persistent-volume.md",
-      "source_location": "L1"
-    },
-    {
-      "id": "docs_deploying_persistent_volume_deploying_persistent_volume_pv",
-      "label": "Deploying Persistent Volume (PV)",
-      "_origin": "ast",
-      "community": 14,
-      "community_name": "Choosing and Configuring Storage (`Filestore` vs. `Regional Replicated Persistent Disk`)",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "deploying persistent volume (pv)",
-      "source_file": "docs/deploying-persistent-volume.md",
-      "source_location": "L1"
-    },
-    {
-      "id": "docs_deploying_persistent_volume_option_a_cloud_filestore_storage_type_filestore",
-      "label": "Option A: Cloud Filestore (`STORAGE_TYPE=\"filestore\"`)",
-      "_origin": "ast",
-      "community": 14,
-      "community_name": "Choosing and Configuring Storage (`Filestore` vs. `Regional Replicated Persistent Disk`)",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "option a: cloud filestore (`storage_type=\"filestore\"`)",
-      "source_file": "docs/deploying-persistent-volume.md",
-      "source_location": "L15"
-    },
-    {
-      "id": "docs_deploying_persistent_volume_option_b_regional_replicated_persistent_disk_storage_type_regional_pd",
-      "label": "Option B: Regional Replicated Persistent Disk (`STORAGE_TYPE=\"regional-pd\"`)",
-      "_origin": "ast",
-      "community": 14,
-      "community_name": "Choosing and Configuring Storage (`Filestore` vs. `Regional Replicated Persistent Disk`)",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "option b: regional replicated persistent disk (`storage_type=\"regional-pd\"`)",
-      "source_file": "docs/deploying-persistent-volume.md",
-      "source_location": "L31"
     },
     {
       "id": "contributing",
@@ -3343,6 +3271,42 @@
       "source_location": "L1"
     },
     {
+      "id": "docs_moodle_report_benchmark_1_installing_the_plugin",
+      "label": "1. Installing the plugin",
+      "_origin": "ast",
+      "community": 23,
+      "community_name": "Running a benchmark to check the performance",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "1. installing the plugin",
+      "source_file": "docs/moodle-report-benchmark.md",
+      "source_location": "L21"
+    },
+    {
+      "id": "docs_moodle_report_benchmark_2_running_moodle_benchmark",
+      "label": "2. Running Moodle Benchmark",
+      "_origin": "ast",
+      "community": 23,
+      "community_name": "Running a benchmark to check the performance",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "2. running moodle benchmark",
+      "source_file": "docs/moodle-report-benchmark.md",
+      "source_location": "L37"
+    },
+    {
+      "id": "docs_moodle_report_benchmark_running_a_benchmark_to_check_the_performance",
+      "label": "Running a benchmark to check the performance",
+      "_origin": "ast",
+      "community": 23,
+      "community_name": "Running a benchmark to check the performance",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "running a benchmark to check the performance",
+      "source_file": "docs/moodle-report-benchmark.md",
+      "source_location": "L1"
+    },
+    {
       "id": "docs_deployment_basic_installation",
       "label": "Basic installation",
       "_origin": "ast",
@@ -3377,6 +3341,42 @@
       "norm_label": "post-installation",
       "source_file": "docs/deployment.md",
       "source_location": "L26"
+    },
+    {
+      "id": "docs_post_installation_values_update_1_updating_configmap_values_5a_deployment_no_helm",
+      "label": "1. Updating ConfigMap Values (`5a-deployment-no-helm`)",
+      "_origin": "ast",
+      "community": 25,
+      "community_name": "Updating Environment Variables and Upgrading Pods",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "1. updating configmap values (`5a-deployment-no-helm`)",
+      "source_file": "docs/post-installation-values-update.md",
+      "source_location": "L7"
+    },
+    {
+      "id": "docs_post_installation_values_update_2_restarting_pods_to_pick_up_updated_configuration",
+      "label": "2. Restarting Pods to Pick Up Updated Configuration",
+      "_origin": "ast",
+      "community": 25,
+      "community_name": "Updating Environment Variables and Upgrading Pods",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "2. restarting pods to pick up updated configuration",
+      "source_file": "docs/post-installation-values-update.md",
+      "source_location": "L19"
+    },
+    {
+      "id": "docs_post_installation_values_update_updating_environment_variables_and_upgrading_pods",
+      "label": "Updating Environment Variables and Upgrading Pods",
+      "_origin": "ast",
+      "community": 25,
+      "community_name": "Updating Environment Variables and Upgrading Pods",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "updating environment variables and upgrading pods",
+      "source_file": "docs/post-installation-values-update.md",
+      "source_location": "L1"
     },
     {
       "id": "contributors",
@@ -3781,7 +3781,7 @@
       "source_location": "L195"
     },
     {
-      "id": "4_moodle_image_builder_scripts_update_moodle_semver_rationale_225",
+      "id": "4_moodle_image_builder_scripts_update_moodle_semver_rationale_226",
       "label": "Map package names and their `provides` aliases (e.g. `envsubst`) to versions.",
       "_origin": "ast",
       "community": 36,
@@ -3789,10 +3789,10 @@
       "file_type": "rationale",
       "norm_label": "map package names and their `provides` aliases (e.g. `envsubst`) to versions.",
       "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
-      "source_location": "L225"
+      "source_location": "L226"
     },
     {
-      "id": "4_moodle_image_builder_scripts_update_moodle_semver_rationale_255",
+      "id": "4_moodle_image_builder_scripts_update_moodle_semver_rationale_256",
       "label": "Return Alpine release branches (newest first) as dicts with version, eol, and\u2026",
       "_origin": "ast",
       "community": 36,
@@ -3800,10 +3800,10 @@
       "file_type": "rationale",
       "norm_label": "return alpine release branches (newest first) as dicts with version, eol, and...",
       "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
-      "source_location": "L255"
+      "source_location": "L256"
     },
     {
-      "id": "4_moodle_image_builder_scripts_update_moodle_semver_rationale_277",
+      "id": "4_moodle_image_builder_scripts_update_moodle_semver_rationale_278",
       "label": "Pick the newest supported branch newer than `current` that provides every\u2026",
       "_origin": "ast",
       "community": 36,
@@ -3811,10 +3811,10 @@
       "file_type": "rationale",
       "norm_label": "pick the newest supported branch newer than `current` that provides every...",
       "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
-      "source_location": "L277"
+      "source_location": "L278"
     },
     {
-      "id": "4_moodle_image_builder_scripts_update_moodle_semver_rationale_328",
+      "id": "4_moodle_image_builder_scripts_update_moodle_semver_rationale_331",
       "label": "Return (title, commit message, markdown body) for the coordinated update.",
       "_origin": "ast",
       "community": 36,
@@ -3822,7 +3822,7 @@
       "file_type": "rationale",
       "norm_label": "return (title, commit message, markdown body) for the coordinated update.",
       "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
-      "source_location": "L328"
+      "source_location": "L331"
     },
     {
       "id": "4_moodle_image_builder_scripts_update_moodle_semver_rationale_89",
@@ -3969,7 +3969,7 @@
       "frontmatter": {
         "type": "operations",
         "title": "GKE Deployments, 10GB Upload Pod Isolation, ProxySQL, and Horizontal Pod Autoscaling",
-        "description": "Kubernetes Deployment architecture for Moodle 5.2.4, Guaranteed QoS rightsizing, isolated 10GB+ upload pods (disk-backed /tmp, PHP_FPM_MAX_CHILDREN=1), optional Secrets, ProxySQL connection multiplexing, and HPA policies.",
+        "description": "Kubernetes Deployment architecture for Moodle 5.2.4, Guaranteed QoS rightsizing, isolated 10GB+ upload pods (disk-backed /tmp, PHP_FPM_MAX_CHILDREN=1), optional Secrets, ProxySQL connection multiplexing, HPA policies, zero-downtime probes, and the coordinated Moodle + Alpine update automation (CLA-compliant pull requests).",
         "tags": [
           "gke",
           "kubernetes",
@@ -3979,7 +3979,10 @@
           "hpa",
           "configmap",
           "secret",
-          "envsubst"
+          "envsubst",
+          "dependabot",
+          "github-actions",
+          "alpine"
         ],
         "sources": [
           {
@@ -4021,16 +4024,24 @@
           {
             "id": "openwiki-source-8b405ff0d1ec68bd339f2b74",
             "resource": "repo://docs/install-moodle-nginx.md"
+          },
+          {
+            "id": "openwiki-source-dc929078fccb69a8204d1722",
+            "resource": "repo://tests/smoke-test-container-image.sh"
+          },
+          {
+            "id": "openwiki-source-6d8c98d53bdfbb0985562fa8",
+            "resource": "repo://tests/verify-scripts-and-configs.sh"
           }
         ],
         "generated": {
           "by": "antigravity",
-          "at": "2026-11-15T21:21:21.950Z"
+          "at": "2026-11-18T12:02:02.964Z"
         },
         "verified": [
           {
             "by": "openwiki/0.5.1",
-            "at": "2026-11-15 21:21:21.950000+00:00"
+            "at": "2026-11-18 12:02:02.964000+00:00"
           }
         ]
       },
@@ -4109,7 +4120,7 @@
       "node_kind": "heading",
       "norm_label": "1. automated manifest rendering and secret isolation (`create-config-files.sh`)",
       "source_file": "openwiki/operations/gke-deployments-and-uploads-isolation.md",
-      "source_location": "L50"
+      "source_location": "L54"
     },
     {
       "id": "openwiki_operations_gke_deployments_and_uploads_isolation_2_10gb_streaming_uploads_and_subpath_isolation_moodle_deployment_uploads",
@@ -4121,7 +4132,7 @@
       "node_kind": "heading",
       "norm_label": "2. 10gb+ streaming uploads and subpath isolation (`moodle-deployment-uploads`)",
       "source_file": "openwiki/operations/gke-deployments-and-uploads-isolation.md",
-      "source_location": "L58"
+      "source_location": "L62"
     },
     {
       "id": "openwiki_operations_gke_deployments_and_uploads_isolation_3_pod_rightsizing_guaranteed_qos_proxysql_and_hpa_9_hpa",
@@ -4133,7 +4144,7 @@
       "node_kind": "heading",
       "norm_label": "3. pod rightsizing (`guaranteed` qos), proxysql, and hpa (`9-hpa/`)",
       "source_file": "openwiki/operations/gke-deployments-and-uploads-isolation.md",
-      "source_location": "L69"
+      "source_location": "L73"
     },
     {
       "id": "openwiki_operations_gke_deployments_and_uploads_isolation_4_zero_downtime_rollout_strategy_and_zero_db_load_probe_architecture",
@@ -4145,19 +4156,19 @@
       "node_kind": "heading",
       "norm_label": "4. zero-downtime rollout strategy and zero-db-load probe architecture",
       "source_file": "openwiki/operations/gke-deployments-and-uploads-isolation.md",
-      "source_location": "L75"
+      "source_location": "L79"
     },
     {
-      "id": "openwiki_operations_gke_deployments_and_uploads_isolation_5_automated_moodle_semver_monitoring_github_dependabot_yml_and_moodle_semver_updater_yml",
-      "label": "5. Automated Moodle SemVer Monitoring (`.github/dependabot.yml` and `moodle-semver-updater.yml`)",
+      "id": "openwiki_operations_gke_deployments_and_uploads_isolation_5_coordinated_moodle_and_alpine_update_automation_moodle_semver_updater_yml",
+      "label": "5. Coordinated Moodle and Alpine Update Automation (`moodle-semver-updater.yml`)",
       "_origin": "ast",
       "community": 4,
       "community_name": "GKE Deployments, 10GB Upload Pod Isolation, ProxySQL, and Horizontal Pod Autoscaling",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "5. automated moodle semver monitoring (`.github/dependabot.yml` and `moodle-semver-updater.yml`)",
+      "norm_label": "5. coordinated moodle and alpine update automation (`moodle-semver-updater.yml`)",
       "source_file": "openwiki/operations/gke-deployments-and-uploads-isolation.md",
-      "source_location": "L88"
+      "source_location": "L92"
     },
     {
       "id": "openwiki_operations_gke_deployments_and_uploads_isolation_gke_deployments_10gb_upload_pod_isolation_proxysql_and_horizontal_pod_autoscaling",
@@ -4169,7 +4180,7 @@
       "node_kind": "heading",
       "norm_label": "gke deployments, 10gb upload pod isolation, proxysql, and horizontal pod autoscaling",
       "source_file": "openwiki/operations/gke-deployments-and-uploads-isolation.md",
-      "source_location": "L33"
+      "source_location": "L37"
     },
     {
       "id": "openwiki_operations_index",
@@ -4433,6 +4444,18 @@
       "type": "external"
     },
     {
+      "id": "datetime",
+      "label": "datetime",
+      "_origin": "semantic",
+      "community": 36,
+      "community_name": "update-moodle-semver.py",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "datetime",
+      "source_file": "",
+      "type": "external"
+    },
+    {
       "id": "hashlib",
       "label": "hashlib",
       "_origin": "semantic",
@@ -4441,6 +4464,18 @@
       "external": true,
       "file_type": "concept",
       "norm_label": "hashlib",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "io",
+      "label": "io",
+      "_origin": "semantic",
+      "community": 36,
+      "community_name": "update-moodle-semver.py",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "io",
       "source_file": "",
       "type": "external"
     },
@@ -4505,6 +4540,42 @@
       "type": "external"
     },
     {
+      "id": "tarfile",
+      "label": "tarfile",
+      "_origin": "semantic",
+      "community": 36,
+      "community_name": "update-moodle-semver.py",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "tarfile",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "typing",
+      "label": "typing",
+      "_origin": "semantic",
+      "community": 36,
+      "community_name": "update-moodle-semver.py",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "typing",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "urllib_error",
+      "label": "urllib_error",
+      "_origin": "semantic",
+      "community": 36,
+      "community_name": "update-moodle-semver.py",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "urllib_error",
+      "source_file": "",
+      "type": "external"
+    },
+    {
       "id": "urllib_request",
       "label": "urllib_request",
       "_origin": "semantic",
@@ -4517,63 +4588,9 @@
       "type": "external"
     },
     {
-      "id": "datetime",
-      "label": "datetime",
-      "community": 36,
-      "community_name": "update-moodle-semver.py",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "datetime",
-      "source_file": "",
-      "type": "external"
-    },
-    {
-      "id": "io",
-      "label": "io",
-      "community": 36,
-      "community_name": "update-moodle-semver.py",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "io",
-      "source_file": "",
-      "type": "external"
-    },
-    {
-      "id": "tarfile",
-      "label": "tarfile",
-      "community": 36,
-      "community_name": "update-moodle-semver.py",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "tarfile",
-      "source_file": "",
-      "type": "external"
-    },
-    {
-      "id": "typing",
-      "label": "typing",
-      "community": 36,
-      "community_name": "update-moodle-semver.py",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "typing",
-      "source_file": "",
-      "type": "external"
-    },
-    {
-      "id": "urllib_error",
-      "label": "urllib_error",
-      "community": 36,
-      "community_name": "update-moodle-semver.py",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "urllib_error",
-      "source_file": "",
-      "type": "external"
-    },
-    {
       "id": "uuid",
       "label": "uuid",
+      "_origin": "semantic",
       "community": 36,
       "community_name": "update-moodle-semver.py",
       "external": true,
@@ -4665,7 +4682,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
-      "source_location": "L317",
+      "source_location": "L320",
       "weight": 1.0
     },
     {
@@ -4677,7 +4694,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
-      "source_location": "L218",
+      "source_location": "L219",
       "weight": 1.0
     },
     {
@@ -4689,7 +4706,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
-      "source_location": "L256",
+      "source_location": "L257",
       "weight": 1.0
     },
     {
@@ -4701,7 +4718,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
-      "source_location": "L245",
+      "source_location": "L246",
       "weight": 1.0
     },
     {
@@ -4713,7 +4730,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
-      "source_location": "L251",
+      "source_location": "L252",
       "weight": 1.0
     },
     {
@@ -4737,7 +4754,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
-      "source_location": "L493",
+      "source_location": "L504",
       "weight": 1.0
     },
     {
@@ -4749,7 +4766,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
-      "source_location": "L496",
+      "source_location": "L507",
       "weight": 1.0
     },
     {
@@ -4761,7 +4778,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
-      "source_location": "L498",
+      "source_location": "L509",
       "weight": 1.0
     },
     {
@@ -4773,7 +4790,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
-      "source_location": "L498",
+      "source_location": "L509",
       "weight": 1.0
     },
     {
@@ -4785,7 +4802,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
-      "source_location": "L504",
+      "source_location": "L515",
       "weight": 1.0
     },
     {
@@ -4797,60 +4814,12 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
-      "source_location": "L505",
+      "source_location": "L516",
       "weight": 1.0
     },
     {
       "source": "4_moodle_image_builder_scripts_update_moodle_semver_main",
       "target": "4_moodle_image_builder_scripts_update_moodle_semver_get_current_alpine",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
-      "source_location": "L512",
-      "weight": 1.0
-    },
-    {
-      "source": "4_moodle_image_builder_scripts_update_moodle_semver_main",
-      "target": "4_moodle_image_builder_scripts_update_moodle_semver_collect_required_packages",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
-      "source_location": "L513",
-      "weight": 1.0
-    },
-    {
-      "source": "4_moodle_image_builder_scripts_update_moodle_semver_main",
-      "target": "4_moodle_image_builder_scripts_update_moodle_semver_fetch_alpine_branches",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
-      "source_location": "L514",
-      "weight": 1.0
-    },
-    {
-      "source": "4_moodle_image_builder_scripts_update_moodle_semver_main",
-      "target": "4_moodle_image_builder_scripts_update_moodle_semver_select_alpine_target",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
-      "source_location": "L515",
-      "weight": 1.0
-    },
-    {
-      "source": "4_moodle_image_builder_scripts_update_moodle_semver_main",
-      "target": "4_moodle_image_builder_scripts_update_moodle_semver_warn",
       "relation": "calls",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -4862,6 +4831,54 @@
     },
     {
       "source": "4_moodle_image_builder_scripts_update_moodle_semver_main",
+      "target": "4_moodle_image_builder_scripts_update_moodle_semver_collect_required_packages",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
+      "source_location": "L524",
+      "weight": 1.0
+    },
+    {
+      "source": "4_moodle_image_builder_scripts_update_moodle_semver_main",
+      "target": "4_moodle_image_builder_scripts_update_moodle_semver_fetch_alpine_branches",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
+      "source_location": "L525",
+      "weight": 1.0
+    },
+    {
+      "source": "4_moodle_image_builder_scripts_update_moodle_semver_main",
+      "target": "4_moodle_image_builder_scripts_update_moodle_semver_select_alpine_target",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
+      "source_location": "L526",
+      "weight": 1.0
+    },
+    {
+      "source": "4_moodle_image_builder_scripts_update_moodle_semver_main",
+      "target": "4_moodle_image_builder_scripts_update_moodle_semver_warn",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
+      "source_location": "L534",
+      "weight": 1.0
+    },
+    {
+      "source": "4_moodle_image_builder_scripts_update_moodle_semver_main",
       "target": "4_moodle_image_builder_scripts_update_moodle_semver_apply_alpine_update",
       "relation": "calls",
       "_origin": "ast",
@@ -4869,7 +4886,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
-      "source_location": "L529",
+      "source_location": "L540",
       "weight": 1.0
     },
     {
@@ -4881,7 +4898,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
-      "source_location": "L553",
+      "source_location": "L564",
       "weight": 1.0
     },
     {
@@ -4893,7 +4910,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
-      "source_location": "L558",
+      "source_location": "L569",
       "weight": 1.0
     },
     {
@@ -4905,7 +4922,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
-      "source_location": "L409",
+      "source_location": "L412",
       "weight": 1.0
     },
     {
@@ -4917,7 +4934,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
-      "source_location": "L412",
+      "source_location": "L415",
       "weight": 1.0
     },
     {
@@ -4929,7 +4946,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
-      "source_location": "L417",
+      "source_location": "L420",
       "weight": 1.0
     },
     {
@@ -4941,7 +4958,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
-      "source_location": "L418",
+      "source_location": "L421",
       "weight": 1.0
     },
     {
@@ -4953,7 +4970,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
-      "source_location": "L420",
+      "source_location": "L423",
       "weight": 1.0
     },
     {
@@ -4965,7 +4982,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
-      "source_location": "L432",
+      "source_location": "L436",
       "weight": 1.0
     },
     {
@@ -4977,7 +4994,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
-      "source_location": "L441",
+      "source_location": "L448",
       "weight": 1.0
     },
     {
@@ -4989,7 +5006,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
-      "source_location": "L444",
+      "source_location": "L455",
       "weight": 1.0
     },
     {
@@ -5205,7 +5222,7 @@
       "confidence_score": 1.0,
       "context": "parameter_type",
       "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
-      "source_location": "L311",
+      "source_location": "L314",
       "weight": 1.0
     },
     {
@@ -5217,7 +5234,7 @@
       "confidence_score": 1.0,
       "context": "parameter_type",
       "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
-      "source_location": "L301",
+      "source_location": "L302",
       "weight": 1.0
     },
     {
@@ -5229,7 +5246,7 @@
       "confidence_score": 1.0,
       "context": "parameter_type",
       "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
-      "source_location": "L271",
+      "source_location": "L272",
       "weight": 1.0
     },
     {
@@ -5241,7 +5258,7 @@
       "confidence_score": 1.0,
       "context": "parameter_type",
       "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
-      "source_location": "L271",
+      "source_location": "L272",
       "weight": 1.0
     },
     {
@@ -5464,7 +5481,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
-      "source_location": "L215",
+      "source_location": "L216",
       "weight": 1.0
     },
     {
@@ -5475,7 +5492,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
-      "source_location": "L224",
+      "source_location": "L225",
       "weight": 1.0
     },
     {
@@ -5486,7 +5503,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
-      "source_location": "L244",
+      "source_location": "L245",
       "weight": 1.0
     },
     {
@@ -5497,7 +5514,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
-      "source_location": "L254",
+      "source_location": "L255",
       "weight": 1.0
     },
     {
@@ -5508,7 +5525,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
-      "source_location": "L271",
+      "source_location": "L272",
       "weight": 1.0
     },
     {
@@ -5519,7 +5536,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
-      "source_location": "L301",
+      "source_location": "L302",
       "weight": 1.0
     },
     {
@@ -5530,7 +5547,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
-      "source_location": "L311",
+      "source_location": "L314",
       "weight": 1.0
     },
     {
@@ -5541,7 +5558,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
-      "source_location": "L327",
+      "source_location": "L330",
       "weight": 1.0
     },
     {
@@ -5552,7 +5569,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
-      "source_location": "L392",
+      "source_location": "L395",
       "weight": 1.0
     },
     {
@@ -5563,7 +5580,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
-      "source_location": "L408",
+      "source_location": "L411",
       "weight": 1.0
     },
     {
@@ -5574,7 +5591,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
-      "source_location": "L460",
+      "source_location": "L471",
       "weight": 1.0
     },
     {
@@ -6828,7 +6845,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "openwiki/operations/gke-deployments-and-uploads-isolation.md",
-      "source_location": "L33",
+      "source_location": "L37",
       "weight": 1.0
     },
     {
@@ -6839,7 +6856,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "openwiki/operations/gke-deployments-and-uploads-isolation.md",
-      "source_location": "L50",
+      "source_location": "L54",
       "weight": 1.0
     },
     {
@@ -6850,7 +6867,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "openwiki/operations/gke-deployments-and-uploads-isolation.md",
-      "source_location": "L58",
+      "source_location": "L62",
       "weight": 1.0
     },
     {
@@ -6861,7 +6878,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "openwiki/operations/gke-deployments-and-uploads-isolation.md",
-      "source_location": "L69",
+      "source_location": "L73",
       "weight": 1.0
     },
     {
@@ -6872,18 +6889,18 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "openwiki/operations/gke-deployments-and-uploads-isolation.md",
-      "source_location": "L75",
+      "source_location": "L79",
       "weight": 1.0
     },
     {
       "source": "openwiki_operations_gke_deployments_and_uploads_isolation_gke_deployments_10gb_upload_pod_isolation_proxysql_and_horizontal_pod_autoscaling",
-      "target": "openwiki_operations_gke_deployments_and_uploads_isolation_5_automated_moodle_semver_monitoring_github_dependabot_yml_and_moodle_semver_updater_yml",
+      "target": "openwiki_operations_gke_deployments_and_uploads_isolation_5_coordinated_moodle_and_alpine_update_automation_moodle_semver_updater_yml",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "openwiki/operations/gke-deployments-and-uploads-isolation.md",
-      "source_location": "L88",
+      "source_location": "L92",
       "weight": 1.0
     },
     {
@@ -7811,47 +7828,47 @@
       "weight": 1.0
     },
     {
-      "source": "4_moodle_image_builder_scripts_update_moodle_semver_rationale_225",
+      "source": "4_moodle_image_builder_scripts_update_moodle_semver_rationale_226",
       "target": "4_moodle_image_builder_scripts_update_moodle_semver_parse_apkindex",
       "relation": "rationale_for",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
-      "source_location": "L225",
+      "source_location": "L226",
       "weight": 1.0
     },
     {
-      "source": "4_moodle_image_builder_scripts_update_moodle_semver_rationale_255",
+      "source": "4_moodle_image_builder_scripts_update_moodle_semver_rationale_256",
       "target": "4_moodle_image_builder_scripts_update_moodle_semver_fetch_alpine_branches",
       "relation": "rationale_for",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
-      "source_location": "L255",
+      "source_location": "L256",
       "weight": 1.0
     },
     {
-      "source": "4_moodle_image_builder_scripts_update_moodle_semver_rationale_277",
+      "source": "4_moodle_image_builder_scripts_update_moodle_semver_rationale_278",
       "target": "4_moodle_image_builder_scripts_update_moodle_semver_select_alpine_target",
       "relation": "rationale_for",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
-      "source_location": "L277",
+      "source_location": "L278",
       "weight": 1.0
     },
     {
-      "source": "4_moodle_image_builder_scripts_update_moodle_semver_rationale_328",
+      "source": "4_moodle_image_builder_scripts_update_moodle_semver_rationale_331",
       "target": "4_moodle_image_builder_scripts_update_moodle_semver_build_pr_metadata",
       "relation": "rationale_for",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
-      "source_location": "L328",
+      "source_location": "L331",
       "weight": 1.0
     },
     {
@@ -8878,7 +8895,7 @@
       "confidence_score": 0.85,
       "context": "argument",
       "source_file": "4-moodle-image-builder/scripts/update-moodle-semver.py",
-      "source_location": "L515",
+      "source_location": "L526",
       "weight": 1.0
     },
     {
@@ -8930,6 +8947,18 @@
       "weight": 1.0
     },
     {
+      "source": "openwiki_operations_gke_deployments_and_uploads_isolation_5_coordinated_moodle_and_alpine_update_automation_moodle_semver_updater_yml",
+      "target": "4_moodle_image_builder_scripts_update_moodle_semver_main",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "context": "main",
+      "source_file": "openwiki/operations/gke-deployments-and-uploads-isolation.md",
+      "source_location": "L108",
+      "weight": 1.0
+    },
+    {
       "source": "1_pv_storageclass_regional_pd_moodle_regional_pd_sc",
       "target": "1_pv_pv_regional_pd_pv_regional_pd",
       "relation": "conceptually_related_to",
@@ -8953,5 +8982,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "b0b3fc69ebb683d163140309a7e7e9efd0d1cda1"
+  "built_at_commit": "17ae105337f1bf93e5ee589bc5ebec7ff38c384a"
 }

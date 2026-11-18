@@ -17,8 +17,8 @@ metadata:
   name: moodle-configmap
   namespace: moodle
 data:
-  MOODLE_URL: 'https://github.com/moodle/moodle/archive/refs/tags/v5.2.4.tar.gz'
-  MOODLE_SHA256: ''
+  MOODLE_URL: 'https://github.com/moodle/moodle/archive/refs/tags/v5.2.5.tar.gz'
+  MOODLE_SHA256: '6713676b07827d935b387b439ce63df51f2533cf50efdff9128859e5135f085b'
   MOOSH_URL: 'https://github.com/tmuras/moosh/archive/refs/heads/master.tar.gz'
   MOOSH_SHA256: ''
   LANG: 'pt_BR.UTF-8'
@@ -34,7 +34,7 @@ data:
   DB_NAME: 'moodle-db'
   DB_USER: 'root'
   DB_PREFIX: 'mdl_'
-  MOODLE_SITENAME: 'Moodle 5.2.4 On GKE'
+  MOODLE_SITENAME: 'Moodle 5.2.5 On GKE'
   MOODLE_SITESUMMARY: 'Brought to you by OSS@Google Cloud with :love'
   MOODLE_USERNAME: 'admin'
   MOODLE_EMAIL: 'user@example.com'

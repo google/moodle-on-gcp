@@ -7,7 +7,7 @@ Before making any changes, read both this file and [`.jules/sentinel.md`](.jules
 
 ## 1. Repository Architecture & Current Stack (`main`)
 
-`google/moodle-on-gcp` provisions and deploys a cloud-native, horizontally scalable **Moodle LMS (`v5.2.4`)** on **Google Kubernetes Engine (GKE)** backed by **Cloud SQL for MySQL Enterprise (`MYSQL_8_4`)**, **Memorystore for Redis / Redis Cluster (`local_redislock`)**, selectable shared storage (**Filestore NFS (`RWX`)** or **Regional Replicated Persistent Disk (`regional-pd`)**), and **Google Cloud CDN (`USE_ORIGIN_HEADERS`)**.
+`google/moodle-on-gcp` provisions and deploys a cloud-native, horizontally scalable **Moodle LMS (`v5.2.5`)** on **Google Kubernetes Engine (GKE)** backed by **Cloud SQL for MySQL Enterprise (`MYSQL_8_4`)**, **Memorystore for Redis / Redis Cluster (`local_redislock`)**, selectable shared storage (**Filestore NFS (`RWX`)** or **Regional Replicated Persistent Disk (`regional-pd`)**), and **Google Cloud CDN (`USE_ORIGIN_HEADERS`)**.
 
 | Directory | Purpose | Key Files |
 | :--- | :--- | :--- |
@@ -15,7 +15,7 @@ Before making any changes, read both this file and [`.jules/sentinel.md`](.jules
 | `1-networking/` | Reserve global static IP (`moodle-ingress-ip`) for GKE External Ingress. | `1-networking/reserve-external-ip.md` |
 | `2-pvc/` | PersistentVolume and PersistentVolumeClaim templates for Filestore NFS (`RWX`) and Regional Replicated Persistent Disk (`regional-pd`, `gcePersistentDisk`). | `2-pvc/pvc-filestore.yaml`, `2-pvc/pvc-regional-pd.yaml` |
 | `3-Shortcut/` | Summary guide linking directly to `5a-deployment-no-helm/`. (Legacy Bitnami & `7-helm/` were removed in `PR #43`). | `3-Shortcut/README.md` |
-| `4-moodle-image/` | Multi-stage Alpine `3.21` + PHP `8.3.36` + GNU `libiconv 1.18` (`preloadable_libiconv.so`) + Moodle `v5.2.4` + Moosh `1.51` + `local_redislock` image. | `4-moodle-image/Dockerfile`, `4-moodle-image/scripts/setup_moodle.sh`, `4-moodle-image/config/nginx/moodle.conf`, `4-moodle-image/config/nginx/nginx.conf`, `4-moodle-image/config/php83/php.ini`, `4-moodle-image/config/php83/fpm-pool.conf` |
+| `4-moodle-image/` | Multi-stage Alpine `3.24` + PHP `8.3.36` + GNU `libiconv 1.18` (`preloadable_libiconv.so`) + Moodle `v5.2.5` + Moosh `1.51` + `local_redislock` image. | `4-moodle-image/Dockerfile`, `4-moodle-image/scripts/setup_moodle.sh`, `4-moodle-image/config/nginx/moodle.conf`, `4-moodle-image/config/nginx/nginx.conf`, `4-moodle-image/config/php83/php.ini`, `4-moodle-image/config/php83/fpm-pool.conf` |
 | `5a-deployment-no-helm/` | Canonical Kubernetes manifests (`ConfigMap`, `Secret`, `Deployment`, `Service`, `BackendConfig`, `FrontendConfig`, `ManagedCertificate`, `Ingress`, `HorizontalPodAutoscaler`, `CronJob`) and interactive generator script. | `5a-deployment-no-helm/moodle-configmap-nginx.yaml`, `5a-deployment-no-helm/moodle-configmap-nginx-sample.yaml`, `5a-deployment-no-helm/create-config-files.sh` |
 | `6-ssl-Redirect/` | Post-SSL activation manifests (`FrontendConfig` HTTP->HTTPS `301` redirect and `reverseproxy = true` in `ConfigMap`). | `6-ssl-Redirect/enable-ssl-redirect-after-cert-prov.yaml` |
 | `.jules/` | Jules / Sentinel persistent security journal and review guardrails. | `.jules/sentinel.md` |
