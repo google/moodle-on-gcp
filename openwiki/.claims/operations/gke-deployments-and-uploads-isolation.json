@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:32b7f4acb7f2dfc103ee0530d88ec314c369adf716d6db47b7b4dbf2b83bc004",
+  "pageVersion": "sha256:6fed868861c6ebaaf48d47699c6c8edde5ebf976f0c2188f739cca11e991b23b",
   "claims": [
     {
       "id": "claim_fcb82d9ef5b0414aaad7f3e1667a7917",
@@ -67,32 +67,106 @@
           "version": "repo-lines-v1:sha256:fc5a22a913bfdc38e8f9f652f6c7fd7831d08a2b1ce4aa9eed5a005bd58d9ce4:eyJzZWxlY3RlZExpbmVDb3VudCI6NDEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZiYzgzZWUxNWY2NzEwODQ4NTE4ZTc4NmYzNTRlMzY3MDQzNzRmZmQ4MmM1ZGNlYmVjYWZhNzgxZmIwMGJhOWUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdhZjIxNmYwZTU3NTdmMmM2MTZmNjA4MGM1ODM5ODY3NWY3NzhjZjZhMzZlMDNkNDQzYmU5MTMxYWQ2ZTQ3OGQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjI2YTFhMDAxY2RkYzkzZmNlYTg3YWMyMmZhM2I2ZGEyZGRlZTMwNGQyNGIxOGIwYTQzYjcwYmY1ZWVjNTkwNTMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjIyZWYxODRlMzMyMzUxNDUwYWY4MGMxZDIyYmNiMGM5MzA4MjJhYWU5OWJlZTY2NzAzNjY4NjIwMWMxNDcyM2EifQ"
         },
         {
-          "resource": "repo://docs/install-moodle-nginx.md#L38-L55",
-          "version": "repo-lines-v1:sha256:1d4ad5f53f0c25ae03f66607601dfc8668c6fd012097657ec43494ec8f983670:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk5YTNlZDFhZmY2Nzc3OTQ3NWFlYWVjMjAwOTIwM2NiYzNlNTA5MWQwZjQ1ZmQ5MGUyMmNkZGEzYTJkZDQwNTAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE2NTY3MDdjZjlkYjY3MmJkNzI3ZTM1YjczYjUxZTNkNDg2NzU4MjlhYmM5YWRmNjAxYzY5MjA3MDczNThkZjkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzMTlmMDEyNDYxZTQ0MmRlMmVhZDBlODg0ODVlYTQ2NGFlMjUxMDg5NGFlOWIyOWE5NWI0MDI5NDNkNWVkZDAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjgxZTJiOWViYjU0M2ViZTQzMmMyZjU4MDYzMDliOGZhZTEzNjU0NzUxNmQ1YjUwYmE0MzQ3M2VmMTZiMzY3MTEifQ"
+          "resource": "repo://docs/install-moodle-nginx.md#L38-L53",
+          "version": "repo-lines-v1:sha256:5c6a6938cd298e0f263d2425b362fa1ceddc6c365b357515c6c70959200d9c43:eyJzZWxlY3RlZExpbmVDb3VudCI6MTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk5YTNlZDFhZmY2Nzc3OTQ3NWFlYWVjMjAwOTIwM2NiYzNlNTA5MWQwZjQ1ZmQ5MGUyMmNkZGEzYTJkZDQwNTAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc1ZGI0YjFhM2Y4MGU4YjU3YmQ4YjY1NjJlZDM5MjRiZmFhMmM1ODEwYWIwNmYxNTlmZWUyMDhhMDgxYmVkYTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzMTlmMDEyNDYxZTQ0MmRlMmVhZDBlODg0ODVlYTQ2NGFlMjUxMDg5NGFlOWIyOWE5NWI0MDI5NDNkNWVkZDAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImI1NzUyNTQwYjcyMTI2ODQwZTdjYjJjMWY0MDEyMjYwOWFiOGVmYWYxOWFhZDJkNTkwMGFkZDI1Mjg2Yzk2Y2QifQ"
         }
       ]
     },
     {
       "id": "claim_bd18f8e8636b402dab54004328a6bcf5",
-      "statement": ".github/workflows/moodle-semver-updater.yml and 4-moodle-image-builder/scripts/update-moodle-semver.py monitor upstream moodle/moodle GitHub tags by SemVer scope (patch, minor, major, or custom series), compute MOODLE_SHA256, update the ConfigMap manifests and templates, and open automated pull requests alongside .github/dependabot.yml.",
+      "statement": "The Moodle SemVer Auto-Updater workflow runs weekly or via workflow_dispatch and update-moodle-semver.py selects the newest moodle/moodle tag allowed by the patch, minor, major, or custom_series policy, computes the release tarball MOODLE_SHA256, and rewrites MOODLE_URL, MOODLE_SHA256, and MOODLE_SITENAME across the ConfigMap manifests and templates.",
       "evidence": [
         {
-          "resource": "repo://.github/dependabot.yml#L15-L34",
-          "version": "repo-lines-v1:sha256:122e43e6d9e08b1f702e8d8915cd24f6f7921ffa66551065d0f0f8943569375c:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE2NGFiOWJjYjk4YjU2ZTIwYjRiN2RhN2Y1N2U1NzUzMzYzNTk0NTgzZWUzZGU2ZDNiNWJkYTAyNGY3MmNiZDEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImI4NTAwMWUyYzVkN2E5N2ZhOGYwMzA4YWI0NzdlNGI1NDU4ZjQ1NWVhNzk1OGJhNzQ0ZWI5YTAyYmM3Y2VlNGQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImRjNTU1ODNjZWYwZWFjOTU1NzY3NTJjMGNjOGNlYmYwODgxYTcxZmNiOTc3ZDE1NjdkYWJlZGI1Y2MxYTMwNjkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+          "resource": "repo://.github/workflows/moodle-semver-updater.yml#L17-L45",
+          "version": "repo-lines-v1:sha256:ec306ffba7d742c81a3b0242cdb48e941675e2a973b3ad04887e29cd9e81c555:eyJzZWxlY3RlZExpbmVDb3VudCI6MjksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjljYzg4NjM3NjZhODM4OGU1ZTUyZTdhZmE3MGU0OTQ2M2MwNjE0YjBiZTVjODIxMjY3ZDFkOWJlYTlkODY1YTciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg0YjUxMWUyOThhZTRmYzQ0ZjY4MzMzZTMxZDlhZmJkNmE1ZmQ4ODA0YjdlNTMwYjJhMGRkNWJmZmVmYzMwM2EiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjI0MmU3YzUxNzgyN2YwZjFmNzZlOGY3ZjhiMzU0YTY3N2VlOGZjMmRjZmQ0ZWM3ZGMyOTU2MTcyNmUwNjQzNDAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQ0MjdmNTI0MWI1ZGJmM2RjOGNlZjZkOTMwMDU1NTUyN2Q0OWIyMjRhNmY0ZjdkN2UzMzUxNjZlNDBlOGFkMjcifQ"
         },
         {
-          "resource": "repo://.github/workflows/moodle-semver-updater.yml#L15-L75",
-          "version": "repo-lines-v1:sha256:c0ddd8462e87a5591134deba5e316948bb56092b1ce7944295589286aae87737:eyJzZWxlY3RlZExpbmVDb3VudCI6NjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI1MzU1NmZiN2Q1MzdkODA0NDBmODM2NGE0NjQzYTdhMGI2MGFiZDJiYzgwNGE3ODQ0ZjEyZWQzNTIwMjhkNTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImIxMTY2MjUzMzViNjIwYmFmZmMzYzVlMTA5NWNhM2Q4NTZjZTI0MGVmZWE3Yzc3Yzg3ZjU5YzBkZmZmNTVlNjkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+          "resource": "repo://4-moodle-image-builder/scripts/update-moodle-semver.py#L96-L182",
+          "version": "repo-lines-v1:sha256:78b0d775c34fe20939b0d14b6c0476e35d45f5dc0179c9eaabc1e7e3e1670004:eyJzZWxlY3RlZExpbmVDb3VudCI6ODcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk5OWRmMzRlNjZmNWU1ZDBkN2UzZTRlNjk0NTA2MzUwZGNlYzZhZTFkZjI0ZDY2ZWEyODE1MTlmNmRiODdmYjAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZhMGMyMWFlYzI4ZTY2MjBmZWMyMjQ1ODllOWEwMjQ2OTllZjNiZThlZmNhZGRhYTE2YjQzNTNiZWFiMmU1NWUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjdmNmRkMGY2Y2VhNzljMTEzYzhlZTQzOWUxZWU0OWM3YWNiNTQyNGYzOThlZWQzNWI2OTY2YjUyOGM2MmY0MzUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQzYmU3Yzk5NDFmM2NhOTEyNDJlNTg2ZWJhZjNiNzUyMGJjZTRiY2M3MWQ2MjVkZDY1YzAxMzViZmVlNWViZmQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_b6cd21954f5f4a4c8430b0ebfa928d71",
+      "statement": "Alpine base image bumps are compatibility-gated: update-moodle-semver.py reads alpinelinux.org/releases.json, skips edge, end-of-life branches, and branches without releases, and selects the newest newer branch whose main and community x86_64 APKINDEX provide every apk add package (names or provides aliases, ignoring comment lines) from Dockerfile.nginx and build-gnu-libiconv.sh; otherwise it leaves FROM alpine:X.Y unchanged, warns when the current release is end-of-life, and treats Alpine network failures as a skipped check.",
+      "evidence": [
+        {
+          "resource": "repo://4-moodle-image-builder/scripts/update-moodle-semver.py#L185-L327",
+          "version": "repo-lines-v1:sha256:94ce5359bd543ad35ce91905ce3f4fe3b8dc5d22a580795dadb758b08dbc739e:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQzLCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiJlZDU3OWRkNDhkMzI5Mzg5YWIzY2MwODM4MGIzZmYyODgyZGViNzM0MzgwNmE5OGE0YzkzYWZiZDVlNWI3MjY1IiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiJmYTBjMjFhZWMyOGU2NjIwZmVjMjI0NTg5ZTlhMDI0Njk5ZWYzYmU4ZWZjYWRkYWExNmI0MzUzYmVhYjJlNTVlIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiI5NDViOTg5NWJhNjY0NWY1NzYxZWJlMjI5OWQwYjI0NTA5OWIwODFkZWIwYzUwZjJjNTExNjAzZTFkOGM1NWU0IiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiI5YTNjMGRjMjNlMzBlN2IxY2ZkNDJlZWNiNWRjNmQ5YWFiMGFiOGMzNWI2ZTEzZjYxNTBlNzVmNDQzODkwYTYwIn0"
         },
         {
-          "resource": "repo://4-moodle-image-builder/scripts/update-moodle-semver.py#L46-L120",
-          "version": "repo-lines-v1:sha256:e9fcacd82bd6f1b10a0e47c5606f9b461d816a7032dfe35d4f4c3a776a6defcb:eyJzZWxlY3RlZExpbmVDb3VudCI6NzUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjYwYzQ2ZmFiNjk2NDFjY2QyMzllNTNjNjY4YzMzNjYyZDUzNGU1OWJlNTBhZmY4ZjY1MjUzZDE0ZDk1ZjE0ODYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRjNWE5ZGY5NTA4Y2U1NjBiZjlmZThjOGUzNzQwMGIyNDAzZWM1ZmEyM2M1OGE3MjE1ZjBlYjZjOGE3MDYxOGMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZmMGM1NjgyZDEzYmIyZGU3Zjg3MGIzMTg0NzE3M2E2YzgxZDE0NzgxOWUyYmZlY2E5MTk3MjQ3MGM4MTczZDgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjM3NWE0YTRiYTViYzY1YmJiNDllN2Q2NjQwNDlmZmVlYjlhNmY3M2JhOGU4MjVjN2VkNTRjODlmODY1MmI5NjcifQ"
+          "resource": "repo://4-moodle-image-builder/scripts/update-moodle-semver.py#L520-L552",
+          "version": "repo-lines-v1:sha256:2e0acf4c545e1f4e0366793de35873948acea78ec647f3ee1319541c2f1b5369:eyJzZWxlY3RlZExpbmVDb3VudCI6MzMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImEyMDI1MjNiM2Q4YzNiZGYxMGJhYTc4NmM5MjUyYmJjOWFjZWM4OGYwODNhOTY0MWVhMTM4N2M0MjYyM2E4OTEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjJmMjM1MTY0NTcyMjY4ODQyMmYzOWNkZDY5YTFjMWE5NjEwMjgxN2M1YzRjNTJlY2UzY2NhYTRjZDdhMzU2MGMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU5ZjJiMDYzYzBhZDI1M2NkZGM2MTNhMDdjMDUzNDJhOGQwODUwYzc3YWEyZDgwOWUyODYwYmQyYTU1NWU2ZDYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijk1YjNhZGVmOWQ0NzRmMzkwMTk0ODEzMTMyNTFjYjkzNGFiN2U4MjU3N2VlMjZjYzI4NWNiZmZkZGFhMDc0NmEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_c913ce7b8ff84bd981b4bc67f8ffd2e8",
+      "statement": ".github/dependabot.yml ignores the alpine dependency in the docker ecosystem so Alpine bumps arrive only through the coordinated updater pull request, keeps weekly github-actions updates, and applies a 7-day cooldown to both ecosystems.",
+      "evidence": [
+        {
+          "resource": "repo://.github/dependabot.yml#L16-L43",
+          "version": "repo-lines-v1:sha256:e02595fce4f4bf9bcb7327d160f788cd0325e52681f4c47174f70072ebb9ed31:eyJzZWxlY3RlZExpbmVDb3VudCI6MjgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhiNTVlODk1MzM4NDA4NWRlYTlmZTBiZjcyZmQzYmJkYWU4NzVkZjM5YTdjZjlkZDg0ODY2YWUyMGI2ODM4MTgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImI4NTAwMWUyYzVkN2E5N2ZhOGYwMzA4YWI0NzdlNGI1NDU4ZjQ1NWVhNzk1OGJhNzQ0ZWI5YTAyYmM3Y2VlNGQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM1MGVmOTczY2E5Njc0YWFlMDk0OGVjNjhhYjZhNjczNTc0NjM1MmE2YzQ3NWI1MTZlNmZhZjYxOGNlMDM5OTciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_be75bb35d9a1405a9cba92e0d8e002e2",
+      "statement": "The workflow resolves the optional MOODLE_UPDATER_TOKEN secret to its owner via gh api user and uses that token and the owner's <id>+<login>@users.noreply.github.com identity as pull request opener, commit author, and committer so cla/google can pass, failing the run with an explicit error when GitHub rejects a configured token; without the secret it falls back to GITHUB_TOKEN with the github.actor noreply identity and the generated pull request body explains the CLA limitation.",
+      "evidence": [
+        {
+          "resource": "repo://.github/workflows/moodle-semver-updater.yml#L119-L130",
+          "version": "repo-lines-v1:sha256:508f63a9db7a2370abbc8e1588fc99f0ca062db080d12c3387d02904713ec6a4:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQyOTcxZWU3YTlkNDg3MmE5NWUyN2Y5YTYwYjk2ZjU0YjEyMDU4OGFjOTczZmQzMTA2NWZmZTU2Y2I0NDY0ZjIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZiMDdmYTQzYWRmODIyMzBmNzgwZDc0NWY0NWM2MTI2ZTUxMTU2N2M4YWE0NmUwOGFjZWE4MTkzMmVlNmEwN2UiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQxYmFiMWQ2ZmNlNjA1MmNhNDFmNmRiMWFmYWFkOTFhMDU2ZDRiMTkyMDEwZDNiMDNlYjZjZjNhZTNiMzYxOGEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://.github/workflows/moodle-semver-updater.yml#L66-L98",
+          "version": "repo-lines-v1:sha256:c88726a5aae894e37c4c9531c04b6dd8a42dc7bfbbab4568154537530d354e1b:eyJzZWxlY3RlZExpbmVDb3VudCI6MzMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ4NmVlNGQ5MDNhZjdiZWZlM2RjOTJjZDFiYjRiMWU3OTVhNzEzNDRjNGI3ZGJmOTdhMjY1YTdhNDQxMDY0NmMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImIwOTQ4OTBkNTI1Yzk4MjVmODg5YzU2NmE0ZTljMDcyMTliZDBjM2U5NmQ0YTlkY2UyMTkyNWYyMTMyMmRiYWUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjU3N2ZjZWQxMjlmZmVhNWE0OWRkNzFmNjVjZjhlMmY2MjJlYWM1MmZmODZjMTY5MGZlYjhmNGJiYjcxMGVlOGMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjFjODg1MzBjZjg1Mzg4M2YyOTEyYzAyYjY5MzdiZTQwODBmMDlmNjk0MDFkODYwODFkNjYyYjUyYTg3YjljYmYifQ"
+        },
+        {
+          "resource": "repo://4-moodle-image-builder/scripts/update-moodle-semver.py#L382-L391",
+          "version": "repo-lines-v1:sha256:55450d7247c3e45c5666c780ec3a760b94bb45542ad8d857a80cab4b17e2b4b0:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhkYmVkODI2MjRjNDY1MzNmNzBjOTU4ODMyZWI0OTg4MTA4YzE5NmM4MzJlODAyMWRmYzc1Njc2MDNhOTQ1YTMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJhYWU4YTBjYTc2Zjk4ZjdiN2RjNzk4NDk1MWQ2M2U1N2RiM2M2NDU1NzljYTUxYmFkNmE1MzlkNjE0ZWRiYmUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjliYjIyZWQ5MmZlZDg0OTFhMjAyMzRhOWJjY2FiZGY2MWVmNDc2OTVhNDJhOTBlNzYzMTAxMTkwZjk2ODQ3ZjIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImNhNzU1ZGZiZGVjOWJlNzgxZTA1MTQ5Zjc1OTE4MGQwNTUyMDU5NzVmNDZjNDUxMjc3YWEyOTNjNDhmOTUwMTgifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_3657be654fa9418bb0653ae93e100c20",
+      "statement": "Before opening the pull request, the workflow runs tests/verify-scripts-and-configs.sh, which executes the updater's offline --dry-run self-test, and, only when the Alpine base image changed, tests/smoke-test-container-image.sh, which builds Dockerfile.nginx with Docker or Podman and verifies the required PHP 8.3 extensions, the GNU libiconv //TRANSLIT preload, nginx -t on the rendered template, and php-fpm83 -t.",
+      "evidence": [
+        {
+          "resource": "repo://.github/workflows/moodle-semver-updater.yml#L111-L117",
+          "version": "repo-lines-v1:sha256:119ca98a806d85e4bc97c89583a9cf45174fb6675f472183b297192b2cea658c:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYjllNjA0NTlhOGIwMDlhODJmNTE5MWRhOTgyZDE4ZDE3N2VjNzU5YjRhZWEwZGJlOGQ2NTc0ZmQyNzE3MTUzMyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNTdlNjVjOWU2MDI2Yzk2OWQ1MDc2OTJkZjIwODNiZjJmYjk2NDY3ZTU2NmM5M2M1NzZjZDcxY2I0YWFmMmY3MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZWRmMWY0OWVhZDhhNmIzY2E4YTI3Mjc3NjEzY2E0NWI0NWM0YjZmNDdlYWFiNjA2ZjM4OTI1NDBiM2I0ZDIxNyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNzg0ZGY5ZjZhYzRmZDhkNDZlZDM3YmMwYWZmNzE1ZGNiYmU1Y2FiM2JmY2QyN2Q5ZGZiMjMyOWJlYWU1ZWEwOCJ9"
+        },
+        {
+          "resource": "repo://tests/smoke-test-container-image.sh#L38-L80",
+          "version": "repo-lines-v1:sha256:814c36ee8ef51effc6830f7fc54baebaf61987332891d3a3611799452e751b5f:eyJzZWxlY3RlZExpbmVDb3VudCI6NDMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFhYzJmY2JlMGQyNDNiYzc3YmIyOGY0YjQ3MjIxMDBiNzQ0YzE1ODdmMzQ4Yzc4YTQ5YzRjMDVkOTNjZmZhNWQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAyMjE3NmE1ZTZhZmViMGEzOWEzNDRiNmRkMzc2MzFjY2FiOThiYjQ5ZTAwMDRhYzk1NTFiNDg2YzJlZjQwNWIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjllOGRhNzMzOTI1ZGNkZGI3YWQ0ZDU3YmJjYWQxZWU5NDBiYmIzMDYxZjhkMDc0MGE5NmExNDA2ZDkyMTlmNzAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImU2YWIyNTNjNWY5NjAxN2VhNmU1ODhkYjUxMWMyM2Q2MTAyNDhhZTdhNDExZDI1MzJiYWNiMjIwMGNiYTU3MjkifQ"
+        },
+        {
+          "resource": "repo://tests/verify-scripts-and-configs.sh#L270-L276",
+          "version": "repo-lines-v1:sha256:7fcdafc7ccef6f504fcf402524880c4b789fda6e134654a7950757c6fd235e6f:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiM2QxYTcyNjNjNWU4YjEzOWUzNDFiMGYxZmJkNDg5MzAzMTQyNTc4NGFjNDhiMGMwZTE2YTYxNjcxMTJmYjhjMiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiN2VlMmE2N2RmMWJkMjc5ZjQ3Y2QyM2E3MzQwODQyMDBiYzZlZTA4NzAxZmY3NzdlODkzOTk4MTRlMTA3NzA0ZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYWU4ZmE4MTE3YjFmMTAzMDJiMjE1ODc0OTg2YzhmOTE1Y2YwMmQwMWY0YzAwN2Y1MjBlMGUxYmE4ZmZkODE0YyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOTZjNzE2M2JkYzU0MzQwNGNlZGVlYWMyZjdhOWRkMTJiNjg5M2Y4YTgxYzg3YTAwMTliM2M4YjEwMmI3ODdmNSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_572f8dfa9db74dbaa25e782ef5fe75d2",
+      "statement": "Moodle and Alpine updates are committed together to the chore/moodle-semver-update branch with a commit message, title, and Markdown body generated by update-moodle-semver.py, whose updated, moodle_updated, and alpine_updated outputs gate the verification, smoke-test, and pull request steps.",
+      "evidence": [
+        {
+          "resource": "repo://.github/workflows/moodle-semver-updater.yml#L111-L130",
+          "version": "repo-lines-v1:sha256:6628b8b4d312d0e17b8edba2977eded5dc8ccb3995c23082d3a9e3c5a91832ed:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImI5ZTYwNDU5YThiMDA5YTgyZjUxOTFkYTk4MmQxOGQxNzdlYzc1OWI0YWVhMGRiZThkNjU3NGZkMjcxNzE1MzMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZiMDdmYTQzYWRmODIyMzBmNzgwZDc0NWY0NWM2MTI2ZTUxMTU2N2M4YWE0NmUwOGFjZWE4MTkzMmVlNmEwN2UiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImVkZjFmNDllYWQ4YTZiM2NhOGEyNzI3NzYxM2NhNDViNDVjNGI2ZjQ3ZWFhYjYwNmYzODkyNTQwYjNiNGQyMTciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://4-moodle-image-builder/scripts/update-moodle-semver.py#L330-L392",
+          "version": "repo-lines-v1:sha256:7f90c37cafbb9576a2c24cb6f59c630063bf0ec4a701a6a2775e55ef983a0a58:eyJzZWxlY3RlZExpbmVDb3VudCI6NjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjViNGZhNGU2NTA4OTZmMmI0MzE3Zjg3ZmUzODZhNDAxYTliMjMwYTJjODk5NzZiYjBjMzVkMTFhMjg2ZTNmYWUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk5NWI4MDNlY2Y1NzViNTRiYjg5NGQwZTNjZWRhMWE3ZWQ5MGNlYjc1OTE4NjViMWRjNDhmY2MyYjFiNjI3YTIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA2NjA1ODlkYTU2OTFjNzdjYzVhODdjOWY0NWYzMmNiOTM1MDQ1YzI3MWVmZWNmNDAzYWQxMjQ4YWE0NDM0NDQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImU1YTczOWE4MGFmYWZlMzUzOTA2MWJlNWRmYjBmNjg1MGJmZWNhYzg4NjRiZTQwMjE5MGUyMWRhMWQwMGMxZjkifQ"
+        },
+        {
+          "resource": "repo://4-moodle-image-builder/scripts/update-moodle-semver.py#L554-L569",
+          "version": "repo-lines-v1:sha256:d9bafa494208424b5bedce753a316313af7fd08653238f25025dc9bb700e0d77:eyJzZWxlY3RlZExpbmVDb3VudCI6MTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ0MjdkYWFlOWQ1NmM4YzhmOTI1MmJjNWUyYmYyODk4YzVlMTY1MWY5ZjMxM2QzODM4OTY1NTk2ZTVjMzhmYjMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE5YjhjZTI0OTU0YzlhMDVlMTU2ZmE0YTYxODlmYjg0NWE4ZjJkZWMyNDg4M2IyYWZmN2E0ODYwY2IzYmJiMWMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImEwYjc5YWM3YzhmOWEzYmVkYTc3NDQ2NGUwZGUwODIwNDkyNDI4N2EzZWM4MGMyZTVhYTc5YWMyOTg5ZGNhOTciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjA1NzIyYjhjNGYyODMxYTA4YTZmZjE2OGQxNjUxMTRiNmZkYmFjZjk4NDIxNTM2NjI3NzY5M2JkY2IzYmQwMjAifQ"
         }
       ]
     }
   ],
   "verification": {
     "by": "openwiki/0.5.1",
-    "at": "2026-11-15T21:21:21.950Z"
+    "at": "2026-11-18T12:02:02.964Z"
   }
 }

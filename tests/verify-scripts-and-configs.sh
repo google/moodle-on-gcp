@@ -268,6 +268,12 @@ grep -q 'startupProbe:' 5a-deployment-no-helm/moodle-deployment-nginx-uploads.ya
 test -f .github/dependabot.yml
 test -f .github/workflows/moodle-semver-updater.yml
 python3 4-moodle-image-builder/scripts/update-moodle-semver.py --dry-run >/dev/null
+# Coordinated Moodle + Alpine updates: Dependabot must not open separate Alpine PRs,
+# and Alpine bumps must be smoke-tested and opened under a CLA-covered identity.
+grep -q 'dependency-name: "alpine"' .github/dependabot.yml
+grep -q 'MOODLE_UPDATER_TOKEN' .github/workflows/moodle-semver-updater.yml
+grep -q './tests/smoke-test-container-image.sh' .github/workflows/moodle-semver-updater.yml
+bash -n tests/smoke-test-container-image.sh
 if grep -rqi 'sidecar replication' 0-infra/ 1-pv/ 2-namespace/ 3-pvc/ 4-moodle-image-builder/ 5a-deployment-no-helm/ 6-backendconfig/ 8-ingress/ 9-hpa/ docs/ openwiki/ README.md AGENTS.md; then
   echo "FAIL: Found prohibited sidecar replication reference in repository files." >&2
   exit 1

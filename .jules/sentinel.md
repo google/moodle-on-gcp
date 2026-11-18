@@ -118,3 +118,19 @@ While `DB_PASS` and `MOODLE_PASSWORD` were mounted via Kubernetes `Secret` (`sec
 - Created `5a-deployment-no-helm/moodle-optional-secrets.yaml` and `5a-deployment-no-helm/deployment-templates/moodle-optional-secrets-template.yaml`.
 - Updated `moodle-deployment-nginx.yaml`, `moodle-deployment-nginx-uploads.yaml`, and their templates to mount `DB_READ_REPLICA_PASSWORD`, `REDIS_*_AUTH_STRING`, and `SMTP_PASSWORD` via `secretKeyRef` (`name: moodle-optional-secrets`, `optional: true`).
 - Updated `5a-deployment-no-helm/create-config-files.sh` to generate `moodle-optional-secrets.yaml` (`chmod 0600`) and populate `smtp-password` interactively.
+
+---
+
+## 2026-11-18 — CLA-Compliant Update Pull Requests and Compatibility-Gated Alpine Bumps (`moodle-semver-updater.yml`)
+
+**Findings:**
+1. **`cla/google` Rejects Pull Requests Opened by `github-actions[bot]`**:
+   - The automated Moodle `v5.2.5` pull request (`#59`) was opened with the default `GITHUB_TOKEN`. Its commit author (`ernani`, the `github.actor` of the scheduled run) was covered by the CLA, but the check failed for the committer (`github-actions[bot]`) and, after the commit was re-created, for the pull request opener (`github-actions[bot]`).
+   - Changing the Git email to the GitHub noreply address (`<id>+<login>@users.noreply.github.com`) is compatible with the CLA check once the GitHub account is registered; exposing a private email address is not required.
+2. **Separate Dependabot Alpine Pull Requests Can Break the Image**:
+   - Dependabot's `docker` ecosystem proposed `alpine:3.21` $\rightarrow$ `alpine:3.24` without checking that the new release still ships every `php83-*` package installed by `Dockerfile.nginx` (a future Alpine release may drop the `php83` series). Alpine `3.21` reached end of life on `2026-11-01`.
+
+**Resolution:**
+- `.github/workflows/moodle-semver-updater.yml` resolves an optional `MOODLE_UPDATER_TOKEN` secret (short-lived, repository-scoped fine-grained PAT of a CLA-covered maintainer; never a personal bot account) to the owner's noreply identity and uses it as pull request opener, commit author, and committer; without it, the workflow falls back to `GITHUB_TOKEN` and documents the CLA limitation in the pull request body. Tokens are passed only through `secrets`/`env` (never interpolated into `run:` scripts).
+- `4-moodle-image-builder/scripts/update-moodle-semver.py` now bumps the Alpine base image together with Moodle (single pull request), only to supported (non-EOL) releases whose `main`/`community` `APKINDEX` provides every `apk add` package of `Dockerfile.nginx` and `scripts/build-gnu-libiconv.sh`; `.github/dependabot.yml` ignores `alpine` and sets a 7-day `cooldown` (zizmor `dependabot-cooldown`).
+- Added `tests/smoke-test-container-image.sh` (PHP extensions, GNU libiconv `//TRANSLIT`, `nginx -t`, `php-fpm83 -t`), run by the workflow before any Alpine bump is proposed.
